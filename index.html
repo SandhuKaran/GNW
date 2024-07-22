@@ -211,7 +211,7 @@
                   data-x="['center','center','center','center']"
                   data-hoffset="['0','0','0','0']"
                   data-y="['middle','middle','middle','middle']"
-                  data-voffset="['-24','-20','-16','-10']"
+                  data-voffset="['-84','-80','-76','-70']"
                   data-fontsize="['70','60','50','40']"
                   data-lineheight="['80','70','60','50']"
                   data-width="none"
@@ -228,7 +228,12 @@
                   data-responsive_offset="on"
                   style="z-index: 2"
                 >
-                  Welcome to <span class="text-accent-color">Greenworks</span>
+                  <div class="welcome-text">
+                    Welcome to
+                    <span class="welcome-text brand-name text-accent-color"
+                      >Greenworks</span
+                    >
+                  </div>
                 </div>
 
                 <div
@@ -236,7 +241,7 @@
                   data-x="['center','center','center','center']"
                   data-hoffset="['0','0','0','0']"
                   data-y="['middle','middle','middle','middle']"
-                  data-voffset="['50','50','50','50']"
+                  data-voffset="['20','20','20','20']"
                   data-fontsize="['28','24','20','18']"
                   data-lineheight="['40','36','28','26']"
                   data-width="none"
@@ -254,8 +259,11 @@
                   data-lasttriggerstate="reset"
                   style="z-index: 1"
                 >
-                  ENVISION | <span class="text-accent-color">DESIGN</span> |
-                  BUILD
+                  <div class="heading-desc">
+                    ENVISION |
+                    <span class="text-accent-color heading-desc">DESIGN</span> |
+                    BUILD
+                  </div>
                 </div>
 
                 <div
@@ -263,7 +271,7 @@
                   data-x="['center','center','center','center']"
                   data-hoffset="['0','0','0','0']"
                   data-y="['middle','middle','middle','middle']"
-                  data-voffset="['156','136','116','106']"
+                  data-voffset="['146','126','106','96']"
                   data-width="none"
                   data-height="none"
                   data-whitespace="nowrap"
@@ -277,13 +285,9 @@
                   data-splitin="none"
                   data-splitout="none"
                   data-actions='[{"event":"click","action":"scrollbelow","offset":"20px"}]'
-                  data-responsive="on"
+                  data-responsive="off"
                 >
-                  <a
-                    class="wprt-button big rounded-3px"
-                    style="margin-right: 16px"
-                    >LANDSCAPING</a
-                  >
+                  <a class="wprt-button big rounded-3px">LANDSCAPING</a>
 
                   <a
                     href="lawnmaintenance.html"
@@ -389,7 +393,7 @@
                   data-x="['left','left','left','left']"
                   data-hoffset="['55','30','30','30']"
                   data-y="['middle','middle','middle','middle']"
-                  data-voffset="['160','150','140','125']"
+                  data-voffset="['180','170','160','145']"
                   data-width="none"
                   data-height="none"
                   data-whitespace="nowrap"
@@ -403,7 +407,7 @@
                   data-splitin="none"
                   data-splitout="none"
                   data-actions='[{"event":"click","action":"scrollbelow","offset":"20px"}]'
-                  data-responsive="on"
+                  data-responsive="off"
                 >
                   <a href="contact.html" class="wprt-button big rounded-3px"
                     >CONTACT US</a
@@ -503,6 +507,9 @@
                               display: block;
                               text-decoration: none;
                               color: inherit;
+                              padding: 10px;
+                              border-radius: 10px;
+                              margin-bottom: 2rem;
                             "
                           >
                             <div class="thumb service-image">
@@ -531,6 +538,9 @@
                               display: block;
                               text-decoration: none;
                               color: inherit;
+                              padding: 10px;
+                              border-radius: 10px;
+                              margin-bottom: 2rem;
                             "
                           >
                             <div class="thumb service-image">
@@ -561,6 +571,9 @@
                               display: block;
                               text-decoration: none;
                               color: inherit;
+                              padding: 10px;
+                              border-radius: 10px;
+                              margin-bottom: 2rem;
                             "
                           >
                             <div class="thumb service-image">
@@ -601,6 +614,9 @@
                               display: block;
                               text-decoration: none;
                               color: inherit;
+                              padding: 10px;
+                              border-radius: 10px;
+                              margin-bottom: 2rem;
                             "
                           >
                             <div class="thumb service-image">
@@ -629,6 +645,9 @@
                               display: block;
                               text-decoration: none;
                               color: inherit;
+                              padding: 10px;
+                              border-radius: 10px;
+                              margin-bottom: 2rem;
                             "
                           >
                             <div class="thumb service-image">
@@ -657,6 +676,9 @@
                               display: block;
                               text-decoration: none;
                               color: inherit;
+                              padding: 10px;
+                              border-radius: 10px;
+                              margin-bottom: 2rem;
                             "
                           >
                             <div class="thumb service-image">
@@ -1696,5 +1718,12 @@
       type="text/javascript"
       src="includes/rev-slider/js/extensions/revolution.extension.video.min.js"
     ></script>
+    <script>
+      window.onload = function () {
+        setTimeout(function () {
+          window.dispatchEvent(new Event("resize"));
+        }, 100);
+      };
+    </script>
   </body>
 </html>
