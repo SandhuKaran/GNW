@@ -3834,24 +3834,163 @@ body.page #main-content {
 
 @media only screen and (max-width: 479px) {
   .tp-caption {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
 
   .wprt-button {
-    margin: 0 12px;
+    margin: 0 12px !important;
+    font-size: 12px !important; /* Adjusted for smaller screens */
+  }
+
+  .welcome-text {
+    display: block !important;
+    text-align: center !important;
+    font-size: 5rem !important; /* Reduced font size */
+    padding: 2rem !important; /* Adjusted padding */
+  }
+
+  .welcome-text .brand-name {
+    display: block !important;
+    font-size: 5rem !important; /* Reduced font size */
+  }
+
+  .heading-desc {
+    text-align: center !important;
+    font-size: 2rem !important; /* Reduced font size */
+    padding: 1rem !important; /* Adjusted padding */
+  }
+
+  #top-bar {
+    display: none !important;
+  }
+
+  #site-header #site-header-inner,
+  #site-header.style-2 #site-header-inner,
+  #site-header.style-3 #site-header-inner,
+  #site-header.style-4 #site-header-inner {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+
+  #featured-title .featured-title-inner-wrap {
+    padding: 30px 0 !important;
+  }
+  #featured-title .featured-title-heading {
+    font-size: 20px !important; /* Reduced font size */
+  }
+
+  .hentry .post-author {
+    text-align: center !important;
+  }
+  .hentry .post-author .author-avatar {
+    float: none !important;
+    margin: 0 auto 20px !important;
+  }
+  .hentry .post-read-more,
+  .hentry .post-link,
+  .hentry .post-link-share {
+    display: block !important;
+    width: 100% !important;
+    float: none !important;
+    text-align: left !important;
+  }
+  .hentry .post-link {
+    margin-bottom: 10px !important;
+  }
+  .hentry .post-link-share {
+    margin-top: 20px !important;
+  }
+  .wprt-pagination {
+    margin-top: 30px !important;
+  }
+  .comments-area {
+    margin-top: 40px !important;
+  }
+  .comment-respond {
+    margin-top: 0 !important;
+  }
+  .comments-area .comments-title,
+  .comments-area .comment-reply-title {
+    margin-bottom: 20px !important;
+  }
+  .comment-list article .gravatar {
+    width: 50px !important;
+    float: none !important;
+    margin: 0 0 17px !important;
+  }
+  .comment-list .children > li {
+    padding-left: 35px !important;
+  }
+  .name-wrap,
+  .email-wrap {
+    width: 100% !important;
+    float: none !important;
+  }
+  .name-wrap input,
+  .email-wrap input,
+  .message-wrap textarea {
+    margin-bottom: 20px !important;
+  }
+  .woocommerce-page .content-woocommerce .woocommerce-result-count {
+    display: none !important;
+  }
+  .woocommerce-page .content-woocommerce .products {
+    padding-top: 20px !important;
+  }
+  .woocommerce-page.shop-col-3 .content-woocommerce .products li,
+  .woocommerce-page.shop-col-4 .content-woocommerce .products li,
+  .woocommerce-page.shop-col-5 .content-woocommerce .products li {
+    width: 100% !important;
+    margin-bottom: 30px !important;
+  }
+  .woocommerce-page .shop_table.cart .product-remove {
+    width: 20px !important;
+  }
+  .woocommerce-page .shop_table.cart .product-thumbnail {
+    width: 50px !important;
+  }
+  .woocommerce-page .shop_table.cart .cart_item .product-thumbnail img {
+    width: 30px !important;
+  }
+  .woocommerce-page .shop_table.cart .product-name {
+    width: 120px !important;
+  }
+  .woocommerce-page .shop_table.cart .coupon {
+    display: none !important;
+  }
+  .woocommerce-page .cart_totals {
+    width: 100% !important;
+    float: none !important;
+  }
+  .woocommerce-page .cart_totals .wc-proceed-to-checkout a {
+    padding: 7px 0 !important;
+  }
+
+  #footer {
+    padding: 50px 0 10px !important;
+  }
+  #footer-widgets [class^="col-md-"] .widget:last-child {
+    margin-bottom: 30px !important;
+  }
+
+  #bottom .bottom-bar-content,
+  #bottom .bottom-bar-menu {
+    width: 100% !important;
+    display: block !important;
+    text-align: center !important;
+    padding: 5px 0 !important;
   }
   #site-header #site-header-inner,
   #site-header.style-2 #site-header-inner,
   #site-header.style-3 #site-header-inner,
   #site-header.style-4 #site-header-inner {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
   }
 }
-
 /* Retina Devices
 -------------------------------------------------------------- */
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
