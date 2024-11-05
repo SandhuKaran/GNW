@@ -3848,19 +3848,24 @@ body.page #main-content {
   .welcome-text {
     display: block !important;
     text-align: center !important;
-    font-size: 5rem !important; /* Reduced font size */
-    padding: 2rem !important; /* Adjusted padding */
+    font-size: 4rem !important; /* Reduced font size */
+    padding: 3rem !important; /* Adjusted padding */
   }
 
   .welcome-text .brand-name {
     display: block !important;
-    font-size: 5rem !important; /* Reduced font size */
+    font-size: 4.5rem !important; /* Reduced font size */
   }
 
   .heading-desc {
     text-align: center !important;
-    font-size: 2rem !important; /* Reduced font size */
+    font-size: 3.5rem !important; /* Reduced font size */
     padding: 1rem !important; /* Adjusted padding */
+  }
+
+  .heading-desc .word {
+    display: inline-block;
+    margin: 2rem; /* Adjust spacing as needed */
   }
 
   #top-bar {
@@ -3991,6 +3996,7 @@ body.page #main-content {
     padding-bottom: 12px !important;
   }
 }
+
 /* Retina Devices
 -------------------------------------------------------------- */
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
