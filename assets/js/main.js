@@ -98,7 +98,7 @@
         self.testimonails();
 
         // Contact Form
-        self.ajaxContactForm();
+        //self.ajaxContactForm();
 
         // Preloader
         self.preLoader();
