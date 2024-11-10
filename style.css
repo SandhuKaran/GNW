@@ -4069,3 +4069,11 @@ body.page #main-content {
 img {
   border-radius: 7px;
 }
+
+.subheading {
+  font-size: 3.5rem;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
