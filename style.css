@@ -235,7 +235,7 @@ input,
 select,
 textarea {
   font-family: "Open Sans", sans-serif;
-  color: #777;
+  color: #333;
   font-size: 14px;
   line-height: 1.875;
   background-color: #fff;
@@ -567,7 +567,7 @@ input[type="url"],
 input[type="search"],
 input[type="tel"],
 input[type="color"] {
-  color: #777;
+  color: #333;
   border: 1px solid #eaeaea;
   padding: 11px 19px;
   line-height: inherit;
@@ -738,7 +738,7 @@ h6 a:hover {
 
 /* text colour of main fading headings on home page*/
 .text-accent-color {
-  color: #006400 !important;
+  color: #005400 !important;
 }
 
 .text-white {
@@ -1443,8 +1443,8 @@ p.dropcap span.first-letter {
 }
 #site-header-inner {
   position: relative;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   height: 100%;
   -webkit-transition: all ease 0.238s;
   -moz-transition: all ease 0.238s;
@@ -1906,7 +1906,7 @@ p.dropcap span.first-letter {
 }
 #main-nav-mobi ul > li > a {
   font-weight: 500;
-  color: #777;
+  color: #aaa;
   display: inline-block;
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
@@ -1960,7 +1960,7 @@ p.dropcap span.first-letter {
 .mobile-button:before,
 .mobile-button:after,
 .mobile-button span {
-  background-color: #222;
+  background-color: #ccc;
   -webkit-transition: all ease 0.238s;
   -moz-transition: all ease 0.238s;
   transition: all ease 0.238s;
@@ -3243,16 +3243,6 @@ body.page #main-content {
   position: relative;
   padding-bottom: 20px;
 }
-#sidebar .widget.widget.widget_information ul.style-2:after,
-#footer-widgets .widget.widget_information ul.style-2:after {
-  width: 193px;
-  height: 95px;
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  background: url(assets/img/map-small.png) no-repeat center center;
-}
 
 /* Re-style Widgets for footer */
 #footer-widgets .widget {
@@ -4076,4 +4066,127 @@ img {
   text-align: center;
   justify-content: center;
   align-items: center;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.pricing-box {
+  /* Outline or border */
+  border: 1.5px solid #006400;
+  border-radius: 5px; /* optional rounded corners */
+
+  /* Spacing */
+  margin-bottom: 30px; /* spacing below each box */
+  padding: 20px; /* space inside the box */
+
+  /* Optional box shadow */
+  box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.3);
+  background-color: #fff; /* ensure a white background if needed */
+}
+
+/* Page Layout */
+.portfolio-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.page-title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.intro-text {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  font-size: 1.1em;
+  color: #555;
+}
+
+/* Masonry Container */
+.masonry {
+  /* Creates a multi-column layout (a “masonry” effect) */
+  column-count: 3; /* Number of columns on larger screens */
+  column-gap: 1.5rem; /* Space between columns */
+  orphans: 1;
+  widows: 1;
+}
+.masonry-item {
+  /* The items flow into columns */
+  margin-bottom: 1.5rem;
+  break-inside: avoid; /* Avoid splitting item between columns */
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 8px;
+  /* Optional shadow for a “card” feel */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive video embed */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  height: 0;
+}
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 991px) {
+  .masonry {
+    column-count: 2; /* Fewer columns on medium screens */
+  }
+}
+@media (max-width: 600px) {
+  .masonry {
+    column-count: 1; /* Single column on small screens */
+  }
+}
+
+.fade-in-heading {
+  /* Start invisible */
+  opacity: 0;
+  /* Optional: slightly shift upward so it slides in a bit */
+  transform: translateY(20px);
+  /* Apply the animation */
+  animation: fadeSlideIn 1s forwards ease-in-out;
+  /* 
+    1s = duration
+    forwards = keep the final state
+    ease-in-out = easing
+  */
+}
+
+/* Keyframes for fade + slide in */
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-tiles {
+  /* Start invisible */
+  opacity: 0;
+  /* Optional: slightly shift upward so it slides in a bit */
+  transform: translateY(20px);
+  /* Apply the animation */
+  animation: fadeSlideIn 2s forwards ease-in-out;
+  /* 
+    1s = duration
+    forwards = keep the final state
+    ease-in-out = easing
+  */
 }

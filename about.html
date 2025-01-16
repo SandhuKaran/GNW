@@ -124,15 +124,19 @@
                       <a href="#">Portfolio</a>
                       <ul class="sub-menu">
                         <li class="menu-item">
-                          <a href="page-project-detail-triveni.html">Triveni</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="page-project-detail-preserve.html"
-                            >Preserve</a
+                          <a href="page-project-detail-triveni.html"
+                            >Project 1</a
                           >
                         </li>
                         <li class="menu-item">
-                          <a href="page-project-detail-winston.html">Winston</a>
+                          <a href="page-project-detail-preserve.html"
+                            >Project 2</a
+                          >
+                        </li>
+                        <li class="menu-item">
+                          <a href="page-project-detail-winston.html"
+                            >Project 3</a
+                          >
                         </li>
                         <!-- <li class="menu-item">
                           <a href="page-project-detail-4.html"
@@ -142,9 +146,6 @@
                       </ul>
                     </li>
 
-                    <li class="menu-item">
-                      <a href="lawnmaintenance.html">LAWN MAINTENANCE</a>
-                    </li>
                     <li class="menu-item">
                       <a href="contact.html">Contact</a>
                     </li>
@@ -334,11 +335,11 @@
                                 <li class="flex-active-slide">
                                   <a
                                     class="zoom"
-                                    href="assets/img/gallery/1.jpg"
+                                    href="assets/img/aboutus/1.webp"
                                     ><i class="fa fa-arrows-alt"></i
                                   ></a>
                                   <img
-                                    src="assets/img/gallery/1.jpg"
+                                    src="assets/img/aboutus/1.webp"
                                     alt="image"
                                   />
                                 </li>
@@ -346,11 +347,11 @@
                                 <li class="flex-active-slide">
                                   <a
                                     class="zoom"
-                                    href="assets/img/gallery/2.jpg"
+                                    href="assets/img/aboutus/2.webp"
                                     ><i class="fa fa-arrows-alt"></i
                                   ></a>
                                   <img
-                                    src="assets/img/gallery/2.jpg"
+                                    src="assets/img/aboutus/2.webp"
                                     alt="image"
                                   />
                                 </li>
@@ -358,11 +359,11 @@
                                 <li class="flex-active-slide">
                                   <a
                                     class="zoom"
-                                    href="assets/img/gallery/3.jpg"
+                                    href="assets/img/aboutus/3.webp"
                                     ><i class="fa fa-arrows-alt"></i
                                   ></a>
                                   <img
-                                    src="assets/img/gallery/3.jpg"
+                                    src="assets/img/aboutus/3.webp"
                                     alt="image"
                                   />
                                 </li>
@@ -370,11 +371,11 @@
                                 <li class="flex-active-slide">
                                   <a
                                     class="zoom"
-                                    href="assets/img/gallery/4.jpg"
+                                    href="assets/img/aboutus/4.webp"
                                     ><i class="fa fa-arrows-alt"></i
                                   ></a>
                                   <img
-                                    src="assets/img/gallery/4.jpg"
+                                    src="assets/img/aboutus/4.webp"
                                     alt="image"
                                   />
                                 </li>
@@ -385,25 +386,25 @@
                               <ul class="slides">
                                 <li>
                                   <img
-                                    src="assets/img/gallery/1-s.jpg"
+                                    src="assets/img/aboutus/1.webp"
                                     alt="image"
                                   />
                                 </li>
                                 <li>
                                   <img
-                                    src="assets/img/gallery/2-s.jpg"
+                                    src="assets/img/aboutus/2.webp"
                                     alt="image"
                                   />
                                 </li>
                                 <li>
                                   <img
-                                    src="assets/img/gallery/3-s.jpg"
+                                    src="assets/img/aboutus/3.webp"
                                     alt="image"
                                   />
                                 </li>
                                 <li>
                                   <img
-                                    src="assets/img/gallery/4-s.jpg"
+                                    src="assets/img/aboutus/4.webp"
                                     alt="image"
                                   />
                                 </li>
@@ -463,9 +464,7 @@
                   <ul class="style-2">
                     <li class="address clearfix">
                       <span class="hl">Address:</span>
-                      <span class="text"
-                        >42 Hewson Crescent, Georgetown, L7G2N9, ON, CA</span
-                      >
+                      <span class="text">Georgetown, ON, CA</span>
                     </li>
                     <li class="phone clearfix">
                       <span class="hl">Phone:</span>
@@ -507,7 +506,8 @@
             <div class="bottom-bar-inner-wrap">
               <div class="bottom-bar-content">
                 <div id="copyright">
-                  CONSTRUCTION TEMPLATE BY BLOGWP . DESIGNED BY KARAN .
+                  Copyright &copy; <span id="year"></span> | Greenworks Lawncare
+                  and Landscaping Inc. | All Rights Reserved.
                 </div>
                 <!-- /#copyright -->
               </div>
@@ -540,5 +540,8 @@
     <script type="text/javascript" src="assets/js/flexslider.js"></script>
     <script type="text/javascript" src="assets/js/cube.portfolio.js"></script>
     <script type="text/javascript" src="assets/js/main.js"></script>
+    <script>
+      document.getElementById("year").innerHTML = new Date().getFullYear();
+    </script>
   </body>
 </html>
