@@ -3763,6 +3763,10 @@ a.text-danger:hover {
   .hidden-xs-down {
     display: none !important;
   }
+
+  .welcome-to {
+    font-size: 2rem;
+  }
 }
 
 @media (min-width: 544px) {
