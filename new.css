@@ -3767,6 +3767,10 @@ a.text-danger:hover {
   .welcome-to {
     font-size: 2rem;
   }
+
+  .home-img {
+    border-radius: 0px;
+  }
 }
 
 @media (min-width: 544px) {
