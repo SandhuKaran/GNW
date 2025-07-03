@@ -4002,6 +4002,20 @@ body.page #main-content {
   }
 }
 
+.stars-mobile {
+  display: none;
+  width: 97px;
+  height: 15px;
+  margin: 12px 0 0;
+}
+
+/* show on phones & tablets */
+@media (max-width: 991px) {
+  .stars-mobile {
+    display: block;
+  }
+}
+
 .pricing-list {
   list-style-type: none;
   padding-left: 0;
