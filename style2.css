@@ -43,14 +43,19 @@ h6 {
 }
 
 #site-header-wrap {
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: 99999;
+    width: 100%;
 }
 
 #top-bar {
     background: rgba(255, 255, 255, 0.9) !important;
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
+    position: relative;
+    /* Changed from sticky */
+    z-index: 100000;
 }
 
 /* Override navigation menu styles - black text on white nav */
@@ -107,29 +112,14 @@ h6 {
     overflow: hidden;
 }
 
-.hero-slideshow {
+.hero-video {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    object-fit: cover;
     z-index: 0;
-}
-
-.hero-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-}
-
-.hero-slide.active {
-    opacity: 1;
 }
 
 .hero-overlay {
@@ -145,7 +135,7 @@ h6 {
     position: relative;
     z-index: 2;
     max-width: 900px;
-    padding: 0 20px;
+    padding: 0 20px 100px;
 }
 
 .hero-title {
@@ -212,42 +202,217 @@ h6 {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Stats Section */
-.stats-section {
-    background-color: #4A6741;
-    color: #fff;
-    padding: 50px 0;
-    text-align: center;
+/* Reviews Section */
+
+/* Reviews Section */
+
+.reviews-section {
+    background: transparent;
+    padding: 0 0 60px;
+    position: relative;
+    margin-top: -120px;
+    z-index: 10;
+    /* overflow: hidden; Removed as per user request */
 }
 
-.stats-section .row {
+.reviews-carousel {
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    flex-wrap: wrap;
+    gap: 20px;
+    /* Reduced gap between arrows and track */
+    position: relative;
+    max-width: 1100px;
+    /* Adjusted to fit 3 smaller cards tightly centered */
+    margin: 3rem auto;
+    padding: 0 10px;
 }
 
-.stat-item {
-    flex: 1;
-    min-width: 200px;
-    padding: 20px;
+.reviews-track-wrapper {
+    /* Increased width (948px + 40px padding) to properly show shadows without clipping */
+    width: 988px;
+    max-width: 100%;
+    flex-shrink: 0;
+    overflow: hidden;
+    padding: 20px 20px;
+    margin-top: -20px;
+    margin-bottom: -20px;
+    position: relative;
 }
 
-.stat-number {
-    font-size: 3rem;
-    font-weight: 400;
-    color: #ffffff;
+.reviews-track {
+    display: flex;
+    gap: 24px;
+    /* Animation handled by JS */
+    width: max-content;
+    transition: transform 0.5s ease-in-out;
+    /* Smooth transition for stepped movement */
+}
+
+
+
+/* Keyframes removed as we are shifting to JS stepped animation */
+
+.review-card {
+    flex-shrink: 0;
+    width: 300px;
+    /* Reduced from 350px to ensure 3 fit clearly */
+    background: #fff;
+    border-radius: 16px;
+    padding: 30px 20px 24px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Quote Watermark */
+
+
+/* Ensure content is above watermark */
+
+
+.card-google-logo {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    border-radius: 50%;
+    padding: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+/* Make 3 cards visible logic is handled by container width + card width */
+
+.review-avatar {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 12px;
+    margin-top: -50px;
+}
+
+.avatar-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.avatar-img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.google-badge {
+    position: absolute;
+    bottom: -2px;
+    right: -6px;
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    border-radius: 50%;
+    padding: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.review-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+}
+
+.review-date {
+    font-size: 12px;
+    color: #999;
     margin-bottom: 8px;
-    display: block;
-    text-shadow: none;
 }
 
-.stat-label {
-    font-size: 0.95rem;
-    color: #e0e0e0;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: none;
+.review-stars {
+    color: #f5a623;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.review-stars .verified {
+    color: #4285F4;
+    font-size: 14px;
+    margin-left: 4px;
+}
+
+.review-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 12px;
+
+    /* Truncate text */
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    /* Standard property */
+    /* Show 4 lines by default */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.review-text.expanded {
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    overflow: visible;
+}
+
+.read-more {
+    font-size: 13px;
+    color: #4285F4;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+.review-arrow {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    min-height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0, 0, 0, 0.3);
+    /* Darker for visibility on partial overlap/white */
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    z-index: 2;
+    padding: 0;
+    line-height: 1;
+}
+
+.review-arrow:hover {
+    background: rgba(0, 0, 0, 0.5);
 }
 
 /* Gallery Section - Horizontal Scroll */
@@ -482,6 +647,28 @@ h6 {
     text-shadow: none;
 }
 
+#about-us-text {
+    margin-top: 3rem;
+}
+
+.about-image {
+    margin-top: 30px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.about-image:hover img {
+    transform: scale(1.02);
+}
+
 .gnw-toggle {
     margin-bottom: 20px;
     border-bottom: 1px solid #eee;
@@ -600,53 +787,6 @@ h6 {
     box-shadow: 0 4px 12px rgba(225, 48, 108, 0.3);
 }
 
-.instagram-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.instagram-post {
-    position: relative;
-    aspect-ratio: 1;
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.instagram-post img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.instagram-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.instagram-overlay .fa {
-    font-size: 48px;
-    color: #fff;
-}
-
-.instagram-post:hover img {
-    transform: scale(1.1);
-}
-
-.instagram-post:hover .instagram-overlay {
-    opacity: 1;
-}
 
 /* Footer */
 footer#footer {
@@ -820,9 +960,73 @@ footer h3 {
         min-width: 100%;
     }
 
-    /* Shorten CTA on mobile */
-    .cta-button span {
+    /* Show only 1 card on mobile */
+    /* Show only 1 card on mobile */
+    /* Show only fully visible cards on mobile (no cuts) */
+    .reviews-track-wrapper {
+        /* width: 100%; */
+        width: 100%;
+        box-sizing: border-box;
+        max-width: unset;
+        /* Ensure padding doesn't overflow width */
+        overflow-x: auto !important;
+        /* Force scroll enabled */
+        overflow-y: hidden;
+        padding: 30px 20px;
+        /* Sufficient padding to show shadows */
+        /* 20px padding on sides of screen */
+        scroll-snap-type: x mandatory;
+        /* Optional: snap to cards */
+        -webkit-overflow-scrolling: touch;
+        /* Smooth scrolling on iOS */
+        scrollbar-width: none;
+        /* Hide scrollbar Firefox */
+        scroll-padding: 0 20px;
+        scroll-behavior: smooth;
+        /* Aligns snap with the padding */
+    }
+
+    .reviews-carousel {
+        padding: 0px;
+    }
+
+    .reviews-track-wrapper::-webkit-scrollbar {
         display: none;
+        /* Hide scrollbar Chrome/Safari */
+    }
+
+    .reviews-track {
+        gap: 20px;
+        /* Clear gap between cards */
+        /* Space between cards */
+        display: flex;
+        width: max-content;
+        margin: 0;
+        transform: none !important;
+        padding: 0;
+        /* Center the 90% card: 5% left/right */
+    }
+
+    .review-card {
+        /* Calculate width to fit exactly 1 card in the viewable area (100% of wrapper - padding) */
+        width: calc(100vw - 40px);
+        /* Screen width minus wrapper padding (20+20) */
+        /* Takes up most of screen */
+        max-width: 400px;
+        margin-right: 0;
+        /* Use gap instead */
+        flex-shrink: 0;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+        /* Force stop on each card */
+        /* Snap perfectly to center */
+        /* Snap to center */
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        /* Slightly stronger shadow */
+    }
+
+    .review-arrow {
+        display: none !important;
     }
 }
 
@@ -837,6 +1041,11 @@ footer h3 {
 
     .stat-item {
         min-width: 150px;
+    }
+
+    /* Shorten CTA on mobile */
+    .cta-button span {
+        display: none;
     }
 
     .gallery-item {
@@ -866,4 +1075,78 @@ footer h3 {
     .section-title {
         font-size: 1.6rem;
     }
+}
+
+/* Strict Auto Carousel Overrides */
+.reviews-track-wrapper {
+    overflow: hidden !important;
+    /* Disable manual scroll */
+    width: 100% !important;
+    padding: 30px 0 !important;
+    /* Keep vertical padding for shadows */
+    scroll-snap-type: none !important;
+}
+
+.reviews-track {
+    display: flex !important;
+    gap: 0 !important;
+    /* Gap handled by margin for exact % math */
+    width: 100% !important;
+    transform: translateX(0);
+    /* Init */
+    margin: 0 !important;
+}
+
+/* Hide Navigation Buttons */
+.review-arrow,
+.review-prev,
+.review-next {
+    display: none !important;
+}
+
+.review-card {
+    /* Desktop Default (3 cards) */
+    /* Width = 33.333% - Margin (30px) */
+    flex: 0 0 calc(33.333% - 30px) !important;
+    max-width: calc(33.333% - 30px) !important;
+    width: auto !important;
+
+    margin: 0 15px !important;
+    /* 15px left + 15px right = 30px gap */
+    padding: 30px !important;
+
+    scroll-snap-align: none !important;
+    opacity: 1 !important;
+    /* Ensure visibility */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    /* Soft shadow */
+    border-radius: 12px !important;
+}
+
+@media (max-width: 992px) {
+    .review-card {
+        /* Tablet (2 cards) */
+        flex: 0 0 calc(50% - 30px) !important;
+        max-width: calc(50% - 30px) !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .review-card {
+        /* Mobile (1 card) */
+        flex: 0 0 calc(100% - 30px) !important;
+        max-width: calc(100% - 30px) !important;
+    }
+}
+
+/* Sticky Header Override */
+#site-header-wrap {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background: #fff;
+    width: 100%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* separation shadow */
 }

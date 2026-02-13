@@ -106,13 +106,11 @@
 
   <!-- Hero Section -->
   <section class="hero-section">
-    <div class="hero-slideshow">
-      <div class="hero-slide active" style="background-image: url('assets/img/home2.webp')"></div>
-      <div class="hero-slide" style="background-image: url('assets/img/land-gallery/1.webp')"></div>
-      <div class="hero-slide" style="background-image: url('assets/img/land-gallery/3.webp')"></div>
-      <div class="hero-slide" style="background-image: url('assets/img/land-gallery/5.webp')"></div>
-      <div class="hero-slide" style="background-image: url('assets/img/land-gallery/7.webp')"></div>
-    </div>
+    <video autoplay loop muted playsinline class="hero-video">
+      <source src="assets/videos/hero-mobile.mp4" type="video/mp4" media="(max-width: 768px)">
+      <source src="assets/videos/hero-desktop.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1 class="hero-title">
@@ -127,22 +125,197 @@
     </div>
   </section>
 
-  <!-- Stats Section -->
-  <section class="stats-section">
+  <!-- Reviews Section -->
+  <section class="reviews-section">
     <div class="container">
-      <div class="row">
-        <div class="col-md-4 stat-item">
-          <div class="stat-number">12+</div>
-          <div class="stat-label">Years</div>
+      <div class="reviews-carousel">
+        <button class="review-arrow review-arrow-left" aria-label="Previous reviews">‹</button>
+        <div class="reviews-track-wrapper">
+          <div class="reviews-track">
+            <!-- Review 1 -->
+            <div class="review-card">
+              <div class="review-avatar">
+                <img src="review/Kendra.png" alt="Kendra Chow" class="avatar-img" />
+                <img src="google-svgrepo-com.svg" alt="Google" class="card-google-logo" />
+              </div>
+              <h4 class="review-name">Kendra Chow</h4>
+              <div class="review-stars">★★★★★ <span class="verified">✔</span></div>
+              <p class="review-text">We had our backyard redone by Greenworks Landscaping and Manee was incredible. He
+                was professional, not at all pushy, and took the time to explain exactly what was going to be done.
+                Throughout the process I could see him and his team working with great care, diligence, and focus. They
+                layered every step with precision, starting with a 10-inch excavation, installing landscape fabric,
+                adding layers of HPB and compacting each one, then carefully placing the pavers and concrete to make
+                sure the edges stayed secure. He also took extra steps to ensure proper drainage.
+
+                Manee was so accommodating, really great with communication, and always replied shortly after receiving
+                a message. He was happy to answer my questions without making me feel like I was bothering him. He and
+                his team transformed an almost unusable backyard that had an old deck, was full of flagstone, tree and
+                bush stumps, two large trees, and tons of thistle into a huge, beautiful patio where my kids can ride
+                their bikes and play. We wanted our backyard to be a huge patio while keeping the trees in the back for
+                shade. The back left of our backyard also had a catch basin to receive run off from the surrounding
+                houses. Since the makeover, they have wanted to be outside every single day.
+
+                The team also cleaned up so well, and all of this was done for a great price. We can’t thank Greenworks
+                Landscaping enough for the incredible job they did. I would highly recommend them to anyone looking for
+                landscaping work. We will definitely be hiring Greenworks landscaping for any future landscaping work
+                that needs to be done!!!!
+              </p>
+              <a href="#" class="read-more">Read more</a>
+            </div>
+            <!-- Review 2 -->
+            <div class="review-card">
+              <div class="review-avatar">
+                <img src="review/lori.png" alt="Lori" class="avatar-img" />
+                <img src="google-svgrepo-com.svg" alt="Google" class="card-google-logo" />
+              </div>
+              <h4 class="review-name">Lori</h4>
+              <div class="review-stars">★★★★★ <span class="verified">✔</span></div>
+              <p class="review-text">I really cannot say enough amazing things about Manee and his crew!!
+
+                So, firstly, let me say that communication is a big factor for me and my husband; Manee had his
+                responses so quick and friendly. He was really great to communicate with and his prices were very
+                reasonable.
+
+                It's just impossible to find people that are willing to work and that are thorough. They made our place
+                look so fabulous, and it took only 2 days.
+
+                They re-mulched all of our flower beds and did it with such a level of tidiness and accuracy. They also
+                cleaned up each day, and when they left for the night they put road cones down be safe so no one would
+                run over the product.
+
+                Manee is a very personable guy and it's a real pleasure chatting with him. He has a great vision of how
+                things will come together and is also very reassuring.
+
+                The men on his crew worked incredibly hard, and we just went through a very hot spell. We kept offering
+                them water and asked if they needed anything.
+
+                I really enjoyed working with Greenworks Landscaping and I will definitely refer my neighbours to them.
+
+                So because we live on a corner house and our place is the first house coming into the neighborhood, it's
+                important for us to have great curb appeal into our neighborhood....so thank you Manee for nailing this!
+
+                A perfect 10/10!!!
+
+                His score on Google should be 5⭐...not 4.9
+
+                Thanks again!!!!</p>
+              <a href="#" class="read-more">Read more</a>
+            </div>
+            <!-- Review 3 -->
+            <div class="review-card">
+              <div class="review-avatar">
+                <img src="review/tina.png" alt="Tina vitale" class="avatar-img" />
+                <img src="google-svgrepo-com.svg" alt="Google" class="card-google-logo" />
+              </div>
+              <h4 class="review-name">Tina vitale</h4>
+              <div class="review-stars">★★★★★ <span class="verified">✔</span></div>
+              <p class="review-text">We have been dealing with Greenworks for the last two years doing the maintenance
+                of our grass. Very respectful team. Very Neat and precise. If you want a worry free experience this is
+                the team to call. Highly recommend. Thank you for being honest and hardworking.</p>
+              <a href="#" class="read-more">Read more</a>
+            </div>
+            <!-- Review 4 -->
+            <div class="review-card">
+              <div class="review-avatar">
+                <img src="review/stephny.png" alt="Stephy Gutti" class="avatar-img" />
+                <img src="google-svgrepo-com.svg" alt="Google" class="card-google-logo" />
+              </div>
+              <h4 class="review-name">Stephy Gutti</h4>
+              <div class="review-stars">★★★★★ <span class="verified">✔</span></div>
+              <p class="review-text">We had just moved into our house and were feeling so overwhelmed by the backyard
+                project, but Manny and his team made the process easy from start to finish. They completely transformed
+                our yard in just a week and a half, even working through a holiday weekend to get it done. Manny was
+                professional, patient with all of my questions, and offered fantastic suggestions throughout the
+                planning process. His crew worked efficiently, paid close attention to detail, and the finished product
+                exceeded our expectations. We couldn’t be happier and would highly recommend them to anyone looking for
+                quality landscaping work!</p>
+              <a href="#" class="read-more">Read more</a>
+            </div>
+            <!-- Review 5 -->
+            <div class="review-card">
+              <div class="review-avatar">
+                <img src="review/carla.png" alt="Carla Campbell" class="avatar-img" />
+                <img src="google-svgrepo-com.svg" alt="Google" class="card-google-logo" />
+              </div>
+              <h4 class="review-name">Carla Campbell</h4>
+              <div class="review-stars">★★★★★ <span class="verified">✔</span></div>
+              <p class="review-text">Manee and his team did an excellent job refinishing our front steps and entrance
+                area. They worked hard and carefully to remove the old material and install the new flagstone, paying
+                close attention to the overall design and placement of each piece of stone. Manee made several
+                recommendations along the way and we are very happy with the final result. We highly recommend GNW for
+                your hardscaping needs. Thank you Manee and team!</p>
+              <a href="#" class="read-more">Read more</a>
+            </div>
+            <!-- Review 6 -->
+            <div class="review-card">
+              <div class="review-avatar">
+                <img src="review/javier.png" alt="Javier Maldonado" class="avatar-img" />
+                <img src="google-svgrepo-com.svg" alt="Google" class="card-google-logo" />
+              </div>
+              <h4 class="review-name">Javier Maldonado</h4>
+              <div class="review-stars">★★★★★ <span class="verified">✔</span></div>
+              <p class="review-text">I had the pleasure of working with GNW for an interlocking project in my backyard,
+                and I couldn't be more thrilled with the results! From start to finish, they displayed professionalism,
+                creativity, and an exceptional level of craftsmanship; they also offered insightful suggestions to
+                enhance my ideas. Their expertise was evident, ensuring that the design exceed what I was expecting.
+                Happy with the whole job. 100% recommended.</p>
+              <a href="#" class="read-more">Read more</a>
+            </div>
+            <!-- Review 7 -->
+            <div class="review-card">
+              <div class="review-avatar">
+                <img src="review/paul.png" alt="Paul Onisoru" class="avatar-img" />
+                <img src="google-svgrepo-com.svg" alt="Google" class="card-google-logo" />
+              </div>
+              <h4 class="review-name">Paul Onisoru</h4>
+              <div class="review-stars">★★★★★ <span class="verified">✔</span></div>
+              <p class="review-text">Manee and his team did a great job for landscaping at our place including pouring
+                concrete pads, new irrigation system installation and resoding entire yard. The project was done
+                professionally, seamless and on time. All our ideas and concerns have been addressed with courtesy and
+                good work. Thank you so much again.</p>
+              <a href="#" class="read-more">Read more</a>
+            </div>
+            <!-- Review 8 -->
+            <div class="review-card">
+              <div class="review-avatar">
+                <img src="review/barry.png" alt="Barry Olson" class="avatar-img" />
+                <img src="google-svgrepo-com.svg" alt="Google" class="card-google-logo" />
+              </div>
+              <h4 class="review-name">Barry Olson</h4>
+              <div class="review-stars">★★★★★ <span class="verified">✔</span></div>
+              <p class="review-text">Just completed my third job with Greenworks this year. Two patio installations and
+                a large sod job. All three projects look fantastic months later. The team works hard and cleans up the
+                site perfectly. Fair prices and quality work!!</p>
+              <a href="#" class="read-more">Read more</a>
+            </div>
+            <!-- Review 9 -->
+            <div class="review-card">
+              <div class="review-avatar">
+                <img src="review/simon.png" alt="Simon Hoac" class="avatar-img" />
+                <img src="google-svgrepo-com.svg" alt="Google" class="card-google-logo" />
+              </div>
+              <h4 class="review-name">Simon Hoac</h4>
+              <div class="review-stars">★★★★★ <span class="verified">✔</span></div>
+              <p class="review-text">Manee and his team do great work for a great price. They care and support any
+                issues even after the job is done, very focused on customer satisfaction. I highly recommend and will be
+                hiring Greenworks in the future.</p>
+              <a href="#" class="read-more">Read more</a>
+            </div>
+            <!-- Review 10 -->
+            <div class="review-card">
+              <div class="review-avatar">
+                <img src="review/deborah.png" alt="Deborah Brander" class="avatar-img" />
+                <img src="google-svgrepo-com.svg" alt="Google" class="card-google-logo" />
+              </div>
+              <h4 class="review-name">Deborah Brander</h4>
+              <div class="review-stars">★★★★★ <span class="verified">✔</span></div>
+              <p class="review-text">The Greenworks exceeded our expectations on the install of our retaining wall! Very
+                professional and excellent quality work. Would highly recommend them!</p>
+              <a href="#" class="read-more">Read more</a>
+            </div>
+          </div>
         </div>
-        <div class="col-md-4 stat-item">
-          <div class="stat-number">1000+</div>
-          <div class="stat-label">Happy Customers</div>
-        </div>
-        <div class="col-md-4 stat-item">
-          <div class="stat-number">2300+</div>
-          <div class="stat-label">Projects</div>
-        </div>
+        <button class="review-arrow review-arrow-right" aria-label="Next reviews">›</button>
       </div>
     </div>
   </section>
@@ -212,13 +385,14 @@
   </section>
 
   <!-- Why Choose Us Section -->
-  <section class="info-section">
+  <!-- Why Choose Us Section -->
+  <section class="info-section why-choose-us">
     <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <h2>WHY CHOOSE US?</h2>
-          <div class="green-underline"></div>
+      <h2 style="text-align: center;">WHY CHOOSE US?</h2>
+      <div class="green-underline" style="margin: 20px auto 40px;"></div>
 
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
           <div class="gnw-toggle">
             <h3 class="toggle-title">⁠Expertise You Can Trust</h3>
             <div class="toggle-content">
@@ -260,9 +434,21 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- About Us Section -->
+  <section class="info-section about-us-section" style="background-color: #f9f9f9; padding-top: 60px;">
+    <div class="container">
+      <div class="row">
         <div class="col-md-6">
-          <h2>ABOUT US</h2>
+          <div class="about-image">
+            <img src="assets/img/aboutus/1.webp" alt="About GNW Landscaping" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h2 id="about-us-text">ABOUT US</h2>
           <div class="green-underline"></div>
 
           <div class="about-content">
@@ -298,155 +484,12 @@
           </a>
         </div>
 
-        <div class="instagram-grid">
-          <div class="instagram-post">
-            <a href="https://www.instagram.com/gnwlandscaping/" target="_blank">
-              <img src="assets/img/land-gallery/1.webp" alt="Instagram Post" />
-              <div class="instagram-overlay">
-                <i class="fa fa-instagram"></i>
-              </div>
-            </a>
-          </div>
-          <div class="instagram-post">
-            <a href="https://www.instagram.com/gnwlandscaping/" target="_blank">
-              <img src="assets/img/land-gallery/2.webp" alt="Instagram Post" />
-              <div class="instagram-overlay">
-                <i class="fa fa-instagram"></i>
-              </div>
-            </a>
-          </div>
-          <div class="instagram-post">
-            <a href="https://www.instagram.com/gnwlandscaping/" target="_blank">
-              <img src="assets/img/land-gallery/3.webp" alt="Instagram Post" />
-              <div class="instagram-overlay">
-                <i class="fa fa-instagram"></i>
-              </div>
-            </a>
-          </div>
-          <div class="instagram-post">
-            <a href="https://www.instagram.com/gnwlandscaping/" target="_blank">
-              <img src="assets/img/land-gallery/4.webp" alt="Instagram Post" />
-              <div class="instagram-overlay">
-                <i class="fa fa-instagram"></i>
-              </div>
-            </a>
-          </div>
-          <div class="instagram-post">
-            <a href="https://www.instagram.com/gnwlandscaping/" target="_blank">
-              <img src="assets/img/land-gallery/5.webp" alt="Instagram Post" />
-              <div class="instagram-overlay">
-                <i class="fa fa-instagram"></i>
-              </div>
-            </a>
-          </div>
-          <div class="instagram-post">
-            <a href="https://www.instagram.com/gnwlandscaping/" target="_blank">
-              <img src="assets/img/land-gallery/6.webp" alt="Instagram Post" />
-              <div class="instagram-overlay">
-                <i class="fa fa-instagram"></i>
-              </div>
-            </a>
-          </div>
-        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Testimonials Section -->
-  <section class="testimonials-section">
-    <div class="container">
-      <div class="testimonial-rating">
-        <div class="stars">★★★★★</div>
-        <span class="review-count">(16,640 Reviews)</span>
-      </div>
-      <h2 class="section-title">
-        Tens of thousands of happy homeowners who've trusted GNW
-      </h2>
-    </div>
-    <div class="testimonials-scroll-container">
-      <div class="testimonials-scroll-track">
-        <!-- First set -->
-        <div class="testimonial-card">
-          <h4 class="testimonial-name">Colleen N.</h4>
-          <p class="testimonial-text">
-            Our space felt like a massive blank canvas and I was shocked by
-            the first draft we received. It's a company of real people - not
-            robots - and that's so valuable.
-          </p>
-          <p class="testimonial-meta">Premium · Manakin-Sabot, VA</p>
-        </div>
 
-        <div class="testimonial-card">
-          <h4 class="testimonial-name">Deron A.</h4>
-          <p class="testimonial-text">
-            Better than we could have imagined and probably something you'd
-            pay other services 5x as much to do.
-          </p>
-          <p class="testimonial-meta">Premium · Portland, OR</p>
-        </div>
-
-        <div class="testimonial-card">
-          <h4 class="testimonial-name">Kate C.</h4>
-          <p class="testimonial-text">
-            The process has been extremely easy and the team listened so well
-            to what we said we wanted. We highly recommend Yardzen.
-          </p>
-          <p class="testimonial-meta">Full Yard Classic · Lenexa, KE</p>
-        </div>
-
-        <div class="testimonial-card">
-          <h4 class="testimonial-name">Zubair Ahmed</h4>
-          <p class="testimonial-text">
-            I recently had the pleasure of working with Greenworks Landscaping
-            Inc. for a sodding project, and I couldn't be more satisfied with
-            the results! From start to finish, their team demonstrated
-            exceptional attention to detail and professionalism.
-          </p>
-          <p class="testimonial-meta">Georgetown, ON</p>
-        </div>
-
-        <!-- Duplicate set for seamless loop -->
-        <div class="testimonial-card">
-          <h4 class="testimonial-name">Colleen N.</h4>
-          <p class="testimonial-text">
-            Our space felt like a massive blank canvas and I was shocked by
-            the first draft we received. It's a company of real people - not
-            robots - and that's so valuable.
-          </p>
-          <p class="testimonial-meta">Premium · Manakin-Sabot, VA</p>
-        </div>
-
-        <div class="testimonial-card">
-          <h4 class="testimonial-name">Deron A.</h4>
-          <p class="testimonial-text">
-            Better than we could have imagined and probably something you'd
-            pay other services 5x as much to do.
-          </p>
-          <p class="testimonial-meta">Premium · Portland, OR</p>
-        </div>
-
-        <div class="testimonial-card">
-          <h4 class="testimonial-name">Kate C.</h4>
-          <p class="testimonial-text">
-            The process has been extremely easy and the team listened so well
-            to what we said we wanted. We highly recommend Yardzen.
-          </p>
-          <p class="testimonial-meta">Full Yard Classic · Lenexa, KE</p>
-        </div>
-
-        <div class="testimonial-card">
-          <h4 class="testimonial-name">Zubair Ahmed</h4>
-          <p class="testimonial-text">
-            I recently had the pleasure of working with Greenworks Landscaping
-            Inc. for a sodding project, and I couldn't be more satisfied with
-            the results! From start to finish, their team demonstrated
-            exceptional attention to detail and professionalism.
-          </p>
-          <p class="testimonial-meta">Georgetown, ON</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- CTA Section -->
   <section class="cta-section">
@@ -634,56 +677,18 @@
       element.style.transition = 'all 0.8s ease-out';
     });
 
-    // Counter animation for stats
-    const animateCounter = function (element, target) {
-      let current = 0;
-      const increment = target / 50;
-      const timer = setInterval(function () {
-        current += increment;
-        if (current >= target) {
-          element.textContent = target + '+';
-          clearInterval(timer);
-        } else {
-          element.textContent = Math.ceil(current) + '+';
-        }
-      }, 30);
-    };
-
-    // Stats counter animation
-    let statsAnimated = false;
-    const animateStats = function () {
-      if (statsAnimated) return;
-
-      const statsSection = document.querySelector('.stats-section');
-      if (!statsSection) return;
-
-      const sectionTop = statsSection.getBoundingClientRect().top;
-
-      if (sectionTop < window.innerHeight * 0.8) {
-        statsAnimated = true;
-        const statNumbers = document.querySelectorAll('.stat-number');
-
-        statNumbers.forEach(function (stat) {
-          const text = stat.textContent.replace('+', '');
-          const target = parseInt(text);
-          stat.textContent = '0+';
-          animateCounter(stat, target);
-        });
-      }
-    };
 
     // Run animations on scroll
     window.addEventListener('scroll', function () {
       animateOnScroll();
-      animateStats();
     });
 
     // Run animations on load
     window.addEventListener('load', function () {
       animateOnScroll();
-      animateStats();
     });
   </script>
+  <script src="assets/js/reviews.js"></script>
 </body>
 
 </html>
