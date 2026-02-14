@@ -13,11 +13,26 @@ body {
     color: #333;
     line-height: 1.6;
     overflow-x: hidden;
+    padding-top: 125px;
+    /* Compensate for fixed header */
+}
+
+@media (max-width: 991px) {
+    body {
+        padding-top: 115px;
+        /* Adjust padding for mobile header height */
+    }
 }
 
 .main-logo img {
     width: auto;
-    height: 55px;
+    height: 45px;
+}
+
+@media (min-width: 992px) {
+    .main-logo img {
+        height: 55px;
+    }
 }
 
 h1,
@@ -43,10 +58,10 @@ h6 {
 }
 
 #site-header-wrap {
-    position: sticky;
-    top: 0;
-    z-index: 99999;
-    width: 100%;
+    position: fixed !important;
+    top: 0 !important;
+    z-index: 99999 !important;
+    width: 100% !important;
 }
 
 #top-bar {
@@ -54,8 +69,28 @@ h6 {
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
     position: relative;
-    /* Changed from sticky */
     z-index: 100000;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+}
+
+/* Hide email on mobile/tablet */
+@media (max-width: 991px) {
+
+    #top-bar .fa-envelope,
+    #top-bar a[href^="mailto"] {
+        display: none !important;
+    }
+
+    /* Ensure phone icon and number are visible and centered if needed */
+    #top-bar-text {
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+    }
 }
 
 /* Override navigation menu styles - black text on white nav */
