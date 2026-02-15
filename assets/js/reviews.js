@@ -6,6 +6,7 @@
     let currentIndex = 0;
     let autoPlayInterval;
     let cardsToShow = 1;
+    let hasManuallyInteracted = false;
 
     // Determine how many cards to show based on width
     function updateLayout() {
@@ -55,6 +56,11 @@
     }
 
     function autoSlide() {
+        if (hasManuallyInteracted) {
+            stopAutoPlay();
+            return;
+        }
+
         currentIndex++;
         const cards = track.querySelectorAll('.review-card');
 
@@ -65,8 +71,9 @@
     }
 
     function startAutoPlay() {
+        if (hasManuallyInteracted) return;
         stopAutoPlay();
-        autoPlayInterval = setInterval(autoSlide, 2000);
+        autoPlayInterval = setInterval(autoSlide, 6000); // 6 seconds
     }
 
     function stopAutoPlay() {
@@ -74,6 +81,37 @@
     }
 
     // Event Listeners
+    const leftArrow = document.querySelector('.review-arrow-left');
+    const rightArrow = document.querySelector('.review-arrow-right');
+
+    if (leftArrow) {
+        leftArrow.addEventListener('click', (e) => {
+            e.preventDefault();
+            hasManuallyInteracted = true;
+            stopAutoPlay();
+            currentIndex--;
+            if (currentIndex < 0) {
+                const cards = track.querySelectorAll('.review-card');
+                currentIndex = Math.max(0, cards.length - cardsToShow);
+            }
+            moveTrack(false);
+        });
+    }
+
+    if (rightArrow) {
+        rightArrow.addEventListener('click', (e) => {
+            e.preventDefault();
+            hasManuallyInteracted = true;
+            stopAutoPlay();
+            currentIndex++;
+            const cards = track.querySelectorAll('.review-card');
+            if (currentIndex > cards.length - cardsToShow) {
+                currentIndex = 0;
+            }
+            moveTrack(false);
+        });
+    }
+
     window.addEventListener('resize', () => {
         updateLayout();
         moveTrack(false);
@@ -87,8 +125,6 @@
     document.addEventListener('click', function (e) {
         if (e.target.classList.contains('read-more')) {
             e.preventDefault();
-            stopAutoPlay();
-
             const btn = e.target;
             const card = btn.closest('.review-card');
             const text = card.querySelector('.review-text');
@@ -96,7 +132,6 @@
             if (text.classList.contains('expanded')) {
                 text.classList.remove('expanded');
                 btn.textContent = 'Read more';
-                startAutoPlay();
             } else {
                 text.classList.add('expanded');
                 btn.textContent = 'Read less';
@@ -104,10 +139,14 @@
         }
     });
 
-    // Pause on hover (only on devices with mouse support)
+    // Pause on hover
     if (window.matchMedia('(hover: hover)').matches) {
         wrapper.addEventListener('mouseenter', stopAutoPlay);
-        wrapper.addEventListener('mouseleave', startAutoPlay);
+        wrapper.addEventListener('mouseleave', () => {
+            if (!hasManuallyInteracted) {
+                startAutoPlay();
+            }
+        });
     }
 
 })();
