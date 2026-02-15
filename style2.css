@@ -19,14 +19,14 @@ body {
 
 @media (max-width: 991px) {
     body {
-        padding-top: 115px;
-        /* Adjust padding for mobile header height */
+        padding-top: 60px;
+        /* Reduced from 115px/80px for standard mobile nav */
     }
 }
 
 .main-logo img {
     width: auto;
-    height: 45px;
+    height: 35px;
 }
 
 @media (min-width: 992px) {
@@ -64,6 +64,37 @@ h6 {
     width: 100% !important;
 }
 
+/* Mobile Nav Contact */
+.mobile-nav-contact {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    .mobile-nav-contact {
+        display: block;
+        position: absolute;
+        right: 60px;
+        /* Left of hamburger */
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .mobile-nav-contact a {
+        color: #333;
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .mobile-nav-contact i {
+        color: #4A6741;
+        font-size: 16px;
+    }
+}
+
 #top-bar {
     background: rgba(255, 255, 255, 0.9) !important;
     backdrop-filter: blur(2px);
@@ -76,20 +107,10 @@ h6 {
     height: auto !important;
 }
 
-/* Hide email on mobile/tablet */
+/* Hide top bar on mobile/tablet */
 @media (max-width: 991px) {
-
-    #top-bar .fa-envelope,
-    #top-bar a[href^="mailto"] {
+    #top-bar {
         display: none !important;
-    }
-
-    /* Ensure phone icon and number are visible and centered if needed */
-    #top-bar-text {
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        width: 100%;
     }
 }
 
@@ -477,6 +498,27 @@ h6 {
     animation: scroll-left 60s linear infinite;
     width: max-content;
 }
+
+@media (max-width: 991px) {
+    .gallery-scroll-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 20px;
+    }
+
+    .gallery-scroll-track {
+        /* Keep auto-scroll animation same as desktop */
+        padding: 0 20px;
+    }
+
+    .gallery-item {
+        width: 85vw;
+        max-width: 350px;
+        flex-shrink: 0;
+    }
+}
+
+
 
 .gallery-scroll-track:hover {
     animation-play-state: paused;
@@ -995,30 +1037,19 @@ footer h3 {
         min-width: 100%;
     }
 
-    /* Show only 1 card on mobile */
-    /* Show only 1 card on mobile */
-    /* Show only fully visible cards on mobile (no cuts) */
+    /* Show only 1 card on mobile with scroll-snap */
     .reviews-track-wrapper {
-        /* width: 100%; */
         width: 100%;
         box-sizing: border-box;
         max-width: unset;
-        /* Ensure padding doesn't overflow width */
         overflow-x: auto !important;
-        /* Force scroll enabled */
         overflow-y: hidden;
         padding: 30px 20px;
-        /* Sufficient padding to show shadows */
-        /* 20px padding on sides of screen */
         scroll-snap-type: x mandatory;
-        /* Optional: snap to cards */
         -webkit-overflow-scrolling: touch;
-        /* Smooth scrolling on iOS */
         scrollbar-width: none;
-        /* Hide scrollbar Firefox */
         scroll-padding: 0 20px;
         scroll-behavior: smooth;
-        /* Aligns snap with the padding */
     }
 
     .reviews-carousel {
@@ -1027,37 +1058,25 @@ footer h3 {
 
     .reviews-track-wrapper::-webkit-scrollbar {
         display: none;
-        /* Hide scrollbar Chrome/Safari */
     }
 
     .reviews-track {
         gap: 20px;
-        /* Clear gap between cards */
-        /* Space between cards */
         display: flex;
         width: max-content;
         margin: 0;
         transform: none !important;
         padding: 0;
-        /* Center the 90% card: 5% left/right */
     }
 
     .review-card {
-        /* Calculate width to fit exactly 1 card in the viewable area (100% of wrapper - padding) */
         width: calc(100vw - 40px);
-        /* Screen width minus wrapper padding (20+20) */
-        /* Takes up most of screen */
         max-width: 400px;
         margin-right: 0;
-        /* Use gap instead */
         flex-shrink: 0;
         scroll-snap-align: center;
         scroll-snap-stop: always;
-        /* Force stop on each card */
-        /* Snap perfectly to center */
-        /* Snap to center */
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-        /* Slightly stronger shadow */
     }
 
     .review-arrow {
