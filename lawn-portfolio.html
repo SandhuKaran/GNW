@@ -12,7 +12,7 @@
     <style>
         /* --- 1. GENERAL STYLES --- */
         :root {
-            --primary-color: #1b5e20; /* Deep Professional Green */
+            --primary-color: #1b5e20;
             --accent-color: #4CAF50; 
             --text-dark: #333333;
             --text-light: #666666;
@@ -23,8 +23,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             color: var(--text-dark);
             background-color: #fff;
             line-height: 1.6;
@@ -32,6 +31,7 @@
 
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; padding: 0; margin: 0; }
+        img, video { max-width: 100%; height: auto; display: block; }
 
         /* --- 2. HEADER --- */
         header {
@@ -42,15 +42,11 @@
             background: #fff;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             position: sticky;
-            top: 0;
-            z-index: 1000;
+            top: 0; z-index: 1000;
         }
 
-        /* LOGO STYLING (Rounded Corners) */
         .logo {
-            border-radius: 10px; /* Lightly rounded corners */
-            overflow: hidden;
-            transition: transform 0.3s;
+            border-radius: 10px; overflow: hidden; transition: transform 0.3s;
         }
         .logo:hover { transform: scale(1.02); }
 
@@ -70,19 +66,13 @@
         }
         .btn-header:hover { background-color: var(--accent-color); }
 
-        /* --- MOBILE CONTROLS (Right side on mobile) --- */
-        .mobile-controls {
-            display: none; /* Hidden on desktop */
-            align-items: center;
-            gap: 15px;
-        }
-
-        /* Mobile Call Icon (Pix Button) */
+        /* --- MOBILE CONTROLS --- */
+        .mobile-controls { display: none; align-items: center; gap: 15px; }
+        
         .mobile-call-icon {
             width: 40px; height: 40px;
             background-color: var(--accent-color);
-            color: white;
-            border-radius: 50%;
+            color: white; border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
             font-size: 1.2rem;
             box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
@@ -90,26 +80,20 @@
         }
         .mobile-call-icon:active { transform: scale(0.95); }
 
-        /* Mobile Hamburger Button */
         .mobile-button {
-            cursor: pointer;
-            width: 30px; height: 20px;
-            position: relative;
-            z-index: 1001;
+            cursor: pointer; width: 30px; height: 20px;
+            position: relative; z-index: 1001;
         }
-
         .mobile-button span {
             display: block; width: 100%; height: 3px; background-color: var(--primary-color);
             position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease;
         }
-
         .mobile-button::before, .mobile-button::after {
             content: ''; width: 100%; height: 3px; background-color: var(--primary-color);
             position: absolute; transition: all 0.3s ease;
         }
         .mobile-button::before { top: 0; }
         .mobile-button::after { bottom: 0; }
-
         .mobile-button.active span { opacity: 0; }
         .mobile-button.active::before { top: 50%; transform: rotate(45deg); }
         .mobile-button.active::after { top: 50%; transform: rotate(-45deg); bottom: auto; }
@@ -121,81 +105,87 @@
             text-align: center;
             padding: 80px 20px;
         }
-
         .page-hero h1 { font-size: 3rem; margin-bottom: 10px; }
         .page-hero p { font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
 
-        /* --- 4. GALLERY GRID --- */
-        .gallery-section {
-            padding: 80px 5%;
+        /* --- 4. MIXED GRID LAYOUT --- */
+        .portfolio-section {
+            padding: 60px 5%;
             background-color: var(--bg-light);
         }
 
-        .gallery-grid {
+        .mixed-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-auto-rows: 250px; /* Uniform height for clean look */
             gap: 20px;
+            grid-auto-flow: dense;
         }
 
-        .gallery-item {
+        .grid-item {
             position: relative;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             cursor: pointer;
-            height: 300px; /* Fixed height for uniform boxes */
+            height: 100%;
+            background: #000; /* Fallback for videos */
         }
 
-        .gallery-item img {
+        /* Feature the first video */
+        .grid-item.large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .grid-item img, 
+        .grid-item video {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensures image fills box without stretching */
+            object-fit: cover;
             transition: transform 0.5s ease;
         }
 
-        /* Hover Overlay Effect */
-        .gallery-overlay {
+        /* OVERLAYS */
+        .play-overlay, .zoom-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(27, 94, 32, 0.7); /* Green overlay */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; transition: opacity 0.3s ease;
+            background: rgba(27, 94, 32, 0.6);
+        }
+        
+        /* Persistent Play Icon for Videos */
+        .grid-item.video::after {
+            content: '\f144'; /* Play Icon */
+            font-family: "Font Awesome 6 Free"; font-weight: 900;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            color: rgba(255,255,255,0.9); font-size: 3rem;
+            pointer-events: none; z-index: 1;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+        .grid-item.video:hover::after { opacity: 0; }
+
+        .play-overlay i, .zoom-overlay i {
+            color: #fff; font-size: 3rem; transform: scale(0.5); transition: transform 0.3s ease;
         }
 
-        .gallery-overlay i {
-            color: #fff;
-            font-size: 2rem;
-            transform: scale(0.5);
-            transition: transform 0.3s ease;
-        }
+        .grid-item:hover .media-content { transform: scale(1.05); }
+        .grid-item:hover .play-overlay, 
+        .grid-item:hover .zoom-overlay { opacity: 1; }
+        .grid-item:hover i { transform: scale(1); }
 
-        .gallery-item:hover img { transform: scale(1.1); }
-        .gallery-item:hover .gallery-overlay { opacity: 1; }
-        .gallery-item:hover .gallery-overlay i { transform: scale(1); }
-
-
-        /* --- 5. LIGHTBOX MODAL (Pop-up) --- */
+        /* --- 5. LIGHTBOX MODAL --- */
         .lightbox {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: none; /* Hidden by default */
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            padding: 20px;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center; align-items: center;
+            z-index: 2000; padding: 20px;
         }
 
-        .lightbox img {
+        .lightbox-content {
             max-width: 90%;
             max-height: 90vh;
             border-radius: 5px;
@@ -204,12 +194,9 @@
 
         .close-lightbox {
             position: absolute;
-            top: 20px;
-            right: 30px;
-            color: #fff;
-            font-size: 3rem;
-            cursor: pointer;
-            z-index: 2001;
+            top: 20px; right: 30px;
+            color: #fff; font-size: 3rem;
+            cursor: pointer; z-index: 2001;
         }
 
         /* --- 6. FOOTER --- */
@@ -223,40 +210,32 @@
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 40px; margin-bottom: 40px;
         }
-
         .footer-col h4 { color: var(--primary-color); margin-bottom: 20px; font-size: 1.1rem; }
         .footer-col ul li { margin-bottom: 10px; color: var(--text-light); }
         .footer-col ul li i { color: var(--accent-color); margin-right: 10px; }
-        
         .social-icons a { font-size: 1.5rem; color: var(--primary-color); margin-right: 15px; }
         .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
 
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
-            /* Show Mobile Controls */
             .mobile-controls { display: flex; }
-            
-            /* Hide Desktop Call Button */
             .btn-header.desktop-only { display: none; }
-
+            
             .nav-links {
                 display: none;
                 position: absolute; top: 70px; left: 0; width: 100%;
                 background-color: #fff;
                 flex-direction: column; align-items: center;
                 padding: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-                border-top: 1px solid #eee;
-                z-index: 999;
+                border-top: 1px solid #eee; z-index: 999;
             }
-
             .nav-links.active { display: flex; }
             .nav-links li { margin: 15px 0; }
-
-            .page-hero h1 { font-size: 2.2rem; }
-            .gallery-grid { grid-template-columns: 1fr; } /* Stack images on phone */
+            
+            .mixed-grid { grid-template-columns: 1fr; }
+            .grid-item.large { grid-column: auto; grid-row: auto; height: 300px; }
         }
     </style>
 </head>
@@ -271,12 +250,8 @@
         </div>
         
         <div class="mobile-controls">
-            <a href="tel:+17055009000" class="mobile-call-icon">
-                <i class="fas fa-phone"></i>
-            </a>
-            <div class="mobile-button" onclick="toggleMenu()">
-                <span></span>
-            </div>
+            <a href="tel:+17055009000" class="mobile-call-icon"><i class="fas fa-phone"></i></a>
+            <div class="mobile-button" onclick="toggleMenu()"><span></span></div>
         </div>
 
         <ul class="nav-links" id="navLinks">
@@ -295,63 +270,151 @@
         <p>A showcase of the care and precision we bring to every property.</p>
     </section>
 
-    <section class="gallery-section">
-        <div class="gallery-grid">
-            <div class="gallery-item" onclick="openLightbox('assets/img/lawn_gallery/1.webp')">
-                <img src="assets/img/lawn_gallery/1.webp" alt="Lawn Care Project">
-                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-            </div>
+    <section class="portfolio-section">
+        <div class="mixed-grid">
             
-            <div class="gallery-item" onclick="openLightbox('assets/img/lawn_gallery/2.webp')">
-                <img src="assets/img/lawn_gallery/2.webp" alt="Lawn Care Project">
-                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+            <div class="grid-item video large" onclick="openLightbox('assets/img/lawn_gallery/1.mp4', 'video')">
+                <video class="media-content" src="assets/img/lawn_gallery/1.mp4#t=0.1" preload="metadata" muted loop playsinline></video>
+                <div class="play-overlay"><i class="fas fa-play"></i></div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox('assets/img/lawn_gallery/3.webp')">
-                <img src="assets/img/lawn_gallery/3.webp" alt="Lawn Care Project">
-                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+            <div class="grid-item" onclick="openLightbox('assets/img/lawn_gallery/1.webp', 'image')">
+                <img class="media-content" src="assets/img/lawn_gallery/1.webp" alt="Lawn Project">
+                <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox('assets/img/lawn_gallery/4.webp')">
-                <img src="assets/img/lawn_gallery/4.webp" alt="Lawn Care Project">
-                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+            <div class="grid-item video" onclick="openLightbox('assets/img/lawn_gallery/2.mp4', 'video')">
+                <video class="media-content" src="assets/img/lawn_gallery/2.mp4#t=0.1" preload="metadata" muted loop playsinline></video>
+                <div class="play-overlay"><i class="fas fa-play"></i></div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox('assets/img/lawn_gallery/5.webp')">
-                <img src="assets/img/lawn_gallery/5.webp" alt="Lawn Care Project">
-                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+            <div class="grid-item" onclick="openLightbox('assets/img/lawn_gallery/2.webp', 'image')">
+                <img class="media-content" src="assets/img/lawn_gallery/2.webp" alt="Lawn Project">
+                <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox('assets/img/lawn_gallery/6.webp')">
-                <img src="assets/img/lawn_gallery/6.webp" alt="Lawn Care Project">
-                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+            <div class="grid-item video" onclick="openLightbox('assets/img/lawn_gallery/3.mp4', 'video')">
+                <video class="media-content" src="assets/img/lawn_gallery/3.mp4#t=0.1" preload="metadata" muted loop playsinline></video>
+                <div class="play-overlay"><i class="fas fa-play"></i></div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox('assets/img/lawn_gallery/7.webp')">
-                <img src="assets/img/lawn_gallery/7.webp" alt="Lawn Care Project">
-                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+            <div class="grid-item" onclick="openLightbox('assets/img/lawn_gallery/3.webp', 'image')">
+                <img class="media-content" src="assets/img/lawn_gallery/3.webp" alt="Lawn Project">
+                <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox('assets/img/lawn_gallery/8.webp')">
-                <img src="assets/img/lawn_gallery/8.webp" alt="Lawn Care Project">
-                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+            <div class="grid-item video" onclick="openLightbox('assets/img/lawn_gallery/4.mp4', 'video')">
+                <video class="media-content" src="assets/img/lawn_gallery/4.mp4#t=0.1" preload="metadata" muted loop playsinline></video>
+                <div class="play-overlay"><i class="fas fa-play"></i></div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox('assets/img/lawn_gallery/9.webp')">
-                <img src="assets/img/lawn_gallery/9.webp" alt="Lawn Care Project">
-                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+            <div class="grid-item" onclick="openLightbox('assets/img/lawn_gallery/4.webp', 'image')">
+                <img class="media-content" src="assets/img/lawn_gallery/4.webp" alt="Lawn Project">
+                <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox('assets/img/lawn_gallery/10.webp')">
-                <img src="assets/img/lawn_gallery/10.webp" alt="Lawn Care Project">
-                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+            <div class="grid-item video" onclick="openLightbox('assets/img/lawn_gallery/5.mp4', 'video')">
+                <video class="media-content" src="assets/img/lawn_gallery/5.mp4#t=0.1" preload="metadata" muted loop playsinline></video>
+                <div class="play-overlay"><i class="fas fa-play"></i></div>
             </div>
+
+            <div class="grid-item" onclick="openLightbox('assets/img/lawn_gallery/5.webp', 'image')">
+                <img class="media-content" src="assets/img/lawn_gallery/5.webp" alt="Lawn Project">
+                <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+            </div>
+
+            <div class="grid-item video" onclick="openLightbox('assets/img/lawn_gallery/6.mp4', 'video')">
+                <video class="media-content" src="assets/img/lawn_gallery/6.mp4#t=0.1" preload="metadata" muted loop playsinline></video>
+                <div class="play-overlay"><i class="fas fa-play"></i></div>
+            </div>
+
+            <div class="grid-item" onclick="openLightbox('assets/img/lawn_gallery/6.webp', 'image')">
+                <img class="media-content" src="assets/img/lawn_gallery/6.webp" alt="Lawn Project">
+                <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+            </div>
+
+            <div class="grid-item video" onclick="openLightbox('assets/img/lawn_gallery/7.mp4', 'video')">
+                <video class="media-content" src="assets/img/lawn_gallery/7.mp4#t=0.1" preload="metadata" muted loop playsinline></video>
+                <div class="play-overlay"><i class="fas fa-play"></i></div>
+            </div>
+
+            <div class="grid-item" onclick="openLightbox('assets/img/lawn_gallery/7.webp', 'image')">
+                <img class="media-content" src="assets/img/lawn_gallery/7.webp" alt="Lawn Project">
+                <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+            </div>
+
+            <div class="grid-item video" onclick="openLightbox('assets/img/lawn_gallery/8.mp4', 'video')">
+                <video class="media-content" src="assets/img/lawn_gallery/8.mp4#t=0.1" preload="metadata" muted loop playsinline></video>
+                <div class="play-overlay"><i class="fas fa-play"></i></div>
+            </div>
+
+            <div class="grid-item" onclick="openLightbox('assets/img/lawn_gallery/8.webp', 'image')">
+                <img class="media-content" src="assets/img/lawn_gallery/8.webp" alt="Lawn Project">
+                <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+            </div>
+
+            <div class="grid-item video" onclick="openLightbox('assets/img/lawn_gallery/9.mp4', 'video')">
+                <video class="media-content" src="assets/img/lawn_gallery/9.mp4#t=0.1" preload="metadata" muted loop playsinline></video>
+                <div class="play-overlay"><i class="fas fa-play"></i></div>
+            </div>
+
+            <div class="grid-item" onclick="openLightbox('assets/img/lawn_gallery/9.webp', 'image')">
+                <img class="media-content" src="assets/img/lawn_gallery/9.webp" alt="Lawn Project">
+                <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+            </div>
+
+            <div class="grid-item video" onclick="openLightbox('assets/img/lawn_gallery/10.mp4', 'video')">
+                <video class="media-content" src="assets/img/lawn_gallery/10.mp4#t=0.1" preload="metadata" muted loop playsinline></video>
+                <div class="play-overlay"><i class="fas fa-play"></i></div>
+            </div>
+
+            <div class="grid-item" onclick="openLightbox('assets/img/lawn_gallery/10.webp', 'image')">
+                <img class="media-content" src="assets/img/lawn_gallery/10.webp" alt="Lawn Project">
+                <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+            </div>
+
+            <div class="grid-item video" onclick="openLightbox('assets/img/lawn_gallery/11.mp4', 'video')">
+                <video class="media-content" src="assets/img/lawn_gallery/11.mp4#t=0.1" preload="metadata" muted loop playsinline></video>
+                <div class="play-overlay"><i class="fas fa-play"></i></div>
+            </div>
+
+            <div class="grid-item" onclick="openLightbox('assets/img/lawn_gallery/11.webp', 'image')">
+                <img class="media-content" src="assets/img/lawn_gallery/11.webp" alt="Lawn Project">
+                <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+            </div>
+
+            <div class="grid-item video" onclick="openLightbox('assets/img/lawn_gallery/12.mp4', 'video')">
+                <video class="media-content" src="assets/img/lawn_gallery/12.mp4#t=0.1" preload="metadata" muted loop playsinline></video>
+                <div class="play-overlay"><i class="fas fa-play"></i></div>
+            </div>
+
+            <div class="grid-item" onclick="openLightbox('assets/img/lawn_gallery/12.webp', 'image')">
+                <img class="media-content" src="assets/img/lawn_gallery/12.webp" alt="Lawn Project">
+                <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+            </div>
+
+            <div class="grid-item video" onclick="openLightbox('assets/img/lawn_gallery/13.mp4', 'video')">
+                <video class="media-content" src="assets/img/lawn_gallery/13.mp4#t=0.1" preload="metadata" muted loop playsinline></video>
+                <div class="play-overlay"><i class="fas fa-play"></i></div>
+            </div>
+
+            <div class="grid-item" onclick="openLightbox('assets/img/lawn_gallery/13.webp', 'image')">
+                <img class="media-content" src="assets/img/lawn_gallery/13.webp" alt="Lawn Project">
+                <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+            </div>
+
+            <div class="grid-item" onclick="openLightbox('assets/img/lawn_gallery/14.webp', 'image')">
+                <img class="media-content" src="assets/img/lawn_gallery/14.webp" alt="Lawn Project">
+                <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+            </div>
+
         </div>
     </section>
 
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <span class="close-lightbox">&times;</span>
-        <img id="lightbox-img" src="" alt="Full Screen">
+        <img id="lightbox-img" class="lightbox-content" src="" alt="Full Screen" style="display:none;">
+        <video id="lightbox-video" class="lightbox-content" controls style="display:none;"></video>
     </div>
 
     <footer>
@@ -394,14 +457,38 @@
             mobileBtn.classList.toggle("active");
         }
 
-        // Lightbox Functions
-        function openLightbox(imageSrc) {
-            document.getElementById('lightbox-img').src = imageSrc;
-            document.getElementById('lightbox').style.display = 'flex';
+        // --- LIGHTBOX FUNCTIONS ---
+        function openLightbox(src, type) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            const vid = document.getElementById('lightbox-video');
+
+            // Reset display
+            img.style.display = 'none';
+            vid.style.display = 'none';
+            vid.pause();
+
+            if (type === 'video') {
+                // Remove the hash (#t=0.1) for playback so it starts from beginning if desired
+                // or keep it. Removing it usually safer for full playback.
+                const cleanSrc = src.split('#')[0]; 
+                vid.src = cleanSrc;
+                vid.style.display = 'block';
+                vid.play();
+            } else {
+                img.src = src;
+                img.style.display = 'block';
+            }
+
+            lightbox.style.display = 'flex';
         }
 
         function closeLightbox() {
-            document.getElementById('lightbox').style.display = 'none';
+            const lightbox = document.getElementById('lightbox');
+            const vid = document.getElementById('lightbox-video');
+            vid.pause();
+            vid.src = "";
+            lightbox.style.display = 'none';
         }
     </script>
 </body>

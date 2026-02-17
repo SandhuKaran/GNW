@@ -24,8 +24,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             color: var(--text-dark);
             background-color: #fff;
             line-height: 1.6;
@@ -43,15 +42,11 @@
             background: #fff;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             position: sticky;
-            top: 0;
-            z-index: 1000;
+            top: 0; z-index: 1000;
         }
 
-        /* LOGO STYLING (Rounded Corners) */
         .logo {
-            border-radius: 10px; /* Lightly rounded corners */
-            overflow: hidden;
-            transition: transform 0.3s;
+            border-radius: 10px; overflow: hidden; transition: transform 0.3s;
         }
         .logo:hover { transform: scale(1.02); }
 
@@ -71,19 +66,13 @@
         }
         .btn-header:hover { background-color: var(--accent-color); }
 
-        /* --- MOBILE CONTROLS (Right side on mobile) --- */
-        .mobile-controls {
-            display: none; /* Hidden on desktop */
-            align-items: center;
-            gap: 15px;
-        }
-
-        /* Mobile Call Icon (Pix Button) */
+        /* --- MOBILE CONTROLS --- */
+        .mobile-controls { display: none; align-items: center; gap: 15px; }
+        
         .mobile-call-icon {
             width: 40px; height: 40px;
             background-color: var(--accent-color);
-            color: white;
-            border-radius: 50%;
+            color: white; border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
             font-size: 1.2rem;
             box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
@@ -91,26 +80,20 @@
         }
         .mobile-call-icon:active { transform: scale(0.95); }
 
-        /* Mobile Hamburger Button */
         .mobile-button {
-            cursor: pointer;
-            width: 30px; height: 20px;
-            position: relative;
-            z-index: 1001;
+            cursor: pointer; width: 30px; height: 20px;
+            position: relative; z-index: 1001;
         }
-
         .mobile-button span {
             display: block; width: 100%; height: 3px; background-color: var(--primary-color);
             position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease;
         }
-
         .mobile-button::before, .mobile-button::after {
             content: ''; width: 100%; height: 3px; background-color: var(--primary-color);
             position: absolute; transition: all 0.3s ease;
         }
         .mobile-button::before { top: 0; }
         .mobile-button::after { bottom: 0; }
-
         .mobile-button.active span { opacity: 0; }
         .mobile-button.active::before { top: 50%; transform: rotate(45deg); }
         .mobile-button.active::after { top: 50%; transform: rotate(-45deg); bottom: auto; }
@@ -122,7 +105,6 @@
             text-align: center;
             padding: 80px 20px;
         }
-
         .page-hero h1 { font-size: 3rem; margin-bottom: 10px; }
         .page-hero p { font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
 
@@ -130,41 +112,29 @@
         .contact-section { padding: 80px 5%; background-color: var(--bg-light); }
         .contact-wrapper { display: flex; gap: 50px; max-width: 1200px; margin: 0 auto; }
 
-        /* --- LEFT SIDE: INFO CARDS --- */
+        /* LEFT SIDE: INFO CARDS */
         .contact-info { flex: 1; display: flex; flex-direction: column; gap: 20px; }
 
         .info-card {
-            background: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--card-shadow);
-            display: flex;
-            align-items: center;
-            gap: 20px;
+            background: #fff; padding: 30px; border-radius: 15px;
+            box-shadow: var(--card-shadow); display: flex; align-items: center; gap: 20px;
             transition: transform 0.3s;
         }
         .info-card:hover { transform: translateY(-5px); }
 
         .icon-box {
-            width: 60px; height: 60px;
-            background-color: rgba(76, 175, 80, 0.1);
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
+            width: 60px; height: 60px; background-color: rgba(76, 175, 80, 0.1);
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
             color: var(--accent-color); font-size: 1.5rem; flex-shrink: 0;
         }
-
         .info-content h3 { margin: 0 0 5px 0; color: var(--primary-color); font-size: 1.1rem; }
         .info-content p { margin: 0; color: var(--text-light); }
 
-        /* --- RIGHT SIDE: FORM --- */
+        /* RIGHT SIDE: FORM */
         .contact-form-wrapper {
-            flex: 1.5;
-            background: #fff;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: var(--card-shadow);
+            flex: 1.5; background: #fff; padding: 40px;
+            border-radius: 20px; box-shadow: var(--card-shadow);
         }
-
         .contact-form-wrapper h2 { margin-top: 0; color: var(--primary-color); margin-bottom: 30px; }
 
         .form-group { margin-bottom: 20px; }
@@ -179,48 +149,75 @@
         .form-control:focus { outline: none; border-color: var(--accent-color); }
         textarea.form-control { resize: vertical; height: 150px; }
 
-        /* --- PLAN SELECTION TABS --- */
-        .plan-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
+        /* --- PLAN RADIO TABS --- */
+        .plan-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
         .plan-tabs input[type="radio"] { display: none; }
-
         .plan-tabs label {
-            flex: 1;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            text-align: center;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s;
-            background: #fff;
-            color: var(--text-light);
+            flex: 1; padding: 15px; border: 1px solid #ddd;
+            border-radius: 10px; text-align: center; cursor: pointer;
+            font-weight: 500; transition: all 0.3s;
+            background: #fff; color: var(--text-light);
         }
-
-        .plan-tabs label:hover {
-            border-color: var(--accent-color);
-            background: rgba(76, 175, 80, 0.05);
-        }
-
+        .plan-tabs label:hover { border-color: var(--accent-color); background: rgba(76, 175, 80, 0.05); }
         .plan-tabs input[type="radio"]:checked + label {
-            background-color: var(--accent-color);
-            color: white;
+            background-color: var(--accent-color); color: white;
+            border-color: var(--accent-color); box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        /* --- NEW SERVICE CHECKBOX GRID --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 10px;
+        }
+        
+        .checkbox-item {
+            position: relative;
+        }
+
+        /* Hide default checkbox but keep it accessible */
+        .checkbox-item input[type="checkbox"] {
+            position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;
+        }
+
+        /* Custom Label Design */
+        .checkbox-item label {
+            display: block;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: 0; /* Override generic label margin */
+        }
+
+        .checkbox-item label:hover { border-color: var(--accent-color); }
+
+        /* Style when checked */
+        .checkbox-item input:checked + label {
+            background-color: rgba(76, 175, 80, 0.1);
             border-color: var(--accent-color);
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        /* Add a checkmark icon when checked */
+        .checkbox-item input:checked + label::before {
+            content: '\f00c'; /* FontAwesome Check */
+            font-family: "Font Awesome 6 Free"; font-weight: 900;
+            margin-right: 5px;
         }
 
         .btn-submit {
-            background-color: var(--accent-color);
-            color: #fff;
-            padding: 15px 40px;
-            border: none; border-radius: 50px;
-            font-size: 1.1rem; font-weight: 600;
-            cursor: pointer; width: 100%;
-            transition: background 0.3s;
+            background-color: var(--accent-color); color: #fff;
+            padding: 15px 40px; border: none; border-radius: 50px;
+            font-size: 1.1rem; font-weight: 600; cursor: pointer; width: 100%;
+            transition: background 0.3s; margin-top: 20px;
         }
         .btn-submit:hover { background-color: #388E3C; }
 
@@ -237,29 +234,28 @@
         .social-icons a { font-size: 1.5rem; color: var(--primary-color); margin-right: 15px; }
         .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
 
-        /* --- MOBILE --- */
+        /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
-            /* Show Mobile Controls */
             .mobile-controls { display: flex; }
-            
-            /* Hide Desktop Call Button */
             .btn-header.desktop-only { display: none; }
-
+            
             .nav-links {
                 display: none;
                 position: absolute; top: 70px; left: 0; width: 100%;
                 background-color: #fff;
                 flex-direction: column; align-items: center;
                 padding: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-                border-top: 1px solid #eee;
-                z-index: 999;
+                border-top: 1px solid #eee; z-index: 999;
             }
-
             .nav-links.active { display: flex; }
             .nav-links li { margin: 15px 0; }
 
+            /* MOVE FORM TO TOP ON MOBILE */
             .contact-wrapper { flex-direction: column; }
+            .contact-form-wrapper { order: -1; margin-bottom: 40px; }
+            
             .plan-tabs { flex-direction: column; } 
+            .services-grid { grid-template-columns: 1fr 1fr; } /* 2 cols on mobile */
         }
     </style>
 </head>
@@ -274,12 +270,8 @@
         </div>
         
         <div class="mobile-controls">
-            <a href="tel:+17055009000" class="mobile-call-icon">
-                <i class="fas fa-phone"></i>
-            </a>
-            <div class="mobile-button" onclick="toggleMenu()">
-                <span></span>
-            </div>
+            <a href="tel:+17055009000" class="mobile-call-icon"><i class="fas fa-phone"></i></a>
+            <div class="mobile-button" onclick="toggleMenu()"><span></span></div>
         </div>
 
         <ul class="nav-links" id="navLinks">
@@ -337,55 +329,83 @@
 
             <div class="contact-form-wrapper">
                 <h2>Request a Quote</h2>
+                
                 <form action="https://formspree.io/f/xwpevnqp" method="POST">
-    
-    <div class="form-group">
-        <label>Select a Plan (Optional)</label>
-        <div class="plan-tabs">
-            <input type="radio" id="plan-basic" name="plan" value="Basic">
-            <label for="plan-basic">Basic<br><small>$149/mo</small></label>
+                    
+                    <div class="form-group">
+                        <label>Select a Plan (Optional)</label>
+                        <div class="plan-tabs">
+                            <input type="radio" id="plan-basic" name="plan" value="Basic">
+                            <label for="plan-basic">Basic<br><small>$149/mo</small></label>
 
-            <input type="radio" id="plan-premium" name="plan" value="Premium">
-            <label for="plan-premium">Premium<br><small>$198/mo</small></label>
+                            <input type="radio" id="plan-premium" name="plan" value="Premium">
+                            <label for="plan-premium">Premium<br><small>$198/mo</small></label>
 
-            <input type="radio" id="plan-ultimate" name="plan" value="Ultimate">
-            <label for="plan-ultimate">Ultimate<br><small>$259/mo</small></label>
-        </div>
-    </div>
+                            <input type="radio" id="plan-ultimate" name="plan" value="Ultimate">
+                            <label for="plan-ultimate">Ultimate<br><small>$259/mo</small></label>
+                        </div>
+                    </div>
 
-    <div class="form-group">
-        <label>Your Name</label>
-        <input type="text" name="name" class="form-control" placeholder="John Doe" required>
-    </div>
-    
-    <div class="form-group">
-        <label>Phone Number</label>
-        <input type="tel" name="phone" class="form-control" placeholder="(705) 555-0123" required>
-    </div>
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" name="name" class="form-control" placeholder="John Doe" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" name="phone" class="form-control" placeholder="(705) 555-0123" required>
+                    </div>
 
-    <div class="form-group">
-        <label>Other Services Interested In</label>
-        <select name="service" class="form-control">
-            <option value="">-- Select Service --</option>
-           <option value="Lawn Mowing (Bi-Weekly)">Lawn Mowing (Bi-Weekly)</option>
-            <option value="Fertilizer & Weed Control">Fertilizer & Weed Control</option>
-            <option value="Aeration & Overseeding">Aeration & Overseeding</option>
-            <option value="Spring/Fall Cleanup">Spring/Fall Cleanup</option>
-            <option value="Gardening & Planting">Gardening & Planting</option>
-            <option value="Tree & Shrub Care">Tree & Shrub Care</option>
-            <option value="Mulch Installation">Mulch Installation</option>
-            <option value="Sod Installation">Sod Installation</option>
-            <option value="General Inquiry">General Inquiry</option>
-        </select>
-    </div>
+                    <div class="form-group">
+                        <label>Other Services Interested In (Select all that apply)</label>
+                        
+                        <div class="services-grid">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="srv-mow" name="services" value="Lawn Mowing(Bi-Weekly)">
+                                <label for="srv-mow">Lawn Mowing(Bi-Weekly)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="srv-fert" name="services" value="Fertilizer/Weed Control">
+                                <label for="srv-fert">Fertilizer & Weed Control</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="srv-aeration" name="services" value="Aeration/Overseeding">
+                                <label for="srv-aeration">Aeration/Overseeding</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="srv-cleanup" name="services" value="Spring/Fall Cleanup">
+                                <label for="srv-cleanup">Spring/Fall Cleanup</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="srv-garden" name="services" value="Gardening/Planting">
+                                <label for="srv-garden">Gardening/Planting</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="srv-mulch" name="services" value="Mulch Installation">
+                                <label for="srv-mulch">Mulch Installation</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="srv-sod" name="services" value="Sodding">
+                                <label for="srv-sod">Sod Installation</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="srv-snow" name="services" value="Tree & Shrub Care">
+                                <label for="srv-snow">Tree & Shrub Care</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="srv-other" name="services" value="General Inquiry">
+                                <label for="srv-other">General Inquiry</label>
+                            </div>
+                        </div>
+                    </div>
 
-    <div class="form-group">
-        <label>Message</label>
-        <textarea name="message" class="form-control" placeholder="Tell us more about your project..."></textarea>
-    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea name="message" class="form-control" placeholder="Tell us about your property..."></textarea>
+                    </div>
 
-    <button type="submit" class="btn-submit">Send Request</button>
-</form>
+                    <button type="submit" class="btn-submit">Send Request</button>
+                </form>
             </div>
 
         </div>
@@ -427,7 +447,6 @@
     <script>
         document.getElementById("year").innerHTML = new Date().getFullYear();
 
-        // Check URL for ?plan=premium etc.
         const urlParams = new URLSearchParams(window.location.search);
         const plan = urlParams.get('plan');
 
@@ -435,12 +454,10 @@
             const radioBtn = document.getElementById('plan-' + plan);
             if (radioBtn) {
                 radioBtn.checked = true;
-                // Scroll to form smoothly
                 document.querySelector('.contact-form-wrapper').scrollIntoView({ behavior: 'smooth' });
             }
         }
 
-        // Mobile Menu Toggle
         function toggleMenu() {
             const navLinks = document.getElementById("navLinks");
             const mobileBtn = document.querySelector(".mobile-button");
