@@ -47,12 +47,19 @@
             z-index: 1000;
         }
 
-        .logo img { height: 45px; filter: invert(1) brightness(0); }
+        /* LOGO STYLING (Rounded Corners) */
+        .logo {
+            border-radius: 10px; /* Lightly rounded corners */
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .logo:hover { transform: scale(1.02); }
 
-        .nav-links { display: flex; gap: 30px; }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links a { font-weight: 500; color: var(--text-dark); transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent-color); }
 
+        /* Desktop Call Button */
         .btn-header {
             background-color: var(--primary-color);
             color: #fff !important;
@@ -63,6 +70,50 @@
             transition: background 0.3s;
         }
         .btn-header:hover { background-color: var(--accent-color); }
+
+        /* --- MOBILE CONTROLS (Right side on mobile) --- */
+        .mobile-controls {
+            display: none; /* Hidden on desktop */
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Mobile Call Icon (Pix Button) */
+        .mobile-call-icon {
+            width: 40px; height: 40px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+            transition: transform 0.2s;
+        }
+        .mobile-call-icon:active { transform: scale(0.95); }
+
+        /* Mobile Hamburger Button */
+        .mobile-button {
+            cursor: pointer;
+            width: 30px; height: 20px;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .mobile-button span {
+            display: block; width: 100%; height: 3px; background-color: var(--primary-color);
+            position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease;
+        }
+
+        .mobile-button::before, .mobile-button::after {
+            content: ''; width: 100%; height: 3px; background-color: var(--primary-color);
+            position: absolute; transition: all 0.3s ease;
+        }
+        .mobile-button::before { top: 0; }
+        .mobile-button::after { bottom: 0; }
+
+        .mobile-button.active span { opacity: 0; }
+        .mobile-button.active::before { top: 50%; transform: rotate(45deg); }
+        .mobile-button.active::after { top: 50%; transform: rotate(-45deg); bottom: auto; }
 
         /* --- 3. PAGE HERO --- */
         .page-hero {
@@ -128,17 +179,15 @@
         .form-control:focus { outline: none; border-color: var(--accent-color); }
         textarea.form-control { resize: vertical; height: 150px; }
 
-        /* --- PLAN SELECTION TABS (NEW) --- */
+        /* --- PLAN SELECTION TABS --- */
         .plan-tabs {
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
         }
 
-        /* Hide the actual radio circle */
         .plan-tabs input[type="radio"] { display: none; }
 
-        /* Style the labels as buttons */
         .plan-tabs label {
             flex: 1;
             padding: 15px;
@@ -157,7 +206,6 @@
             background: rgba(76, 175, 80, 0.05);
         }
 
-        /* When radio is checked, style the label */
         .plan-tabs input[type="radio"]:checked + label {
             background-color: var(--accent-color);
             color: white;
@@ -191,10 +239,27 @@
 
         /* --- MOBILE --- */
         @media (max-width: 768px) {
-            .nav-links { display: none; }
+            /* Show Mobile Controls */
+            .mobile-controls { display: flex; }
+            
+            /* Hide Desktop Call Button */
+            .btn-header.desktop-only { display: none; }
+
+            .nav-links {
+                display: none;
+                position: absolute; top: 70px; left: 0; width: 100%;
+                background-color: #fff;
+                flex-direction: column; align-items: center;
+                padding: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                border-top: 1px solid #eee;
+                z-index: 999;
+            }
+
+            .nav-links.active { display: flex; }
+            .nav-links li { margin: 15px 0; }
+
             .contact-wrapper { flex-direction: column; }
-            .btn-header { display: none; }
-            .plan-tabs { flex-direction: column; } /* Stack tabs on mobile */
+            .plan-tabs { flex-direction: column; } 
         }
     </style>
 </head>
@@ -202,19 +267,30 @@
 
     <header>
         <div class="logo">
-    <a href="index.html">
-        <img src="assets/img/logo-light.png" alt="Greenworks Logo" 
-             style="height: 45px; width: auto; filter: none; display: block;"> 
-    </a>
-</div>
-        <ul class="nav-links">
+            <a href="index.html">
+                <img src="assets/img/logo-light.png" alt="Greenworks Logo" 
+                     style="height: 45px; width: auto; filter: none; display: block;"> 
+            </a>
+        </div>
+        
+        <div class="mobile-controls">
+            <a href="tel:+17055009000" class="mobile-call-icon">
+                <i class="fas fa-phone"></i>
+            </a>
+            <div class="mobile-button" onclick="toggleMenu()">
+                <span></span>
+            </div>
+        </div>
+
+        <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
             <li><a href="lawn-portfolio.html">Portfolio</a></li>
             <li><a href="pricing.html">Pricing Plans</a></li>
             <li><a href="about2.html">About Us</a></li>
             <li><a href="contact2.html" style="color: var(--accent-color);">Contact</a></li>
         </ul>
-        <a href="tel:+17055009000" class="btn-header">Call 705-500-9000</a>
+        
+        <a href="tel:+17055009000" class="btn-header desktop-only">Call 705-500-9000</a>
     </header>
 
     <section class="page-hero">
@@ -261,51 +337,55 @@
 
             <div class="contact-form-wrapper">
                 <h2>Request a Quote</h2>
-                <form action="#" method="post">
-                    
-                    <div class="form-group">
-                        <label>Select a Plan (Optional)</label>
-                        <div class="plan-tabs">
-                            
-                            <input type="radio" id="plan-basic" name="plan" value="Basic">
-                            <label for="plan-basic">Basic<br><small>$149/mo</small></label>
+                <form action="https://formspree.io/f/xwpevnqp" method="POST">
+    
+    <div class="form-group">
+        <label>Select a Plan (Optional)</label>
+        <div class="plan-tabs">
+            <input type="radio" id="plan-basic" name="plan" value="Basic">
+            <label for="plan-basic">Basic<br><small>$149/mo</small></label>
 
-                            <input type="radio" id="plan-premium" name="plan" value="Premium">
-                            <label for="plan-premium">Premium<br><small>$198/mo</small></label>
+            <input type="radio" id="plan-premium" name="plan" value="Premium">
+            <label for="plan-premium">Premium<br><small>$198/mo</small></label>
 
-                            <input type="radio" id="plan-ultimate" name="plan" value="Ultimate">
-                            <label for="plan-ultimate">Ultimate<br><small>$259/mo</small></label>
-                            
-                        </div>
-                    </div>
+            <input type="radio" id="plan-ultimate" name="plan" value="Ultimate">
+            <label for="plan-ultimate">Ultimate<br><small>$259/mo</small></label>
+        </div>
+    </div>
 
-                    <div class="form-group">
-                        <label>Your Name</label>
-                        <input type="text" class="form-control" placeholder="John Doe" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Phone Number</label>
-                        <input type="tel" class="form-control" placeholder="(705) 555-0123" required>
-                    </div>
+    <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" name="name" class="form-control" placeholder="John Doe" required>
+    </div>
+    
+    <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" name="phone" class="form-control" placeholder="(705) 555-0123" required>
+    </div>
 
-                    <div class="form-group">
-                        <label>Other Services Interested In</label>
-                        <select class="form-control">
-                            <option value="">-- Select Service --</option>
-                            <option>Landscaping Project</option>
-                            <option>Snow Removal</option>
-                            <option>General Inquiry</option>
-                        </select>
-                    </div>
+    <div class="form-group">
+        <label>Other Services Interested In</label>
+        <select name="service" class="form-control">
+            <option value="">-- Select Service --</option>
+           <option value="Lawn Mowing (Bi-Weekly)">Lawn Mowing (Bi-Weekly)</option>
+            <option value="Fertilizer & Weed Control">Fertilizer & Weed Control</option>
+            <option value="Aeration & Overseeding">Aeration & Overseeding</option>
+            <option value="Spring/Fall Cleanup">Spring/Fall Cleanup</option>
+            <option value="Gardening & Planting">Gardening & Planting</option>
+            <option value="Tree & Shrub Care">Tree & Shrub Care</option>
+            <option value="Mulch Installation">Mulch Installation</option>
+            <option value="Sod Installation">Sod Installation</option>
+            <option value="General Inquiry">General Inquiry</option>
+        </select>
+    </div>
 
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea class="form-control" placeholder="Tell us about your property..."></textarea>
-                    </div>
+    <div class="form-group">
+        <label>Message</label>
+        <textarea name="message" class="form-control" placeholder="Tell us more about your project..."></textarea>
+    </div>
 
-                    <button type="submit" class="btn-submit">Send Request</button>
-                </form>
+    <button type="submit" class="btn-submit">Send Request</button>
+</form>
             </div>
 
         </div>
@@ -358,6 +438,14 @@
                 // Scroll to form smoothly
                 document.querySelector('.contact-form-wrapper').scrollIntoView({ behavior: 'smooth' });
             }
+        }
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById("navLinks");
+            const mobileBtn = document.querySelector(".mobile-button");
+            navLinks.classList.toggle("active");
+            mobileBtn.classList.toggle("active");
         }
     </script>
 </body>
