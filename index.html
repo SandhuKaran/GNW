@@ -651,6 +651,23 @@
       }, 5000);
     })();
 
+    // ===== Hero Video Poster Handler =====
+    (function () {
+      var video = document.querySelector('.hero-video');
+      if (!video) return;
+
+      function updatePoster() {
+        if (window.innerWidth <= 768) {
+          video.poster = "assets/videos/hero-poster-mobile.webp";
+        } else {
+          video.poster = "assets/videos/hero-poster.webp";
+        }
+      }
+
+      updatePoster();
+      window.addEventListener('resize', updatePoster);
+    })();
+
     // Accordion functionality for Why Choose Us section
     document.querySelectorAll(".toggle-title").forEach(function (title) {
       title.addEventListener("click", function () {
