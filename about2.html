@@ -46,13 +46,74 @@
             top: 0; z-index: 1000;
         }
 
-        .logo img { height: 45px; }
+        /* LOGO STYLING (Rounded Corners) */
+        .logo {
+            border-radius: 10px; /* Lightly rounded corners */
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .logo:hover { transform: scale(1.02); }
 
-        .nav-links { display: flex; gap: 30px; }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links a { font-weight: 500; color: var(--text-dark); transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent-color); }
 
-        .header-phone { color: var(--primary-color); font-weight: 600; font-size: 0.95rem; }
+        /* Desktop Call Button */
+        .header-phone a {
+            background-color: var(--primary-color);
+            color: #fff !important;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+            display: inline-block;
+        }
+        .header-phone a:hover { background-color: var(--accent-color); }
+
+        /* --- MOBILE CONTROLS (Right side on mobile) --- */
+        .mobile-controls {
+            display: none; /* Hidden on desktop */
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Mobile Call Icon (Pix Button) */
+        .mobile-call-icon {
+            width: 40px; height: 40px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+            transition: transform 0.2s;
+        }
+        .mobile-call-icon:active { transform: scale(0.95); }
+
+        /* Mobile Hamburger Button */
+        .mobile-button {
+            cursor: pointer;
+            width: 30px; height: 20px;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .mobile-button span {
+            display: block; width: 100%; height: 3px; background-color: var(--primary-color);
+            position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease;
+        }
+
+        .mobile-button::before, .mobile-button::after {
+            content: ''; width: 100%; height: 3px; background-color: var(--primary-color);
+            position: absolute; transition: all 0.3s ease;
+        }
+        .mobile-button::before { top: 0; }
+        .mobile-button::after { bottom: 0; }
+
+        .mobile-button.active span { opacity: 0; }
+        .mobile-button.active::before { top: 50%; transform: rotate(45deg); }
+        .mobile-button.active::after { top: 50%; transform: rotate(-45deg); bottom: auto; }
 
         /* --- 3. PAGE HERO --- */
         .page-hero {
@@ -65,7 +126,7 @@
         .page-hero h1 { font-size: 3.5rem; margin-bottom: 15px; font-weight: 700; }
         .page-hero p { font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
 
-        /* --- 4. STORY SECTION (Integrated Text & Images) --- */
+        /* --- 4. STORY SECTION --- */
         .story-section {
             padding: 100px 5%;
             background-color: #fff;
@@ -140,7 +201,25 @@
             .story-gallery { width: 100%; }
         }
         @media (max-width: 768px) {
-            .nav-links, .header-phone { display: none; }
+            /* Show Mobile Controls */
+            .mobile-controls { display: flex; }
+            
+            /* Hide Desktop Call Button */
+            .header-phone { display: none; } /* Use class name for this button */
+
+            .nav-links {
+                display: none;
+                position: absolute; top: 70px; left: 0; width: 100%;
+                background-color: #fff;
+                flex-direction: column; align-items: center;
+                padding: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                border-top: 1px solid #eee;
+                z-index: 999;
+            }
+
+            .nav-links.active { display: flex; }
+            .nav-links li { margin: 15px 0; }
+
             .page-hero h1 { font-size: 2.5rem; }
             .story-gallery img { height: 160px; }
             .stats-bar { flex-direction: column; gap: 40px; }
@@ -151,19 +230,29 @@
 
     <header>
         <div class="logo">
-    <a href="index.html">
-        <img src="assets/img/logo-light.png" alt="Greenworks Logo" 
-             style="height: 45px; width: auto; filter: none; display: block;"> 
-    </a>
-</div>
+            <a href="index.html">
+                <img src="assets/img/logo-light.png" alt="Greenworks Logo" 
+                     style="height: 45px; width: auto; filter: none; display: block;"> 
+            </a>
+        </div>
 
-        <ul class="nav-links">
+        <div class="mobile-controls">
+            <a href="tel:+17055009000" class="mobile-call-icon">
+                <i class="fas fa-phone"></i>
+            </a>
+            <div class="mobile-button" onclick="toggleMenu()">
+                <span></span>
+            </div>
+        </div>
+
+        <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
             <li><a href="lawn-portfolio.html">Portfolio</a></li>
             <li><a href="pricing.html">Pricing Plans</a></li>
             <li><a href="about2.html" style="color: var(--accent-color);">About Us</a></li>
             <li><a href="contact2.html">Contact</a></li>
         </ul>
+
         <div class="header-phone">
             <a href="tel:+17055009000">Call 705-500-9000</a>
         </div>
@@ -240,6 +329,14 @@
 
     <script>
         document.getElementById("year").innerHTML = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById("navLinks");
+            const mobileBtn = document.querySelector(".mobile-button");
+            navLinks.classList.toggle("active");
+            mobileBtn.classList.toggle("active");
+        }
     </script>
 </body>
 </html>
