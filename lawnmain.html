@@ -12,7 +12,7 @@
     <style>
         /* --- 1. GENERAL STYLES --- */
         :root {
-            --primary-color: #1b5e20; /* Deep Professional Green */
+            --primary-color: #1b5e20;
             --accent-color: #4CAF50; 
             --text-dark: #333333;
             --text-light: #666666;
@@ -24,8 +24,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             color: var(--text-dark);
             background-color: #fff;
             line-height: 1.6;
@@ -44,16 +43,22 @@
             background: #fff;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             position: sticky;
-            top: 0;
-            z-index: 1000;
+            top: 0; z-index: 1000;
         }
 
-        .logo img { height: 45px; filter: invert(1) brightness(0); }
+        /* LOGO STYLING (Rounded Corners) */
+        .logo {
+            border-radius: 10px; /* Lightly rounded corners */
+            overflow: hidden; /* Ensures image respects the radius if needed */
+            transition: transform 0.3s;
+        }
+        .logo:hover { transform: scale(1.02); }
 
-        .nav-links { display: flex; gap: 30px; }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent-color); }
 
+        /* Desktop Call Button */
         .btn-header {
             background-color: var(--primary-color);
             color: #fff !important;
@@ -65,146 +70,95 @@
         }
         .btn-header:hover { background-color: var(--accent-color); }
 
+        /* --- MOBILE CONTROLS (Right side on mobile) --- */
+        .mobile-controls {
+            display: none; /* Hidden on desktop */
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Mobile Call Icon (Pix Button) */
+        .mobile-call-icon {
+            width: 40px; height: 40px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+            transition: transform 0.2s;
+        }
+        .mobile-call-icon:active { transform: scale(0.95); }
+
+        /* Mobile Hamburger Button */
+        .mobile-button {
+            cursor: pointer;
+            width: 30px; height: 20px;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .mobile-button span {
+            display: block; width: 100%; height: 3px; background-color: var(--primary-color);
+            position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease;
+        }
+
+        .mobile-button::before, .mobile-button::after {
+            content: ''; width: 100%; height: 3px; background-color: var(--primary-color);
+            position: absolute; transition: all 0.3s ease;
+        }
+        .mobile-button::before { top: 0; }
+        .mobile-button::after { bottom: 0; }
+
+        .mobile-button.active span { opacity: 0; }
+        .mobile-button.active::before { top: 50%; transform: rotate(45deg); }
+        .mobile-button.active::after { top: 50%; transform: rotate(-45deg); bottom: auto; }
+
         /* --- 3. HERO SECTION --- */
         .hero {
             position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background-image: linear-gradient(rgba(0, 51, 0, 0.6), rgba(0, 51, 0, 0.5)), url('assets/img/lawnmain.webp');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            min-height: 90vh;
-            padding: 0 5%;
-            color: #fff;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+            background-image: linear-gradient(rgba(0, 51, 0, 0.3), rgba(0, 51, 0, 0.2)), url('assets/img/lawnmain.webp');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            min-height: 90vh; padding: 0 5%; color: #fff;
         }
 
         .hero-text { max-width: 900px; z-index: 2; }
-
-        .hero h1 {
-            font-size: 4rem;
-            line-height: 1.1;
-            margin-bottom: 25px;
-            font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 40px;
-            opacity: 0.95;
-            color: #f0f0f0;
-            text-shadow: 0 1px 5px rgba(0,0,0,0.3);
-        }
+        .hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 25px; font-weight: 700; text-shadow: 0 2px 15px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.4rem; margin-bottom: 40px; opacity: 1; color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,0.5); }
 
         .hero-buttons { display: flex; gap: 20px; justify-content: center; }
 
-        .btn-primary {
-            background-color: var(--accent-color);
-            color: #fff;
-            padding: 18px 45px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border: none; cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: transform 0.2s;
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: #fff;
-            padding: 18px 45px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border: 2px solid #fff;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
+        .btn-primary { background-color: var(--accent-color); color: #fff; padding: 18px 45px; border-radius: 50px; font-size: 1.1rem; font-weight: 600; border: none; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.2s; }
+        .btn-secondary { background-color: transparent; color: #fff; padding: 18px 45px; border-radius: 50px; font-size: 1.1rem; font-weight: 600; border: 2px solid #fff; cursor: pointer; transition: background 0.2s; }
         .btn-primary:hover { transform: translateY(-3px); background-color: #388E3C; }
         .btn-secondary:hover { background-color: #fff; color: var(--primary-color); }
 
-        /* --- 4. PRICING SECTION (Now First) --- */
-        .pricing-section {
-            padding: 100px 5%;
-            background-color: #fff; /* White background */
-            text-align: center;
-        }
-
+        /* --- 4. PRICING SECTION --- */
+        .pricing-section { padding: 100px 5%; background-color: #fff; text-align: center; }
         .pricing-section h2 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 50px; }
-
         .pricing-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
 
-        .pricing-card {
-            background: #fff;
-            padding: 40px 30px;
-            border-radius: 20px;
-            width: 320px;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s;
-            text-align: left;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #eee;
-        }
-
+        .pricing-card { background: #fff; padding: 40px 30px; border-radius: 20px; width: 320px; box-shadow: var(--card-shadow); transition: transform 0.3s; text-align: left; position: relative; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #eee; }
         .pricing-card:hover { transform: translateY(-10px); }
-
         .pricing-card.popular { border: 2px solid var(--accent-color); transform: scale(1.05); z-index: 2; }
-        .pricing-card.popular::before {
-            content: "Best Value";
-            position: absolute; top: 0; right: 0;
-            background: var(--accent-color); color: white;
-            padding: 5px 15px; font-size: 0.8rem;
-            border-bottom-left-radius: 10px; font-weight: 600;
-        }
-
+        .pricing-card.popular::before { content: "Best Value"; position: absolute; top: 0; right: 0; background: var(--accent-color); color: white; padding: 5px 15px; font-size: 0.8rem; border-bottom-left-radius: 10px; font-weight: 600; }
         .plan-name { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); margin-bottom: 10px; }
         .plan-price { font-size: 2.5rem; font-weight: 700; color: var(--text-dark); margin-bottom: 20px; }
         .plan-price span { font-size: 1rem; font-weight: 400; color: var(--text-light); }
-        
         .plan-divider { border-bottom: 1px solid #eee; margin-bottom: 20px; }
-
         .plan-features { margin-bottom: 30px; flex-grow: 1; }
         .plan-features li { margin-bottom: 15px; color: var(--text-light); display: flex; align-items: center; gap: 10px; }
         .plan-features i { color: var(--accent-color); }
-
-        .btn-plan {
-            display: block; width: 100%; text-align: center; padding: 12px;
-            border-radius: 50px; background: var(--primary-color); color: white;
-            font-weight: 600; transition: background 0.3s;
-        }
+        .btn-plan { display: block; width: 100%; text-align: center; padding: 12px; border-radius: 50px; background: var(--primary-color); color: white; font-weight: 600; transition: background 0.3s; }
         .btn-plan:hover { background: var(--accent-color); }
 
-        /* --- 5. SERVICES GRID (Now Second) --- */
-        .services-section {
-            padding: 100px 5%;
-            background-color: var(--bg-light); /* Grey background for contrast */
-            text-align: center;
-        }
-
+        /* --- 5. SERVICES GRID --- */
+        .services-section { padding: 100px 5%; background-color: var(--bg-light); text-align: center; }
         .services-section h2 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 50px; }
-
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-
-        .service-card {
-            background: #fff;
-            padding: 40px 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s;
-            border-bottom: 4px solid transparent;
-        }
-
+        .service-card { background: #fff; padding: 40px 30px; border-radius: 15px; text-align: center; box-shadow: var(--card-shadow); transition: transform 0.3s; border-bottom: 4px solid transparent; }
         .service-card:hover { transform: translateY(-10px); border-bottom-color: var(--accent-color); }
-
         .service-card i { font-size: 2.5rem; color: var(--accent-color); margin-bottom: 20px; display: block; }
         .service-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-color); }
         .service-card p { font-size: 0.95rem; color: var(--text-light); }
@@ -212,16 +166,8 @@
         /* --- 6. TESTIMONIALS --- */
         .testimonials-section { padding: 100px 5%; text-align: center; background-color: #fff; }
         .testimonials-section h2 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 50px; }
-
         .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-
-        .review-card {
-            background: #fff; padding: 40px 30px;
-            border: 1px solid #eee;
-            border-radius: 15px; text-align: left;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-        }
-
+        .review-card { background: #fff; padding: 40px 30px; border: 1px solid #eee; border-radius: 15px; text-align: left; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
         .review-stars { color: #FFD700; margin-bottom: 15px; }
         .review-text { font-style: italic; color: var(--text-light); margin-bottom: 20px; font-size: 1rem; }
         .review-author { font-weight: 700; color: var(--primary-color); }
@@ -229,13 +175,7 @@
         /* --- 7. CTA BANNER --- */
         .cta-banner { background-color: var(--primary-color); color: #fff; text-align: center; padding: 80px 20px; }
         .cta-banner h2 { font-size: 2.5rem; margin-bottom: 20px; }
-        .btn-white {
-            background: #fff; color: var(--primary-color);
-            padding: 15px 40px; border-radius: 50px;
-            font-weight: 700; display: inline-block;
-            margin-top: 20px; font-size: 1.1rem;
-            transition: transform 0.2s;
-        }
+        .btn-white { background: #fff; color: var(--primary-color); padding: 15px 40px; border-radius: 50px; font-weight: 700; display: inline-block; margin-top: 20px; font-size: 1.1rem; transition: transform 0.2s; }
         .btn-white:hover { transform: scale(1.05); }
 
         /* --- 8. FOOTER --- */
@@ -248,9 +188,28 @@
         .social-icons a:hover { color: var(--accent-color); }
         .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
 
-        /* --- MOBILE --- */
+        /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
-            .nav-links { display: none; }
+            /* Show Mobile Controls (Call icon + Hamburger) */
+            .mobile-controls { display: flex; }
+            
+            /* Hide Desktop Call Button */
+            .btn-header.desktop-only { display: none; }
+
+            /* Navigation Menu styling for mobile */
+            .nav-links {
+                display: none;
+                position: absolute; top: 70px; left: 0; width: 100%;
+                background-color: #fff;
+                flex-direction: column; align-items: center;
+                padding: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                border-top: 1px solid #eee;
+            }
+
+            .nav-links.active { display: flex; }
+            .nav-links li { margin: 15px 0; }
+            
+            /* Adjust other sections */
             .hero { text-align: center; padding: 100px 20px; }
             .hero h1 { font-size: 2.5rem; }
             .hero-buttons { flex-direction: column; width: 100%; }
@@ -258,7 +217,6 @@
             .pricing-grid { flex-direction: column; align-items: center; }
             .pricing-card { width: 100%; }
             .pricing-card.popular { transform: none; }
-            .btn-header { display: none; }
         }
     </style>
 </head>
@@ -266,25 +224,36 @@
 
     <header>
         <div class="logo">
-    <a href="index.html">
-        <img src="assets/img/logo-light.png" alt="Greenworks Logo" 
-             style="height: 45px; width: auto; filter: none; display: block;"> 
-    </a>
-</div>
-        <ul class="nav-links">
+            <a href="index.html">
+                <img src="assets/img/logo-light.png" alt="Greenworks Logo" 
+                     style="height: 45px; width: auto; filter: none; display: block;"> 
+            </a>
+        </div>
+        
+        <div class="mobile-controls">
+            <a href="tel:+17055009000" class="mobile-call-icon">
+                <i class="fas fa-phone"></i>
+            </a>
+            <div class="mobile-button" onclick="toggleMenu()">
+                <span></span>
+            </div>
+        </div>
+
+        <ul class="nav-links" id="navLinks">
             <li><a href="index.html" style="color: var(--accent-color);">Home</a></li>
             <li><a href="lawn-portfolio.html">Portfolio</a></li>
             <li><a href="pricing.html">Pricing Plans</a></li>
             <li><a href="about2.html">About Us</a></li>
             <li><a href="contact2.html">Contact</a></li>
         </ul>
-        <a href="tel:+17055009000" class="btn-header">Call 705-500-9000</a>
+        
+        <a href="tel:+17055009000" class="btn-header desktop-only">Call 705-500-9000</a>
     </header>
 
     <section class="hero">
         <div class="hero-text">
             <h1>Your Weekend is for Living, Not Mowing</h1>
-            <p>Professional and reliable lawn maintenance, serving homeowners in Georgetown and the entire Greater Toronto Area.</p>
+            <p>Professional, reliable lawn maintenance serving homeowners in Georgetown and the entire Greater Toronto Area.</p>
             <div class="hero-buttons">
                 <a href="#pricing" class="btn-primary">View Pricing</a>
                 <a href="contact2.html" class="btn-secondary">Get a Quote</a>
@@ -293,9 +262,8 @@
     </section>
 
     <section class="pricing-section" id="pricing">
-        <h2>Choose Your Plan</h2>
+        <h2>Simple Pricing Plans</h2>
         <div class="pricing-grid">
-            
             <div class="pricing-card">
                 <div class="plan-name">Basic Plan</div>
                 <div class="plan-price">$149 <span>/mo</span></div>
@@ -335,7 +303,6 @@
                 </ul>
                 <a href="contact2.html?plan=ultimate" class="btn-plan">Select Ultimate</a>
             </div>
-
         </div>
     </section>
 
@@ -388,7 +355,6 @@
     <section class="testimonials-section">
         <h2>What Our Neighbors Say</h2>
         <div class="reviews-grid">
-            
             <div class="review-card">
                 <div class="review-stars">
                     <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -396,7 +362,6 @@
                 <p class="review-text">"I couldn't be more satisfied with the results! The sod was laid seamlessly, and the edges were meticulously aligned."</p>
                 <p class="review-author">- Zubair Ahmed</p>
             </div>
-
             <div class="review-card">
                 <div class="review-stars">
                     <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -404,7 +369,6 @@
                 <p class="review-text">"Amazing work and great pricing. They were in and out in a few hours. Easy to contact via text and always responded."</p>
                 <p class="review-author">- Zachary Cocciardi</p>
             </div>
-
             <div class="review-card">
                 <div class="review-stars">
                     <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -412,13 +376,12 @@
                 <p class="review-text">"Just completed my third job with Greenworks this year. The team works hard and cleans up the site perfectly."</p>
                 <p class="review-author">- Barry Olson</p>
             </div>
-
         </div>
     </section>
 
     <section class="cta-banner">
         <h2>Ready to transform your yard?</h2>
-        <p>Join hundreds of happy homeowners.</p>
+        <p>Join hundreds of happy homeowners in Georgetown.</p>
         <a href="contact2.html" class="btn-white">Get a Free Quote</a>
     </section>
 
@@ -447,12 +410,20 @@
         </div>
         
         <div class="copyright">
-            <p>Copyright © <span id="year">2026</span> | Greenworks Construction and Companies Inc. | All Rights Reserved.</p>
+            <p>Copyright © <span id="year"></span> | Greenworks Construction and Companies Inc. | All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
         document.getElementById("year").innerHTML = new Date().getFullYear();
+
+        function toggleMenu() {
+            const navLinks = document.getElementById("navLinks");
+            const mobileBtn = document.querySelector(".mobile-button");
+            
+            navLinks.classList.toggle("active");
+            mobileBtn.classList.toggle("active");
+        }
     </script>
 </body>
 </html>
