@@ -49,7 +49,7 @@
         /* LOGO STYLING (Rounded Corners) */
         .logo {
             border-radius: 10px; /* Lightly rounded corners */
-            overflow: hidden; /* Ensures image respects the radius if needed */
+            overflow: hidden;
             transition: transform 0.3s;
         }
         .logo:hover { transform: scale(1.02); }
@@ -118,8 +118,14 @@
         .hero {
             position: relative;
             display: flex; align-items: center; justify-content: center; text-align: center;
+            
+            /* Gradient + Image */
             background-image: linear-gradient(rgba(0, 51, 0, 0.3), rgba(0, 51, 0, 0.2)), url('assets/img/lawnmain.webp');
-            background-size: cover; background-position: center; background-attachment: fixed;
+            
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed; /* This creates the cool scroll effect on Desktop */
+            
             min-height: 90vh; padding: 0 5%; color: #fff;
         }
 
@@ -209,8 +215,13 @@
             .nav-links.active { display: flex; }
             .nav-links li { margin: 15px 0; }
             
-            /* Adjust other sections */
-            .hero { text-align: center; padding: 100px 20px; }
+            /* HERO FIX FOR MOBILE */
+            .hero { 
+                text-align: center; 
+                padding: 100px 20px;
+                /* DISABLES FIXED BACKGROUND ON MOBILE TO SHOW IMAGE */
+                background-attachment: scroll; 
+            }
             .hero h1 { font-size: 2.5rem; }
             .hero-buttons { flex-direction: column; width: 100%; }
             .btn-primary, .btn-secondary { width: 100%; }
@@ -359,22 +370,22 @@
                 <div class="review-stars">
                     <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                 </div>
-                <p class="review-text">"I couldn't be more satisfied with the results! The sod was laid seamlessly, and the edges were meticulously aligned."</p>
+                <p class="review-text">"We have been dealing with Greenworks for the last two years doing the maintenance of our grass. Very respectful team. Very Neat and precise.  If you want a worry free experience this is the team to call. Highly recommend. Thank you for being honest and hardworking."</p>
+                <p class="review-author">- Tina Vitale</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">"We made the best decision to have our backyard and front yard managed by Greenworks! The outcome was amazing! we couldn't ask for more! Keep up the good work for the team and we highly recommend this Company"</p>
+                <p class="review-author">- Mazinger Z</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">"I recently had the pleasure of working with Greenworks Landscaping Inc. for a sodding project, and I couldn't be more satisfied with the results! From start to finish, their team demonstrated exceptional attention to detail and professionalism. Thank you for an outstanding job!"</p>
                 <p class="review-author">- Zubair Ahmed</p>
-            </div>
-            <div class="review-card">
-                <div class="review-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-                <p class="review-text">"Amazing work and great pricing. They were in and out in a few hours. Easy to contact via text and always responded."</p>
-                <p class="review-author">- Zachary Cocciardi</p>
-            </div>
-            <div class="review-card">
-                <div class="review-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-                <p class="review-text">"Just completed my third job with Greenworks this year. The team works hard and cleans up the site perfectly."</p>
-                <p class="review-author">- Barry Olson</p>
             </div>
         </div>
     </section>
