@@ -109,12 +109,20 @@
 
   <!-- Hero Section -->
   <section class="hero-section">
-    <video autoplay loop muted playsinline class="hero-video" poster="assets/videos/hero-poster.webp"
-      preload="metadata">
+    <video autoplay loop muted playsinline class="hero-video" preload="metadata">
       <source src="assets/videos/hero-mobile-optimized.mp4" type="video/mp4" media="(max-width: 768px)">
       <source src="assets/videos/hero-desktop-optimized.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
+    <script>
+      // Immediately set the correct poster based on screen width to prevent flashing wrong image
+      var video = document.currentScript.previousElementSibling;
+      if (window.innerWidth <= 768) {
+        video.poster = "assets/videos/hero-poster-mobile.webp";
+      } else {
+        video.poster = "assets/videos/hero-poster.webp";
+      }
+    </script>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1 class="hero-title">
