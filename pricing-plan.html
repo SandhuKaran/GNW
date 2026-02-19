@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenworks Landscaping | Pricing Plans</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- 1. GENERAL STYLES (MATCHING YOUR NEW THEME) --- */
+        :root {
+            --primary-color: #1b5e20; /* Deep Professional Green */
+            --accent-color: #4CAF50; 
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-light: #f4f7f6;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            background-color: #fff;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* --- 2. HEADER --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: #fff;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* LOGO STYLING (Rounded Corners) */
+        .logo {
+            border-radius: 10px; /* Lightly rounded corners */
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .logo:hover { transform: scale(1.02); }
+
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { font-weight: 500; color: var(--text-dark); transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent-color); }
+
+        /* Desktop Call Button */
+        .btn-header {
+            background-color: var(--primary-color);
+            color: #fff !important;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        .btn-header:hover { background-color: var(--accent-color); }
+
+        /* --- MOBILE CONTROLS (Right side on mobile) --- */
+        .mobile-controls {
+            display: none; /* Hidden on desktop */
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Mobile Call Icon (Pix Button) */
+        .mobile-call-icon {
+            width: 40px; height: 40px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+            transition: transform 0.2s;
+        }
+        .mobile-call-icon:active { transform: scale(0.95); }
+
+        /* Mobile Hamburger Button */
+        .mobile-button {
+            cursor: pointer;
+            width: 30px; height: 20px;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .mobile-button span {
+            display: block; width: 100%; height: 3px; background-color: var(--primary-color);
+            position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease;
+        }
+
+        .mobile-button::before, .mobile-button::after {
+            content: ''; width: 100%; height: 3px; background-color: var(--primary-color);
+            position: absolute; transition: all 0.3s ease;
+        }
+        .mobile-button::before { top: 0; }
+        .mobile-button::after { bottom: 0; }
+
+        .mobile-button.active span { opacity: 0; }
+        .mobile-button.active::before { top: 50%; transform: rotate(45deg); }
+        .mobile-button.active::after { top: 50%; transform: rotate(-45deg); bottom: auto; }
+
+        /* --- 3. PAGE HERO --- */
+        .page-hero {
+            background-color: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .page-hero h1 { font-size: 3rem; margin-bottom: 10px; }
+        .page-hero p { font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+        /* --- 4. PRICING CARDS --- */
+        .pricing-section {
+            padding: 80px 5%;
+            background-color: var(--bg-light);
+            margin-top: -50px; /* Pull up into hero slightly */
+        }
+
+        .pricing-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .pricing-card {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            width: 320px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s;
+            text-align: left;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eee;
+        }
+
+        .pricing-card:hover { transform: translateY(-10px); }
+
+        /* Popular Card Styling */
+        .pricing-card.popular { 
+            border: 2px solid var(--accent-color); 
+            transform: scale(1.05); /* Slightly bigger */
+            z-index: 2;
+        }
+        .pricing-card.popular::before {
+            content: "Most Popular";
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            border-bottom-left-radius: 10px;
+            font-weight: 600;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+        .plan-price span { font-size: 1rem; font-weight: 400; color: var(--text-light); }
+
+        .plan-divider { border-bottom: 1px solid #eee; margin-bottom: 20px; }
+
+        .plan-features { flex-grow: 1; margin-bottom: 30px; }
+        .plan-features li {
+            margin-bottom: 15px;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .plan-features i { color: var(--accent-color); }
+
+        .btn-plan {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 12px;
+            border-radius: 50px;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .btn-plan:hover { background: var(--accent-color); }
+
+        /* --- 5. COMPARISON TABLE --- */
+        .comparison-section {
+            padding: 80px 5%;
+            background: #fff;
+        }
+        .section-title { text-align: center; margin-bottom: 50px; color: var(--primary-color); font-size: 2.2rem; }
+
+        .comparison-table {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .comparison-table th { background: #f9f9f9; color: var(--text-dark); font-weight: 600; }
+        .comparison-table th:first-child, .comparison-table td:first-child { text-align: left; }
+        .fa-check { color: var(--accent-color); }
+        .fa-minus { color: #ddd; }
+
+        /* --- 6. FAQ SECTION --- */
+        .faq-section {
+            padding: 80px 5%;
+            background: var(--bg-light);
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .faq-item h4 { color: var(--primary-color); margin-bottom: 10px; }
+        .faq-item p { color: var(--text-light); font-size: 0.95rem; }
+
+        /* --- 7. FOOTER --- */
+        footer {
+            background: #f9f9f9;
+            padding: 60px 5% 20px;
+            color: var(--text-dark);
+            border-top: 1px solid #eee;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 { color: var(--primary-color); margin-bottom: 20px; font-size: 1.1rem; }
+        .footer-col ul li { margin-bottom: 10px; color: var(--text-light); }
+        .footer-col ul li i { color: var(--accent-color); margin-right: 10px; }
+        
+        .social-icons a { font-size: 1.5rem; color: var(--primary-color); margin-right: 15px; }
+        .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
+
+        /* --- MOBILE --- */
+        @media (max-width: 768px) {
+            /* Show Mobile Controls */
+            .mobile-controls { display: flex; }
+            
+            /* Hide Desktop Call Button */
+            .btn-header.desktop-only { display: none; }
+
+            .nav-links {
+                display: none;
+                position: absolute; top: 70px; left: 0; width: 100%;
+                background-color: #fff;
+                flex-direction: column; align-items: center;
+                padding: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                border-top: 1px solid #eee;
+                z-index: 999;
+            }
+
+            .nav-links.active { display: flex; }
+            .nav-links li { margin: 15px 0; }
+
+            .pricing-card.popular { transform: none; } /* Remove zoom on mobile */
+            .pricing-grid { flex-direction: column; align-items: center; }
+            .pricing-card { width: 100%; }
+            .page-hero h1 { font-size: 2.2rem; }
+            .comparison-table { display: block; overflow-x: auto; } /* Scrollable table */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/img/logo-light.png" alt="Greenworks Logo" 
+                     style="height: 45px; width: auto; filter: none; display: block;"> 
+            </a>
+        </div>
+        
+        <div class="mobile-controls">
+            <a href="tel:+17055009000" class="mobile-call-icon">
+                <i class="fas fa-phone"></i>
+            </a>
+            <div class="mobile-button" onclick="toggleMenu()">
+                <span></span>
+            </div>
+        </div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="lawn-portfolio.html">Portfolio</a></li>
+            <li><a href="pricing.html" style="color: var(--accent-color);">Pricing Plans</a></li>
+            <li><a href="about2.html">About Us</a></li>
+            <li><a href="contact2.html">Contact</a></li>
+        </ul>
+        
+        <a href="tel:+17055009000" class="btn-header desktop-only">Call 705-500-9000</a>
+    </header>
+
+    <section class="page-hero">
+        <h1>Simple, Transparent Pricing</h1>
+        <p>Choose the plan that fits your yard and your budget. No hidden fees, just great service.</p>
+    </section>
+
+    <section class="pricing-section">
+        <div class="pricing-grid">
+            
+            <div class="pricing-card">
+                <div class="plan-name">Basic Plan</div>
+                <div class="plan-price">$149 <span>/mo</span></div>
+                <div class="plan-divider"></div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Lawn Mowing (Weekly)</li>
+                    <li><i class="fas fa-check"></i> Professional Trimming</li>
+                    <li><i class="fas fa-check"></i> Edge Detailing</li>
+                    <li><i class="fas fa-check"></i> Clipping Removal</li>
+                </ul>
+                <a href="contact2.html?plan=basic" class="btn-plan">Select Basic</a>
+            </div>
+
+            <div class="pricing-card popular">
+                <div class="plan-name">Premium Plan</div>
+                <div class="plan-price">$198 <span>/mo</span></div>
+                <div class="plan-divider"></div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> <strong>Everything in Basic</strong></li>
+                    <li><i class="fas fa-check"></i> Fertilizer Program</li>
+                    <li><i class="fas fa-check"></i> Seasonal Cleanups</li>
+                    <li><i class="fas fa-check"></i> Weed Control</li>
+                    <li><i class="fas fa-check"></i> Landscape Maintenance</li>
+                </ul>
+                <a href="contact2.html?plan=premium" class="btn-plan" style="background:var(--accent-color);">Select Premium</a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="plan-name">Ultimate Plan</div>
+                <div class="plan-price">$259 <span>/mo</span></div>
+                <div class="plan-divider"></div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> <strong>Everything in Premium</strong></li>
+                    <li><i class="fas fa-check"></i> Fall Aeration</li>
+                    <li><i class="fas fa-check"></i> Overseeding</li>
+                    <li><i class="fas fa-star"></i> Priority Scheduling</li>
+                </ul>
+                <a href="contact2.html?plan=ultimate" class="btn-plan">Select Ultimate</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="comparison-section">
+        <h2 class="section-title">Compare Features</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Basic</th>
+                    <th>Premium</th>
+                    <th>Ultimate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Weekly Mowing & Trimming</td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+                <tr>
+                    <td>Grass Clipping Removal</td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+                <tr>
+                    <td>Fertilizer Program</td>
+                    <td><i class="fas fa-minus"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+                <tr>
+                    <td>Weed Control</td>
+                    <td><i class="fas fa-minus"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+                <tr>
+                    <td>Seasonal Cleanup (Spring/Fall)</td>
+                    <td><i class="fas fa-minus"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+                <tr>
+                    <td>Aeration & Overseeding</td>
+                    <td><i class="fas fa-minus"></i></td>
+                    <td><i class="fas fa-minus"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="faq-section">
+        <h2 class="section-title">Common Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h4>Do I need to be home for service?</h4>
+                <p>No! As long as our crew has access to the yard (gates unlocked), we can complete the work and will send you a confirmation when finished.</p>
+            </div>
+            <div class="faq-item">
+                <h4>What areas do you service?</h4>
+                <p>We primarily serve GTA and all surrounding areas. Contact us if you are unsure if you are within our range.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Can I switch plans later?</h4>
+                <p>Absolutely. You can upgrade or downgrade your monthly plan at any time by contacting our office.</p>
+            </div>
+            <div class="faq-item">
+                <h4>How does billing work?</h4>
+                <p>We bill monthly for our maintenance plans. You can pay securely online via credit card or bank transfer.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>About Us</h4>
+                <p>Greenworks Lawncare is committed to providing top-quality lawn care services. Locally owned and operated, we make your lawn our passion.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Georgetown, ON, CA</li>
+                    <li><i class="fas fa-phone"></i> <a href="tel:+17055009000">+1 705-500-9000</a></li>
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:info@gnwlandscaping.ca">info@gnwlandscaping.ca</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/gnwlandscaping/" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>Copyright © <span id="year">2026</span> | Greenworks Construction and Companies Inc. | All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById("navLinks");
+            const mobileBtn = document.querySelector(".mobile-button");
+            navLinks.classList.toggle("active");
+            mobileBtn.classList.toggle("active");
+        }
+    </script>
+</body>
+</html>
