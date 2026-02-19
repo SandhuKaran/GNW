@@ -90,7 +90,7 @@ h6 {
     }
 
     .mobile-nav-contact i {
-        color: #4A6741;
+        color: #1b5e20;
         font-size: 16px;
     }
 }
@@ -122,7 +122,7 @@ h6 {
 
 #main-nav>ul>li>a:hover,
 #main-nav>ul>li.current-menu-item>a {
-    color: #4A6741 !important;
+    color: #1b5e20 !important;
 }
 
 /* Mobile hamburger button - dark bars for visibility on white bg */
@@ -138,7 +138,7 @@ h6 {
 }
 
 .wprt-button.small {
-    background-color: #4A6741;
+    background-color: #1b5e20;
     color: #fff !important;
     border-radius: 30px;
     padding: 10px 28px;
@@ -471,9 +471,9 @@ h6 {
 }
 
 .review-arrow:hover {
-    background: #4A6741;
+    background: #1b5e20;
     color: #fff;
-    border-color: #4A6741;
+    border-color: #1b5e20;
 }
 
 .review-arrow-left {
@@ -590,7 +590,7 @@ h6 {
 .explore-btn {
     display: inline-block;
     margin-top: 50px;
-    background-color: #4A6741;
+    background-color: #1b5e20;
     color: #fff;
     padding: 16px 48px;
     border-radius: 30px;
@@ -746,7 +746,7 @@ h6 {
 .info-section .green-underline {
     width: 60px;
     height: 3px;
-    background-color: #4A6741;
+    background-color: #1b5e20;
     margin: 20px 0 40px 0;
 }
 
@@ -798,7 +798,7 @@ h6 {
 }
 
 .toggle-title:hover {
-    color: #4A6741;
+    color: #1b5e20;
 }
 
 .toggle-title::after {
@@ -872,7 +872,7 @@ h6 {
 }
 
 .instagram-profile-link:hover {
-    color: #4A6741;
+    color: #1b5e20;
 }
 
 .instagram-profile-link .fa {
@@ -961,7 +961,7 @@ footer h3 {
 }
 
 .footer-social a:hover {
-    background: #4A6741;
+    background: #1b5e20;
     transform: translateY(-2px);
 }
 
@@ -997,7 +997,7 @@ footer h3 {
 .green-underline {
     width: 80px;
     height: 3px;
-    background: #4A6741;
+    background: #1b5e20;
     margin: 0 auto 40px;
 }
 

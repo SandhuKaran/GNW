@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outdoor Features | Greenworks Landscaping</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- 1. GENERAL STYLES (Matches Master Reference) --- */
+        :root {
+            --primary-color: #1b5e20;
+            --accent-color: #4CAF50; 
+            --text-dark: #222;
+            --text-light: #666;
+            --bg-light: #f9f9f9;
+            --card-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0; padding: 0;
+            color: var(--text-dark);
+            background-color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* --- 2. HEADER --- */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: #fff;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .logo { border-radius: 10px; overflow: hidden; transition: transform 0.3s; }
+        .logo:hover { transform: scale(1.02); }
+
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent-color); }
+
+        .btn-header {
+            background-color: var(--primary-color); color: #fff !important;
+            padding: 10px 25px; border-radius: 50px; font-weight: 600; font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        .btn-header:hover { background-color: var(--accent-color); }
+
+        /* Mobile Controls */
+        .mobile-controls { display: none; align-items: center; gap: 15px; }
+        .mobile-call-icon {
+            width: 40px; height: 40px; background-color: var(--accent-color); color: white;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem;
+        }
+        .mobile-button { cursor: pointer; width: 30px; height: 20px; position: relative; z-index: 1001; }
+        .mobile-button span { display: block; width: 100%; height: 3px; background-color: var(--primary-color); position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease; }
+        .mobile-button::before, .mobile-button::after { content: ''; width: 100%; height: 3px; background-color: var(--primary-color); position: absolute; transition: all 0.3s ease; }
+        .mobile-button::before { top: 0; }
+        .mobile-button::after { bottom: 0; }
+        .mobile-button.active span { opacity: 0; }
+        .mobile-button.active::before { top: 50%; transform: rotate(45deg); }
+        .mobile-button.active::after { top: 50%; transform: rotate(-45deg); bottom: auto; }
+
+        /* --- 3. PAGE HERO --- */
+        .page-hero {
+            position: relative;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+            height: 60vh; padding: 0 5%; color: #fff;
+            background-image: url('assets/img/outdoor-features/02.webp'); 
+            background-size: cover; background-position: center;
+        }
+        .page-hero::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; }
+        .hero-content h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .hero-content p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 30px; }
+
+        .hero-btn {
+            display: inline-block; padding: 15px 40px;
+            background: var(--accent-color); color: #fff;
+            font-weight: 600; text-transform: uppercase;
+            border-radius: 50px; letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.2s;
+        }
+        .hero-btn:hover { background: #388E3C; transform: translateY(-3px); }
+
+        /* --- 4. INTRO SECTION --- */
+        .intro-section { padding: 100px 5%; display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+        .intro-text { flex: 1; min-width: 300px; }
+        .intro-image { flex: 1; min-width: 300px; border-radius: 10px; overflow: hidden; box-shadow: var(--card-shadow); }
+        .intro-image img { width: 100%; height: 100%; object-fit: cover; }
+
+        .section-title { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 20px; font-weight: 700; line-height: 1.2; }
+        .section-desc { color: var(--text-light); margin-bottom: 30px; font-size: 1rem; }
+        
+        .check-list { margin-bottom: 30px; }
+        .check-list li { margin-bottom: 10px; display: flex; align-items: center; color: #444; font-weight: 500; }
+        .check-list li i { color: var(--accent-color); margin-right: 10px; font-size: 1.1rem; }
+
+        /* --- 5. FEATURES GRID (Portrait Style) --- */
+        .section-padding { padding: 80px 5%; background-color: var(--bg-light); text-align: center; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+
+        .service-card {
+            position: relative; height: 450px; border-radius: 10px; overflow: hidden;
+            box-shadow: var(--card-shadow); cursor: pointer; text-align: left;
+        }
+        .service-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .service-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 70%;
+            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); z-index: 1;
+        }
+        .service-info {
+            position: absolute; bottom: 0; left: 0; padding: 30px; z-index: 2; width: 100%;
+            transform: translateY(10px); transition: transform 0.3s;
+        }
+        .service-card:hover img { transform: scale(1.1); }
+        .service-card:hover .service-info { transform: translateY(0); }
+        .service-info h3 { color: #fff; font-size: 1.5rem; margin-bottom: 10px; font-weight: 600; text-transform: uppercase; border-bottom: 3px solid var(--accent-color); display: inline-block; padding-bottom: 5px; }
+        .service-info p { color: #ddd; font-size: 0.95rem; line-height: 1.5; margin: 0; }
+
+        /* --- 5B. INSTAGRAM & PORTFOLIO CTA --- */
+        .ig-cta-container {
+            text-align: center; margin-top: 60px; padding-top: 50px; border-top: 1px solid #ddd;
+        }
+        .ig-cta-container h3 {
+            font-size: 1.6rem; color: var(--text-dark); margin-bottom: 20px; font-weight: 600;
+        }
+        .btn-instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: #fff !important; font-weight: 600; font-size: 1.1rem;
+            padding: 15px 35px; border-radius: 50px; display: inline-flex; align-items: center; gap: 10px;
+            box-shadow: 0 5px 15px rgba(220, 39, 67, 0.3); transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none; margin: 10px;
+        }
+        .btn-instagram:hover {
+            transform: translateY(-3px); box-shadow: 0 8px 20px rgba(220, 39, 67, 0.4);
+        }
+        .btn-portfolio {
+            background: #333; color: #fff !important; font-weight: 600; font-size: 1.1rem;
+            padding: 15px 35px; border-radius: 50px; display: inline-flex; align-items: center; gap: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); transition: transform 0.3s;
+            text-decoration: none; margin: 10px;
+        }
+        .btn-portfolio:hover { transform: translateY(-3px); background: #111; }
+
+        /* --- 6. WHY SECTION --- */
+        .why-section { padding: 80px 5%; background: #fff; text-align: center; }
+        .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        
+        .why-card { padding: 30px; border: 1px solid #eee; border-radius: 15px; }
+        .why-icon { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px; }
+        .why-card h3 { margin-bottom: 15px; color: #222; }
+        .why-card p { color: #666; font-size: 0.95rem; }
+
+        /* --- 7. CTA BANNER --- */
+        .cta-banner { background-color: var(--primary-color); color: #fff; text-align: center; padding: 80px 20px; }
+        .cta-banner h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .btn-white { background: #fff; color: var(--primary-color); padding: 15px 40px; border-radius: 50px; font-weight: 700; display: inline-block; margin-top: 20px; font-size: 1.1rem; transition: transform 0.2s; }
+        .btn-white:hover { transform: scale(1.05); }
+
+        /* --- 8. STICKY ESTIMATE --- */
+        .sticky-estimate {
+            position: fixed; bottom: 30px; right: 30px; background-color: var(--accent-color); color: #fff;
+            padding: 15px 25px; border-radius: 50px; box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            display: flex; align-items: center; gap: 15px; z-index: 9999;
+            transition: transform 0.3s ease; text-decoration: none; border: 2px solid #fff;
+        }
+        .sticky-estimate:hover { transform: translateY(-5px); background-color: var(--primary-color); color: #fff; }
+        .sticky-icon { font-size: 1.8rem; }
+        .sticky-text { display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
+        .sticky-text span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .sticky-text strong { font-size: 1.1rem; font-weight: 700; }
+
+        /* --- 9. FOOTER --- */
+        footer { background: #f9f9f9; padding: 60px 5% 20px; color: var(--text-dark); border-top: 1px solid #eee; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { color: var(--primary-color); margin-bottom: 20px; font-size: 1.1rem; }
+        .footer-col ul li { margin-bottom: 10px; color: var(--text-light); }
+        .footer-col ul li i { color: var(--accent-color); margin-right: 10px; }
+        .social-icons a { font-size: 1.5rem; color: var(--primary-color); margin-right: 15px; transition: color 0.3s; }
+        .social-icons a:hover { color: var(--accent-color); }
+        .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            .mobile-controls { display: flex; }
+            .btn-header.desktop-only { display: none; }
+            .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: #fff; flex-direction: column; align-items: center; padding: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 1px solid #eee; z-index: 999; }
+            .nav-links.active { display: flex; }
+            .nav-links li { margin: 15px 0; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .sticky-estimate { bottom: 20px; right: 20px; padding: 10px 20px; }
+            .sticky-text strong { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/img/logo-light.png" alt="Greenworks Logo" 
+                     style="height: 45px; width: auto; filter: none; display: block;"> 
+            </a>
+        </div>
+        
+        <div class="mobile-controls">
+            <a href="tel:+17055009000" class="mobile-call-icon"><i class="fas fa-phone"></i></a>
+            <div class="mobile-button" onclick="toggleMenu()"><span></span></div>
+        </div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" style="color: var(--accent-color);">Home</a></li>
+            <li><a href="landscape-gallery.html">Portfolio</a></li>
+            <li><a href="about2.html">About Us</a></li>
+            <li><a href="contact2.html">Contact</a></li>
+        </ul>
+        
+        <a href="tel:+17055009000" class="btn-header desktop-only">Call 705-500-9000</a>
+    </header>
+
+    <section class="page-hero">
+        <div class="hero-content">
+            <h1>Outdoor Features</h1>
+            <p>Elevate your landscape with custom fire pits, lighting, and statement features.</p>
+            <a href="contact2.html" class="hero-btn">Enhance Your Space</a>
+        </div>
+    </section>
+
+    <section class="intro-section">
+        <div class="intro-text">
+            <h2 class="section-title">The Details That Define Your Space</h2>
+            <p class="section-desc">A great landscape isn't just about the pavers—it's about the features that bring the space to life. At Greenworks Landscaping, we design and build custom focal points that make your backyard a true destination, day or night.</p>
+            
+            <ul class="check-list">
+                <li><i class="fas fa-check-circle"></i> Custom Stone Fire Pits & Fireplaces</li>
+                <li><i class="fas fa-check-circle"></i> Low-Voltage LED Landscape Lighting</li>
+                <li><i class="fas fa-check-circle"></i> Built-in BBQs & Outdoor Kitchens</li>
+                <li><i class="fas fa-check-circle"></i> Tranquil Water Features & Fountains</li>
+            </ul>
+            
+            <a href="contact2.html" class="btn-header" style="text-decoration:none;">Discuss Your Ideas</a>
+        </div>
+        <div class="intro-image">
+            <img src="assets/img/outdoor-features/12.webp" alt="Custom Outdoor Features">
+        </div>
+    </section>
+
+    <section class="section-padding bg-light">
+        <div class="section-title">
+            <h2 style="text-align: center;">Popular Features</h2>
+            <p style="text-align: center;">Add functionality and ambiance to your property.</p>
+        </div>
+
+        <div class="services-grid">
+            
+            <div class="service-card">
+                <img src="assets/img/outdoor-features/7.webp" alt="Fire Pits">
+                <div class="service-overlay"></div>
+                <div class="service-info">
+                    <h3>Custom Fire Pits</h3>
+                    <p>Extend your outdoor season with built-in gas or wood-burning stone fire pits.</p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="assets/img/outdoor-features/8.webp" alt="Landscape Lighting">
+                <div class="service-overlay"></div>
+                <div class="service-info">
+                    <h3>Landscape Lighting</h3>
+                    <p>Highlight pathways, trees, and architectural details with elegant low-voltage LEDs.</p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="assets/img/outdoor-features/6.webp" alt="Outdoor Kitchens">
+                <div class="service-overlay"></div>
+                <div class="service-info">
+                    <h3>Outdoor Kitchens</h3>
+                    <p>The ultimate backyard experience with built-in BBQs, counters, and dining areas.</p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="assets/img/land-gallery/8.webp" alt="Water Features">
+                <div class="service-overlay"></div>
+                <div class="service-info">
+                    <h3>Water Features</h3>
+                    <p>Create a relaxing atmosphere with bubbling rocks, waterfalls, or decorative fountains.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ig-cta-container">
+            <h3>To explore more of our previous work, check out our Instagram or Full Portfolio!</h3>
+            <a href="https://www.instagram.com/gnwlandscaping/" target="_blank" class="btn-instagram">
+                <i class="fab fa-instagram"></i> Follow @gnwlandscaping
+            </a>
+            <a href="landscape-gallery.html" class="btn-portfolio">
+                <i class="fas fa-images"></i> View Full Portfolio
+            </a>
+        </div>
+
+    </section>
+
+    <section class="why-section">
+        <h2 class="section-title">Why Add Features?</h2>
+        <p>Take your landscape from ordinary to extraordinary.</p>
+        
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon"><i class="fas fa-moon"></i></div>
+                <h3>Evening Enjoyment</h3>
+                <p>Lighting and fire features allow you to safely use and enjoy your backyard long after the sun goes down.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><i class="fas fa-gem"></i></div>
+                <h3>Focal Points</h3>
+                <p>Features act as anchors in your landscape design, drawing the eye and organizing the space.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><i class="fas fa-home"></i></div>
+                <h3>Property Value</h3>
+                <p>Well-designed, built-in features are highly sought after and increase the overall value of your home.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <h2>Ready to upgrade your backyard?</h2>
+        <p>Contact us today to integrate stunning features into your landscape.</p>
+        <a href="contact2.html" class="btn-white">Get a Free Quote</a>
+    </section>
+
+    <a href="contact2.html" class="sticky-estimate">
+        <div class="sticky-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+        <div class="sticky-text">
+            <span>Get a Free</span>
+            <strong>ESTIMATE</strong>
+        </div>
+    </a>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>About Us</h4>
+                <p>Greenworks Lawncare is committed to providing top-quality lawn care services. Locally owned and operated, we make your lawn our passion.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Georgetown, ON, CA</li>
+                    <li><i class="fas fa-phone"></i> <a href="tel:+17055009000">+1 705-500-9000</a></li>
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:info@gnwlandscaping.ca">info@gnwlandscaping.ca</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/gnwlandscaping/" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>Copyright © <span id="year">2026</span> | Greenworks Construction and Companies Inc. | All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+
+        function toggleMenu() {
+            const navLinks = document.getElementById("navLinks");
+            const mobileBtn = document.querySelector(".mobile-button");
+            navLinks.classList.toggle("active");
+            mobileBtn.classList.toggle("active");
+        }
+    </script>
+</body>
+</html>

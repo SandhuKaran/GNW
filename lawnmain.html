@@ -28,11 +28,12 @@
             color: var(--text-dark);
             background-color: #fff;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; padding: 0; margin: 0; }
-        img { max-width: 100%; height: auto; }
+        img { max-width: 100%; height: auto; display: block; }
 
         /* --- 2. HEADER --- */
         header {
@@ -46,9 +47,9 @@
             top: 0; z-index: 1000;
         }
 
-        /* LOGO STYLING (Rounded Corners) */
+        /* LOGO STYLING */
         .logo {
-            border-radius: 10px; /* Lightly rounded corners */
+            border-radius: 10px;
             overflow: hidden;
             transition: transform 0.3s;
         }
@@ -57,6 +58,10 @@
         .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent-color); }
+        
+        /* LOGIN BUTTON STYLING (Desktop) */
+        .nav-links .login-btn { color: var(--primary-color); font-weight: 600; }
+        .nav-links .login-btn:hover { color: var(--accent-color); }
 
         /* Desktop Call Button */
         .btn-header {
@@ -70,14 +75,27 @@
         }
         .btn-header:hover { background-color: var(--accent-color); }
 
-        /* --- MOBILE CONTROLS (Right side on mobile) --- */
+        /* --- MOBILE CONTROLS --- */
         .mobile-controls {
             display: none; /* Hidden on desktop */
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
-        /* Mobile Call Icon (Pix Button) */
+        /* Mobile Header Login Button */
+        .mobile-login-btn {
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid #ddd;
+        }
+
         .mobile-call-icon {
             width: 40px; height: 40px;
             background-color: var(--accent-color);
@@ -90,26 +108,22 @@
         }
         .mobile-call-icon:active { transform: scale(0.95); }
 
-        /* Mobile Hamburger Button */
         .mobile-button {
             cursor: pointer;
             width: 30px; height: 20px;
             position: relative;
             z-index: 1001;
         }
-
         .mobile-button span {
             display: block; width: 100%; height: 3px; background-color: var(--primary-color);
             position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease;
         }
-
         .mobile-button::before, .mobile-button::after {
             content: ''; width: 100%; height: 3px; background-color: var(--primary-color);
             position: absolute; transition: all 0.3s ease;
         }
         .mobile-button::before { top: 0; }
         .mobile-button::after { bottom: 0; }
-
         .mobile-button.active span { opacity: 0; }
         .mobile-button.active::before { top: 50%; transform: rotate(45deg); }
         .mobile-button.active::after { top: 50%; transform: rotate(-45deg); bottom: auto; }
@@ -118,14 +132,10 @@
         .hero {
             position: relative;
             display: flex; align-items: center; justify-content: center; text-align: center;
-            
-            /* Gradient + Image */
             background-image: linear-gradient(rgba(0, 51, 0, 0.3), rgba(0, 51, 0, 0.2)), url('assets/img/lawnmain.webp');
-            
             background-size: cover; 
             background-position: center; 
-            background-attachment: fixed; /* This creates the cool scroll effect on Desktop */
-            
+            background-attachment: fixed; 
             min-height: 90vh; padding: 0 5%; color: #fff;
         }
 
@@ -169,14 +179,88 @@
         .service-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-color); }
         .service-card p { font-size: 0.95rem; color: var(--text-light); }
 
-        /* --- 6. TESTIMONIALS --- */
-        .testimonials-section { padding: 100px 5%; text-align: center; background-color: #fff; }
-        .testimonials-section h2 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 50px; }
-        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .review-card { background: #fff; padding: 40px 30px; border: 1px solid #eee; border-radius: 15px; text-align: left; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-        .review-stars { color: #FFD700; margin-bottom: 15px; }
-        .review-text { font-style: italic; color: var(--text-light); margin-bottom: 20px; font-size: 1rem; }
-        .review-author { font-weight: 700; color: var(--primary-color); }
+        /* --- 6. DRAGGABLE & AUTO-SCROLLING REVIEWS --- */
+        .testimonials-section { padding: 100px 0; text-align: center; background-color: #fff; position: relative; }
+        .testimonials-section h2 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 10px; padding: 0 5%; }
+        .testimonials-section > p { margin-bottom: 40px; color: var(--text-light); padding: 0 5%; }
+        
+        .testimonials-carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden; /* prevents gradient bleeding */
+            margin: 20px 0;
+        }
+
+        /* Fade gradients for edges */
+        .testimonials-carousel-container::before, 
+        .testimonials-carousel-container::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 80px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none; /* Let users click through to swipe */
+        }
+        .testimonials-carousel-container::before {
+            left: 0;
+            background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0));
+        }
+        .testimonials-carousel-container::after {
+            right: 0;
+            background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
+        }
+
+        /* The Scrollable Track */
+        .scrolling-wrapper {
+            display: flex;
+            gap: 20px;
+            padding: 20px 5%;
+            overflow-x: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* IE and Edge */
+            -webkit-overflow-scrolling: touch; /* Smooth iOS swipe */
+            cursor: grab; /* Shows user they can grab it */
+        }
+        .scrolling-wrapper:active {
+            cursor: grabbing;
+        }
+        .scrolling-wrapper::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        .review-card { 
+            background: #fff; 
+            padding: 40px 30px; 
+            border: 1px solid #eee; 
+            border-radius: 15px; 
+            text-align: left; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            width: 380px; /* Fixed width */
+            flex-shrink: 0;
+            white-space: normal; 
+            position: relative;
+        }
+        
+        .google-icon {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 1.8rem;
+            color: #4285F4;
+        }
+
+        .review-stars { color: #FFD700; margin-bottom: 15px; font-size: 1.1rem; }
+        .review-text { font-style: italic; color: var(--text-light); margin-bottom: 20px; font-size: 0.95rem; line-height: 1.6; }
+        
+        .review-author { font-weight: 700; color: var(--text-dark); display: flex; align-items: center; gap: 15px; }
+        .reviewer-img {
+            width: 45px; 
+            height: 45px; 
+            border-radius: 50%; 
+            object-fit: cover;
+            border: 2px solid var(--accent-color); 
+        }
 
         /* --- 7. CTA BANNER --- */
         .cta-banner { background-color: var(--primary-color); color: #fff; text-align: center; padding: 80px 20px; }
@@ -196,16 +280,31 @@
 
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
-            /* Show Mobile Controls (Call icon + Hamburger) */
-            .mobile-controls { display: flex; }
+            header { padding: 10px 5%; }
             
-            /* Hide Desktop Call Button */
+            .logo img { height: 35px !important; }
+
+            .mobile-controls { 
+                display: flex; 
+                gap: 8px; /* Tighter gap to avoid overlap */
+            }
+            
+            .mobile-login-btn {
+                padding: 6px 10px;
+                font-size: 0.75rem;
+                border: 1px solid var(--accent-color);
+            }
+            
+            .mobile-call-icon {
+                width: 32px; height: 32px;
+                font-size: 1rem;
+            }
+
             .btn-header.desktop-only { display: none; }
 
-            /* Navigation Menu styling for mobile */
             .nav-links {
                 display: none;
-                position: absolute; top: 70px; left: 0; width: 100%;
+                position: absolute; top: 60px; left: 0; width: 100%;
                 background-color: #fff;
                 flex-direction: column; align-items: center;
                 padding: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -215,11 +314,11 @@
             .nav-links.active { display: flex; }
             .nav-links li { margin: 15px 0; }
             
-            /* HERO FIX FOR MOBILE */
+            .desktop-login-link { display: none; }
+            
             .hero { 
                 text-align: center; 
                 padding: 100px 20px;
-                /* DISABLES FIXED BACKGROUND ON MOBILE TO SHOW IMAGE */
                 background-attachment: scroll; 
             }
             .hero h1 { font-size: 2.5rem; }
@@ -228,6 +327,8 @@
             .pricing-grid { flex-direction: column; align-items: center; }
             .pricing-card { width: 100%; }
             .pricing-card.popular { transform: none; }
+            
+            .review-card { width: 300px; padding: 30px 20px; }
         }
     </style>
 </head>
@@ -237,11 +338,14 @@
         <div class="logo">
             <a href="index.html">
                 <img src="assets/img/logo-light.png" alt="Greenworks Logo" 
-                     style="height: 45px; width: auto; filter: none; display: block;"> 
+                     style="height: 45px; width: auto; filter: none;"> 
             </a>
         </div>
         
         <div class="mobile-controls">
+            <a href="https://www.trackmylawn.com/login" target="_blank" class="mobile-login-btn">
+                <i class="fas fa-user-circle"></i> Login
+            </a>
             <a href="tel:+17055009000" class="mobile-call-icon">
                 <i class="fas fa-phone"></i>
             </a>
@@ -256,6 +360,7 @@
             <li><a href="pricing.html">Pricing Plans</a></li>
             <li><a href="about2.html">About Us</a></li>
             <li><a href="contact2.html">Contact</a></li>
+            <li class="desktop-login-link"><a href="https://www.trackmylawn.com/login" target="_blank" class="login-btn"><i class="fas fa-user-circle"></i> Client Login</a></li>
         </ul>
         
         <a href="tel:+17055009000" class="btn-header desktop-only">Call 705-500-9000</a>
@@ -365,27 +470,107 @@
 
     <section class="testimonials-section">
         <h2>Trusted by Homes on Your Block</h2>
-        <div class="reviews-grid">
-            <div class="review-card">
-                <div class="review-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        <p>Drag or swipe to see what your neighbors are saying about us on Google</p>
+        
+        <div class="testimonials-carousel-container">
+            <div class="scrolling-wrapper" id="reviewTrack">
+                
+                <div class="review-card">
+                    <i class="fab fa-google google-icon"></i>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"We have been dealing with Greenworks for the last two years doing the maintenance of our grass. Very respectful team. Very Neat and precise. If you want a worry free experience this is the team to call. Highly recommend."</p>
+                    <div class="review-author">
+                        <img src="https://ui-avatars.com/api/?name=Tina+Vitale&background=random" alt="Tina Vitale" class="reviewer-img">
+                        Tina Vitale
+                    </div>
                 </div>
-                <p class="review-text">"We have been dealing with Greenworks for the last two years doing the maintenance of our grass. Very respectful team. Very Neat and precise.  If you want a worry free experience this is the team to call. Highly recommend. Thank you for being honest and hardworking."</p>
-                <p class="review-author">- Tina Vitale</p>
-            </div>
-            <div class="review-card">
-                <div class="review-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+
+                <div class="review-card">
+                    <i class="fab fa-google google-icon"></i>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"We made the best decision to have our backyard and front yard managed by Greenworks! The outcome was amazing! we couldn't ask for more! Keep up the good work for the team and we highly recommend this Company"</p>
+                    <div class="review-author">
+                        <img src="https://ui-avatars.com/api/?name=Mazinger+Z&background=random" alt="Mazinger Z" class="reviewer-img">
+                        Mazinger Z
+                    </div>
                 </div>
-                <p class="review-text">"We made the best decision to have our backyard and front yard managed by Greenworks! The outcome was amazing! we couldn't ask for more! Keep up the good work for the team and we highly recommend this Company"</p>
-                <p class="review-author">- Mazinger Z</p>
-            </div>
-            <div class="review-card">
-                <div class="review-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+
+                <div class="review-card">
+                    <i class="fab fa-google google-icon"></i>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"I recently had the pleasure of working with Greenworks Landscaping Inc. for a sodding project, and I couldn't be more satisfied! From start to finish, their team demonstrated exceptional attention to detail."</p>
+                    <div class="review-author">
+                        <img src="https://ui-avatars.com/api/?name=Zubair+Ahmed&background=random" alt="Zubair Ahmed" class="reviewer-img">
+                        Zubair Ahmed
+                    </div>
                 </div>
-                <p class="review-text">"I recently had the pleasure of working with Greenworks Landscaping Inc. for a sodding project, and I couldn't be more satisfied with the results! From start to finish, their team demonstrated exceptional attention to detail and professionalism. Thank you for an outstanding job!"</p>
-                <p class="review-author">- Zubair Ahmed</p>
+
+                <div class="review-card">
+                    <i class="fab fa-google google-icon"></i>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"Just completed my third job with Greenworks this year. The team works hard and cleans up the site perfectly. Always responsive and reliable!"</p>
+                    <div class="review-author">
+                        <img src="https://ui-avatars.com/api/?name=Barry+Olson&background=random" alt="Barry Olson" class="reviewer-img">
+                        Barry Olson
+                    </div>
+                </div>
+
+                <div class="review-card" aria-hidden="true">
+                    <i class="fab fa-google google-icon"></i>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"We have been dealing with Greenworks for the last two years doing the maintenance of our grass. Very respectful team. Very Neat and precise. If you want a worry free experience this is the team to call. Highly recommend."</p>
+                    <div class="review-author">
+                        <img src="https://ui-avatars.com/api/?name=Tina+Vitale&background=random" alt="Tina Vitale" class="reviewer-img">
+                        Tina Vitale
+                    </div>
+                </div>
+
+                <div class="review-card" aria-hidden="true">
+                    <i class="fab fa-google google-icon"></i>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"We made the best decision to have our backyard and front yard managed by Greenworks! The outcome was amazing! we couldn't ask for more! Keep up the good work for the team and we highly recommend this Company"</p>
+                    <div class="review-author">
+                        <img src="https://ui-avatars.com/api/?name=Mazinger+Z&background=random" alt="Mazinger Z" class="reviewer-img">
+                        Mazinger Z
+                    </div>
+                </div>
+
+                <div class="review-card" aria-hidden="true">
+                    <i class="fab fa-google google-icon"></i>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"I recently had the pleasure of working with Greenworks Landscaping Inc. for a sodding project, and I couldn't be more satisfied! From start to finish, their team demonstrated exceptional attention to detail."</p>
+                    <div class="review-author">
+                        <img src="https://ui-avatars.com/api/?name=Zubair+Ahmed&background=random" alt="Zubair Ahmed" class="reviewer-img">
+                        Zubair Ahmed
+                    </div>
+                </div>
+
+                <div class="review-card" aria-hidden="true">
+                    <i class="fab fa-google google-icon"></i>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"Just completed my third job with Greenworks this year. The team works hard and cleans up the site perfectly. Always responsive and reliable!"</p>
+                    <div class="review-author">
+                        <img src="https://ui-avatars.com/api/?name=Barry+Olson&background=random" alt="Barry Olson" class="reviewer-img">
+                        Barry Olson
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -400,7 +585,7 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>About Us</h4>
-                <p>Greenworks Lawncare is committed to providing top-quality lawn care services. Locally owned and operated, we make your lawn our passion.</p>
+                <p>Greenworks Landscaping is committed to providing top-quality lawn care services. Locally owned and operated, we make your lawn our passion.</p>
             </div>
             
             <div class="footer-col">
@@ -421,13 +606,14 @@
         </div>
         
         <div class="copyright">
-            <p>Copyright © <span id="year"></span> | Greenworks Construction and Companies Inc. | All Rights Reserved.</p>
+            <p>Copyright © <span id="year"></span> | Greenworks Landscaping Inc. | All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
         document.getElementById("year").innerHTML = new Date().getFullYear();
 
+        // Mobile Menu Toggle
         function toggleMenu() {
             const navLinks = document.getElementById("navLinks");
             const mobileBtn = document.querySelector(".mobile-button");
@@ -435,6 +621,37 @@
             navLinks.classList.toggle("active");
             mobileBtn.classList.toggle("active");
         }
+
+        // --- Auto-Scrolling Reviews JS ---
+        const reviewTrack = document.getElementById('reviewTrack');
+        let isScrolling = true;
+        let scrollSpeed = 0.5; // Controls the speed of the auto-scroll
+        let animationId;
+
+        function autoScroll() {
+            if (isScrolling) {
+                reviewTrack.scrollLeft += scrollSpeed;
+                
+                // When we've scrolled exactly halfway (past the first set of duplicated cards)
+                // We instantly snap back to 0. Since the sets are identical, the user won't notice.
+                if (reviewTrack.scrollLeft >= reviewTrack.scrollWidth / 2) {
+                    reviewTrack.scrollLeft = 0;
+                }
+            }
+            animationId = requestAnimationFrame(autoScroll);
+        }
+
+        // Start scrolling on load
+        animationId = requestAnimationFrame(autoScroll);
+
+        // Pause scrolling when a user interacts (hover or touch) so they can drag/read manually
+        reviewTrack.addEventListener('mouseenter', () => isScrolling = false);
+        reviewTrack.addEventListener('mouseleave', () => isScrolling = true);
+        reviewTrack.addEventListener('touchstart', () => isScrolling = false);
+        reviewTrack.addEventListener('touchend', () => {
+            // Add a small delay before resuming scroll after a swipe
+            setTimeout(() => { isScrolling = true; }, 1000); 
+        });
     </script>
 </body>
 </html>
