@@ -30,6 +30,14 @@
             overflow-x: hidden;
         }
 
+        /* Stops background scrolling when mobile menu is open */
+        body.no-scroll {
+            overflow: hidden;
+        }
+
+        /* Mobile specific link visible only on mobile */
+        .mobile-only-link { display: none !important; }
+
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; padding: 0; margin: 0; }
         img { max-width: 100%; height: auto; display: block; }
@@ -181,7 +189,6 @@
         .page-hero {
             position: relative;
             display: flex; align-items: center; justify-content: center; text-align: center;
-            /* Replace with a nice lawn moving background image */
             background-image: url('assets/img/lawnmain.webp'); 
             background-size: cover; 
             background-position: center; 
@@ -261,27 +268,45 @@
 
             .btn-header.desktop-only { display: none; }
 
+            /* SCROLLABLE MOBILE MENU */
             .nav-links {
                 display: none;
-                position: absolute; top: 60px; left: 0; width: 100%;
+                position: fixed; 
+                top: 65px; 
+                left: 0; 
+                width: 100%;
+                height: calc(100vh - 65px); 
                 background-color: #fff;
-                flex-direction: column; align-items: center;
-                padding: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                flex-direction: column; 
+                align-items: center;
+                padding: 20px 0 100px 0; 
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
                 border-top: 1px solid #eee;
+                overflow-y: auto; 
+                z-index: 999;
             }
 
             .nav-links.active { display: flex; }
             .nav-links li { margin: 10px 0; width: 100%; text-align: center; }
             
-            /* Mobile Dropdown Overrides */
-            .dropdown-parent .fa-chevron-down { display: none; }
+            /* COLLAPSIBLE MOBILE DROPDOWN */
+            .dropdown-parent > a {
+                display: flex; justify-content: center; align-items: center; gap: 8px;
+            }
+            .dropdown-parent .fa-chevron-down { 
+                display: inline-block; transition: transform 0.3s;
+            }
             .dropdown {
-                position: static;
-                opacity: 1; visibility: visible; transform: none;
-                box-shadow: none; border: none; background: #f9f9f9;
+                position: static; display: none; opacity: 1; visibility: visible;
+                transform: none; box-shadow: none; border: none; background: #f9f9f9;
                 margin-top: 10px; border-radius: 0; width: 100%; padding: 10px 0;
             }
-            .dropdown li a { padding: 8px 0; color: var(--text-light); }
+            .dropdown.open { display: block; }
+            .dropdown li a { padding: 12px 0; color: var(--text-light); border-bottom: 1px solid #eee;}
+            .dropdown li:last-child a { border-bottom: none; }
+            
+            .mobile-only-link { display: block !important; font-weight: 600; color: var(--primary-color) !important; }
+
             .desktop-login-link { display: none; }
             
             .hero-content h1 { font-size: 2.5rem; }
@@ -315,8 +340,9 @@
             <li><a href="index.html">Home</a></li>
             
             <li class="dropdown-parent">
-                <a href="services.html" style="color: var(--accent-color);">Services <i class="fas fa-chevron-down"></i></a>
-                <ul class="dropdown">
+                <a href="services.html" style="color: var(--accent-color);" onclick="toggleDropdown(event)">Services <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown" id="servicesDropdown">
+                    <li class="mobile-only-link"><a href="services.html">View All Services &rarr;</a></li>
                     <li><a href="lawn-mowing.html" style="color: var(--accent-color); font-weight: 600;">Lawn Mowing</a></li>
                     <li><a href="gardening.html">Gardening Services</a></li>
                     <li><a href="weed-control.html">Weed Control</a></li>
@@ -436,13 +462,35 @@
     <script>
         document.getElementById("year").innerHTML = new Date().getFullYear();
 
-        // Mobile Menu Toggle
+        // Mobile Menu Toggle - Added scroll lock for the body
         function toggleMenu() {
             const navLinks = document.getElementById("navLinks");
             const mobileBtn = document.querySelector(".mobile-button");
             
             navLinks.classList.toggle("active");
             mobileBtn.classList.toggle("active");
+            
+            // Toggle the no-scroll class on the body to lock background scrolling
+            document.body.classList.toggle("no-scroll");
+        }
+
+        // Mobile Dropdown Toggle Logic
+        function toggleDropdown(e) {
+            // Only stop default link behavior if on mobile screen size
+            if (window.innerWidth <= 768) {
+                e.preventDefault(); 
+                
+                const dropdown = document.getElementById('servicesDropdown');
+                const icon = e.currentTarget.querySelector('.fa-chevron-down');
+                
+                dropdown.classList.toggle('open');
+                
+                if (dropdown.classList.contains('open')) {
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            }
         }
     </script>
 </body>

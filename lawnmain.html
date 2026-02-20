@@ -30,6 +30,14 @@
             overflow-x: hidden;
         }
 
+        /* Stops background scrolling when mobile menu is open */
+        body.no-scroll {
+            overflow: hidden;
+        }
+
+        /* Mobile specific link visible only on mobile */
+        .mobile-only-link { display: none !important; }
+
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; padding: 0; margin: 0; }
         img { max-width: 100%; height: auto; display: block; }
@@ -241,52 +249,19 @@
             text-decoration: none; 
         }
 
-        .service-card i { 
-            font-size: 2.5rem; 
-            color: var(--accent-color); 
-            margin-bottom: 20px; 
-            transition: transform 0.3s ease;
-        }
+        .service-card i { font-size: 2.5rem; color: var(--accent-color); margin-bottom: 20px; transition: transform 0.3s ease;}
+        .service-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-color); transition: color 0.3s ease;}
+        .service-card p { font-size: 0.95rem; color: var(--text-light); margin: 0; transition: transform 0.3s ease;}
         
-        .service-card h3 { 
-            font-size: 1.2rem; 
-            margin-bottom: 10px; 
-            color: var(--primary-color); 
-            transition: color 0.3s ease;
-        }
-        
-        .service-card p { 
-            font-size: 0.95rem; 
-            color: var(--text-light); 
-            margin: 0; 
-            transition: transform 0.3s ease;
-        }
-
         /* Desktop Hover state for text */
-        .service-action-text {
-            display: inline-block;
-            margin-top: 20px;
-            font-weight: 600;
-            color: var(--accent-color);
-            font-size: 0.95rem;
-            opacity: 0;
-            transform: translateY(15px);
-            transition: all 0.3s ease;
-        }
+        .service-action-text { display: inline-block; margin-top: 20px; font-weight: 600; color: var(--accent-color); font-size: 0.95rem; opacity: 0; transform: translateY(15px); transition: all 0.3s ease; }
 
         /* Trigger animations on hover (Desktop) */
         @media (hover: hover) {
-            .service-card:hover { 
-                transform: translateY(-10px); 
-                border-bottom-color: var(--accent-color);
-                box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-            }
+            .service-card:hover { transform: translateY(-10px); border-bottom-color: var(--accent-color); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
             .service-card:hover i { transform: scale(1.1); }
             .service-card:hover p { transform: translateY(-5px); }
-            .service-card:hover .service-action-text {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            .service-card:hover .service-action-text { opacity: 1; transform: translateY(0); }
         }
 
         /* --- 6. DRAGGABLE & AUTO-SCROLLING REVIEWS --- */
@@ -294,38 +269,16 @@
         .testimonials-section h2 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 10px; padding: 0 5%; }
         .testimonials-section > p { margin-bottom: 40px; color: var(--text-light); padding: 0 5%; }
         
-        .testimonials-carousel-container {
-            position: relative;
-            width: 100%;
-            overflow: hidden; 
-            margin: 20px 0;
-        }
-
-        .testimonials-carousel-container::before, 
-        .testimonials-carousel-container::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            width: 80px;
-            height: 100%;
-            z-index: 2;
-            pointer-events: none;
-        }
+        .testimonials-carousel-container { position: relative; width: 100%; overflow: hidden; margin: 20px 0; }
+        .testimonials-carousel-container::before, .testimonials-carousel-container::after { content: ""; position: absolute; top: 0; width: 80px; height: 100%; z-index: 2; pointer-events: none; }
         .testimonials-carousel-container::before { left: 0; background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0)); }
         .testimonials-carousel-container::after { right: 0; background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0)); }
 
-        .scrolling-wrapper {
-            display: flex; gap: 20px; padding: 20px 5%; overflow-x: auto;
-            scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch; cursor: grab; 
-        }
+        .scrolling-wrapper { display: flex; gap: 20px; padding: 20px 5%; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch; cursor: grab; }
         .scrolling-wrapper:active { cursor: grabbing; }
         .scrolling-wrapper::-webkit-scrollbar { display: none; }
 
-        .review-card { 
-            background: #fff; padding: 40px 30px; border: 1px solid #eee; border-radius: 15px; text-align: left; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05); width: 380px; flex-shrink: 0; white-space: normal; 
-            position: relative; user-select: none; 
-        }
+        .review-card { background: #fff; padding: 40px 30px; border: 1px solid #eee; border-radius: 15px; text-align: left; box-shadow: 0 5px 20px rgba(0,0,0,0.05); width: 380px; flex-shrink: 0; white-space: normal; position: relative; user-select: none; }
         
         .google-icon { position: absolute; top: 30px; right: 30px; font-size: 1.8rem; color: #4285F4; }
         .review-stars { color: #FFD700; margin-bottom: 15px; font-size: 1.1rem; }
@@ -360,20 +313,45 @@
 
             .btn-header.desktop-only { display: none; }
 
+            /* SCROLLABLE MOBILE MENU */
             .nav-links {
-                display: none; position: absolute; top: 60px; left: 0; width: 100%;
-                background-color: #fff; flex-direction: column; align-items: center;
-                padding: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 1px solid #eee;
+                display: none;
+                position: fixed; 
+                top: 65px; 
+                left: 0; 
+                width: 100%;
+                height: calc(100vh - 65px); 
+                background-color: #fff;
+                flex-direction: column; 
+                align-items: center;
+                padding: 20px 0 100px 0; 
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                border-top: 1px solid #eee;
+                overflow-y: auto; 
+                z-index: 999;
             }
             .nav-links.active { display: flex; }
             .nav-links li { margin: 10px 0; width: 100%; text-align: center; }
             
-            .dropdown-parent .fa-chevron-down { display: none; }
-            .dropdown {
-                position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: none;
-                background: #f9f9f9; margin-top: 10px; border-radius: 0; width: 100%; padding: 10px 0;
+            /* COLLAPSIBLE MOBILE DROPDOWN */
+            .dropdown-parent > a {
+                display: flex; justify-content: center; align-items: center; gap: 8px;
             }
-            .dropdown li a { padding: 8px 0; color: var(--text-light); }
+            .dropdown-parent .fa-chevron-down { 
+                display: inline-block; transition: transform 0.3s;
+            }
+            .dropdown {
+                position: static; display: none; opacity: 1; visibility: visible;
+                transform: none; box-shadow: none; border: none;
+                background: #f9f9f9; margin-top: 10px; border-radius: 0;
+                width: 100%; padding: 10px 0;
+            }
+            .dropdown.open { display: block; }
+            .dropdown li a { padding: 12px 0; color: var(--text-light); border-bottom: 1px solid #eee;}
+            .dropdown li:last-child a { border-bottom: none; }
+            
+            .mobile-only-link { display: block !important; font-weight: 600; color: var(--primary-color) !important; }
+            
             .desktop-login-link { display: none; }
             
             .hero { text-align: center; padding: 100px 20px; background-attachment: scroll; }
@@ -384,22 +362,9 @@
             .pricing-card { width: 100%; }
             .pricing-card.popular { transform: none; }
             
-            /* --- MOBILE SERVICES CARD UPDATE --- */
-            .service-card {
-                border: 1px solid #eee;
-                border-bottom: 3px solid var(--accent-color); /* Give it a permanent visual anchor */
-            }
-            .service-action-text {
-                /* Make it always visible on mobile, styled like a button */
-                opacity: 1;
-                transform: translateY(0);
-                background-color: var(--bg-light);
-                padding: 8px 20px;
-                border-radius: 50px;
-                border: 1px solid #ddd;
-                color: var(--primary-color);
-                margin-top: 15px;
-            }
+            /* MOBILE SERVICES CARD UPDATE */
+            .service-card { border: 1px solid #eee; border-bottom: 3px solid var(--accent-color); }
+            .service-action-text { opacity: 1; transform: translateY(0); background-color: var(--bg-light); padding: 8px 20px; border-radius: 50px; border: 1px solid #ddd; color: var(--primary-color); margin-top: 15px; }
             
             .review-card { width: 300px; padding: 30px 20px; }
         }
@@ -410,8 +375,7 @@
     <header>
         <div class="logo">
             <a href="index.html">
-                <img src="assets/img/logo-light.png" alt="Greenworks Logo" 
-                     style="height: 45px; width: auto; filter: none;"> 
+                <img src="assets/img/logo-light.png" alt="Greenworks Logo" style="height: 45px; width: auto; filter: none;"> 
             </a>
         </div>
         
@@ -431,8 +395,9 @@
             <li><a href="index.html" style="color: var(--accent-color);">Home</a></li>
             
             <li class="dropdown-parent">
-                <a href="services.html">Services <i class="fas fa-chevron-down"></i></a>
-                <ul class="dropdown">
+                <a href="services.html" onclick="toggleDropdown(event)">Services <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown" id="servicesDropdown">
+                    <li class="mobile-only-link"><a href="services.html">View All Services &rarr;</a></li>
                     <li><a href="lawn-mowing.html">Lawn Mowing</a></li>
                     <li><a href="gardening.html">Gardening Services</a></li>
                     <li><a href="weed-control.html">Weed Control</a></li>
@@ -718,13 +683,35 @@
     <script>
         document.getElementById("year").innerHTML = new Date().getFullYear();
 
-        // Mobile Menu Toggle
+        // Mobile Menu Toggle - Added scroll lock for the body
         function toggleMenu() {
             const navLinks = document.getElementById("navLinks");
             const mobileBtn = document.querySelector(".mobile-button");
             
             navLinks.classList.toggle("active");
             mobileBtn.classList.toggle("active");
+            
+            // Toggle the no-scroll class on the body to lock background scrolling
+            document.body.classList.toggle("no-scroll");
+        }
+
+        // Mobile Dropdown Toggle Logic
+        function toggleDropdown(e) {
+            // Only stop default link behavior if on mobile screen size
+            if (window.innerWidth <= 768) {
+                e.preventDefault(); 
+                
+                const dropdown = document.getElementById('servicesDropdown');
+                const icon = e.currentTarget.querySelector('.fa-chevron-down');
+                
+                dropdown.classList.toggle('open');
+                
+                if (dropdown.classList.contains('open')) {
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            }
         }
 
         // --- Auto-Scrolling & Dragging Reviews JS ---

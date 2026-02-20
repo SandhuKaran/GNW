@@ -31,6 +31,14 @@
             overflow-x: hidden;
         }
 
+        /* Stops background scrolling when mobile menu is open */
+        body.no-scroll {
+            overflow: hidden;
+        }
+
+        /* Mobile specific link visible only on mobile */
+        .mobile-only-link { display: none !important; }
+
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; padding: 0; margin: 0; }
         img { max-width: 100%; height: auto; display: block; }
@@ -49,6 +57,62 @@
         .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent-color); }
+        
+        /* DROPDOWN MENU STYLING (Desktop) */
+        .dropdown-parent {
+            position: relative;
+            padding: 10px 0; 
+        }
+        .dropdown-parent > a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .dropdown-parent .fa-chevron-down {
+            font-size: 0.7rem;
+            transition: transform 0.3s;
+        }
+        .dropdown-parent:hover .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid #eee;
+        }
+        .dropdown-parent:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown li { margin: 0; }
+        .dropdown li a {
+            display: block;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            transition: background 0.3s, color 0.3s;
+        }
+        .dropdown li a:hover {
+            background: var(--bg-light);
+            color: var(--accent-color);
+        }
+
+        /* LOGIN BUTTON STYLING */
+        .nav-links .login-btn { color: var(--primary-color); font-weight: 600; }
+        .nav-links .login-btn:hover { color: var(--accent-color); }
 
         .btn-header {
             background-color: var(--primary-color); color: #fff !important;
@@ -58,11 +122,25 @@
         .btn-header:hover { background-color: var(--accent-color); }
 
         /* Mobile Controls */
-        .mobile-controls { display: none; align-items: center; gap: 15px; }
+        .mobile-controls { display: none; align-items: center; gap: 12px; }
+        .mobile-login-btn {
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid #ddd;
+        }
         .mobile-call-icon {
             width: 40px; height: 40px; background-color: var(--accent-color); color: white;
             border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); transition: transform 0.2s;
         }
+        .mobile-call-icon:active { transform: scale(0.95); }
         .mobile-button { cursor: pointer; width: 30px; height: 20px; position: relative; z-index: 1001; }
         .mobile-button span { display: block; width: 100%; height: 3px; background-color: var(--primary-color); position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease; }
         .mobile-button::before, .mobile-button::after { content: ''; width: 100%; height: 3px; background-color: var(--primary-color); position: absolute; transition: all 0.3s ease; }
@@ -159,7 +237,7 @@
 
         /* --- 6. PROCESS STEPS --- */
         .process-section { padding: 80px 5%; background: #fff; text-align: center; }
-        .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-top: 50px; }
+        .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-top: 50px; margin-bottom: 40px; }
         
         .step-card { padding: 30px 20px; border: 1px solid #eee; border-radius: 15px; position: relative; }
         .step-number { 
@@ -201,11 +279,56 @@
 
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
-            .mobile-controls { display: flex; }
+            header { padding: 10px 5%; }
+            .logo img { height: 35px !important; }
+
+            .mobile-controls { display: flex; gap: 8px; }
+            .mobile-login-btn { padding: 6px 10px; font-size: 0.75rem; border: 1px solid var(--accent-color); }
+            .mobile-call-icon { width: 32px; height: 32px; font-size: 1rem; }
+            
             .btn-header.desktop-only { display: none; }
-            .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: #fff; flex-direction: column; align-items: center; padding: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 1px solid #eee; z-index: 999; }
+            
+            /* SCROLLABLE MOBILE MENU */
+            .nav-links {
+                display: none;
+                position: fixed; 
+                top: 65px; 
+                left: 0; 
+                width: 100%;
+                height: calc(100vh - 65px); 
+                background-color: #fff;
+                flex-direction: column; 
+                align-items: center;
+                padding: 20px 0 100px 0; 
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                border-top: 1px solid #eee;
+                overflow-y: auto; 
+                z-index: 999;
+            }
+
             .nav-links.active { display: flex; }
-            .nav-links li { margin: 15px 0; }
+            .nav-links li { margin: 10px 0; width: 100%; text-align: center; }
+            
+            /* COLLAPSIBLE MOBILE DROPDOWN */
+            .dropdown-parent > a {
+                display: flex; justify-content: center; align-items: center; gap: 8px;
+            }
+            .dropdown-parent .fa-chevron-down { 
+                display: inline-block; transition: transform 0.3s;
+            }
+            .dropdown {
+                position: static; display: none; opacity: 1; visibility: visible;
+                transform: none; box-shadow: none; border: none; background: #f9f9f9;
+                margin-top: 10px; border-radius: 0; width: 100%; padding: 10px 0;
+            }
+            .dropdown.open { display: block; }
+            .dropdown li a { padding: 12px 0; color: var(--text-light); border-bottom: 1px solid #eee;}
+            .dropdown li:last-child a { border-bottom: none; }
+            
+            .mobile-only-link { display: block !important; font-weight: 600; color: var(--primary-color) !important; }
+
+            .desktop-login-link { display: none; }
+
             .hero-content h1 { font-size: 2.5rem; }
             .sticky-estimate { bottom: 20px; right: 20px; padding: 10px 20px; }
             .sticky-text strong { font-size: 0.9rem; }
@@ -223,15 +346,33 @@
         </div>
         
         <div class="mobile-controls">
+            <a href="https://www.trackmylawn.com/login" target="_blank" class="mobile-login-btn">
+                <i class="fas fa-user-circle"></i> Login
+            </a>
             <a href="tel:+17055009000" class="mobile-call-icon"><i class="fas fa-phone"></i></a>
             <div class="mobile-button" onclick="toggleMenu()"><span></span></div>
         </div>
 
         <ul class="nav-links" id="navLinks">
-            <li><a href="index.html" style="color: var(--accent-color);">Home</a></li>
+            <li><a href="index.html">Home</a></li>
+            
+            <li class="dropdown-parent">
+                <a href="landmain.html" style="color: var(--accent-color); font-weight: 600;" onclick="toggleDropdown(event)">Services <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown" id="servicesDropdown">
+                    <li class="mobile-only-link"><a href="landmain.html">View All Construction &rarr;</a></li>
+                    <li><a href="landscape-designs.html">Landscape Designs</a></li>
+                    <li><a href="driveways-walkways.html" style="color: var(--accent-color); font-weight: 600;">Driveways & Walkways</a></li>
+                    <li><a href="interlock-patio.html">Interlock Patios</a></li>
+                    <li><a href="retaining-walls.html">Retaining Walls</a></li>
+                    <li><a href="outdoor-features.html">Outdoor Features</a></li>
+                    <li><a href="custom-porches.html">Custom Porches</a></li>
+                </ul>
+            </li>
+
             <li><a href="landscape-gallery.html">Portfolio</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="contact.html">Contact</a></li>
+            <li class="desktop-login-link"><a href="https://www.trackmylawn.com/login" target="_blank" class="login-btn"><i class="fas fa-user-circle"></i> Client Login</a></li>
         </ul>
         
         <a href="tel:+17055009000" class="btn-header desktop-only">Call 705-500-9000</a>
@@ -262,9 +403,6 @@
         <div class="intro-image">
             <img src="assets/img/Interlocking/1.webp" alt="Interlocking Driveway">
         </div>
-
-
-
     </section>
 
     <section class="section-padding bg-light">
@@ -301,7 +439,9 @@
                     <p>Never shovel snow again. Integrate a heating system beneath your new driveway.</p>
                 </div>
             </div>
- </section>
+            
+        </div>
+    </section>
 
     <section class="process-section">
         <h2 class="section-title" style="text-align: center;">The Installation Process</h2>
@@ -330,8 +470,6 @@
             </div>
         </div>
 
-        </div>
-
         <div class="ig-cta-container">
             <h3>To explore more of our previous work, check out our Instagram or Full Portfolio!</h3>
             <a href="https://www.instagram.com/gnwlandscaping/" target="_blank" class="btn-instagram">
@@ -341,8 +479,6 @@
                 <i class="fas fa-images"></i> View Full Portfolio
             </a>
         </div>
-
-   
     </section>
 
     <section class="cta-banner">
@@ -363,7 +499,7 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>About Us</h4>
-                <p>Greenworks Lawncare is committed to providing top-quality lawn care services. Locally owned and operated, we make your lawn our passion.</p>
+                <p>Greenworks Lawncare is committed to providing top-quality construction and landscaping services. Locally owned and operated, we make your property our passion.</p>
             </div>
             
             <div class="footer-col">
@@ -391,11 +527,35 @@
     <script>
         document.getElementById("year").innerHTML = new Date().getFullYear();
 
+        // --- MOBILE MENU TOGGLE ---
         function toggleMenu() {
             const navLinks = document.getElementById("navLinks");
             const mobileBtn = document.querySelector(".mobile-button");
+            
             navLinks.classList.toggle("active");
             mobileBtn.classList.toggle("active");
+            
+            // Toggle the no-scroll class on the body to lock background scrolling
+            document.body.classList.toggle("no-scroll");
+        }
+
+        // --- MOBILE DROPDOWN TOGGLE ---
+        function toggleDropdown(e) {
+            // Only stop default link behavior if on mobile screen size
+            if (window.innerWidth <= 768) {
+                e.preventDefault(); 
+                
+                const dropdown = document.getElementById('servicesDropdown');
+                const icon = e.currentTarget.querySelector('.fa-chevron-down');
+                
+                dropdown.classList.toggle('open');
+                
+                if (dropdown.classList.contains('open')) {
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            }
         }
     </script>
 </body>
