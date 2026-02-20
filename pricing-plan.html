@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* --- 1. GENERAL STYLES (MATCHING YOUR NEW THEME) --- */
+        /* --- 1. GENERAL STYLES --- */
         :root {
-            --primary-color: #1b5e20; /* Deep Professional Green */
+            --primary-color: #1b5e20; 
             --accent-color: #4CAF50; 
             --text-dark: #333333;
             --text-light: #666666;
@@ -34,7 +34,7 @@
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; padding: 0; margin: 0; }
 
-        /* --- 2. HEADER --- */
+        /* --- 2. HEADER & NAVIGATION --- */
         header {
             display: flex;
             justify-content: space-between;
@@ -47,9 +47,8 @@
             z-index: 1000;
         }
 
-        /* LOGO STYLING (Rounded Corners) */
         .logo {
-            border-radius: 10px; /* Lightly rounded corners */
+            border-radius: 10px; 
             overflow: hidden;
             transition: transform 0.3s;
         }
@@ -58,6 +57,62 @@
         .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links a { font-weight: 500; color: var(--text-dark); transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent-color); }
+        
+        /* DROPDOWN MENU STYLING (Desktop) */
+        .dropdown-parent {
+            position: relative;
+            padding: 10px 0; 
+        }
+        .dropdown-parent > a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .dropdown-parent .fa-chevron-down {
+            font-size: 0.7rem;
+            transition: transform 0.3s;
+        }
+        .dropdown-parent:hover .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid #eee;
+        }
+        .dropdown-parent:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown li { margin: 0; }
+        .dropdown li a {
+            display: block;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            transition: background 0.3s, color 0.3s;
+        }
+        .dropdown li a:hover {
+            background: var(--bg-light);
+            color: var(--accent-color);
+        }
+
+        /* LOGIN BUTTON STYLING */
+        .nav-links .login-btn { color: var(--primary-color); font-weight: 600; }
+        .nav-links .login-btn:hover { color: var(--accent-color); }
 
         /* Desktop Call Button */
         .btn-header {
@@ -71,14 +126,26 @@
         }
         .btn-header:hover { background-color: var(--accent-color); }
 
-        /* --- MOBILE CONTROLS (Right side on mobile) --- */
+        /* --- MOBILE CONTROLS --- */
         .mobile-controls {
-            display: none; /* Hidden on desktop */
+            display: none; 
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
-        /* Mobile Call Icon (Pix Button) */
+        .mobile-login-btn {
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid #ddd;
+        }
+
         .mobile-call-icon {
             width: 40px; height: 40px;
             background-color: var(--accent-color);
@@ -91,7 +158,6 @@
         }
         .mobile-call-icon:active { transform: scale(0.95); }
 
-        /* Mobile Hamburger Button */
         .mobile-button {
             cursor: pointer;
             width: 30px; height: 20px;
@@ -126,7 +192,7 @@
         .page-hero h1 { font-size: 3rem; margin-bottom: 10px; }
         .page-hero p { font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
 
-        /* --- 4. PRICING CARDS --- */
+        /* --- 4. MONTHLY PRICING CARDS --- */
         .pricing-section {
             padding: 80px 5%;
             background-color: var(--bg-light);
@@ -156,10 +222,9 @@
 
         .pricing-card:hover { transform: translateY(-10px); }
 
-        /* Popular Card Styling */
         .pricing-card.popular { 
             border: 2px solid var(--accent-color); 
-            transform: scale(1.05); /* Slightly bigger */
+            transform: scale(1.05);
             z-index: 2;
         }
         .pricing-card.popular::before {
@@ -175,75 +240,114 @@
             font-weight: 600;
         }
 
-        .plan-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .plan-price {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 20px;
-        }
+        .plan-name { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); margin-bottom: 10px; }
+        .plan-price { font-size: 2.5rem; font-weight: 700; color: var(--text-dark); margin-bottom: 20px; }
         .plan-price span { font-size: 1rem; font-weight: 400; color: var(--text-light); }
-
         .plan-divider { border-bottom: 1px solid #eee; margin-bottom: 20px; }
-
         .plan-features { flex-grow: 1; margin-bottom: 30px; }
-        .plan-features li {
-            margin-bottom: 15px;
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .plan-features li { margin-bottom: 15px; color: var(--text-light); display: flex; align-items: center; gap: 10px; }
         .plan-features i { color: var(--accent-color); }
 
         .btn-plan {
-            display: block;
-            width: 100%;
-            text-align: center;
-            padding: 12px;
-            border-radius: 50px;
-            background: var(--primary-color);
-            color: white;
-            font-weight: 600;
-            transition: background 0.3s;
+            display: block; width: 100%; text-align: center; padding: 12px; border-radius: 50px;
+            background: var(--primary-color); color: white; font-weight: 600; transition: background 0.3s;
         }
         .btn-plan:hover { background: var(--accent-color); }
 
-        /* --- 5. COMPARISON TABLE --- */
-        .comparison-section {
+        /* --- 5. A LA CARTE / SINGLE SERVICES PRICING --- */
+        .single-services-section {
             padding: 80px 5%;
             background: #fff;
         }
-        .section-title { text-align: center; margin-bottom: 50px; color: var(--primary-color); font-size: 2.2rem; }
+        
+        .section-title { text-align: center; margin-bottom: 15px; color: var(--primary-color); font-size: 2.2rem; font-weight: 700; }
+        .section-subtitle { text-align: center; color: var(--text-light); margin-bottom: 50px; font-size: 1.1rem; }
+
+        .single-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Updated to support <a> tags */
+        .single-service-card {
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.3s, border-color 0.3s;
+            cursor: pointer;
+            text-decoration: none; /* remove link underline */
+        }
+
+        .single-service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .single-service-icon {
+            font-size: 2.2rem;
+            color: var(--accent-color);
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .single-service-info h4 {
+            margin: 0 0 5px 0;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .single-service-price {
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 1rem;
+            display: block;
+        }
+        .single-service-price span {
+            color: var(--text-light);
+            font-weight: 400;
+            font-size: 0.9rem;
+        }
+
+        /* --- 6. COMPARISON TABLE --- */
+        .comparison-section {
+            padding: 80px 5%;
+            background: var(--bg-light);
+        }
 
         .comparison-table {
             width: 100%;
             max-width: 900px;
             margin: 0 auto;
             border-collapse: collapse;
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
         
         .comparison-table th, .comparison-table td {
-            padding: 15px;
+            padding: 20px 15px;
             text-align: center;
             border-bottom: 1px solid #eee;
         }
         
-        .comparison-table th { background: #f9f9f9; color: var(--text-dark); font-weight: 600; }
-        .comparison-table th:first-child, .comparison-table td:first-child { text-align: left; }
-        .fa-check { color: var(--accent-color); }
-        .fa-minus { color: #ddd; }
+        .comparison-table th { background: #f1f1f1; color: var(--text-dark); font-weight: 700; font-size: 1.1rem; }
+        .comparison-table th:first-child, .comparison-table td:first-child { text-align: left; padding-left: 30px; font-weight: 600; color: var(--text-dark); }
+        .fa-check { color: var(--accent-color); font-size: 1.2rem; }
+        .fa-minus { color: #ddd; font-size: 1.2rem; }
 
-        /* --- 6. FAQ SECTION --- */
+        /* --- 7. FAQ SECTION --- */
         .faq-section {
             padding: 80px 5%;
-            background: var(--bg-light);
+            background: #fff;
         }
         
         .faq-grid {
@@ -254,10 +358,10 @@
             margin: 0 auto;
         }
 
-        .faq-item h4 { color: var(--primary-color); margin-bottom: 10px; }
+        .faq-item h4 { color: var(--primary-color); margin-bottom: 10px; font-size: 1.1rem; }
         .faq-item p { color: var(--text-light); font-size: 0.95rem; }
 
-        /* --- 7. FOOTER --- */
+        /* --- 8. FOOTER --- */
         footer {
             background: #f9f9f9;
             padding: 60px 5% 20px;
@@ -277,14 +381,12 @@
         .footer-col ul li i { color: var(--accent-color); margin-right: 10px; }
         
         .social-icons a { font-size: 1.5rem; color: var(--primary-color); margin-right: 15px; }
+        .social-icons a:hover { color: var(--accent-color); }
         .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
 
         /* --- MOBILE --- */
         @media (max-width: 768px) {
-            /* Show Mobile Controls */
             .mobile-controls { display: flex; }
-            
-            /* Hide Desktop Call Button */
             .btn-header.desktop-only { display: none; }
 
             .nav-links {
@@ -298,13 +400,24 @@
             }
 
             .nav-links.active { display: flex; }
-            .nav-links li { margin: 15px 0; }
+            .nav-links li { margin: 15px 0; width: 100%; text-align: center; }
+            
+            /* Mobile Dropdown Overrides */
+            .dropdown-parent .fa-chevron-down { display: none; }
+            .dropdown {
+                position: static; opacity: 1; visibility: visible; transform: none;
+                box-shadow: none; border: none; background: #f9f9f9;
+                margin-top: 10px; border-radius: 0; width: 100%; padding: 10px 0;
+            }
+            .dropdown li a { padding: 8px 0; color: var(--text-light); }
+            .desktop-login-link { display: none; }
 
-            .pricing-card.popular { transform: none; } /* Remove zoom on mobile */
+            .pricing-card.popular { transform: none; } 
             .pricing-grid { flex-direction: column; align-items: center; }
             .pricing-card { width: 100%; }
             .page-hero h1 { font-size: 2.2rem; }
-            .comparison-table { display: block; overflow-x: auto; } /* Scrollable table */
+            
+            .comparison-table { display: block; overflow-x: auto; white-space: nowrap; } 
         }
     </style>
 </head>
@@ -319,6 +432,9 @@
         </div>
         
         <div class="mobile-controls">
+            <a href="https://www.trackmylawn.com/login" target="_blank" class="mobile-login-btn">
+                <i class="fas fa-user-circle"></i> Login
+            </a>
             <a href="tel:+17055009000" class="mobile-call-icon">
                 <i class="fas fa-phone"></i>
             </a>
@@ -329,10 +445,26 @@
 
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
+            
+            <li class="dropdown-parent">
+                <a href="services.html">Services <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="lawn-mowing.html">Lawn Mowing</a></li>
+                    <li><a href="gardening.html">Gardening Services</a></li>
+                    <li><a href="weed-control.html">Weed Control</a></li>
+                    <li><a href="fertilizing.html">Fertilizing</a></li>
+                    <li><a href="aeration.html">Seeding & Aeration</a></li>
+                    <li><a href="seasonal-cleanup.html">Seasonal Cleanup</a></li>
+                    <li><a href="tree-care.html">Tree & Shrub Care</a></li>
+                    <li><a href="mulch.html">Mulch Installation</a></li>
+                </ul>
+            </li>
+
             <li><a href="lawn-portfolio.html">Portfolio</a></li>
             <li><a href="pricing.html" style="color: var(--accent-color);">Pricing Plans</a></li>
             <li><a href="about2.html">About Us</a></li>
             <li><a href="contact2.html">Contact</a></li>
+            <li class="desktop-login-link"><a href="https://www.trackmylawn.com/login" target="_blank" class="login-btn"><i class="fas fa-user-circle"></i> Client Login</a></li>
         </ul>
         
         <a href="tel:+17055009000" class="btn-header desktop-only">Call 705-500-9000</a>
@@ -389,8 +521,89 @@
         </div>
     </section>
 
+    <section class="single-services-section">
+        <h2 class="section-title">One-Time & Seasonal Services</h2>
+        <p class="section-subtitle">Need a specific job done? We offer transparent starting prices for individual services. Click any service to request a quote.</p>
+        
+        <div class="single-services-grid">
+            
+            <a href="contact2.html?service=lawn-mowing" class="single-service-card">
+                <div class="single-service-icon"><i class="fas fa-cut"></i></div>
+                <div class="single-service-info">
+                    <h4>Single Time Lawn Mowing</h4>
+                    <span class="single-service-price">Starts at $35 <span>/ visit</span></span>
+                </div>
+            </a>
+
+            <a href="contact2.html?service=cleanup" class="single-service-card">
+                <div class="single-service-icon"><i class="fas fa-broom"></i></div>
+                <div class="single-service-info">
+                    <h4>Cleanup Services (Spring/Fall)</h4>
+                    <span class="single-service-price">Starts at $199 <span>/ cleanup</span></span>
+                </div>
+            </a>
+
+            <a href="contact2.html?service=beds" class="single-service-card">
+                <div class="single-service-icon"><i class="fas fa-seedling"></i></div>
+                <div class="single-service-info">
+                    <h4>Beds Maintenance / Cleanup</h4>
+                    <span class="single-service-price">Starts at $119 <span>/ service</span></span>
+                </div>
+            </a>
+
+            <a href="contact2.html?service=yard-cleanup" class="single-service-card">
+                <div class="single-service-icon"><i class="fas fa-trash-alt"></i></div>
+                <div class="single-service-info">
+                    <h4>Full Yard Cleanup</h4>
+                    <span class="single-service-price">Starts at $249 <span>/ service</span></span>
+                </div>
+            </a>
+
+            <a href="contact2.html?service=mulch" class="single-service-card">
+                <div class="single-service-icon"><i class="fas fa-layer-group"></i></div>
+                <div class="single-service-info">
+                    <h4>Mulching Services</h4>
+                    <span class="single-service-price">Starts at $139 <span>/ yard</span></span>
+                </div>
+            </a>
+
+            <a href="contact2.html?service=edging" class="single-service-card">
+                <div class="single-service-icon"><i class="fas fa-road"></i></div>
+                <div class="single-service-info">
+                    <h4>Edging Services</h4>
+                    <span class="single-service-price">Starts at $80 <span>/ service</span></span>
+                </div>
+            </a>
+
+            <a href="contact2.html?service=weed-control" class="single-service-card">
+                <div class="single-service-icon"><i class="fas fa-spray-can"></i></div>
+                <div class="single-service-info">
+                    <h4>Weed Control</h4>
+                    <span class="single-service-price">Starts at $49 <span>/ application</span></span>
+                </div>
+            </a>
+
+            <a href="contact2.html?service=fertilization" class="single-service-card">
+                <div class="single-service-icon"><i class="fas fa-leaf"></i></div>
+                <div class="single-service-info">
+                    <h4>Fertilization</h4>
+                    <span class="single-service-price">Starts at $39 <span>/ application</span></span>
+                </div>
+            </a>
+
+            <a href="contact2.html?service=aeration" class="single-service-card">
+                <div class="single-service-icon"><i class="fas fa-wind"></i></div>
+                <div class="single-service-info">
+                    <h4>Overseeding / Aeration</h4>
+                    <span class="single-service-price">Starts at $149 <span>/ service</span></span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
     <section class="comparison-section">
-        <h2 class="section-title">Compare Features</h2>
+        <h2 class="section-title">Compare Monthly Features</h2>
         <table class="comparison-table">
             <thead>
                 <tr>
@@ -450,7 +663,7 @@
             </div>
             <div class="faq-item">
                 <h4>What areas do you service?</h4>
-                <p>We primarily serve GTA and all surrounding areas. Contact us if you are unsure if you are within our range.</p>
+                <p>We primarily serve Georgetown, GTA and all surrounding areas. Contact us if you are unsure if you are within our range.</p>
             </div>
             <div class="faq-item">
                 <h4>Can I switch plans later?</h4>
@@ -467,7 +680,7 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>About Us</h4>
-                <p>Greenworks Lawncare is committed to providing top-quality lawn care services. Locally owned and operated, we make your lawn our passion.</p>
+                <p>Greenworks Landscaping is committed to providing top-quality lawn care services. Locally owned and operated, we make your lawn our passion.</p>
             </div>
             
             <div class="footer-col">
@@ -488,7 +701,7 @@
         </div>
         
         <div class="copyright">
-            <p>Copyright © <span id="year">2026</span> | Greenworks Construction and Companies Inc. | All Rights Reserved.</p>
+            <p>Copyright © <span id="year"></span> | Greenworks Landscaping Inc. | All Rights Reserved.</p>
         </div>
     </footer>
 

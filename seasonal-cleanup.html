@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seasonal Cleanup Services | Greenworks Landscaping</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- 1. GENERAL STYLES --- */
+        :root {
+            --primary-color: #1b5e20;
+            --accent-color: #4CAF50; 
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-light: #f4f7f6;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0; padding: 0;
+            color: var(--text-dark);
+            background-color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* --- 2. HEADER & NAVIGATION --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: #fff;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0; z-index: 1000;
+        }
+
+        .logo {
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .logo:hover { transform: scale(1.02); }
+
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent-color); }
+        
+        /* DROPDOWN MENU STYLING (Desktop) */
+        .dropdown-parent {
+            position: relative;
+            padding: 10px 0; 
+        }
+        .dropdown-parent > a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .dropdown-parent .fa-chevron-down {
+            font-size: 0.7rem;
+            transition: transform 0.3s;
+        }
+        .dropdown-parent:hover .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid #eee;
+        }
+        .dropdown-parent:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown li { margin: 0; }
+        .dropdown li a {
+            display: block;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            transition: background 0.3s, color 0.3s;
+        }
+        .dropdown li a:hover {
+            background: var(--bg-light);
+            color: var(--accent-color);
+        }
+
+        /* LOGIN BUTTON STYLING */
+        .nav-links .login-btn { color: var(--primary-color); font-weight: 600; }
+        .nav-links .login-btn:hover { color: var(--accent-color); }
+
+        /* Desktop Call Button */
+        .btn-header {
+            background-color: var(--primary-color);
+            color: #fff !important;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        .btn-header:hover { background-color: var(--accent-color); }
+
+        /* --- MOBILE CONTROLS --- */
+        .mobile-controls {
+            display: none; 
+            align-items: center;
+            gap: 12px;
+        }
+
+        .mobile-login-btn {
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .mobile-call-icon {
+            width: 40px; height: 40px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+            transition: transform 0.2s;
+        }
+        .mobile-call-icon:active { transform: scale(0.95); }
+
+        .mobile-button {
+            cursor: pointer;
+            width: 30px; height: 20px;
+            position: relative;
+            z-index: 1001;
+        }
+        .mobile-button span {
+            display: block; width: 100%; height: 3px; background-color: var(--primary-color);
+            position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease;
+        }
+        .mobile-button::before, .mobile-button::after {
+            content: ''; width: 100%; height: 3px; background-color: var(--primary-color);
+            position: absolute; transition: all 0.3s ease;
+        }
+        .mobile-button::before { top: 0; }
+        .mobile-button::after { bottom: 0; }
+        .mobile-button.active span { opacity: 0; }
+        .mobile-button.active::before { top: 50%; transform: rotate(45deg); }
+        .mobile-button.active::after { top: 50%; transform: rotate(-45deg); bottom: auto; }
+
+        /* --- 3. INNER PAGE HERO --- */
+        .page-hero {
+            position: relative;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+            background-image: url('assets/img/lawnmain.webp'); 
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed;
+            min-height: 55vh; padding: 0 5%; color: #fff;
+        }
+
+        .page-hero::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 51, 0, 0.65); /* Dark green overlay */
+        }
+
+        .hero-content { position: relative; z-index: 2; max-width: 800px; }
+        .hero-content h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 30px; opacity: 0.95; }
+
+        .hero-btn {
+            display: inline-block; padding: 15px 40px;
+            background: var(--accent-color); color: #fff;
+            font-weight: 600; text-transform: uppercase;
+            border-radius: 50px; letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.2s;
+        }
+        .hero-btn:hover { background: #388E3C; transform: translateY(-3px); }
+
+        /* --- 4. CONTENT SECTIONS --- */
+        .section-padding { padding: 80px 5%; background-color: #fff; }
+        .bg-light { background-color: var(--bg-light); }
+
+        .flex-row { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+        .flex-col { flex: 1; min-width: 300px; }
+        .flex-col img { border-radius: 15px; box-shadow: var(--card-shadow); width: 100%; height: auto; object-fit: cover; }
+
+        .section-title { 
+            font-size: 2.2rem; 
+            color: var(--primary-color); 
+            margin-top: 0; 
+            margin-bottom: 25px; 
+            font-weight: 700; 
+            line-height: 1.3; 
+        }
+        .section-desc { 
+            color: var(--text-light); 
+            margin-top: 0; 
+            margin-bottom: 35px; 
+            font-size: 1.05rem; 
+            line-height: 1.8; 
+        }
+
+        .check-list { 
+            margin-bottom: 30px; 
+            padding: 0; 
+            list-style: none;
+        }
+        .check-list li { 
+            margin-bottom: 25px; 
+            display: flex; 
+            align-items: flex-start; 
+            color: var(--text-light); 
+            font-size: 1.05rem; 
+            line-height: 1.6;
+        }
+        .check-list li i { 
+            color: var(--accent-color); 
+            margin-right: 15px; 
+            font-size: 1.3rem; 
+            margin-top: 3px; 
+            flex-shrink: 0; 
+        }
+        .check-list li strong {
+            color: var(--text-dark);
+            display: block; 
+            margin-bottom: 5px; 
+            font-size: 1.1rem;
+        }
+
+        /* --- 5. WHAT'S INCLUDED GRID --- */
+        .included-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .included-card { 
+            background: #fff; padding: 30px; border-radius: 15px; 
+            box-shadow: var(--card-shadow); text-align: left; 
+            border-left: 4px solid var(--accent-color); 
+            transition: transform 0.3s; 
+        }
+        .included-card:hover { transform: translateY(-5px); }
+        .included-card i { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 20px; display: block;}
+        .included-card h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--text-dark); }
+        .included-card p { font-size: 0.95rem; color: var(--text-light); margin: 0; line-height: 1.6; }
+
+        /* --- 6. CTA BANNER --- */
+        .cta-banner { background-color: var(--primary-color); color: #fff; text-align: center; padding: 80px 20px; }
+        .cta-banner h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .btn-white { background: #fff; color: var(--primary-color); padding: 15px 40px; border-radius: 50px; font-weight: 700; display: inline-block; margin-top: 20px; font-size: 1.1rem; transition: transform 0.2s; }
+        .btn-white:hover { transform: scale(1.05); }
+
+        /* --- 7. FOOTER --- */
+        footer { background: #f9f9f9; padding: 60px 5% 20px; color: var(--text-dark); border-top: 1px solid #eee; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { color: var(--primary-color); margin-bottom: 20px; font-size: 1.1rem; }
+        .footer-col ul li { margin-bottom: 10px; color: var(--text-light); }
+        .footer-col ul li i { color: var(--accent-color); margin-right: 10px; }
+        .social-icons a { font-size: 1.5rem; color: var(--primary-color); margin-right: 15px; transition: color 0.3s; }
+        .social-icons a:hover { color: var(--accent-color); }
+        .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            header { padding: 10px 5%; }
+            .logo img { height: 35px !important; }
+
+            .mobile-controls { display: flex; gap: 8px; }
+            .mobile-login-btn { padding: 6px 10px; font-size: 0.75rem; border: 1px solid var(--accent-color); }
+            .mobile-call-icon { width: 32px; height: 32px; font-size: 1rem; }
+
+            .btn-header.desktop-only { display: none; }
+
+            .nav-links {
+                display: none;
+                position: absolute; top: 60px; left: 0; width: 100%;
+                background-color: #fff;
+                flex-direction: column; align-items: center;
+                padding: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                border-top: 1px solid #eee;
+            }
+
+            .nav-links.active { display: flex; }
+            .nav-links li { margin: 10px 0; width: 100%; text-align: center; }
+            
+            /* Mobile Dropdown Overrides */
+            .dropdown-parent .fa-chevron-down { display: none; }
+            .dropdown {
+                position: static;
+                opacity: 1; visibility: visible; transform: none;
+                box-shadow: none; border: none; background: #f9f9f9;
+                margin-top: 10px; border-radius: 0; width: 100%; padding: 10px 0;
+            }
+            .dropdown li a { padding: 8px 0; color: var(--text-light); }
+            .desktop-login-link { display: none; }
+            
+            .hero-content h1 { font-size: 2.5rem; }
+            .flex-row { flex-direction: column; text-align: left; } 
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/img/logo-light.png" alt="Greenworks Logo" style="height: 45px; width: auto; filter: none;"> 
+            </a>
+        </div>
+        
+        <div class="mobile-controls">
+            <a href="https://www.trackmylawn.com/login" target="_blank" class="mobile-login-btn">
+                <i class="fas fa-user-circle"></i> Login
+            </a>
+            <a href="tel:+17055009000" class="mobile-call-icon">
+                <i class="fas fa-phone"></i>
+            </a>
+            <div class="mobile-button" onclick="toggleMenu()">
+                <span></span>
+            </div>
+        </div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            
+            <li class="dropdown-parent">
+                <a href="services.html" style="color: var(--accent-color);">Services <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="lawn-mowing.html">Lawn Mowing</a></li>
+                    <li><a href="gardening.html">Gardening Services</a></li>
+                    <li><a href="weed-control.html">Weed Control</a></li>
+                    <li><a href="fertilizing.html">Fertilizing</a></li>
+                    <li><a href="aeration.html">Seeding & Aeration</a></li>
+                    <li><a href="seasonal-cleanup.html" style="color: var(--accent-color); font-weight: 600;">Seasonal Cleanup</a></li>
+                    <li><a href="tree-care.html">Tree & Shrub Care</a></li>
+                    <li><a href="mulch.html">Mulch Installation</a></li>
+                </ul>
+            </li>
+
+            <li><a href="lawn-portfolio.html">Portfolio</a></li>
+            <li><a href="pricing.html">Pricing Plans</a></li>
+            <li><a href="about2.html">About Us</a></li>
+            <li><a href="contact2.html">Contact</a></li>
+            <li class="desktop-login-link"><a href="https://www.trackmylawn.com/login" target="_blank" class="login-btn"><i class="fas fa-user-circle"></i> Client Login</a></li>
+        </ul>
+        
+        <a href="tel:+17055009000" class="btn-header desktop-only">Call 705-500-9000</a>
+    </header>
+
+    <section class="page-hero">
+        <div class="hero-content">
+            <h1>Complete Seasonal Cleanups</h1>
+            <p>Prepare your property for the growing season or protect it for the winter with our thorough spring and fall cleanup services.</p>
+            <a href="contact2.html?service=cleanup" class="hero-btn">Get a Free Quote</a>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="flex-row">
+            <div class="flex-col">
+                <h2 class="section-title">Start and End the Season Right</h2>
+                <p class="section-desc">The harsh transitions between Ontario seasons can leave your property covered in heavy leaves, fallen branches, and matted debris. A proper seasonal cleanup does more than just instantly restore your curb appeal—it is a critical step for the health of your turf and garden beds, preventing mold, disease, and pest infestations.</p>
+                
+                <ul class="check-list">
+                    <li>
+                        <i class="fas fa-check-circle"></i> 
+                        <div>
+                            <strong>Protect Your Lawn</strong>
+                            Removing heavy, wet leaf cover prevents snow mold and dead patches from forming over the winter.
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i> 
+                        <div>
+                            <strong>Prepare for Growth</strong>
+                            Clearing out winter debris in the spring gives emerging plants and grass the sunlight, oxygen, and space they need to thrive.
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i> 
+                        <div>
+                            <strong>Save Your Weekends</strong>
+                            Raking, bagging, and hauling yard waste is backbreaking work. Let our professional crew handle the heavy lifting for you.
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i> 
+                        <div>
+                            <strong>Hassle-Free Disposal</strong>
+                            We don't just pile it up at the curb. We bag, remove, and properly dispose of all the organic waste collected from your property.
+                        </div>
+                    </li>
+                </ul>
+                
+                <a href="pricing.html?service=cleanup" class="btn-header" style="text-decoration:none; display: inline-block; margin-top: 10px;">View Pricing Plans</a>
+            </div>
+            <div class="flex-col">
+                <img src="assets/img/lawn_gallery/24.webp" alt="Professional Spring and Fall Cleanup Services">
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-light text-center">
+        <h2 class="section-title" style="text-align: center;">Our Cleanup Checklist</h2>
+        <p class="section-desc" style="text-align: center; max-width: 700px; margin: 0 auto; margin-bottom: 35px;">We leave no stone unturned. Our comprehensive cleanups ensure every inch of your yard is addressed.</p>
+        
+        <div class="included-grid">
+            <div class="included-card">
+                <i class="fas fa-leaf"></i>
+                <h3>Leaf Removal & Bagging</h3>
+                <p>We thoroughly rake, blow, and collect fallen leaves from your lawn, garden beds, and hardscapes, bagging them for complete removal to prevent lawn suffocation.</p>
+            </div>
+            
+            <div class="included-card">
+                <i class="fas fa-broom"></i>
+                <h3>Hardscape Sweeping</h3>
+                <p>We power blow and sweep all patios, walkways, pool decks, and driveways, clearing them of dirt, debris, and stray leaves so your entire property looks pristine.</p>
+            </div>
+            
+            <div class="included-card">
+                <i class="fas fa-scissors"></i>
+                <h3>Perennial Cutbacks</h3>
+                <p>We expertly trim back dead or decaying foliage from your perennials and ornamental grasses, protecting the crowns and encouraging healthy new growth in the spring.</p>
+            </div>
+            
+            <div class="included-card">
+                <i class="fas fa-trash-alt"></i>
+                <h3>Debris & Branch Clearing</h3>
+                <p>We collect and remove fallen sticks, branches, and winter debris that clutter your yard, damage your turf, and pose hazards to lawnmowers.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <h2>Don't let yard waste pile up.</h2>
+        <p>Book your spring or fall cleanup today and let us do the heavy lifting.</p>
+        <a href="contact2.html?service=cleanup" class="btn-white">Get Your Free Estimate</a>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>About Us</h4>
+                <p>Greenworks Landscaping is committed to providing top-quality lawn care services. Locally owned and operated, we make your lawn our passion.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Georgetown, ON, CA</li>
+                    <li><i class="fas fa-phone"></i> <a href="tel:+17055009000">+1 705-500-9000</a></li>
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:info@gnwlandscaping.ca">info@gnwlandscaping.ca</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/gnwlandscaping/" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>Copyright © <span id="year"></span> | Greenworks Landscaping Inc. | All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById("navLinks");
+            const mobileBtn = document.querySelector(".mobile-button");
+            
+            navLinks.classList.toggle("active");
+            mobileBtn.classList.toggle("active");
+        }
+    </script>
+</body>
+</html>

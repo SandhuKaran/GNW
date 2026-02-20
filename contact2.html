@@ -6,7 +6,6 @@
     <title>Contact Greenworks Landscaping</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
@@ -33,7 +32,7 @@
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; padding: 0; margin: 0; }
 
-        /* --- 2. HEADER --- */
+        /* --- 2. HEADER & NAVIGATION --- */
         header {
             display: flex;
             justify-content: space-between;
@@ -54,6 +53,62 @@
         .nav-links a { font-weight: 500; color: var(--text-dark); transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent-color); }
 
+        /* DROPDOWN MENU STYLING (Desktop) */
+        .dropdown-parent {
+            position: relative;
+            padding: 10px 0; 
+        }
+        .dropdown-parent > a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .dropdown-parent .fa-chevron-down {
+            font-size: 0.7rem;
+            transition: transform 0.3s;
+        }
+        .dropdown-parent:hover .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid #eee;
+        }
+        .dropdown-parent:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown li { margin: 0; }
+        .dropdown li a {
+            display: block;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            transition: background 0.3s, color 0.3s;
+        }
+        .dropdown li a:hover {
+            background: var(--bg-light);
+            color: var(--accent-color);
+        }
+
+        /* LOGIN BUTTON STYLING */
+        .nav-links .login-btn { color: var(--primary-color); font-weight: 600; }
+        .nav-links .login-btn:hover { color: var(--accent-color); }
+
         /* Desktop Call Button */
         .btn-header {
             background-color: var(--primary-color);
@@ -67,8 +122,21 @@
         .btn-header:hover { background-color: var(--accent-color); }
 
         /* --- MOBILE CONTROLS --- */
-        .mobile-controls { display: none; align-items: center; gap: 15px; }
+        .mobile-controls { display: none; align-items: center; gap: 12px; }
         
+        .mobile-login-btn {
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid #ddd;
+        }
+
         .mobile-call-icon {
             width: 40px; height: 40px;
             background-color: var(--accent-color);
@@ -137,6 +205,10 @@
         }
         .contact-form-wrapper h2 { margin-top: 0; color: var(--primary-color); margin-bottom: 30px; }
 
+        /* Align fields nicely on desktop */
+        .form-row { display: flex; gap: 20px; }
+        .form-row .form-group { flex: 1; }
+
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-dark); }
 
@@ -171,9 +243,7 @@
             gap: 10px;
         }
         
-        .checkbox-item {
-            position: relative;
-        }
+        .checkbox-item { position: relative; }
 
         /* Hide default checkbox but keep it accessible */
         .checkbox-item input[type="checkbox"] {
@@ -182,10 +252,13 @@
 
         /* Custom Label Design */
         .checkbox-item label {
-            display: block;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             background: #f9f9f9;
             border: 1px solid #ddd;
-            padding: 12px;
+            padding: 15px 10px;
             border-radius: 8px;
             font-size: 0.9rem;
             cursor: pointer;
@@ -193,7 +266,17 @@
             text-align: center;
             color: var(--text-light);
             font-weight: 500;
-            margin-bottom: 0; /* Override generic label margin */
+            margin-bottom: 0; 
+            height: 100%;
+        }
+
+        /* Styling for the price inside the checkbox label */
+        .checkbox-item label span.price-tag {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--primary-color);
+            margin-top: 5px;
+            font-weight: 600;
         }
 
         .checkbox-item label:hover { border-color: var(--accent-color); }
@@ -208,9 +291,10 @@
         
         /* Add a checkmark icon when checked */
         .checkbox-item input:checked + label::before {
-            content: '\f00c'; /* FontAwesome Check */
+            content: '\f00c'; 
             font-family: "Font Awesome 6 Free"; font-weight: 900;
-            margin-right: 5px;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
         }
 
         .btn-submit {
@@ -232,6 +316,7 @@
         .footer-col ul li { margin-bottom: 10px; color: var(--text-light); }
         .footer-col ul li i { color: var(--accent-color); margin-right: 10px; }
         .social-icons a { font-size: 1.5rem; color: var(--primary-color); margin-right: 15px; }
+        .social-icons a:hover { color: var(--accent-color); }
         .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
 
         /* --- MOBILE RESPONSIVENESS --- */
@@ -248,14 +333,25 @@
                 border-top: 1px solid #eee; z-index: 999;
             }
             .nav-links.active { display: flex; }
-            .nav-links li { margin: 15px 0; }
+            .nav-links li { margin: 10px 0; width: 100%; text-align: center; }
+
+            /* Mobile Dropdown Overrides */
+            .dropdown-parent .fa-chevron-down { display: none; }
+            .dropdown {
+                position: static; opacity: 1; visibility: visible; transform: none;
+                box-shadow: none; border: none; background: #f9f9f9;
+                margin-top: 10px; border-radius: 0; width: 100%; padding: 10px 0;
+            }
+            .dropdown li a { padding: 8px 0; color: var(--text-light); }
+            .desktop-login-link { display: none; }
 
             /* MOVE FORM TO TOP ON MOBILE */
             .contact-wrapper { flex-direction: column; }
             .contact-form-wrapper { order: -1; margin-bottom: 40px; }
             
+            .form-row { flex-direction: column; gap: 0; }
             .plan-tabs { flex-direction: column; } 
-            .services-grid { grid-template-columns: 1fr 1fr; } /* 2 cols on mobile */
+            .services-grid { grid-template-columns: 1fr 1fr; } 
         }
     </style>
 </head>
@@ -270,16 +366,35 @@
         </div>
         
         <div class="mobile-controls">
+            <a href="https://www.trackmylawn.com/login" target="_blank" class="mobile-login-btn">
+                <i class="fas fa-user-circle"></i> Login
+            </a>
             <a href="tel:+17055009000" class="mobile-call-icon"><i class="fas fa-phone"></i></a>
             <div class="mobile-button" onclick="toggleMenu()"><span></span></div>
         </div>
 
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
+            
+            <li class="dropdown-parent">
+                <a href="services.html">Services <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="lawn-mowing.html">Lawn Mowing</a></li>
+                    <li><a href="gardening.html">Gardening Services</a></li>
+                    <li><a href="weed-control.html">Weed Control</a></li>
+                    <li><a href="fertilizing.html">Fertilizing</a></li>
+                    <li><a href="aeration.html">Seeding & Aeration</a></li>
+                    <li><a href="seasonal-cleanup.html">Seasonal Cleanup</a></li>
+                    <li><a href="tree-care.html">Tree & Shrub Care</a></li>
+                    <li><a href="mulch.html">Mulch Installation</a></li>
+                </ul>
+            </li>
+
             <li><a href="lawn-portfolio.html">Portfolio</a></li>
             <li><a href="pricing.html">Pricing Plans</a></li>
             <li><a href="about2.html">About Us</a></li>
             <li><a href="contact2.html" style="color: var(--accent-color);">Contact</a></li>
+            <li class="desktop-login-link"><a href="https://www.trackmylawn.com/login" target="_blank" class="login-btn"><i class="fas fa-user-circle"></i> Client Login</a></li>
         </ul>
         
         <a href="tel:+17055009000" class="btn-header desktop-only">Call 705-500-9000</a>
@@ -287,7 +402,7 @@
 
     <section class="page-hero">
         <h1>Get In Touch</h1>
-        <p>Ready to reclaim your weekend? Select a plan below or send us a message.</p>
+        <p>Ready to reclaim your weekend? Select a plan or service below and send us a message.</p>
     </section>
 
     <section class="contact-section">
@@ -333,7 +448,7 @@
                 <form action="https://formspree.io/f/xwpevnqp" method="POST">
                     
                     <div class="form-group">
-                        <label>Select a Plan (Optional)</label>
+                        <label>Select a Monthly Plan (Optional)</label>
                         <div class="plan-tabs">
                             <input type="radio" id="plan-basic" name="plan" value="Basic">
                             <label for="plan-basic">Basic<br><small>$149/mo</small></label>
@@ -346,56 +461,85 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label>Your Name</label>
-                        <input type="text" name="name" class="form-control" placeholder="John Doe" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" name="name" class="form-control" placeholder="John Doe" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" name="phone" class="form-control" placeholder="(705) 555-0123" required>
+                        </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label>Phone Number</label>
-                        <input type="tel" name="phone" class="form-control" placeholder="(705) 555-0123" required>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" name="email" class="form-control" placeholder="john@example.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Property Address (Optional)</label>
+                            <input type="text" name="address" class="form-control" placeholder="123 Main St, Georgetown, ON">
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Other Services Interested In (Select all that apply)</label>
+                        <label>Specific Services Interested In (Select all that apply)</label>
                         
                         <div class="services-grid">
+                            
                             <div class="checkbox-item">
-                                <input type="checkbox" id="srv-mow" name="services" value="Lawn Mowing(Bi-Weekly)">
-                                <label for="srv-mow">Lawn Mowing(Bi-Weekly)</label>
+                                <input type="checkbox" id="srv-lawn-mowing" name="services" value="Single Lawn Mowing">
+                                <label for="srv-lawn-mowing">Single Lawn Mowing <span class="price-tag">Starts at $35</span></label>
                             </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="srv-fert" name="services" value="Fertilizer/Weed Control">
-                                <label for="srv-fert">Fertilizer & Weed Control</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="srv-aeration" name="services" value="Aeration/Overseeding">
-                                <label for="srv-aeration">Aeration/Overseeding</label>
-                            </div>
+                            
                             <div class="checkbox-item">
                                 <input type="checkbox" id="srv-cleanup" name="services" value="Spring/Fall Cleanup">
-                                <label for="srv-cleanup">Spring/Fall Cleanup</label>
+                                <label for="srv-cleanup">Cleanup (Spring/Fall) <span class="price-tag">Starts at $199</span></label>
                             </div>
+                            
                             <div class="checkbox-item">
-                                <input type="checkbox" id="srv-garden" name="services" value="Gardening/Planting">
-                                <label for="srv-garden">Gardening/Planting</label>
+                                <input type="checkbox" id="srv-beds" name="services" value="Beds Maintenance">
+                                <label for="srv-beds">Beds Maintenance <span class="price-tag">Starts at $119</span></label>
                             </div>
+                            
                             <div class="checkbox-item">
-                                <input type="checkbox" id="srv-mulch" name="services" value="Mulch Installation">
-                                <label for="srv-mulch">Mulch Installation</label>
+                                <input type="checkbox" id="srv-yard-cleanup" name="services" value="Full Yard Cleanup">
+                                <label for="srv-yard-cleanup">Full Yard Cleanup <span class="price-tag">Starts at $249</span></label>
                             </div>
+
                             <div class="checkbox-item">
-                                <input type="checkbox" id="srv-sod" name="services" value="Sodding">
-                                <label for="srv-sod">Sod Installation</label>
+                                <input type="checkbox" id="srv-mulch" name="services" value="Mulching Services">
+                                <label for="srv-mulch">Mulching Services <span class="price-tag">Starts at $139/yd</span></label>
                             </div>
+
                             <div class="checkbox-item">
-                                <input type="checkbox" id="srv-snow" name="services" value="Tree & Shrub Care">
-                                <label for="srv-snow">Tree & Shrub Care</label>
+                                <input type="checkbox" id="srv-edging" name="services" value="Edging Services">
+                                <label for="srv-edging">Edging Services <span class="price-tag">Starts at $80</span></label>
                             </div>
+
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="srv-weed-control" name="services" value="Weed Control">
+                                <label for="srv-weed-control">Weed Control <span class="price-tag">Starts at $49</span></label>
+                            </div>
+
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="srv-fertilization" name="services" value="Fertilization">
+                                <label for="srv-fertilization">Fertilization <span class="price-tag">Starts at $39</span></label>
+                            </div>
+
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="srv-aeration" name="services" value="Aeration/Overseeding">
+                                <label for="srv-aeration">Aeration/Overseeding <span class="price-tag">Starts at $149</span></label>
+                            </div>
+                            
                             <div class="checkbox-item">
                                 <input type="checkbox" id="srv-other" name="services" value="General Inquiry">
-                                <label for="srv-other">General Inquiry</label>
+                                <label for="srv-other">Other / General Inquiry</label>
                             </div>
+                            
                         </div>
                     </div>
 
@@ -419,7 +563,7 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>About Us</h4>
-                <p>Greenworks Lawncare is committed to providing top-quality lawn care services. Locally owned and operated, we make your lawn our passion.</p>
+                <p>Greenworks Landscaping is committed to providing top-quality lawn care services. Locally owned and operated, we make your lawn our passion.</p>
             </div>
             
             <div class="footer-col">
@@ -440,24 +584,41 @@
         </div>
         
         <div class="copyright">
-            <p>Copyright © <span id="year">2026</span> | Greenworks Construction and Companies Inc. | All Rights Reserved.</p>
+            <p>Copyright © <span id="year"></span> | Greenworks Landscaping Inc. | All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
         document.getElementById("year").innerHTML = new Date().getFullYear();
 
+        // Check URL for pre-selected plan or service
         const urlParams = new URLSearchParams(window.location.search);
         const plan = urlParams.get('plan');
+        const service = urlParams.get('service');
 
+        // Auto-select radio button for plans
         if (plan) {
             const radioBtn = document.getElementById('plan-' + plan);
             if (radioBtn) {
                 radioBtn.checked = true;
-                document.querySelector('.contact-form-wrapper').scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => {
+                    document.querySelector('.contact-form-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 500);
+            }
+        }
+        
+        // Auto-select checkbox for specific services
+        if (service) {
+            const checkBtn = document.getElementById('srv-' + service);
+            if (checkBtn) {
+                checkBtn.checked = true;
+                setTimeout(() => {
+                    document.querySelector('.services-grid').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 500);
             }
         }
 
+        // Mobile Menu Toggle
         function toggleMenu() {
             const navLinks = document.getElementById("navLinks");
             const mobileBtn = document.querySelector(".mobile-button");

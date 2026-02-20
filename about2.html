@@ -6,7 +6,6 @@
     <title>About Greenworks Landscaping</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
@@ -34,7 +33,7 @@
         ul { list-style: none; padding: 0; margin: 0; }
         img { max-width: 100%; height: auto; display: block; }
 
-        /* --- 2. HEADER --- */
+        /* --- 2. HEADER & NAVIGATION --- */
         header {
             display: flex;
             justify-content: space-between;
@@ -46,20 +45,67 @@
             top: 0; z-index: 1000;
         }
 
-        /* LOGO STYLING (Rounded Corners) */
         .logo {
-            border-radius: 10px; /* Lightly rounded corners */
-            overflow: hidden;
-            transition: transform 0.3s;
+            border-radius: 10px; overflow: hidden; transition: transform 0.3s;
         }
         .logo:hover { transform: scale(1.02); }
 
         .nav-links { display: flex; gap: 30px; align-items: center; }
-        .nav-links a { font-weight: 500; color: var(--text-dark); transition: color 0.3s; }
+        .nav-links a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent-color); }
+        
+        /* DROPDOWN MENU STYLING */
+        .dropdown-parent {
+            position: relative;
+            padding: 10px 0; 
+        }
+        .dropdown-parent > a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .dropdown-parent .fa-chevron-down {
+            font-size: 0.7rem;
+            transition: transform 0.3s;
+        }
+        .dropdown-parent:hover .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid #eee;
+        }
+        .dropdown-parent:hover .dropdown {
+            opacity: 1; visibility: visible; transform: translateY(0);
+        }
+        .dropdown li { margin: 0; }
+        .dropdown li a {
+            display: block; padding: 10px 20px; font-size: 0.9rem;
+            color: var(--text-dark); transition: background 0.3s, color 0.3s;
+        }
+        .dropdown li a:hover {
+            background: var(--bg-light); color: var(--accent-color);
+        }
+
+        /* LOGIN BUTTON */
+        .nav-links .login-btn { color: var(--primary-color); font-weight: 600; }
+        .nav-links .login-btn:hover { color: var(--accent-color); }
 
         /* Desktop Call Button */
-        .header-phone a {
+        .btn-header {
             background-color: var(--primary-color);
             color: #fff !important;
             padding: 10px 25px;
@@ -69,21 +115,32 @@
             transition: background 0.3s;
             display: inline-block;
         }
-        .header-phone a:hover { background-color: var(--accent-color); }
+        .btn-header:hover { background-color: var(--accent-color); }
 
-        /* --- MOBILE CONTROLS (Right side on mobile) --- */
+        /* --- MOBILE CONTROLS --- */
         .mobile-controls {
-            display: none; /* Hidden on desktop */
+            display: none; 
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
-        /* Mobile Call Icon (Pix Button) */
+        .mobile-login-btn {
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid #ddd;
+        }
+
         .mobile-call-icon {
             width: 40px; height: 40px;
             background-color: var(--accent-color);
-            color: white;
-            border-radius: 50%;
+            color: white; border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
             font-size: 1.2rem;
             box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
@@ -91,26 +148,20 @@
         }
         .mobile-call-icon:active { transform: scale(0.95); }
 
-        /* Mobile Hamburger Button */
         .mobile-button {
-            cursor: pointer;
-            width: 30px; height: 20px;
-            position: relative;
-            z-index: 1001;
+            cursor: pointer; width: 30px; height: 20px;
+            position: relative; z-index: 1001;
         }
-
         .mobile-button span {
             display: block; width: 100%; height: 3px; background-color: var(--primary-color);
             position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease;
         }
-
         .mobile-button::before, .mobile-button::after {
             content: ''; width: 100%; height: 3px; background-color: var(--primary-color);
             position: absolute; transition: all 0.3s ease;
         }
         .mobile-button::before { top: 0; }
         .mobile-button::after { bottom: 0; }
-
         .mobile-button.active span { opacity: 0; }
         .mobile-button.active::before { top: 50%; transform: rotate(45deg); }
         .mobile-button.active::after { top: 50%; transform: rotate(-45deg); bottom: auto; }
@@ -145,7 +196,6 @@
         .story-text p { font-size: 1.05rem; color: var(--text-light); margin-bottom: 20px; }
         .story-text strong { color: var(--accent-color); display: block; margin-bottom: 10px; font-size: 1.1rem; }
 
-        /* IMAGE GRID IN STORY */
         .story-gallery {
             flex: 1;
             display: grid;
@@ -163,9 +213,76 @@
         }
         .story-gallery img:hover { transform: scale(1.05); }
 
-        /* --- 5. STATS BAR --- */
-        .stats-bar {
+        /* --- 5. TRUST TABS SECTION (NEW) --- */
+        .trust-section {
+            padding: 80px 5%;
             background-color: var(--bg-light);
+        }
+
+        .trust-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tab-buttons {
+            display: flex;
+            background: #f1f1f1;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 20px;
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-btn:hover { background: #e9e9e9; color: var(--primary-color); }
+        
+        .tab-btn.active {
+            background: #fff;
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        .tab-content {
+            padding: 40px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active { display: block; }
+
+        .tab-content h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .tab-content h3 i { color: var(--accent-color); }
+        .tab-content p { font-size: 1.05rem; color: var(--text-light); line-height: 1.7; margin-bottom: 15px; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- 6. STATS BAR --- */
+        .stats-bar {
+            background-color: #fff;
             color: var(--text-dark);
             padding: 60px 5%;
             display: flex;
@@ -178,7 +295,7 @@
         .stat-item h3 { font-size: 2.8rem; margin-bottom: 5px; color: var(--primary-color); font-weight: 700; }
         .stat-item p { font-size: 1.1rem; color: var(--text-light); font-weight: 500; }
 
-        /* --- 6. FOOTER --- */
+        /* --- 7. FOOTER --- */
         footer {
             background: #f9f9f9;
             padding: 60px 5% 20px;
@@ -193,6 +310,8 @@
         .footer-col h4 { color: var(--primary-color); margin-bottom: 20px; }
         .footer-col ul li { margin-bottom: 10px; color: var(--text-light); }
         .footer-col ul li i { color: var(--accent-color); margin-right: 10px; }
+        .social-icons a { font-size: 1.5rem; color: var(--primary-color); margin-right: 15px; transition: color 0.3s;}
+        .social-icons a:hover { color: var(--accent-color); }
         .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
 
         /* --- MOBILE RESPONSIVENESS --- */
@@ -201,11 +320,8 @@
             .story-gallery { width: 100%; }
         }
         @media (max-width: 768px) {
-            /* Show Mobile Controls */
             .mobile-controls { display: flex; }
-            
-            /* Hide Desktop Call Button */
-            .header-phone { display: none; } /* Use class name for this button */
+            .btn-header.desktop-only { display: none; }
 
             .nav-links {
                 display: none;
@@ -216,13 +332,28 @@
                 border-top: 1px solid #eee;
                 z-index: 999;
             }
-
             .nav-links.active { display: flex; }
-            .nav-links li { margin: 15px 0; }
+            .nav-links li { margin: 10px 0; width: 100%; text-align: center; }
+            
+            /* Mobile Dropdown Overrides */
+            .dropdown-parent .fa-chevron-down { display: none; }
+            .dropdown {
+                position: static; opacity: 1; visibility: visible; transform: none;
+                box-shadow: none; border: none; background: #f9f9f9;
+                margin-top: 10px; border-radius: 0; width: 100%; padding: 10px 0;
+            }
+            .dropdown li a { padding: 8px 0; color: var(--text-light); }
+            .desktop-login-link { display: none; }
 
             .page-hero h1 { font-size: 2.5rem; }
             .story-gallery img { height: 160px; }
             .stats-bar { flex-direction: column; gap: 40px; }
+            
+            /* Mobile Tabs */
+            .tab-buttons { flex-direction: column; }
+            .tab-btn { border-bottom: 1px solid #ddd; padding: 15px; }
+            .tab-btn.active { border-bottom: 3px solid var(--accent-color); border-left: 3px solid var(--accent-color); }
+            .tab-content { padding: 25px 20px; }
         }
     </style>
 </head>
@@ -231,31 +362,43 @@
     <header>
         <div class="logo">
             <a href="index.html">
-                <img src="assets/img/logo-light.png" alt="Greenworks Logo" 
-                     style="height: 45px; width: auto; filter: none; display: block;"> 
+                <img src="assets/img/logo-light.png" alt="Greenworks Logo" style="height: 45px; width: auto; filter: none; display: block;"> 
             </a>
         </div>
 
         <div class="mobile-controls">
-            <a href="tel:+17055009000" class="mobile-call-icon">
-                <i class="fas fa-phone"></i>
+            <a href="https://www.trackmylawn.com/login" target="_blank" class="mobile-login-btn">
+                <i class="fas fa-user-circle"></i> Login
             </a>
-            <div class="mobile-button" onclick="toggleMenu()">
-                <span></span>
-            </div>
+            <a href="tel:+17055009000" class="mobile-call-icon"><i class="fas fa-phone"></i></a>
+            <div class="mobile-button" onclick="toggleMenu()"><span></span></div>
         </div>
 
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
+            
+            <li class="dropdown-parent">
+                <a href="services.html">Services <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="lawn-mowing.html">Lawn Mowing</a></li>
+                    <li><a href="gardening.html">Gardening Services</a></li>
+                    <li><a href="weed-control.html">Weed Control</a></li>
+                    <li><a href="fertilizing.html">Fertilizing</a></li>
+                    <li><a href="aeration.html">Seeding & Aeration</a></li>
+                    <li><a href="seasonal-cleanup.html">Seasonal Cleanup</a></li>
+                    <li><a href="tree-care.html">Tree & Shrub Care</a></li>
+                    <li><a href="mulch.html">Mulch Installation</a></li>
+                </ul>
+            </li>
+
             <li><a href="lawn-portfolio.html">Portfolio</a></li>
             <li><a href="pricing.html">Pricing Plans</a></li>
-            <li><a href="about2.html" style="color: var(--accent-color);">About Us</a></li>
+            <li><a href="about2.html" style="color: var(--accent-color); font-weight: 600;">About Us</a></li>
             <li><a href="contact2.html">Contact</a></li>
+            <li class="desktop-login-link"><a href="https://www.trackmylawn.com/login" target="_blank" class="login-btn"><i class="fas fa-user-circle"></i> Client Login</a></li>
         </ul>
 
-        <div class="header-phone">
-            <a href="tel:+17055009000">Call 705-500-9000</a>
-        </div>
+        <a href="tel:+17055009000" class="btn-header desktop-only">Call 705-500-9000</a>
     </header>
 
     <section class="page-hero">
@@ -269,8 +412,8 @@
             <div class="story-text">
                 <h2>More Than Just a Quick Cut</h2>
                 <p><strong>Precision isn’t just a goal. Perfecting your lawn is our passion.</strong></p>
-                <p>Greenworks Lawncare is committed to providing top-quality lawn care services that enhance the beauty and health of your outdoor spaces. Locally owned and operated in Georgetown, ON, we pride ourselves on delivering reliable and personalized care tailored to each lawn's unique needs.</p>
-                <p>From mowing and fertilization to weed control and full-service maintenance, our experienced team ensures that every job is done with precision and care. We treat every property with the same dedication as our own, ensuring you can stop worrying about maintenance and start living.</p>
+                <p>Greenworks Landscaping Inc. is a full-service landscaping company committed to providing top-quality lawn care and construction services. Locally owned and operated in Georgetown, ON, we pride ourselves on delivering reliable and personalized care tailored to each property's unique needs.</p>
+                <p>From weekly mowing and specialized fertilization to heavy hardscaping, sodding, and commercial maintenance contracts, our experienced team ensures that every job is done right. We treat every property with the same dedication as our own, ensuring you can stop worrying about maintenance and start enjoying your outdoor space.</p>
             </div>
 
             <div class="story-gallery">
@@ -283,18 +426,52 @@
         </div>
     </section>
 
+    <section class="trust-section">
+        <div class="trust-container">
+            
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="openTab(event, 'tab-reliability')">Reliability</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab-equipment')">Pro Equipment</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab-commercial')">Commercial Grade</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab-guarantee')">Our Guarantee</button>
+            </div>
+
+            <div id="tab-reliability" class="tab-content active">
+                <h3><i class="fas fa-clock"></i> You Can Count on Us</h3>
+                <p>We know how frustrating it is when a lawn care company doesn't show up. At Greenworks, our schedule is our word. When we set a day for your weekly or bi-weekly service, our crew will be there. We utilize route optimization software to ensure consistent timing and communication with all our clients.</p>
+                <p>We are available for on-site quoting starting the first week of March, and we begin taking bookings for our season (April 15th to November 15th) in the first week of April.</p>
+            </div>
+
+            <div id="tab-equipment" class="tab-content">
+                <h3><i class="fas fa-tractor"></i> Maintained for Perfection</h3>
+                <p>A great cut requires a sharp blade. We run top-of-the-line commercial mowers, trimmers, and edgers. More importantly, we meticulously maintain our equipment, sharpening mower blades daily to ensure a clean cut that doesn't tear or damage your grass, promoting a healthier, greener lawn.</p>
+            </div>
+
+            <div id="tab-commercial" class="tab-content">
+                <h3><i class="fas fa-building"></i> Trusted by Businesses</h3>
+                <p>Our commitment to excellence extends beyond residential properties. Greenworks Landscaping is trusted to maintain high-traffic commercial accounts, including multiple Flying J locations across Etobicoke, Mississauga, and London. We have the manpower and the heavy-duty equipment to handle large-scale contracts reliably.</p>
+            </div>
+
+            <div id="tab-guarantee" class="tab-content">
+                <h3><i class="fas fa-shield-alt"></i> Fully Licensed & Insured</h3>
+                <p>Your property is safe in our hands. Greenworks Landscaping Inc. is fully licensed, insured, and WSIB compliant. We believe in complete transparency and building trust with our community. If you are ever unsatisfied with our service, let us know, and we will return to make it right—no questions asked.</p>
+            </div>
+
+        </div>
+    </section>
+
     <div class="stats-bar">
         <div class="stat-item">
             <h3>1000+</h3>
             <p>Projects Completed</p>
         </div>
         <div class="stat-item">
-            <h3>1000+</h3>
-            <p>Satisfied Clients</p>
+            <h3>100+</h3>
+            <p>Commercial Accounts</p>
         </div>
         <div class="stat-item">
-            <h3>30+</h3>
-            <p>Workers Employed</p>
+            <h3>5</h3>
+            <p>Years in Business</p>
         </div>
     </div>
 
@@ -302,7 +479,7 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>Our Mission</h4>
-                <p>To provide high-quality, reliable lawn care that helps our customers enjoy their homes more while we handle the hard work.</p>
+                <p>To provide high-quality, reliable lawn care and landscaping that helps our customers enjoy their properties more while we handle the hard work.</p>
             </div>
             
             <div class="footer-col">
@@ -316,14 +493,14 @@
 
             <div class="footer-col">
                 <h4>Follow Us</h4>
-                <div class="social-icons" style="font-size: 1.5rem; color: var(--primary-color);">
+                <div class="social-icons">
                     <a href="https://www.instagram.com/gnwlandscaping/" target="_blank"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
         
         <div class="copyright">
-            <p>Copyright © <span id="year"></span> | Greenworks Construction and Companies Inc. | All Rights Reserved.</p>
+            <p>Copyright © <span id="year"></span> | Greenworks Landscaping Inc. | All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -336,6 +513,34 @@
             const mobileBtn = document.querySelector(".mobile-button");
             navLinks.classList.toggle("active");
             mobileBtn.classList.toggle("active");
+        }
+
+        // Tab functionality
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            
+            // Hide all tab content
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            
+            // Remove active class from all buttons
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            
+            // Show current tab, and add active class to the button
+            document.getElementById(tabName).style.display = "block";
+            
+            // Allow a tiny delay for display block to register before adding active class for animation
+            setTimeout(() => {
+                document.getElementById(tabName).classList.add("active");
+            }, 10);
+            
+            evt.currentTarget.className += " active";
         }
     </script>
 </body>

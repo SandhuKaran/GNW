@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seeding & Aeration Services | Greenworks Landscaping</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- 1. GENERAL STYLES --- */
+        :root {
+            --primary-color: #1b5e20;
+            --accent-color: #4CAF50; 
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-light: #f4f7f6;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0; padding: 0;
+            color: var(--text-dark);
+            background-color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* --- 2. HEADER & NAVIGATION --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: #fff;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0; z-index: 1000;
+        }
+
+        .logo {
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .logo:hover { transform: scale(1.02); }
+
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent-color); }
+        
+        /* DROPDOWN MENU STYLING (Desktop) */
+        .dropdown-parent {
+            position: relative;
+            padding: 10px 0; 
+        }
+        .dropdown-parent > a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .dropdown-parent .fa-chevron-down {
+            font-size: 0.7rem;
+            transition: transform 0.3s;
+        }
+        .dropdown-parent:hover .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid #eee;
+        }
+        .dropdown-parent:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown li { margin: 0; }
+        .dropdown li a {
+            display: block;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            transition: background 0.3s, color 0.3s;
+        }
+        .dropdown li a:hover {
+            background: var(--bg-light);
+            color: var(--accent-color);
+        }
+
+        /* LOGIN BUTTON STYLING */
+        .nav-links .login-btn { color: var(--primary-color); font-weight: 600; }
+        .nav-links .login-btn:hover { color: var(--accent-color); }
+
+        /* Desktop Call Button */
+        .btn-header {
+            background-color: var(--primary-color);
+            color: #fff !important;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        .btn-header:hover { background-color: var(--accent-color); }
+
+        /* --- MOBILE CONTROLS --- */
+        .mobile-controls {
+            display: none; 
+            align-items: center;
+            gap: 12px;
+        }
+
+        .mobile-login-btn {
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .mobile-call-icon {
+            width: 40px; height: 40px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+            transition: transform 0.2s;
+        }
+        .mobile-call-icon:active { transform: scale(0.95); }
+
+        .mobile-button {
+            cursor: pointer;
+            width: 30px; height: 20px;
+            position: relative;
+            z-index: 1001;
+        }
+        .mobile-button span {
+            display: block; width: 100%; height: 3px; background-color: var(--primary-color);
+            position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease;
+        }
+        .mobile-button::before, .mobile-button::after {
+            content: ''; width: 100%; height: 3px; background-color: var(--primary-color);
+            position: absolute; transition: all 0.3s ease;
+        }
+        .mobile-button::before { top: 0; }
+        .mobile-button::after { bottom: 0; }
+        .mobile-button.active span { opacity: 0; }
+        .mobile-button.active::before { top: 50%; transform: rotate(45deg); }
+        .mobile-button.active::after { top: 50%; transform: rotate(-45deg); bottom: auto; }
+
+        /* --- 3. INNER PAGE HERO --- */
+        .page-hero {
+            position: relative;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+            background-image: url('assets/img/lawnmain.webp'); 
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed;
+            min-height: 55vh; padding: 0 5%; color: #fff;
+        }
+
+        .page-hero::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 51, 0, 0.65); /* Dark green overlay */
+        }
+
+        .hero-content { position: relative; z-index: 2; max-width: 800px; }
+        .hero-content h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 30px; opacity: 0.95; }
+
+        .hero-btn {
+            display: inline-block; padding: 15px 40px;
+            background: var(--accent-color); color: #fff;
+            font-weight: 600; text-transform: uppercase;
+            border-radius: 50px; letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.2s;
+        }
+        .hero-btn:hover { background: #388E3C; transform: translateY(-3px); }
+
+        /* --- 4. CONTENT SECTIONS --- */
+        .section-padding { padding: 80px 5%; background-color: #fff; }
+        .bg-light { background-color: var(--bg-light); }
+
+        .flex-row { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+        .flex-col { flex: 1; min-width: 300px; }
+        .flex-col img { border-radius: 15px; box-shadow: var(--card-shadow); width: 100%; height: auto; object-fit: cover; }
+
+        .section-title { 
+            font-size: 2.2rem; 
+            color: var(--primary-color); 
+            margin-top: 0; 
+            margin-bottom: 25px; 
+            font-weight: 700; 
+            line-height: 1.3; 
+        }
+        .section-desc { 
+            color: var(--text-light); 
+            margin-top: 0; 
+            margin-bottom: 35px; 
+            font-size: 1.05rem; 
+            line-height: 1.8; 
+        }
+
+        .check-list { 
+            margin-bottom: 30px; 
+            padding: 0; 
+            list-style: none;
+        }
+        .check-list li { 
+            margin-bottom: 25px; 
+            display: flex; 
+            align-items: flex-start; 
+            color: var(--text-light); 
+            font-size: 1.05rem; 
+            line-height: 1.6;
+        }
+        .check-list li i { 
+            color: var(--accent-color); 
+            margin-right: 15px; 
+            font-size: 1.3rem; 
+            margin-top: 3px; 
+            flex-shrink: 0; 
+        }
+        .check-list li strong {
+            color: var(--text-dark);
+            display: block; 
+            margin-bottom: 5px; 
+            font-size: 1.1rem;
+        }
+
+        /* --- 5. WHAT'S INCLUDED GRID --- */
+        .included-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .included-card { 
+            background: #fff; padding: 30px; border-radius: 15px; 
+            box-shadow: var(--card-shadow); text-align: left; 
+            border-left: 4px solid var(--accent-color); 
+            transition: transform 0.3s; 
+        }
+        .included-card:hover { transform: translateY(-5px); }
+        .included-card i { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 20px; display: block;}
+        .included-card h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--text-dark); }
+        .included-card p { font-size: 0.95rem; color: var(--text-light); margin: 0; line-height: 1.6; }
+
+        /* --- 6. CTA BANNER --- */
+        .cta-banner { background-color: var(--primary-color); color: #fff; text-align: center; padding: 80px 20px; }
+        .cta-banner h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .btn-white { background: #fff; color: var(--primary-color); padding: 15px 40px; border-radius: 50px; font-weight: 700; display: inline-block; margin-top: 20px; font-size: 1.1rem; transition: transform 0.2s; }
+        .btn-white:hover { transform: scale(1.05); }
+
+        /* --- 7. FOOTER --- */
+        footer { background: #f9f9f9; padding: 60px 5% 20px; color: var(--text-dark); border-top: 1px solid #eee; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { color: var(--primary-color); margin-bottom: 20px; font-size: 1.1rem; }
+        .footer-col ul li { margin-bottom: 10px; color: var(--text-light); }
+        .footer-col ul li i { color: var(--accent-color); margin-right: 10px; }
+        .social-icons a { font-size: 1.5rem; color: var(--primary-color); margin-right: 15px; transition: color 0.3s; }
+        .social-icons a:hover { color: var(--accent-color); }
+        .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            header { padding: 10px 5%; }
+            .logo img { height: 35px !important; }
+
+            .mobile-controls { display: flex; gap: 8px; }
+            .mobile-login-btn { padding: 6px 10px; font-size: 0.75rem; border: 1px solid var(--accent-color); }
+            .mobile-call-icon { width: 32px; height: 32px; font-size: 1rem; }
+
+            .btn-header.desktop-only { display: none; }
+
+            .nav-links {
+                display: none;
+                position: absolute; top: 60px; left: 0; width: 100%;
+                background-color: #fff;
+                flex-direction: column; align-items: center;
+                padding: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                border-top: 1px solid #eee;
+            }
+
+            .nav-links.active { display: flex; }
+            .nav-links li { margin: 10px 0; width: 100%; text-align: center; }
+            
+            /* Mobile Dropdown Overrides */
+            .dropdown-parent .fa-chevron-down { display: none; }
+            .dropdown {
+                position: static;
+                opacity: 1; visibility: visible; transform: none;
+                box-shadow: none; border: none; background: #f9f9f9;
+                margin-top: 10px; border-radius: 0; width: 100%; padding: 10px 0;
+            }
+            .dropdown li a { padding: 8px 0; color: var(--text-light); }
+            .desktop-login-link { display: none; }
+            
+            .hero-content h1 { font-size: 2.5rem; }
+            .flex-row { flex-direction: column; text-align: left; } 
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/img/logo-light.png" alt="Greenworks Logo" style="height: 45px; width: auto; filter: none;"> 
+            </a>
+        </div>
+        
+        <div class="mobile-controls">
+            <a href="https://www.trackmylawn.com/login" target="_blank" class="mobile-login-btn">
+                <i class="fas fa-user-circle"></i> Login
+            </a>
+            <a href="tel:+17055009000" class="mobile-call-icon">
+                <i class="fas fa-phone"></i>
+            </a>
+            <div class="mobile-button" onclick="toggleMenu()">
+                <span></span>
+            </div>
+        </div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            
+            <li class="dropdown-parent">
+                <a href="services.html" style="color: var(--accent-color);">Services <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="lawn-mowing.html">Lawn Mowing</a></li>
+                    <li><a href="gardening.html">Gardening Services</a></li>
+                    <li><a href="weed-control.html">Weed Control</a></li>
+                    <li><a href="fertilizing.html">Fertilizing</a></li>
+                    <li><a href="aeration.html" style="color: var(--accent-color); font-weight: 600;">Seeding & Aeration</a></li>
+                    <li><a href="seasonal-cleanup.html">Seasonal Cleanup</a></li>
+                    <li><a href="tree-care.html">Tree & Shrub Care</a></li>
+                    <li><a href="mulch.html">Mulch Installation</a></li>
+                </ul>
+            </li>
+
+            <li><a href="lawn-portfolio.html">Portfolio</a></li>
+            <li><a href="pricing.html">Pricing Plans</a></li>
+            <li><a href="about2.html">About Us</a></li>
+            <li><a href="contact2.html">Contact</a></li>
+            <li class="desktop-login-link"><a href="https://www.trackmylawn.com/login" target="_blank" class="login-btn"><i class="fas fa-user-circle"></i> Client Login</a></li>
+        </ul>
+        
+        <a href="tel:+17055009000" class="btn-header desktop-only">Call 705-500-9000</a>
+    </header>
+
+    <section class="page-hero">
+        <div class="hero-content">
+            <h1>Professional Aeration & Overseeding</h1>
+            <p>Breathe life back into your lawn. Relieve soil compaction and promote thick, healthy grass growth.</p>
+            <a href="contact2.html?service=aeration" class="hero-btn">Get a Free Quote</a>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="flex-row">
+            <div class="flex-col">
+                <h2 class="section-title">Breathe New Life Into Your Lawn</h2>
+                <p class="section-desc">Over time, foot traffic, heavy mowers, and natural settling cause your soil to become compacted. This dense soil literally chokes your grass roots, preventing oxygen, water, and essential nutrients from penetrating the surface. Core aeration combined with overseeding is the proven secret to restoring a thick, resilient, and deeply rooted lawn.</p>
+                
+                <ul class="check-list">
+                    <li>
+                        <i class="fas fa-check-circle"></i> 
+                        <div>
+                            <strong>Relieve Soil Compaction</strong>
+                            We pull small, precise plugs of soil to let your lawn breathe, instantly improving water and nutrient absorption.
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i> 
+                        <div>
+                            <strong>Thicker, Denser Grass</strong>
+                            By overseeding right after aerating, we introduce new, high-quality grass varieties to fill in bare patches and crowd out weeds naturally.
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i> 
+                        <div>
+                            <strong>Enhanced Root Growth</strong>
+                            Aeration gives roots the physical space they need to grow deeper and stronger, making your lawn much more drought-resistant in the summer.
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i> 
+                        <div>
+                            <strong>Reduce Thatch Buildup</strong>
+                            Breaking up the soil surface helps decompose excessive thatch naturally, preventing diseases and insect infestations.
+                        </div>
+                    </li>
+                </ul>
+                
+                <a href="pricing.html?service=aeration" class="btn-header" style="text-decoration:none; display: inline-block; margin-top: 10px;">View Pricing Plans</a>
+            </div>
+            <div class="flex-col">
+                <img src="assets/img/lawn_gallery/23.webp" alt="Professional Lawn Aeration and Seeding">
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-light text-center">
+        <h2 class="section-title" style="text-align: center;">Our Aeration & Seeding Process</h2>
+        <p class="section-desc" style="text-align: center; max-width: 700px; margin: 0 auto; margin-bottom: 35px;">We use commercial-grade equipment and premium seed to ensure maximum germination and long-lasting growth.</p>
+        
+        <div class="included-grid">
+            <div class="included-card">
+                <i class="fas fa-wind"></i>
+                <h3>Core Aeration</h3>
+                <p>We make thorough passes with heavy-duty aerators to pull soil cores out of the ground. These plugs are left on the lawn to naturally break down and return nutrients to the soil.</p>
+            </div>
+            
+            <div class="included-card">
+                <i class="fas fa-seedling"></i>
+                <h3>Premium Overseeding</h3>
+                <p>While the aeration holes are fresh, we broadcast a custom blend of premium, disease-resistant grass seed that is specifically chosen to thrive in the Ontario climate.</p>
+            </div>
+            
+            <div class="included-card">
+                <i class="fas fa-leaf"></i>
+                <h3>Bare Spot Repair</h3>
+                <p>High-traffic areas, dog spots, and entirely bare patches receive extra attention and a specialized seed-and-soil mixture to guarantee fast, even new growth.</p>
+            </div>
+            
+            <div class="included-card">
+                <i class="fas fa-flask"></i>
+                <h3>Starter Fertilizer</h3>
+                <p>To give your new seeds the absolute best chance of survival, we can apply a specialized starter fertilizer rich in phosphorus to encourage rapid, deep root development.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <h2>Ready for a thicker, greener lawn?</h2>
+        <p>Spring and Fall are the perfect times to aerate and seed. Book your service today!</p>
+        <a href="contact2.html?service=aeration" class="btn-white">Get Your Free Estimate</a>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>About Us</h4>
+                <p>Greenworks Landscaping is committed to providing top-quality lawn care services. Locally owned and operated, we make your lawn our passion.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Georgetown, ON, CA</li>
+                    <li><i class="fas fa-phone"></i> <a href="tel:+17055009000">+1 705-500-9000</a></li>
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:info@gnwlandscaping.ca">info@gnwlandscaping.ca</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/gnwlandscaping/" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>Copyright © <span id="year"></span> | Greenworks Landscaping Inc. | All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById("navLinks");
+            const mobileBtn = document.querySelector(".mobile-button");
+            
+            navLinks.classList.toggle("active");
+            mobileBtn.classList.toggle("active");
+        }
+    </script>
+</body>
+</html>
