@@ -1113,7 +1113,20 @@ footer h3 {
     }
 
     .review-arrow {
-        display: none !important;
+        display: flex !important;
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .review-arrow-left {
+        left: 0;
+    }
+
+    .review-arrow-right {
+        right: 0;
     }
 }
 
@@ -1174,6 +1187,14 @@ footer h3 {
     scroll-snap-type: none !important;
 }
 
+@media (max-width: 991px) {
+    .reviews-track-wrapper {
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        padding: 30px 20px !important;
+    }
+}
+
 .reviews-track {
     display: flex !important;
     gap: 0 !important;
@@ -1214,10 +1235,15 @@ footer h3 {
 }
 
 @media (max-width: 600px) {
+    .reviews-track {
+        gap: 30px !important;
+    }
+
     .review-card {
         /* Mobile (1 card) */
-        flex: 0 0 calc(100% - 30px) !important;
-        max-width: calc(100% - 30px) !important;
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
     }
 }
 

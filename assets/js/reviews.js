@@ -149,4 +149,10 @@
         });
     }
 
+    // Stop autoplay on touch (mobile swipe)
+    wrapper.addEventListener('touchstart', () => {
+        hasManuallyInteracted = true;
+        stopAutoPlay();
+    }, { passive: true });
+
 })();
