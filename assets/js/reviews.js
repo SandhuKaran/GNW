@@ -73,7 +73,7 @@
     function startAutoPlay() {
         if (hasManuallyInteracted) return;
         stopAutoPlay();
-        autoPlayInterval = setInterval(autoSlide, 6000); // 6 seconds
+        autoPlayInterval = setInterval(autoSlide, 15000); // 6 seconds
     }
 
     function stopAutoPlay() {
