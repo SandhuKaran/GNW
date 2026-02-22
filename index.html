@@ -248,11 +248,14 @@
     }
 
     .mobile-button {
+      display: block;
       cursor: pointer;
       width: 30px;
       height: 20px;
       position: relative;
       z-index: 1001;
+      margin: 0;
+      /* override style.css */
     }
 
     .mobile-button span {
@@ -264,6 +267,8 @@
       top: 50%;
       transform: translateY(-50%);
       transition: all 0.3s ease;
+      margin: 0;
+      /* override style.css */
     }
 
     .mobile-button::before,
@@ -274,6 +279,8 @@
       background-color: var(--primary-color);
       position: absolute;
       transition: all 0.3s ease;
+      transform: none;
+      /* override style.css */
     }
 
     .mobile-button::before {
@@ -282,6 +289,8 @@
 
     .mobile-button::after {
       bottom: 0;
+      top: auto;
+      /* override style.css */
     }
 
     .mobile-button.active span {
@@ -1188,69 +1197,15 @@
   <script src="assets/js/main.js"></script>
   <script>
     // ===== Custom Mobile Menu Handler =====
-    // main.js sometimes doesn't create #main-nav-mobi properly.
-    // This ensures the mobile menu always works.
-    (function () {
-      function initMobileMenu() {
-        var mobileBtn = document.querySelector('.mobile-button');
-        var mainNav = document.getElementById('main-nav');
-        if (!mobileBtn || !mainNav) return;
+    function toggleMenu() {
+      const navLinks = document.getElementById("navLinks");
+      const mobileBtn = document.querySelector(".mobile-button");
+      navLinks.classList.toggle("active");
+      mobileBtn.classList.toggle("active");
 
-        // Check if main.js already created #main-nav-mobi
-        var mobiNav = document.getElementById('main-nav-mobi');
-        if (mobiNav) return; // main.js handled it
-
-        // Only create on mobile
-        if (window.innerWidth > 991) return;
-
-        // Create mobile menu
-        var mobileMenu = document.createElement('div');
-        mobileMenu.id = 'gnw-mobile-menu';
-        mobileMenu.style.cssText = 'display:none; position:absolute; left:0; top:100%; width:100%; background:#262626; z-index:99999; box-shadow:0 4px 15px rgba(0,0,0,0.2);';
-
-        // Clone nav links
-        var links = mainNav.querySelectorAll('.menu > li');
-        var ul = document.createElement('ul');
-        ul.style.cssText = 'list-style:none; margin:0; padding:0;';
-
-        links.forEach(function (li) {
-          var a = li.querySelector('a');
-          if (a) {
-            var newLi = document.createElement('li');
-            newLi.style.cssText = 'border-top:1px solid #333; text-align:center;';
-            var newA = document.createElement('a');
-            newA.href = a.href;
-            newA.textContent = a.textContent;
-            newA.style.cssText = 'display:block; padding:15px 20px; color:#ccc; text-decoration:none; font-size:14px; font-weight:500; text-transform:uppercase; font-family:Montserrat,sans-serif;';
-            newLi.appendChild(newA);
-            ul.appendChild(newLi);
-          }
-        });
-
-        mobileMenu.appendChild(ul);
-        document.getElementById('site-header').appendChild(mobileMenu);
-
-        // Toggle on hamburger click
-        mobileBtn.addEventListener('click', function (e) {
-          e.stopPropagation();
-          mobileBtn.classList.toggle('active');
-          if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
-            mobileMenu.style.display = 'block';
-          } else {
-            mobileMenu.style.display = 'none';
-          }
-        });
-      }
-
-      // Run after everything is loaded
-      if (document.readyState === 'complete') {
-        setTimeout(initMobileMenu, 200);
-      } else {
-        window.addEventListener('load', function () {
-          setTimeout(initMobileMenu, 200);
-        });
-      }
-    })();
+      // Toggle the no-scroll class on the body to lock background scrolling
+      document.body.classList.toggle("no-scroll");
+    }
 
     // ===== Hero Slideshow =====
     (function () {
