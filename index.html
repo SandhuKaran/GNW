@@ -9,18 +9,14 @@
   <meta name="description" content="GNW Landscaping - Top Landscaping and Lawn Care Services in Georgetown" />
   <title>GNW | Home</title>
 
-  <!-- Favicon -->
   <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
 
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="new.css" />
   <link rel="stylesheet" href="style2.css" />
 
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Q18BHV3W5"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -329,6 +325,96 @@
       margin: 0 auto;
     }
 
+    /* --- AI REVIEWS SUMMARY (NEW) --- */
+    .reviews-section {
+      position: relative;
+      z-index: 10;
+    }
+
+    .ai-summary-container {
+      position: relative;
+      margin-top: -100px; /* Pulls it up to float over the hero edge */
+      z-index: 20;
+      padding: 0 5%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px; /* Space before the sliding reviews */
+    }
+
+    .ai-summary {
+      max-width: 650px;
+      width: 100%;
+      background: linear-gradient(180deg, #ffffff 0%, #fff0f5 100%);
+      padding: 25px 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+      border: 1px solid #eee;
+      text-align: left;
+    }
+
+    .ai-top-row {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .ai-icon-box {
+      margin-right: 12px;
+      margin-top: 2px;
+    }
+
+    .ai-sparkle {
+      font-size: 1.2rem;
+      background: linear-gradient(135deg, #4285f4, #9b72cb, #d96570, #f49c0e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .ai-titles h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #202124;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .ai-titles span {
+      font-size: 0.85rem;
+      color: #70757a;
+      display: block;
+    }
+
+    .ai-google-logo {
+      margin-left: auto;
+      width: 22px;
+      height: 22px;
+      opacity: 0.8;
+    }
+
+    .ai-content {
+      font-size: 0.95rem;
+      color: #3c4043;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .ai-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .ai-tag {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      color: var(--primary-color);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
     /* --- 4. STORY SECTION --- */
     .story-section {
       padding: 100px 5%;
@@ -572,6 +658,31 @@
         display: none;
       }
 
+      /* AI Box mobile spacing */
+      .ai-summary-container {
+        margin-top: -60px; /* Less overlap on smaller screens */
+      }
+
+      /* Stack hero buttons vertically */
+      .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+        padding: 0 20px;
+      }
+
+      .hero-btn,
+      .hero-buttons a {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 !important;
+        text-align: center;
+        display: block;
+        box-sizing: border-box;
+      }
+
       /* SCROLLABLE MOBILE MENU */
       .nav-links {
         display: none;
@@ -718,7 +829,6 @@
   </header>
 
 
-  <!-- Hero Section -->
   <section class="hero-section">
     <video autoplay loop muted playsinline class="hero-video" preload="metadata">
       <source src="assets/videos/hero-mobile-optimized.mp4" type="video/mp4" media="(max-width: 768px)">
@@ -748,14 +858,32 @@
     </div>
   </section>
 
-  <!-- Reviews Section -->
   <section class="reviews-section">
+    
+    <div class="ai-summary-container">
+      <div class="ai-summary">
+        <div class="ai-top-row">
+          <div class="ai-icon-box"><i class="fas fa-magic ai-sparkle"></i></div>
+          <div class="ai-titles">
+            <h3>Reviews summary</h3>
+            <span>Based on 40 reviews</span>
+          </div>
+          <img src="google-svgrepo-com.svg" alt="Google" class="ai-google-logo">
+        </div>
+        <p class="ai-content">Greenworks Landscaping is highly recommended for their professionalism, punctuality, and detailed craftsmanship. Clients frequently mention excellent communication, fair pricing, and stunning transformations of driveways, patios, and backyards.</p>
+        <div class="ai-tags">
+          <span class="ai-tag"><i class="fas fa-check"></i> Highly Recommended</span>
+          <span class="ai-tag"><i class="fas fa-check"></i> Professional Crew</span>
+          <span class="ai-tag"><i class="fas fa-check"></i> Quality Finish</span>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
       <div class="reviews-carousel">
         <button class="review-arrow review-arrow-left" aria-label="Previous reviews">‹</button>
         <div class="reviews-track-wrapper">
           <div class="reviews-track">
-            <!-- Review 1 -->
             <div class="review-card">
               <div class="review-avatar">
                 <img src="review/Kendra.png" alt="Kendra Chow" class="avatar-img" />
@@ -785,7 +913,6 @@
               </p>
               <a href="#" class="read-more">Read more</a>
             </div>
-            <!-- Review 2 -->
             <div class="review-card">
               <div class="review-avatar">
                 <img src="review/lori.png" alt="Lori" class="avatar-img" />
@@ -824,7 +951,6 @@
                 Thanks again!!!!</p>
               <a href="#" class="read-more">Read more</a>
             </div>
-            <!-- Review 3 -->
             <div class="review-card">
               <div class="review-avatar">
                 <img src="review/tina.png" alt="Tina vitale" class="avatar-img" />
@@ -837,7 +963,6 @@
                 the team to call. Highly recommend. Thank you for being honest and hardworking.</p>
               <a href="#" class="read-more">Read more</a>
             </div>
-            <!-- Review 4 -->
             <div class="review-card">
               <div class="review-avatar">
                 <img src="review/stephny.png" alt="Stephy Gutti" class="avatar-img" />
@@ -854,7 +979,6 @@
                 quality landscaping work!</p>
               <a href="#" class="read-more">Read more</a>
             </div>
-            <!-- Review 5 -->
             <div class="review-card">
               <div class="review-avatar">
                 <img src="review/carla.png" alt="Carla Campbell" class="avatar-img" />
@@ -869,7 +993,6 @@
                 your hardscaping needs. Thank you Manee and team!</p>
               <a href="#" class="read-more">Read more</a>
             </div>
-            <!-- Review 6 -->
             <div class="review-card">
               <div class="review-avatar">
                 <img src="review/javier.png" alt="Javier Maldonado" class="avatar-img" />
@@ -884,7 +1007,6 @@
                 Happy with the whole job. 100% recommended.</p>
               <a href="#" class="read-more">Read more</a>
             </div>
-            <!-- Review 7 -->
             <div class="review-card">
               <div class="review-avatar">
                 <img src="review/paul.png" alt="Paul Onisoru" class="avatar-img" />
@@ -898,7 +1020,6 @@
                 good work. Thank you so much again.</p>
               <a href="#" class="read-more">Read more</a>
             </div>
-            <!-- Review 8 -->
             <div class="review-card">
               <div class="review-avatar">
                 <img src="review/barry.png" alt="Barry Olson" class="avatar-img" />
@@ -911,7 +1032,6 @@
                 site perfectly. Fair prices and quality work!!</p>
               <a href="#" class="read-more">Read more</a>
             </div>
-            <!-- Review 9 -->
             <div class="review-card">
               <div class="review-avatar">
                 <img src="review/simon.png" alt="Simon Hoac" class="avatar-img" />
@@ -924,7 +1044,6 @@
                 hiring Greenworks in the future.</p>
               <a href="#" class="read-more">Read more</a>
             </div>
-            <!-- Review 10 -->
             <div class="review-card">
               <div class="review-avatar">
                 <img src="review/deborah.png" alt="Deborah Brander" class="avatar-img" />
@@ -943,14 +1062,12 @@
     </div>
   </section>
 
-  <!-- Gallery Section - Horizontal Scroll -->
   <section class="gallery-section">
     <div class="container">
       <h2 class="section-title">Turning Ideas into Outdoor Living Spaces</h2>
     </div>
     <div class="gallery-scroll-container">
       <div class="gallery-scroll-track">
-        <!-- First set of images -->
         <div class="gallery-item">
           <img src="assets/img/land-gallery/1.webp" alt="Landscaping Project" />
         </div>
@@ -975,7 +1092,6 @@
         <div class="gallery-item">
           <img src="assets/img/land-gallery/8.webp" alt="Landscaping Project" />
         </div>
-        <!-- Duplicate set for seamless loop -->
         <div class="gallery-item">
           <img src="assets/img/land-gallery/1.webp" alt="Landscaping Project" />
         </div>
@@ -1007,8 +1123,6 @@
     </div>
   </section>
 
-  <!-- Why Choose Us Section -->
-  <!-- Why Choose Us Section -->
   <section class="info-section why-choose-us">
     <div class="container">
       <h2 style="text-align: center;">WHY CHOOSE US?</h2>
@@ -1020,8 +1134,8 @@
             <h3 class="toggle-title">⁠Locally Owned & Operated</h3>
             <div class="toggle-content">
               We are a proud, locally-owned business rooted right here in the community.
-              Living and working in the area means we understand the specific needs of local properties,
-              from soil conditions to the challenges of the Canadian freeze-thaw cycle.
+              Living and working in the area means we understand the specific needs of local properties, 
+              from soil conditions to the challenges of the Canadian freeze-thaw cycle. 
               When you call us, you aren’t speaking to a call center; you are speaking to
               a neighbor who cares about the reputation we build on every street.
               We take pride in beautifying our own hometown, one project at a time.
@@ -1032,9 +1146,9 @@
             <h3 class="toggle-title">Consistent & Reliable</h3>
             <div class="toggle-content">
               At Greenworks, "reliable" isn't just a buzzword, it's our baseline.
-              We show up when we say we will, we provide clear timelines,
+              We show up when we say we will, we provide clear timelines, 
               and we keep you informed at every stage of the project.
-              From the initial quote to the final sweep-up, you can count on us to be responsive,
+              From the initial quote to the final sweep-up, you can count on us to be responsive, 
               transparent, and dedicated to finishing your project on schedule.
             </div>
           </div>
@@ -1042,11 +1156,11 @@
           <div class="gnw-toggle">
             <h3 class="toggle-title">Fair Prices, Great Value</h3>
             <div class="toggle-content">
-              We believe in honest, competitive pricing without hidden fees.
+              We believe in honest, competitive pricing without hidden fees. 
               While we may not always be the "cheapest" bid you receive,
               but we promise to deliver the best value. In hardscaping and landscaping,
-              a low price often comes at the cost of poor quality or materials that fails after a few years.
-              We price our jobs to ensure they are done right the first time,
+              a low price often comes at the cost of poor quality or materials that fails after a few years. 
+              We price our jobs to ensure they are done right the first time, 
               using high-quality materials and proven installation techniques that stand the test of time.
             </div>
           </div>
@@ -1054,7 +1168,7 @@
           <div class="gnw-toggle">
             <h3 class="toggle-title">Your Neighbors Trust Us</h3>
             <div class="toggle-content">
-              Our business has grown primarily through the strongest form of marketing there is: word of mouth.
+              Our business has grown primarily through the strongest form of marketing there is: word of mouth. 
               We have built a reputation for integrity and quality craftsmanship across the region.
               We don't just want to build a patio or mow a lawn; we want to build a relationship
               so that you feel confident recommending us to your friends and family.
@@ -1066,8 +1180,8 @@
             <h3 class="toggle-title">Professional Crew & Gear</h3>
             <div class="toggle-content">
               We believe that professional results require professional inputs.
-              Our crew is uniformed, trained, and respectful of your property and privacy.
-              We invest heavily in modern, commercial-grade equipments to ensure efficient work and superior results.
+              Our crew is uniformed, trained, and respectful of your property and privacy. 
+              We invest heavily in modern, commercial-grade equipments to ensure efficient work and superior results. 
               We maintain a clean, safe job site and treat your home with the same care we would treat our own.
               No cut corners, just quality craftsmanship backed by the right tools.
             </div>
@@ -1077,7 +1191,6 @@
     </div>
   </section>
 
-  <!-- About Us Section -->
   <section class="info-section about-us-section" style="background-color: #f9f9f9; padding-top: 60px;">
     <div class="container">
       <div class="row">
@@ -1109,7 +1222,6 @@
     </div>
   </section>
 
-  <!-- Instagram Section -->
   <section class="instagram-section">
     <div class="container">
       <h2 class="section-title">Follow us on Instagram</h2>
@@ -1135,7 +1247,6 @@
 
 
 
-  <!-- Footer -->
   <footer id="footer">
     <div class="container">
       <div class="row">
@@ -1192,7 +1303,6 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="assets/js/main.js"></script>
   <script>

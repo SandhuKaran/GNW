@@ -172,7 +172,7 @@
         .slide-1 { background-image: url('assets/img/landscape-designs/1.webp'); z-index: 1; }
         .slide-2 { background-image: url('assets/img/landmain2.webp'); z-index: 2; animation: crossfade 12s infinite; opacity: 0; }
         
-        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.35); z-index: 3; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.55); z-index: 3; }
 
         @keyframes crossfade { 0% { opacity: 0; } 10% { opacity: 1; } 50% { opacity: 1; } 60% { opacity: 0; } 100% { opacity: 0; } }
 
@@ -225,46 +225,10 @@
 
         /* --- 4. REVIEWS SECTION --- */
         .reviews-section {
-            margin-top: -160px; padding-bottom: 60px;
+            margin-top: -120px; /* Pulls the reviews up over the hero */
+            padding-bottom: 60px;
             position: relative; z-index: 10; width: 100%; overflow: hidden;
         }
-
-        /* --- AI SUMMARY TAB --- */
-        .ai-summary {
-            max-width: 550px; 
-            margin: 0 auto 30px;
-            background: linear-gradient(180deg, #ffffff 0%, #fff0f5 100%);
-            padding: 20px 25px; 
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            border: 1px solid #eee; 
-            text-align: left;
-            position: relative;
-        }
-        
-        .ai-top-row {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 12px;
-        }
-
-        .ai-icon-box { margin-right: 12px; margin-top: 2px; }
-        .ai-sparkle {
-            font-size: 1.2rem;
-            background: linear-gradient(135deg, #4285f4, #9b72cb, #d96570, #f49c0e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .ai-titles h3 { font-size: 1rem; font-weight: 600; color: #202124; margin: 0; line-height: 1.2; }
-        .ai-titles span { font-size: 0.8rem; color: #70757a; display: block; }
-
-        .ai-google-logo { margin-left: auto; width: 20px; height: 20px; opacity: 0.8; }
-
-        .ai-content { font-size: 0.9rem; color: #3c4043; line-height: 1.5; margin: 0; }
-        
-        .ai-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 15px; }
-        .ai-tag { background: #fff; border: 1px solid #e0e0e0; color: var(--primary-color); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
 
         /* SCROLLABLE TRACK */
         .marquee-wrapper { width: 100%; overflow-x: auto; overflow-y: hidden; cursor: grab; scrollbar-width: none; }
@@ -276,7 +240,7 @@
         /* REVIEWS CARDS */
         .google-card {
             width: 340px; background: #f4f7f6; padding: 25px;
-            border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.15);
             border: 1px solid #e0e0e0; flex-shrink: 0; white-space: normal;
         }
         .g-header { display: flex; align-items: center; margin-bottom: 15px; }
@@ -286,7 +250,7 @@
         .g-info span { font-size: 0.75rem; color: #777; }
         
         .g-stars { color: #f5c518; font-size: 0.85rem; margin-bottom: 10px; }
-        .g-text { font-size: 0.9rem; color: #555; line-height: 1.5; font-style: italic; }
+        .g-text { font-size: 0.9rem; color: #555; line-height: 1.5; font-style: italic; margin: 0; }
 
         /* --- 5. SERVICES GRID (NRX Style) --- */
         .section-padding { padding: 80px 5%; background-color: #fff; text-align: center; }
@@ -422,9 +386,8 @@
             .hero-slide { background-attachment: scroll; } 
             .hero h1 { font-size: 2.5rem; }
             
-            .reviews-section { margin-top: -60px; padding-bottom: 20px; }
+            .reviews-section { margin-top: -80px; padding-bottom: 20px; }
             .section-padding { padding-top: 40px; }
-            .ai-summary { margin: 0 20px 30px; }
             .google-card { width: 300px; }
             .sticky-estimate { bottom: 20px; right: 20px; padding: 10px 20px; }
             .sticky-text strong { font-size: 0.9rem; }
@@ -457,7 +420,7 @@
             <li><a href="index.html">Home</a></li>
             
             <li class="dropdown-parent">
-                <a href="landmain.html" style="color: var(--accent-color);" onclick="toggleDropdown(event)">Services <i class="fas fa-chevron-down"></i></a>
+                <a href="construction-services.html" style="color: var(--accent-color);" onclick="toggleDropdown(event)">Services <i class="fas fa-chevron-down"></i></a>
                 <ul class="dropdown" id="servicesDropdown">
                     <li class="mobile-only-link"><a href="landmain.html">View All Construction &rarr;</a></li>
                     <li><a href="landscape-designs.html">Landscape Designs</a></li>
@@ -493,24 +456,6 @@
     </section>
 
     <section class="reviews-section">
-        
-        <div class="ai-summary">
-            <div class="ai-top-row">
-                <div class="ai-icon-box"><i class="fas fa-magic ai-sparkle"></i></div>
-                <div class="ai-titles">
-                    <h3>Reviews summary</h3>
-                    <span>Based on 40 reviews</span>
-                </div>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="ai-google-logo" alt="Google">
-            </div>
-            <p class="ai-content">Greenworks Landscaping is highly recommended for their professionalism, punctuality, and detailed craftsmanship. Clients frequently mention excellent communication, fair pricing, and stunning transformations of driveways, patios, and backyards.</p>
-            <div class="ai-tags">
-                <span class="ai-tag"><i class="fas fa-check"></i> Highly Recommended</span>
-                <span class="ai-tag"><i class="fas fa-check"></i> Professional Crew</span>
-                <span class="ai-tag"><i class="fas fa-check"></i> Quality Finish</span>
-            </div>
-        </div>
-
         <div class="marquee-wrapper">
             <div class="marquee-track">
                 

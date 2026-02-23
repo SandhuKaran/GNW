@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="GNW Landscaping" />
+    <meta name="description" content="Greenworks Landscaping - Premium Hardscaping & Construction Services in Georgetown." />
+    <title>Construction Services | Greenworks Landscaping</title>
+
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="new.css" />
+    <link rel="stylesheet" href="style2.css" />
+
+    <style>
+        /* --- 1. GENERAL STYLES --- */
+        :root {
+            --primary-color: #1b5e20;
+            --accent-color: #4CAF50; 
+            --text-dark: #222;
+            --text-light: #666;
+            --bg-light: #f9f9f9;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        body.no-scroll { overflow: hidden; }
+        .mobile-only-link { display: none !important; }
+
+        /* --- 2. ISOLATED HEADER STYLES --- */
+        .master-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: #fff; margin: 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky; top: 0; z-index: 10000;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .master-logo { border-radius: 10px; overflow: hidden; transition: transform 0.3s; display: flex; align-items: center; text-decoration: none;}
+        .master-logo:hover { transform: scale(1.02); }
+        .master-logo img { height: 45px; width: auto; display: block; margin: 0; padding: 0; }
+
+        .master-nav { display: flex; gap: 25px; align-items: center; margin: 0; padding: 0; list-style: none; }
+        .master-nav li { margin: 0; padding: 0; list-style: none;}
+        .master-nav a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); transition: color 0.3s; text-decoration: none; display: inline-block; }
+        .master-nav a:hover { color: var(--accent-color); }
+        
+        /* CUSTOM DROPDOWN */
+        .has-sub-menu { position: relative; padding: 10px 0; }
+        .has-sub-menu > a { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+        .has-sub-menu .fa-chevron-down { font-size: 0.75rem; transition: transform 0.3s; display: inline-block !important; }
+        .has-sub-menu:hover .fa-chevron-down { transform: rotate(180deg); }
+        
+        .sub-menu-drop {
+            position: absolute; top: 100%; left: 0; background: #fff;
+            min-width: 240px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px; padding: 10px 0; opacity: 0; visibility: hidden;
+            transform: translateY(15px); transition: all 0.3s ease;
+            z-index: 1000; border: 1px solid #eee; list-style: none; margin: 0;
+        }
+        .has-sub-menu:hover .sub-menu-drop { opacity: 1; visibility: visible; transform: translateY(0); }
+        .sub-menu-drop li { margin: 0; padding: 0; }
+        .sub-menu-drop li a {
+            display: block; padding: 10px 20px; font-size: 0.9rem;
+            color: var(--text-dark); transition: background 0.3s, color 0.3s; text-align: left;
+        }
+        .sub-menu-drop li a:hover { background: var(--bg-light); color: var(--accent-color); }
+
+        .master-login-btn { color: var(--primary-color) !important; font-weight: 600 !important; }
+        .master-login-btn:hover { color: var(--accent-color) !important; }
+
+        .master-btn-header {
+            background-color: var(--primary-color) !important; color: #fff !important;
+            padding: 10px 25px !important; border-radius: 50px !important; 
+            font-weight: 600 !important; font-size: 0.9rem !important;
+            transition: background 0.3s !important; text-decoration: none !important;
+            display: inline-block; line-height: 1.5;
+        }
+        .master-btn-header:hover { background-color: var(--accent-color) !important; }
+
+        /* Mobile Controls */
+        .mobile-controls { display: none; align-items: center; gap: 12px; }
+        .mobile-login-btn {
+            background-color: var(--bg-light); color: var(--primary-color);
+            padding: 8px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600;
+            display: flex; align-items: center; gap: 5px; border: 1px solid #ddd; text-decoration: none;
+        }
+        .mobile-call-icon {
+            width: 40px; height: 40px; background-color: var(--accent-color); color: white;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); transition: transform 0.2s; text-decoration: none;
+        }
+        .mobile-call-icon:active { transform: scale(0.95); }
+        .mobile-button { cursor: pointer; width: 30px; height: 20px; position: relative; z-index: 1001; }
+        .mobile-button span { display: block; width: 100%; height: 3px; background-color: var(--primary-color); position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease; }
+        .mobile-button::before, .mobile-button::after { content: ''; width: 100%; height: 3px; background-color: var(--primary-color); position: absolute; transition: all 0.3s ease; }
+        .mobile-button::before { top: 0; }
+        .mobile-button::after { bottom: 0; }
+        .mobile-button.active span { opacity: 0; }
+        .mobile-button.active::before { top: 50%; transform: rotate(45deg); }
+        .mobile-button.active::after { top: 50%; transform: rotate(-45deg); bottom: auto; }
+
+        /* --- 3. PAGE HERO --- */
+        .page-hero {
+            position: relative; display: flex; align-items: center; justify-content: center; text-align: center;
+            height: 60vh; padding: 0 5%; color: #fff; font-family: 'Poppins', sans-serif;
+            background-image: url('assets/img/landmain2.webp'); /* Update image path as needed */
+            background-size: cover; background-position: center;
+        }
+        .page-hero::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6); z-index: 0;
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 800px; }
+        .hero-content h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; color: #fff; }
+        .hero-content p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 30px; color: #fff; }
+
+        /* --- 4. SERVICES GRID --- */
+        .section-padding { padding: 80px 5%; background-color: #fff; text-align: center; font-family: 'Poppins', sans-serif; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 15px; text-transform: uppercase; font-weight: 700; }
+        .section-title h2::after { content: ''; display: block; width: 60px; height: 3px; background: var(--accent-color); margin: 10px auto 0; }
+        .section-title p { color: var(--text-light); max-width: 600px; margin: 0 auto; font-size: 1.05rem;}
+
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+
+        .service-card {
+            display: block; position: relative; height: 400px; border-radius: 12px; overflow: hidden;
+            box-shadow: var(--card-shadow); cursor: pointer; text-align: left; text-decoration: none;
+        }
+        .service-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .service-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 75%;
+            background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.4), transparent); z-index: 1;
+        }
+        .service-info {
+            position: absolute; bottom: 0; left: 0; padding: 30px; z-index: 2; width: 100%;
+            transform: translateY(15px); transition: transform 0.3s;
+        }
+        .service-card:hover img { transform: scale(1.08); }
+        .service-card:hover .service-info { transform: translateY(0); }
+        .service-info h3 { color: #fff; font-size: 1.5rem; margin-bottom: 10px; font-weight: 600; text-transform: uppercase; border-bottom: 3px solid var(--accent-color); display: inline-block; padding-bottom: 5px; }
+        .service-info p { color: #ddd; font-size: 0.95rem; line-height: 1.5; margin: 0; }
+
+        /* --- 5. CTA BANNER --- */
+        .cta-banner { background-color: var(--primary-color); color: #fff; text-align: center; padding: 80px 20px; font-family: 'Poppins', sans-serif;}
+        .cta-banner h2 { font-size: 2.5rem; margin-bottom: 20px; color: #fff; }
+        .btn-white { background: #fff; color: var(--primary-color); padding: 15px 40px; border-radius: 50px; font-weight: 700; display: inline-block; margin-top: 20px; font-size: 1.1rem; transition: transform 0.2s; text-decoration: none; }
+        .btn-white:hover { transform: scale(1.05); }
+
+        /* --- 6. STICKY ESTIMATE --- */
+        .sticky-estimate {
+            position: fixed; bottom: 30px; right: 30px; background-color: var(--accent-color); color: #fff;
+            padding: 15px 25px; border-radius: 50px; box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            display: flex; align-items: center; gap: 15px; z-index: 9999;
+            transition: transform 0.3s ease; text-decoration: none; border: 2px solid #fff; font-family: 'Poppins', sans-serif;
+        }
+        .sticky-estimate:hover { transform: translateY(-5px); background-color: var(--primary-color); color: #fff; }
+        .sticky-icon { font-size: 1.8rem; }
+        .sticky-text { display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
+        .sticky-text span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .sticky-text strong { font-size: 1.1rem; font-weight: 700; }
+
+        /* --- 7. FOOTER --- */
+        .master-footer { background: #f9f9f9; padding: 60px 5% 20px; color: var(--text-dark); border-top: 1px solid #eee; font-family: 'Poppins', sans-serif;}
+        .master-footer .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .master-footer .footer-col h4 { color: var(--primary-color); margin-bottom: 20px; font-size: 1.1rem; font-weight: 600; margin-top:0;}
+        .master-footer .footer-col p { color: var(--text-light); line-height: 1.6; margin:0;}
+        .master-footer .footer-col ul { list-style: none; padding:0; margin:0;}
+        .master-footer .footer-col ul li { margin-bottom: 10px; color: var(--text-light); }
+        .master-footer .footer-col ul li a { color: var(--text-light); text-decoration: none; transition: color 0.3s;}
+        .master-footer .footer-col ul li a:hover { color: var(--accent-color);}
+        .master-footer .footer-col ul li i { color: var(--accent-color); margin-right: 10px; width: 15px; text-align: center;}
+        .master-footer .social-icons a { font-size: 1.5rem; color: var(--primary-color); margin-right: 15px; transition: color 0.3s; text-decoration: none;}
+        .master-footer .social-icons a:hover { color: var(--accent-color); }
+        .master-footer .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); margin:0;}
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 991px) {
+            .master-header { padding: 10px 5%; }
+            .master-logo img { height: 35px !important; }
+            .mobile-controls { display: flex; gap: 8px; }
+            .master-btn-header.desktop-only { display: none !important; }
+            .desktop-login-link { display: none !important; }
+            
+            /* SCROLLABLE MOBILE MENU */
+            .master-nav {
+                display: none; position: fixed; top: 60px; left: 0; width: 100%; height: calc(100vh - 60px); 
+                background-color: #fff; flex-direction: column; align-items: center; padding: 20px 0 100px 0; 
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 1px solid #eee; overflow-y: auto; z-index: 9999;
+            }
+            .master-nav.active { display: flex; }
+            .master-nav li { margin: 10px 0; width: 100%; text-align: center; }
+            
+            /* COLLAPSIBLE MOBILE DROPDOWN */
+            .has-sub-menu > a { display: flex; justify-content: center; align-items: center; gap: 8px; }
+            .has-sub-menu .fa-chevron-down { display: inline-block; transition: transform 0.3s; }
+            .sub-menu-drop {
+                position: static; display: none; opacity: 1; visibility: visible;
+                transform: none; box-shadow: none; border: none; background: #f9f9f9;
+                margin-top: 10px; border-radius: 0; width: 100%; padding: 10px 0;
+            }
+            .sub-menu-drop.open { display: block; }
+            .sub-menu-drop li a { padding: 12px 0; color: var(--text-light); border-bottom: 1px solid #eee; text-align: center;}
+            .sub-menu-drop li:last-child a { border-bottom: none; }
+            .mobile-only-link { display: block !important; font-weight: 600; color: var(--primary-color) !important; }
+            
+            .hero-content h1 { font-size: 2.5rem; }
+            .sticky-estimate { bottom: 20px; right: 20px; padding: 10px 20px; }
+            .sticky-text strong { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="master-header">
+        <a href="index.html" class="master-logo">
+            <img src="assets/img/logo.png" alt="Greenworks Logo"> 
+        </a>
+        
+        <div class="mobile-controls">
+            <a href="https://www.trackmylawn.com/login" target="_blank" class="mobile-login-btn">
+                <i class="fa-solid fa-user-circle"></i> Login
+            </a>
+            <a href="tel:+17055009000" class="mobile-call-icon"><i class="fa-solid fa-phone"></i></a>
+            <div class="mobile-button" onclick="toggleMenu()"><span></span></div>
+        </div>
+
+        <ul class="master-nav" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            
+          
+
+            <li class="has-sub-menu">
+                <a onclick="toggleSubMenu(event, 'constructDropdown')" style="color: var(--accent-color); font-weight: 600;">Services <i class="fa-solid fa-chevron-down"></i></a>
+                <ul class="sub-menu-drop" id="constructDropdown">
+                    <li class="mobile-only-link"><a href="construction-services.html">View All Construction &rarr;</a></li>
+                    <li><a href="landscape-designs.html">Landscape Designs</a></li>
+                    <li><a href="driveways-walkways.html">Driveways & Walkways</a></li>
+                    <li><a href="interlock-patio.html">Interlock Patios</a></li>
+                    <li><a href="retaining-walls.html">Retaining Walls</a></li>
+                    <li><a href="outdoor-features.html">Outdoor Features</a></li>
+                    <li><a href="custom-porches.html">Custom Porches</a></li>
+                </ul>
+            </li>
+
+            <li><a href="landscape-gallery.html">Portfolio</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li class="desktop-login-link"><a href="https://www.trackmylawn.com/login" target="_blank" class="master-login-btn"><i class="fa-solid fa-user-circle"></i> Client Login</a></li>
+        </ul>
+        
+        <a href="tel:+17055009000" class="master-btn-header desktop-only">Call 705-500-9000</a>
+    </header>
+
+    <section class="page-hero">
+        <div class="hero-content">
+            <h1>Construction & Design</h1>
+            <p>Premium hardscaping solutions tailored to elevate the beauty and functionality of your property.</p>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="section-title">
+            <h2>Our Construction Services</h2>
+            <p>From initial design to the final stone, we build outdoor spaces that last a lifetime.</p>
+        </div>
+
+        <div class="services-grid">
+            
+            <a href="landscape-designs.html" class="service-card">
+                <img src="assets/img/landscape-designs/1.webp" alt="Landscape Designs">
+                <div class="service-overlay"></div>
+                <div class="service-info">
+                    <h3>Landscape Designs</h3>
+                    <p>Comprehensive 3D planning and design to visualize your dream outdoor space before we build.</p>
+                </div>
+            </a>
+
+            <a href="driveways-walkways.html" class="service-card">
+                <img src="assets/img/driveway-walkways/3.webp" alt="Driveways">
+                <div class="service-overlay"></div>
+                <div class="service-info">
+                    <h3>Driveways & Walkways</h3>
+                    <p>Boost curb appeal with durable interlocking pavers professionally installed for longevity.</p>
+                </div>
+            </a>
+
+            <a href="interlock-patio.html" class="service-card">
+                <img src="assets/img/interlock-patios/2.webp" alt="Patios">
+                <div class="service-overlay"></div>
+                <div class="service-info">
+                    <h3>Interlock Patios</h3>
+                    <p>Expand your living space outdoors with stylish, custom-laid patios perfect for entertaining.</p>
+                </div>
+            </a>
+
+            <a href="retaining-walls.html" class="service-card">
+                <img src="assets/img/retaining-walls/3.webp" alt="Retaining Walls">
+                <div class="service-overlay"></div>
+                <div class="service-info">
+                    <h3>Retaining Walls</h3>
+                    <p>Functional and aesthetic structural solutions to manage slopes and define spaces.</p>
+                </div>
+            </a>
+
+            <a href="outdoor-features.html" class="service-card">
+                <img src="assets/img/outdoor-features/4.webp" alt="Outdoor Kitchens">
+                <div class="service-overlay"></div>
+                <div class="service-info">
+                    <h3>Outdoor Features</h3>
+                    <p>The ultimate backyard experience with custom fire pits, lighting, and outdoor kitchens.</p>
+                </div>
+            </a>
+
+            <a href="custom-porches.html" class="service-card">
+                <img src="assets/img/custom-porches/4.webp" alt="Custom Porches">
+                <div class="service-overlay"></div>
+                <div class="service-info">
+                    <h3>Custom Porches</h3>
+                    <p>Inviting entryways tailored to your home's architecture using premium natural stone.</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <h2>Ready to transform your property?</h2>
+        <p>Contact us today for a free consultation and project estimate.</p>
+        <a href="contact.html" class="btn-white">Get a Free Quote</a>
+    </section>
+
+    <a href="contact.html" class="sticky-estimate">
+        <div class="sticky-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+        <div class="sticky-text">
+            <span>Get a Free</span>
+            <strong>ESTIMATE</strong>
+        </div>
+    </a>
+
+    <footer class="master-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>About Us</h4>
+                <p>Greenworks Landscaping is committed to providing top-quality construction and lawn care services. Locally owned and operated, we make your property our passion.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li><i class="fa-solid fa-map-marker-alt"></i> Georgetown, ON, CA</li>
+                    <li><i class="fa-solid fa-phone"></i> <a href="tel:+17055009000">+1 705-500-9000</a></li>
+                    <li><i class="fa-solid fa-envelope"></i> <a href="mailto:info@gnwlandscaping.ca">info@gnwlandscaping.ca</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/gnwlandscaping/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>Copyright © <span id="year"></span> | Greenworks Landscaping Inc. | All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+
+        // --- MOBILE MENU TOGGLE ---
+        function toggleMenu() {
+            const navLinks = document.getElementById("navLinks");
+            const mobileBtn = document.querySelector(".mobile-button");
+            
+            navLinks.classList.toggle("active");
+            mobileBtn.classList.toggle("active");
+            
+            document.body.classList.toggle("no-scroll");
+        }
+
+        // --- DOUBLE DROPDOWN LOGIC ---
+        function toggleSubMenu(e, dropdownId) {
+            if (window.innerWidth <= 991) {
+                e.preventDefault(); 
+                
+                // Close other open dropdowns
+                const allDropdowns = document.querySelectorAll('.sub-menu-drop');
+                allDropdowns.forEach(drop => {
+                    if(drop.id !== dropdownId) {
+                        drop.classList.remove('open');
+                        drop.previousElementSibling.querySelector('.fa-chevron-down').style.transform = 'rotate(0deg)';
+                    }
+                });
+
+                // Toggle target dropdown
+                const dropdown = document.getElementById(dropdownId);
+                const icon = e.currentTarget.querySelector('.fa-chevron-down');
+                
+                dropdown.classList.toggle('open');
+                
+                if (dropdown.classList.contains('open')) {
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
