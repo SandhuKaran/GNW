@@ -202,10 +202,121 @@
 
         .hero-buttons { display: flex; gap: 20px; justify-content: center; }
 
-        .btn-primary { background-color: var(--accent-color); color: #fff; padding: 18px 45px; border-radius: 50px; font-size: 1.1rem; font-weight: 600; border: none; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.2s; }
-        .btn-secondary { background-color: transparent; color: #fff; padding: 18px 45px; border-radius: 50px; font-size: 1.1rem; font-weight: 600; border: 2px solid #fff; cursor: pointer; transition: background 0.2s; }
-        .btn-primary:hover { transform: translateY(-3px); background-color: #388E3C; }
-        .btn-secondary:hover { background-color: #fff; color: var(--primary-color); }
+        .btn-primary { background-color: var(--accent-color); color: #fff; padding: 18px 45px; border-radius: 50px; font-size: 1.1rem; font-weight: 600; border: none; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.2s; text-decoration: none;}
+        .btn-secondary { background-color: transparent; color: #fff; padding: 18px 45px; border-radius: 50px; font-size: 1.1rem; font-weight: 600; border: 2px solid #fff; cursor: pointer; transition: background 0.2s; text-decoration: none;}
+        .btn-primary:hover { transform: translateY(-3px); background-color: #388E3C; color: #fff;}
+        .btn-secondary:hover { background-color: #fff; color: var(--primary-color); transform: translateY(-3px);}
+
+        /* --- 3.5 EXCLUSIVE CLIENT PORTAL SECTION (NEW) --- */
+        .client-portal-section {
+            position: relative;
+            z-index: 10;
+            margin-top: -100px; /* Floats over the hero edge */
+            padding: 0 5%;
+            margin-bottom: 60px;
+        }
+
+        .portal-wrapper {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0d3811 100%);
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .portal-header {
+            margin-bottom: 50px;
+        }
+
+        .portal-header h2 {
+            font-size: 2.8rem;
+            color: #fff;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .portal-header p {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .portal-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .portal-feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 30px;
+            border-radius: 15px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+        }
+
+        .portal-feature-card:hover {
+            transform: translateY(-15px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-color);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .portal-feature-card i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            transition: transform 0.4s ease;
+        }
+
+        .portal-feature-card:hover i {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .portal-feature-card h4 {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .portal-feature-card p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .btn-portal {
+            display: inline-block;
+            background: var(--accent-color);
+            color: #fff;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+            text-decoration: none;
+        }
+
+        .btn-portal:hover {
+            background: #fff;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
 
         /* --- 4. PRICING SECTION --- */
         .pricing-section { padding: 100px 5%; background-color: #fff; text-align: center; }
@@ -358,6 +469,12 @@
             .hero h1 { font-size: 2.5rem; }
             .hero-buttons { flex-direction: column; width: 100%; }
             .btn-primary, .btn-secondary { width: 100%; }
+
+            /* Client Portal Mobile */
+            .client-portal-section { margin-top: -60px; }
+            .portal-wrapper { padding: 40px 20px; }
+            .portal-header h2 { font-size: 2.2rem; }
+
             .pricing-grid { flex-direction: column; align-items: center; }
             .pricing-card { width: 100%; }
             .pricing-card.popular { transform: none; }
@@ -424,8 +541,39 @@
             <h1>Your Weekend is for Living, Not Mowing</h1>
             <p>Professional and reliable lawn maintenance, serving homeowners in Georgetown and the entire Greater Toronto Area.</p>
             <div class="hero-buttons">
-                <a href="pricing.html" class="btn-primary">View Pricing</a>
+                <a href="#pricing" class="btn-primary">View Pricing</a>
                 <a href="contact2.html" class="btn-secondary">Get a Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="client-portal-section">
+        <div class="portal-wrapper">
+            <div class="portal-header">
+                <h2>Lawn Care Tracking Made Easy</h2>
+                <p>Control your yard care with a click. See exactly when we visited, ask for extra services, and give instant feedback online..</p>
+            </div>
+            
+            <div class="portal-features-grid">
+                <div class="portal-feature-card">
+                    <i class="fa-solid fa-route"></i>
+                    <h4>Track Recent Visits</h4>
+                    <p>Know exactly when our crew was at your property and what services were completed.</p>
+                </div>
+                <div class="portal-feature-card">
+                    <i class="fa-solid fa-comment-dots"></i>
+                    <h4>Give Direct Feedback</h4>
+                    <p>Rate your service and communicate directly with our team to ensure perfection every time.</p>
+                </div>
+                <div class="portal-feature-card">
+                    <i class="fa-solid fa-calendar-plus"></i>
+                    <h4>Request Future Services</h4>
+                    <p>Easily add one-off services like seasonal cleanups, aeration, or mulch right from your dashboard.</p>
+                </div>
+            </div>
+
+            <div class="portal-cta">
+                <a href="https://www.trackmylawn.com/login" target="_blank" class="btn-portal">Log in to TrackMyLawn &rarr;</a>
             </div>
         </div>
     </section>
