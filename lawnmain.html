@@ -31,9 +31,7 @@
         }
 
         /* Stops background scrolling when mobile menu is open */
-        body.no-scroll {
-            overflow: hidden;
-        }
+        body.no-scroll { overflow: hidden; }
 
         /* Mobile specific link visible only on mobile */
         .mobile-only-link { display: none !important; }
@@ -44,21 +42,13 @@
 
         /* --- 2. HEADER & NAVIGATION --- */
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            background: #fff;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: #fff;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0; z-index: 1000;
+            position: sticky; top: 0; z-index: 1000;
         }
 
-        .logo {
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
+        .logo { border-radius: 10px; overflow: hidden; transition: transform 0.3s; }
         .logo:hover { transform: scale(1.02); }
 
         .nav-links { display: flex; gap: 30px; align-items: center; }
@@ -66,56 +56,25 @@
         .nav-links a:hover { color: var(--accent-color); }
         
         /* DROPDOWN MENU STYLING (Desktop) */
-        .dropdown-parent {
-            position: relative;
-            padding: 10px 0; 
-        }
-        .dropdown-parent > a {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .dropdown-parent .fa-chevron-down {
-            font-size: 0.7rem;
-            transition: transform 0.3s;
-        }
-        .dropdown-parent:hover .fa-chevron-down {
-            transform: rotate(180deg);
-        }
+        .dropdown-parent { position: relative; padding: 10px 0;  }
+        .dropdown-parent > a { display: flex; align-items: center; gap: 5px; }
+        .dropdown-parent .fa-chevron-down { font-size: 0.7rem; transition: transform 0.3s; }
+        .dropdown-parent:hover .fa-chevron-down { transform: rotate(180deg); }
         
         .dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: #fff;
-            min-width: 220px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            padding: 10px 0;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(15px);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            border: 1px solid #eee;
+            position: absolute; top: 100%; left: 0; background: #fff;
+            min-width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px; padding: 10px 0; opacity: 0; visibility: hidden;
+            transform: translateY(15px); transition: all 0.3s ease;
+            z-index: 1000; border: 1px solid #eee;
         }
-        .dropdown-parent:hover .dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
+        .dropdown-parent:hover .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
         .dropdown li { margin: 0; }
         .dropdown li a {
-            display: block;
-            padding: 10px 20px;
-            font-size: 0.9rem;
-            color: var(--text-dark);
-            transition: background 0.3s, color 0.3s;
+            display: block; padding: 10px 20px; font-size: 0.9rem;
+            color: var(--text-dark); transition: background 0.3s, color 0.3s;
         }
-        .dropdown li a:hover {
-            background: var(--bg-light);
-            color: var(--accent-color);
-        }
+        .dropdown li a:hover { background: var(--bg-light); color: var(--accent-color); }
 
         /* LOGIN BUTTON STYLING */
         .nav-links .login-btn { color: var(--primary-color); font-weight: 600; }
@@ -123,62 +82,31 @@
 
         /* Desktop Call Button */
         .btn-header {
-            background-color: var(--primary-color);
-            color: #fff !important;
-            padding: 10px 25px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
+            background-color: var(--primary-color); color: #fff !important;
+            padding: 10px 25px; border-radius: 50px; font-weight: 600; font-size: 0.9rem;
             transition: background 0.3s;
         }
         .btn-header:hover { background-color: var(--accent-color); }
 
         /* --- MOBILE CONTROLS --- */
-        .mobile-controls {
-            display: none; 
-            align-items: center;
-            gap: 12px;
-        }
-
+        .mobile-controls { display: none; align-items: center; gap: 12px; }
+        
         .mobile-login-btn {
-            background-color: var(--bg-light);
-            color: var(--primary-color);
-            padding: 8px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            border: 1px solid #ddd;
+            background-color: var(--bg-light); color: var(--primary-color); padding: 8px 14px;
+            border-radius: 20px; font-size: 0.85rem; font-weight: 600;
+            display: flex; align-items: center; gap: 5px; border: 1px solid #ddd; text-decoration: none;
         }
 
         .mobile-call-icon {
-            width: 40px; height: 40px;
-            background-color: var(--accent-color);
-            color: white;
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
-            transition: transform 0.2s;
+            width: 40px; height: 40px; background-color: var(--accent-color); color: white;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); transition: transform 0.2s; text-decoration: none;
         }
         .mobile-call-icon:active { transform: scale(0.95); }
 
-        .mobile-button {
-            cursor: pointer;
-            width: 30px; height: 20px;
-            position: relative;
-            z-index: 1001;
-        }
-        .mobile-button span {
-            display: block; width: 100%; height: 3px; background-color: var(--primary-color);
-            position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease;
-        }
-        .mobile-button::before, .mobile-button::after {
-            content: ''; width: 100%; height: 3px; background-color: var(--primary-color);
-            position: absolute; transition: all 0.3s ease;
-        }
+        .mobile-button { cursor: pointer; width: 30px; height: 20px; position: relative; z-index: 1001; }
+        .mobile-button span { display: block; width: 100%; height: 3px; background-color: var(--primary-color); position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease; }
+        .mobile-button::before, .mobile-button::after { content: ''; width: 100%; height: 3px; background-color: var(--primary-color); position: absolute; transition: all 0.3s ease; }
         .mobile-button::before { top: 0; }
         .mobile-button::after { bottom: 0; }
         .mobile-button.active span { opacity: 0; }
@@ -193,7 +121,7 @@
             background-size: cover; 
             background-position: center; 
             background-attachment: fixed; 
-            min-height: 90vh; padding: 0 5%; color: #fff;
+            min-height: 90vh; padding: 0 5% 120px 5%; color: #fff; /* Extra padding bottom for overlap */
         }
 
         .hero-text { max-width: 900px; z-index: 2; }
@@ -228,25 +156,9 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .portal-header {
-            margin-bottom: 50px;
-        }
-
-        .portal-header h2 {
-            font-size: 2.8rem;
-            color: #fff;
-            margin-bottom: 15px;
-            font-weight: 700;
-            line-height: 1.2;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .portal-header p {
-            font-size: 1.15rem;
-            color: rgba(255, 255, 255, 0.9);
-            max-width: 800px;
-            margin: 0 auto;
-        }
+        .portal-header { margin-bottom: 50px; }
+        .portal-header h2 { font-size: 2.8rem; color: #fff; margin-bottom: 15px; font-weight: 700; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .portal-header p { font-size: 1.15rem; color: rgba(255, 255, 255, 0.9); max-width: 800px; margin: 0 auto; }
 
         .portal-features-grid {
             display: grid;
@@ -263,63 +175,21 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             backdrop-filter: blur(10px);
         }
-
-        .portal-feature-card:hover {
-            transform: translateY(-15px);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--accent-color);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .portal-feature-card i {
-            font-size: 3rem;
-            color: var(--accent-color);
-            margin-bottom: 20px;
-            transition: transform 0.4s ease;
-        }
-
-        .portal-feature-card:hover i {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .portal-feature-card h4 {
-            font-size: 1.3rem;
-            color: #fff;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .portal-feature-card p {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin: 0;
-            line-height: 1.6;
-        }
+        .portal-feature-card:hover { transform: translateY(-15px); background: rgba(255, 255, 255, 0.1); border-color: var(--accent-color); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); }
+        .portal-feature-card i { font-size: 3rem; color: var(--accent-color); margin-bottom: 20px; transition: transform 0.4s ease; }
+        .portal-feature-card:hover i { transform: scale(1.1) rotate(5deg); }
+        .portal-feature-card h4 { font-size: 1.3rem; color: #fff; margin-bottom: 10px; font-weight: 600; }
+        .portal-feature-card p { font-size: 1rem; color: rgba(255, 255, 255, 0.8); margin: 0; line-height: 1.6; }
 
         .btn-portal {
-            display: inline-block;
-            background: var(--accent-color);
-            color: #fff;
-            padding: 16px 40px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border-radius: 50px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
-            text-decoration: none;
+            display: inline-block; background: var(--accent-color); color: #fff; padding: 16px 40px;
+            font-size: 1.1rem; font-weight: 700; border-radius: 50px; text-transform: uppercase;
+            letter-spacing: 1px; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4); text-decoration: none;
         }
-
-        .btn-portal:hover {
-            background: #fff;
-            color: var(--primary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
+        .btn-portal:hover { background: #fff; color: var(--primary-color); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); }
 
         /* --- 4. PRICING SECTION --- */
-        .pricing-section { padding: 100px 5%; background-color: #fff; text-align: center; }
+        .pricing-section { padding: 100px 5%; background-color: var(--bg-light); text-align: center; }
         .pricing-section h2 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 50px; }
         .pricing-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
 
@@ -334,56 +204,43 @@
         .plan-features { margin-bottom: 30px; flex-grow: 1; }
         .plan-features li { margin-bottom: 15px; color: var(--text-light); display: flex; align-items: center; gap: 10px; }
         .plan-features i { color: var(--accent-color); }
-        .btn-plan { display: block; width: 100%; text-align: center; padding: 12px; border-radius: 50px; background: var(--primary-color); color: white; font-weight: 600; transition: background 0.3s; }
+        .btn-plan { display: block; width: 100%; text-align: center; padding: 12px; border-radius: 50px; background: var(--primary-color); color: white; font-weight: 600; transition: background 0.3s; text-decoration: none;}
         .btn-plan:hover { background: var(--accent-color); }
 
         /* --- 5. SERVICES GRID --- */
-        .services-section { padding: 100px 5%; background-color: var(--bg-light); text-align: center; }
+        .services-section { padding: 100px 5%; background-color: #fff; text-align: center; }
         .services-section h2 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 50px; }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
         
         .service-card { 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: #fff; 
-            padding: 40px 30px; 
-            border-radius: 15px; 
-            text-align: center; 
-            box-shadow: var(--card-shadow); 
-            transition: all 0.3s ease; 
-            border-bottom: 4px solid transparent; 
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            text-decoration: none; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: var(--bg-light); padding: 40px 30px; border-radius: 15px; text-align: center; 
+            box-shadow: var(--card-shadow); transition: all 0.3s ease; border-bottom: 4px solid transparent; 
+            cursor: pointer; position: relative; overflow: hidden; text-decoration: none; 
         }
 
         .service-card i { font-size: 2.5rem; color: var(--accent-color); margin-bottom: 20px; transition: transform 0.3s ease;}
         .service-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-color); transition: color 0.3s ease;}
         .service-card p { font-size: 0.95rem; color: var(--text-light); margin: 0; transition: transform 0.3s ease;}
         
-        /* Desktop Hover state for text */
         .service-action-text { display: inline-block; margin-top: 20px; font-weight: 600; color: var(--accent-color); font-size: 0.95rem; opacity: 0; transform: translateY(15px); transition: all 0.3s ease; }
 
-        /* Trigger animations on hover (Desktop) */
         @media (hover: hover) {
-            .service-card:hover { transform: translateY(-10px); border-bottom-color: var(--accent-color); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+            .service-card:hover { transform: translateY(-10px); border-bottom-color: var(--accent-color); box-shadow: 0 15px 40px rgba(0,0,0,0.15); background: #fff;}
             .service-card:hover i { transform: scale(1.1); }
             .service-card:hover p { transform: translateY(-5px); }
             .service-card:hover .service-action-text { opacity: 1; transform: translateY(0); }
         }
 
         /* --- 6. DRAGGABLE & AUTO-SCROLLING REVIEWS --- */
-        .testimonials-section { padding: 100px 0; text-align: center; background-color: #fff; position: relative; }
+        .testimonials-section { padding: 100px 0; text-align: center; background-color: var(--bg-light); position: relative; }
         .testimonials-section h2 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 10px; padding: 0 5%; }
         .testimonials-section > p { margin-bottom: 40px; color: var(--text-light); padding: 0 5%; }
         
         .testimonials-carousel-container { position: relative; width: 100%; overflow: hidden; margin: 20px 0; }
         .testimonials-carousel-container::before, .testimonials-carousel-container::after { content: ""; position: absolute; top: 0; width: 80px; height: 100%; z-index: 2; pointer-events: none; }
-        .testimonials-carousel-container::before { left: 0; background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0)); }
-        .testimonials-carousel-container::after { right: 0; background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0)); }
+        .testimonials-carousel-container::before { left: 0; background: linear-gradient(to right, rgba(244,247,246,1), rgba(244,247,246,0)); }
+        .testimonials-carousel-container::after { right: 0; background: linear-gradient(to left, rgba(244,247,246,1), rgba(244,247,246,0)); }
 
         .scrolling-wrapper { display: flex; gap: 20px; padding: 20px 5%; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch; cursor: grab; }
         .scrolling-wrapper:active { cursor: grabbing; }
@@ -400,7 +257,7 @@
         /* --- 7. CTA BANNER --- */
         .cta-banner { background-color: var(--primary-color); color: #fff; text-align: center; padding: 80px 20px; }
         .cta-banner h2 { font-size: 2.5rem; margin-bottom: 20px; }
-        .btn-white { background: #fff; color: var(--primary-color); padding: 15px 40px; border-radius: 50px; font-weight: 700; display: inline-block; margin-top: 20px; font-size: 1.1rem; transition: transform 0.2s; }
+        .btn-white { background: #fff; color: var(--primary-color); padding: 15px 40px; border-radius: 50px; font-weight: 700; display: inline-block; margin-top: 20px; font-size: 1.1rem; transition: transform 0.2s; text-decoration: none;}
         .btn-white:hover { transform: scale(1.05); }
 
         /* --- 8. FOOTER --- */
@@ -426,61 +283,66 @@
 
             /* SCROLLABLE MOBILE MENU */
             .nav-links {
-                display: none;
-                position: fixed; 
-                top: 65px; 
-                left: 0; 
-                width: 100%;
-                height: calc(100vh - 65px); 
-                background-color: #fff;
-                flex-direction: column; 
-                align-items: center;
-                padding: 20px 0 100px 0; 
-                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-                border-top: 1px solid #eee;
-                overflow-y: auto; 
-                z-index: 999;
+                display: none; position: fixed; top: 65px; left: 0; width: 100%; height: calc(100vh - 65px); 
+                background-color: #fff; flex-direction: column; align-items: center; padding: 20px 0 100px 0; 
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 1px solid #eee; overflow-y: auto; z-index: 999;
             }
             .nav-links.active { display: flex; }
             .nav-links li { margin: 10px 0; width: 100%; text-align: center; }
             
             /* COLLAPSIBLE MOBILE DROPDOWN */
-            .dropdown-parent > a {
-                display: flex; justify-content: center; align-items: center; gap: 8px;
-            }
-            .dropdown-parent .fa-chevron-down { 
-                display: inline-block; transition: transform 0.3s;
-            }
+            .dropdown-parent > a { display: flex; justify-content: center; align-items: center; gap: 8px; }
+            .dropdown-parent .fa-chevron-down { display: inline-block; transition: transform 0.3s; }
             .dropdown {
                 position: static; display: none; opacity: 1; visibility: visible;
-                transform: none; box-shadow: none; border: none;
-                background: #f9f9f9; margin-top: 10px; border-radius: 0;
-                width: 100%; padding: 10px 0;
+                transform: none; box-shadow: none; border: none; background: #f9f9f9;
+                margin-top: 10px; border-radius: 0; width: 100%; padding: 10px 0;
             }
             .dropdown.open { display: block; }
             .dropdown li a { padding: 12px 0; color: var(--text-light); border-bottom: 1px solid #eee;}
             .dropdown li:last-child a { border-bottom: none; }
             
             .mobile-only-link { display: block !important; font-weight: 600; color: var(--primary-color) !important; }
-            
             .desktop-login-link { display: none; }
             
             .hero { text-align: center; padding: 100px 20px; background-attachment: scroll; }
             .hero h1 { font-size: 2.5rem; }
-            .hero-buttons { flex-direction: column; width: 100%; }
-            .btn-primary, .btn-secondary { width: 100%; }
+            .hero-buttons { flex-direction: column; width: 100%; align-items: center; gap: 15px;}
+            .btn-primary, .btn-secondary { width: 100%; max-width: 320px; text-align: center; }
 
-            /* Client Portal Mobile */
+            /* Portal Mobile Tweaks - Compact Cards */
             .client-portal-section { margin-top: -60px; }
-            .portal-wrapper { padding: 40px 20px; }
-            .portal-header h2 { font-size: 2.2rem; }
+            .portal-wrapper { padding: 30px 15px; }
+            .portal-header h2 { font-size: 2rem; }
+            .portal-header p { font-size: 1rem; }
+            
+            .portal-features-grid { gap: 15px; }
+            .portal-feature-card { 
+                padding: 20px 15px; 
+                display: flex; 
+                align-items: center; 
+                gap: 15px; 
+                text-align: left;
+            }
+            .portal-feature-card i { 
+                font-size: 2rem; 
+                margin-bottom: 0; 
+            }
+            .portal-feature-card h4 { 
+                font-size: 1.1rem; 
+                margin-bottom: 5px; 
+            }
+            .portal-feature-card p { 
+                font-size: 0.85rem; 
+            }
+            .btn-portal { width: 100%; text-align: center; font-size: 1rem; padding: 14px 20px;}
 
             .pricing-grid { flex-direction: column; align-items: center; }
-            .pricing-card { width: 100%; }
+            .pricing-card { width: 100%; max-width: 350px; }
             .pricing-card.popular { transform: none; }
             
             /* MOBILE SERVICES CARD UPDATE */
-            .service-card { border: 1px solid #eee; border-bottom: 3px solid var(--accent-color); }
+            .service-card { border: 1px solid #eee; border-bottom: 3px solid var(--accent-color); background: #fff;}
             .service-action-text { opacity: 1; transform: translateY(0); background-color: var(--bg-light); padding: 8px 20px; border-radius: 50px; border: 1px solid #ddd; color: var(--primary-color); margin-top: 15px; }
             
             .review-card { width: 300px; padding: 30px 20px; }
@@ -498,10 +360,10 @@
         
         <div class="mobile-controls">
             <a href="https://www.trackmylawn.com/login" target="_blank" class="mobile-login-btn">
-                <i class="fas fa-user-circle"></i> Login
+                <i class="fa-solid fa-user-circle"></i> Login
             </a>
             <a href="tel:+17055009000" class="mobile-call-icon">
-                <i class="fas fa-phone"></i>
+                <i class="fa-solid fa-phone"></i>
             </a>
             <div class="mobile-button" onclick="toggleMenu()">
                 <span></span>
@@ -512,7 +374,7 @@
             <li><a href="index.html" style="color: var(--accent-color);">Home</a></li>
             
             <li class="dropdown-parent">
-                <a href="services.html" onclick="toggleDropdown(event)">Services <i class="fas fa-chevron-down"></i></a>
+                <a href="services.html" onclick="toggleDropdown(event)">Services <i class="fa-solid fa-chevron-down"></i></a>
                 <ul class="dropdown" id="servicesDropdown">
                     <li class="mobile-only-link"><a href="services.html">View All Services &rarr;</a></li>
                     <li><a href="lawn-mowing.html">Lawn Mowing</a></li>
@@ -530,7 +392,7 @@
             <li><a href="pricing.html">Pricing Plans</a></li>
             <li><a href="about2.html">About Us</a></li>
             <li><a href="contact2.html">Contact</a></li>
-            <li class="desktop-login-link"><a href="https://www.trackmylawn.com/login" target="_blank" class="login-btn"><i class="fas fa-user-circle"></i> Client Login</a></li>
+            <li class="desktop-login-link"><a href="https://www.trackmylawn.com/login" target="_blank" class="login-btn"><i class="fa-solid fa-user-circle"></i> Client Login</a></li>
         </ul>
         
         <a href="tel:+17055009000" class="btn-header desktop-only">Call 705-500-9000</a>
@@ -551,24 +413,30 @@
         <div class="portal-wrapper">
             <div class="portal-header">
                 <h2>Lawn Care Tracking Made Easy</h2>
-                <p>Control your yard care with a click. See exactly when we visited, ask for extra services, and give instant feedback online..</p>
+                <p>Control your yard care with a click. See exactly when we visited, ask for extra services, and give instant feedback online.</p>
             </div>
             
             <div class="portal-features-grid">
                 <div class="portal-feature-card">
                     <i class="fa-solid fa-route"></i>
-                    <h4>Track Recent Visits</h4>
-                    <p>Know exactly when our crew was at your property and what services were completed.</p>
+                    <div>
+                        <h4>Track Recent Visits</h4>
+                        <p>Know exactly when our crew was at your property and what services were completed.</p>
+                    </div>
                 </div>
                 <div class="portal-feature-card">
                     <i class="fa-solid fa-comment-dots"></i>
-                    <h4>Give Direct Feedback</h4>
-                    <p>Rate your service and communicate directly with our team to ensure perfection every time.</p>
+                    <div>
+                        <h4>Give Direct Feedback</h4>
+                        <p>Rate your service and communicate directly with our team to ensure perfection every time.</p>
+                    </div>
                 </div>
                 <div class="portal-feature-card">
                     <i class="fa-solid fa-calendar-plus"></i>
-                    <h4>Request Future Services</h4>
-                    <p>Easily add one-off services like seasonal cleanups, aeration, or mulch right from your dashboard.</p>
+                    <div>
+                        <h4>Request Future Services</h4>
+                        <p>Easily add one-off services like seasonal cleanups, aeration, or mulch right from your dashboard.</p>
+                    </div>
                 </div>
             </div>
 
@@ -586,10 +454,10 @@
                 <div class="plan-price">$149 <span>/mo</span></div>
                 <div class="plan-divider"></div>
                 <ul class="plan-features">
-                    <li><i class="fas fa-check"></i> Lawn Mowing (Weekly)</li>
-                    <li><i class="fas fa-check"></i> Trimming</li>
-                    <li><i class="fas fa-check"></i> Edging</li>
-                    <li><i class="fas fa-check"></i> Grass Clipping Removal</li>
+                    <li><i class="fa-solid fa-check"></i> Lawn Mowing (Weekly)</li>
+                    <li><i class="fa-solid fa-check"></i> Trimming</li>
+                    <li><i class="fa-solid fa-check"></i> Edging</li>
+                    <li><i class="fa-solid fa-check"></i> Grass Clipping Removal</li>
                 </ul>
                 <a href="contact2.html?plan=basic" class="btn-plan">Select Basic</a>
             </div>
@@ -599,11 +467,11 @@
                 <div class="plan-price">$198 <span>/mo</span></div>
                 <div class="plan-divider"></div>
                 <ul class="plan-features">
-                    <li><i class="fas fa-check"></i> <strong>Everything in Basic</strong></li>
-                    <li><i class="fas fa-check"></i> Fertilizer Program</li>
-                    <li><i class="fas fa-check"></i> Seasonal Cleanups</li>
-                    <li><i class="fas fa-check"></i> Weed Control</li>
-                    <li><i class="fas fa-check"></i> Landscape Maintenance</li>
+                    <li><i class="fa-solid fa-check"></i> <strong>Everything in Basic</strong></li>
+                    <li><i class="fa-solid fa-check"></i> Fertilizer Program</li>
+                    <li><i class="fa-solid fa-check"></i> Seasonal Cleanups</li>
+                    <li><i class="fa-solid fa-check"></i> Weed Control</li>
+                    <li><i class="fa-solid fa-check"></i> Landscape Maintenance</li>
                 </ul>
                 <a href="contact2.html?plan=premium" class="btn-plan" style="background:var(--accent-color);">Select Premium</a>
             </div>
@@ -613,10 +481,10 @@
                 <div class="plan-price">$259 <span>/mo</span></div>
                 <div class="plan-divider"></div>
                 <ul class="plan-features">
-                    <li><i class="fas fa-check"></i> <strong>Everything in Premium</strong></li>
-                    <li><i class="fas fa-check"></i> Fall Aeration</li>
-                    <li><i class="fas fa-check"></i> Overseeding</li>
-                    <li><i class="fas fa-star"></i> Priority Scheduling</li>
+                    <li><i class="fa-solid fa-check"></i> <strong>Everything in Premium</strong></li>
+                    <li><i class="fa-solid fa-check"></i> Fall Aeration</li>
+                    <li><i class="fa-solid fa-check"></i> Overseeding</li>
+                    <li><i class="fa-solid fa-star"></i> Priority Scheduling</li>
                 </ul>
                 <a href="contact2.html?plan=ultimate" class="btn-plan">Select Ultimate</a>
             </div>
@@ -628,56 +496,56 @@
         <div class="services-grid">
             
             <a href="lawn-mowing.html" class="service-card">
-                <i class="fas fa-cut"></i>
+                <i class="fa-solid fa-cut"></i>
                 <h3>Lawn Mowing</h3>
                 <p>Weekly cuts to keep your grass healthy and evenly trimmed.</p>
                 <span class="service-action-text">Click to Learn More &rarr;</span>
             </a>
             
             <a href="gardening.html" class="service-card">
-                <i class="fas fa-seedling"></i>
+                <i class="fa-solid fa-seedling"></i>
                 <h3>Gardening Services</h3>
                 <p>Planting, pruning, and garden bed maintenance.</p>
                 <span class="service-action-text">Click to Learn More &rarr;</span>
             </a>
             
             <a href="weed-control.html" class="service-card">
-                <i class="fas fa-spray-can"></i>
+                <i class="fa-solid fa-spray-can"></i>
                 <h3>Weed Control</h3>
                 <p>Effective solutions to prevent invasive plants.</p>
                 <span class="service-action-text">Click to Learn More &rarr;</span>
             </a>
             
             <a href="fertilizing.html" class="service-card">
-                <i class="fas fa-leaf"></i>
+                <i class="fa-solid fa-leaf"></i>
                 <h3>Fertilizing</h3>
                 <p>Enriching soil with essential nutrients for vibrant growth.</p>
                 <span class="service-action-text">Click to Learn More &rarr;</span>
             </a>
             
             <a href="aeration.html" class="service-card">
-                <i class="fas fa-wind"></i>
+                <i class="fa-solid fa-wind"></i>
                 <h3>Seeding & Aeration</h3>
                 <p>Repair thinning lawns and improve soil health.</p>
                 <span class="service-action-text">Click to Learn More &rarr;</span>
             </a>
             
             <a href="seasonal-cleanup.html" class="service-card">
-                <i class="fas fa-broom"></i>
+                <i class="fa-solid fa-broom"></i>
                 <h3>Seasonal Cleanup</h3>
                 <p>Removing debris and leaves in Spring and Fall.</p>
                 <span class="service-action-text">Click to Learn More &rarr;</span>
             </a>
             
             <a href="tree-care.html" class="service-card">
-                <i class="fas fa-tree"></i>
+                <i class="fa-solid fa-tree"></i>
                 <h3>Tree & Shrub Care</h3>
                 <p>Expert pruning and disease treatment.</p>
                 <span class="service-action-text">Click to Learn More &rarr;</span>
             </a>
             
             <a href="mulch.html" class="service-card">
-                <i class="fas fa-layer-group"></i>
+                <i class="fa-solid fa-layer-group"></i>
                 <h3>Mulch Installation</h3>
                 <p>Conserve moisture and suppress weeds with fresh mulch.</p>
                 <span class="service-action-text">Click to Learn More &rarr;</span>
@@ -694,9 +562,9 @@
             <div class="scrolling-wrapper" id="reviewTrack">
                 
                 <div class="review-card">
-                    <i class="fab fa-google google-icon"></i>
+                    <i class="fa-brands fa-google google-icon"></i>
                     <div class="review-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
                     <p class="review-text">"We have been dealing with Greenworks for the last two years doing the maintenance of our grass. Very respectful team. Very Neat and precise. If you want a worry free experience this is the team to call. Highly recommend."</p>
                     <div class="review-author">
@@ -706,9 +574,9 @@
                 </div>
 
                 <div class="review-card">
-                    <i class="fab fa-google google-icon"></i>
+                    <i class="fa-brands fa-google google-icon"></i>
                     <div class="review-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
                     <p class="review-text">"We made the best decision to have our backyard and front yard managed by Greenworks! The outcome was amazing! we couldn't ask for more! Keep up the good work for the team and we highly recommend this Company"</p>
                     <div class="review-author">
@@ -718,9 +586,9 @@
                 </div>
 
                 <div class="review-card">
-                    <i class="fab fa-google google-icon"></i>
+                    <i class="fa-brands fa-google google-icon"></i>
                     <div class="review-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
                     <p class="review-text">"I recently had the pleasure of working with Greenworks Landscaping Inc. for a sodding project, and I couldn't be more satisfied! From start to finish, their team demonstrated exceptional attention to detail."</p>
                     <div class="review-author">
@@ -730,9 +598,9 @@
                 </div>
 
                 <div class="review-card">
-                    <i class="fab fa-google google-icon"></i>
+                    <i class="fa-brands fa-google google-icon"></i>
                     <div class="review-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
                     <p class="review-text">"Just completed my third job with Greenworks this year. The team works hard and cleans up the site perfectly. Always responsive and reliable!"</p>
                     <div class="review-author">
@@ -742,9 +610,9 @@
                 </div>
 
                 <div class="review-card" aria-hidden="true">
-                    <i class="fab fa-google google-icon"></i>
+                    <i class="fa-brands fa-google google-icon"></i>
                     <div class="review-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
                     <p class="review-text">"We have been dealing with Greenworks for the last two years doing the maintenance of our grass. Very respectful team. Very Neat and precise. If you want a worry free experience this is the team to call. Highly recommend."</p>
                     <div class="review-author">
@@ -754,9 +622,9 @@
                 </div>
 
                 <div class="review-card" aria-hidden="true">
-                    <i class="fab fa-google google-icon"></i>
+                    <i class="fa-brands fa-google google-icon"></i>
                     <div class="review-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
                     <p class="review-text">"We made the best decision to have our backyard and front yard managed by Greenworks! The outcome was amazing! we couldn't ask for more! Keep up the good work for the team and we highly recommend this Company"</p>
                     <div class="review-author">
@@ -766,9 +634,9 @@
                 </div>
 
                 <div class="review-card" aria-hidden="true">
-                    <i class="fab fa-google google-icon"></i>
+                    <i class="fa-brands fa-google google-icon"></i>
                     <div class="review-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
                     <p class="review-text">"I recently had the pleasure of working with Greenworks Landscaping Inc. for a sodding project, and I couldn't be more satisfied! From start to finish, their team demonstrated exceptional attention to detail."</p>
                     <div class="review-author">
@@ -778,9 +646,9 @@
                 </div>
 
                 <div class="review-card" aria-hidden="true">
-                    <i class="fab fa-google google-icon"></i>
+                    <i class="fa-brands fa-google google-icon"></i>
                     <div class="review-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
                     <p class="review-text">"Just completed my third job with Greenworks this year. The team works hard and cleans up the site perfectly. Always responsive and reliable!"</p>
                     <div class="review-author">
@@ -809,16 +677,16 @@
             <div class="footer-col">
                 <h4>Contact Info</h4>
                 <ul>
-                    <li><i class="fas fa-map-marker-alt"></i> Georgetown, ON, CA</li>
-                    <li><i class="fas fa-phone"></i> <a href="tel:+17055009000">+1 705-500-9000</a></li>
-                    <li><i class="fas fa-envelope"></i> <a href="mailto:info@gnwlandscaping.ca">info@gnwlandscaping.ca</a></li>
+                    <li><i class="fa-solid fa-map-marker-alt"></i> Georgetown, ON, CA</li>
+                    <li><i class="fa-solid fa-phone"></i> <a href="tel:+17055009000">+1 705-500-9000</a></li>
+                    <li><i class="fa-solid fa-envelope"></i> <a href="mailto:info@gnwlandscaping.ca">info@gnwlandscaping.ca</a></li>
                 </ul>
             </div>
 
             <div class="footer-col">
                 <h4>Follow Us</h4>
                 <div class="social-icons">
-                    <a href="https://www.instagram.com/gnwlandscaping/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/gnwlandscaping/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                 </div>
             </div>
         </div>
@@ -831,7 +699,7 @@
     <script>
         document.getElementById("year").innerHTML = new Date().getFullYear();
 
-        // Mobile Menu Toggle - Added scroll lock for the body
+        // Mobile Menu Toggle 
         function toggleMenu() {
             const navLinks = document.getElementById("navLinks");
             const mobileBtn = document.querySelector(".mobile-button");
@@ -839,17 +707,23 @@
             navLinks.classList.toggle("active");
             mobileBtn.classList.toggle("active");
             
-            // Toggle the no-scroll class on the body to lock background scrolling
             document.body.classList.toggle("no-scroll");
         }
 
         // Mobile Dropdown Toggle Logic
-        function toggleDropdown(e) {
-            // Only stop default link behavior if on mobile screen size
-            if (window.innerWidth <= 768) {
+        function toggleDropdown(e, dropdownId) {
+            if (window.innerWidth <= 991) {
                 e.preventDefault(); 
                 
-                const dropdown = document.getElementById('servicesDropdown');
+                const allDropdowns = document.querySelectorAll('.sub-menu-drop');
+                allDropdowns.forEach(drop => {
+                    if(drop.id !== dropdownId) {
+                        drop.classList.remove('open');
+                        drop.previousElementSibling.querySelector('.fa-chevron-down').style.transform = 'rotate(0deg)';
+                    }
+                });
+
+                const dropdown = document.getElementById(dropdownId);
                 const icon = e.currentTarget.querySelector('.fa-chevron-down');
                 
                 dropdown.classList.toggle('open');
@@ -891,7 +765,7 @@
         // 2. Mouse Drag Logic
         reviewTrack.addEventListener('mousedown', (e) => {
             isDown = true;
-            isScrolling = false; // Pause auto-scroll
+            isScrolling = false; 
             reviewTrack.style.cursor = 'grabbing';
             startX = e.pageX - reviewTrack.offsetLeft;
             scrollLeft = reviewTrack.scrollLeft;
@@ -899,13 +773,13 @@
 
         reviewTrack.addEventListener('mouseleave', () => {
             isDown = false;
-            isScrolling = true; // Resume auto-scroll
+            isScrolling = true; 
             reviewTrack.style.cursor = 'grab';
         });
 
         reviewTrack.addEventListener('mouseup', () => {
             isDown = false;
-            isScrolling = true; // Resume auto-scroll
+            isScrolling = true; 
             reviewTrack.style.cursor = 'grab';
         });
 
@@ -913,17 +787,16 @@
             if (!isDown) return;
             e.preventDefault();
             const x = e.pageX - reviewTrack.offsetLeft;
-            const walk = (x - startX) * 2; // Scroll-fast multiplier
+            const walk = (x - startX) * 2; 
             reviewTrack.scrollLeft = scrollLeft - walk;
         });
 
         // 3. Touch/Swipe Logic
         reviewTrack.addEventListener('touchstart', () => {
-            isScrolling = false; // Pause on touch
+            isScrolling = false; 
         });
 
         reviewTrack.addEventListener('touchend', () => {
-            // Add a small delay before resuming scroll after a swipe
             setTimeout(() => { isScrolling = true; }, 1000); 
         });
     </script>
