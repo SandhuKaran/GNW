@@ -121,7 +121,7 @@
             background-size: cover; 
             background-position: center; 
             background-attachment: fixed; 
-            min-height: 90vh; padding: 0 5% 120px 5%; color: #fff; /* Extra padding bottom for overlap */
+            min-height: 90vh; padding: 0 5% 120px 5%; color: #fff;
         }
 
         .hero-text { max-width: 900px; z-index: 2; }
@@ -135,7 +135,7 @@
         .btn-primary:hover { transform: translateY(-3px); background-color: #388E3C; color: #fff;}
         .btn-secondary:hover { background-color: #fff; color: var(--primary-color); transform: translateY(-3px);}
 
-        /* --- 3.5 EXCLUSIVE CLIENT PORTAL SECTION (NEW) --- */
+        /* --- 3.5 EXCLUSIVE CLIENT PORTAL SECTION --- */
         .client-portal-section {
             position: relative;
             z-index: 10;
@@ -157,7 +157,26 @@
         }
 
         .portal-header { margin-bottom: 50px; }
-        .portal-header h2 { font-size: 2.8rem; color: #fff; margin-bottom: 15px; font-weight: 700; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        
+        /* Shimmering Headline Effect */
+        .portal-header h2 { 
+            font-size: 2.8rem; 
+            margin-bottom: 15px; 
+            font-weight: 700; 
+            line-height: 1.2; 
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3); 
+            background: linear-gradient(to right, #ffffff 20%, #a5d6a7 50%, #ffffff 80%);
+            background-size: 200% auto;
+            color: #fff; /* Fallback */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShine 3s linear infinite;
+        }
+        
+        @keyframes textShine {
+            to { background-position: 200% center; }
+        }
+
         .portal-header p { font-size: 1.15rem; color: rgba(255, 255, 255, 0.9); max-width: 800px; margin: 0 auto; }
 
         .portal-features-grid {
@@ -175,9 +194,13 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             backdrop-filter: blur(10px);
         }
-        .portal-feature-card:hover { transform: translateY(-15px); background: rgba(255, 255, 255, 0.1); border-color: var(--accent-color); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); }
+        
+        @media (hover: hover) and (min-width: 769px) {
+            .portal-feature-card:hover { transform: translateY(-15px); background: rgba(255, 255, 255, 0.1); border-color: var(--accent-color); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); }
+            .portal-feature-card:hover i { transform: scale(1.1) rotate(5deg); }
+        }
+        
         .portal-feature-card i { font-size: 3rem; color: var(--accent-color); margin-bottom: 20px; transition: transform 0.4s ease; }
-        .portal-feature-card:hover i { transform: scale(1.1) rotate(5deg); }
         .portal-feature-card h4 { font-size: 1.3rem; color: #fff; margin-bottom: 10px; font-weight: 600; }
         .portal-feature-card p { font-size: 1rem; color: rgba(255, 255, 255, 0.8); margin: 0; line-height: 1.6; }
 
@@ -310,38 +333,72 @@
             .hero-buttons { flex-direction: column; width: 100%; align-items: center; gap: 15px;}
             .btn-primary, .btn-secondary { width: 100%; max-width: 320px; text-align: center; }
 
-            /* Portal Mobile Tweaks - Compact Cards */
-            .client-portal-section { margin-top: -60px; }
-            .portal-wrapper { padding: 30px 15px; }
-            .portal-header h2 { font-size: 2rem; }
-            .portal-header p { font-size: 1rem; }
+            /* Client Portal Mobile - Bordered Bullet List Style */
+            .client-portal-section { margin-top: -60px; margin-bottom: 40px; padding: 0 15px; }
+            /* Lighter mobile background gradient */
+            .portal-wrapper { padding: 30px 20px; background: linear-gradient(135deg, #388E3C 0%, #2e7d32 100%); border: none; }
+            .portal-header { margin-bottom: 25px; }
+            .portal-header h2 { font-size: 1.8rem; }
+            .portal-header p { font-size: 0.95rem; margin-bottom: 10px; }
             
-            .portal-features-grid { gap: 15px; }
-            .portal-feature-card { 
-                padding: 20px 15px; 
+            .portal-features-grid { 
                 display: flex; 
-                align-items: center; 
+                flex-direction: column; 
                 gap: 15px; 
+                margin-bottom: 25px; 
+            }
+            
+            /* Feature Items as Bordered Bullets */
+            .portal-feature-card { 
+                padding: 12px 15px; 
+                display: flex; 
+                align-items: flex-start; 
+                gap: 12px; 
                 text-align: left;
+                background: rgba(255, 255, 255, 0.05); 
+                border: 2px solid rgba(76, 175, 80, 0.6); 
+                border-radius: 12px;
+                backdrop-filter: none;
+                /* Eliminate hover effect/transitions in mobile view */
+                transform: none !important;
+                box-shadow: none !important;
+                transition: none !important;
             }
+            
             .portal-feature-card i { 
-                font-size: 2rem; 
-                margin-bottom: 0; 
+                font-size: 1.3rem; 
+                margin-top: 2px; 
+                margin-bottom: 0;
+                color: #A5D6A7; 
+                transition: none !important;
+                transform: none !important;
             }
+            
+            .portal-feature-card div {
+                display: flex;
+                flex-direction: column;
+            }
+            
             .portal-feature-card h4 { 
-                font-size: 1.1rem; 
-                margin-bottom: 5px; 
+                font-size: 1.05rem; 
+                margin: 0 0 2px 0; 
+                display: block; 
+                color: #fff;
             }
+            
             .portal-feature-card p { 
                 font-size: 0.85rem; 
+                display: block;
+                color: rgba(255,255,255,0.9);
+                line-height: 1.4;
             }
-            .btn-portal { width: 100%; text-align: center; font-size: 1rem; padding: 14px 20px;}
+            
+            .btn-portal { width: 100%; text-align: center; font-size: 1rem; padding: 14px 20px; background: #fff; color: var(--primary-color);}
 
             .pricing-grid { flex-direction: column; align-items: center; }
             .pricing-card { width: 100%; max-width: 350px; }
             .pricing-card.popular { transform: none; }
             
-            /* MOBILE SERVICES CARD UPDATE */
             .service-card { border: 1px solid #eee; border-bottom: 3px solid var(--accent-color); background: #fff;}
             .service-action-text { opacity: 1; transform: translateY(0); background-color: var(--bg-light); padding: 8px 20px; border-radius: 50px; border: 1px solid #ddd; color: var(--primary-color); margin-top: 15px; }
             
@@ -374,7 +431,7 @@
             <li><a href="index.html" style="color: var(--accent-color);">Home</a></li>
             
             <li class="dropdown-parent">
-                <a href="services.html" onclick="toggleDropdown(event)">Services <i class="fa-solid fa-chevron-down"></i></a>
+                <a href="services.html" onclick="toggleDropdown(event, 'servicesDropdown')">Services <i class="fa-solid fa-chevron-down"></i></a>
                 <ul class="dropdown" id="servicesDropdown">
                     <li class="mobile-only-link"><a href="services.html">View All Services &rarr;</a></li>
                     <li><a href="lawn-mowing.html">Lawn Mowing</a></li>
@@ -403,7 +460,7 @@
             <h1>Your Weekend is for Living, Not Mowing</h1>
             <p>Professional and reliable lawn maintenance, serving homeowners in Georgetown and the entire Greater Toronto Area.</p>
             <div class="hero-buttons">
-                <a href="#pricing" class="btn-primary">View Pricing</a>
+                <a href="pricing.html" class="btn-primary">View Pricing</a>
                 <a href="contact2.html" class="btn-secondary">Get a Quote</a>
             </div>
         </div>
@@ -421,7 +478,7 @@
                     <i class="fa-solid fa-route"></i>
                     <div>
                         <h4>Track Recent Visits</h4>
-                        <p>Know exactly when our crew was at your property and what services were completed.</p>
+                        <p>Know exactly when our crew was at your property, review the services completed, and view attached photos of the finished work.</p>
                     </div>
                 </div>
                 <div class="portal-feature-card">
@@ -435,7 +492,7 @@
                     <i class="fa-solid fa-calendar-plus"></i>
                     <div>
                         <h4>Request Future Services</h4>
-                        <p>Easily add one-off services like seasonal cleanups, aeration, or mulch right from your dashboard.</p>
+                        <p>Modify your schedule with a click. Easily skip your next cut, request specific tree or hedge pruning, pause weed control, or ask us to service only the front or back yard.</p>
                     </div>
                 </div>
             </div>
