@@ -3,20 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Greenworks Landscaping</title>
+    <title>Contact & Quote | Greenworks Landscaping</title>
     
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-T9K6VD2L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      // Unified Google Tag
+      gtag('config', 'GT-T9K6VD2L');
+      // Google Analytics 4
+      gtag('config', 'G-N8165ZJRD2');
+      // Google Ads Tracking
+      gtag('config', 'AW-10820369667');
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* --- 1. GENERAL STYLES --- */
+        /* --- 1. GENERAL STYLES (Matches Master Reference) --- */
         :root {
             --primary-color: #1b5e20;
             --accent-color: #4CAF50; 
-            --text-dark: #333333;
-            --text-light: #666666;
-            --bg-light: #f4f7f6;
-            --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --text-dark: #222;
+            --text-light: #666;
+            --bg-light: #f9f9f9;
+            --card-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
 
         * { box-sizing: border-box; }
@@ -27,6 +41,7 @@
             color: var(--text-dark);
             background-color: #fff;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Stops background scrolling when mobile menu is open */
@@ -37,30 +52,25 @@
         /* Mobile specific link visible only on mobile */
         .mobile-only-link { display: none !important; }
 
-        a { text-decoration: none; color: inherit; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; padding: 0; margin: 0; }
+        img { max-width: 100%; height: auto; display: block; }
 
-        /* --- 2. HEADER & NAVIGATION --- */
+        /* --- 2. HEADER --- */
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            background: #fff;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: #fff;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0; z-index: 1000;
+            position: sticky; top: 0; z-index: 1000;
         }
 
-        .logo {
-            border-radius: 10px; overflow: hidden; transition: transform 0.3s;
-        }
+        .logo { border-radius: 10px; overflow: hidden; transition: transform 0.3s; }
         .logo:hover { transform: scale(1.02); }
 
         .nav-links { display: flex; gap: 30px; align-items: center; }
-        .nav-links a { font-weight: 500; color: var(--text-dark); transition: color 0.3s; }
+        .nav-links a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent-color); }
-
+        
         /* DROPDOWN MENU STYLING (Desktop) */
         .dropdown-parent {
             position: relative;
@@ -117,20 +127,15 @@
         .nav-links .login-btn { color: var(--primary-color); font-weight: 600; }
         .nav-links .login-btn:hover { color: var(--accent-color); }
 
-        /* Desktop Call Button */
         .btn-header {
-            background-color: var(--primary-color);
-            color: #fff !important;
-            padding: 10px 25px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
+            background-color: var(--primary-color); color: #fff !important;
+            padding: 10px 25px; border-radius: 50px; font-weight: 600; font-size: 0.9rem;
             transition: background 0.3s;
         }
         .btn-header:hover { background-color: var(--accent-color); }
 
-        /* --- MOBILE CONTROLS --- */
-        .mobile-controls { display: none; align-items: center; gap: 12px; }
+        /* Mobile Controls */
+        .mobile-controls { display: none; align-items: center; gap: 15px; }
         
         .mobile-login-btn {
             background-color: var(--bg-light);
@@ -144,30 +149,16 @@
             gap: 5px;
             border: 1px solid #ddd;
         }
-
+        
         .mobile-call-icon {
-            width: 40px; height: 40px;
-            background-color: var(--accent-color);
-            color: white; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
-            transition: transform 0.2s;
+            width: 40px; height: 40px; background-color: var(--accent-color); color: white;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); transition: transform 0.2s;
         }
         .mobile-call-icon:active { transform: scale(0.95); }
-
-        .mobile-button {
-            cursor: pointer; width: 30px; height: 20px;
-            position: relative; z-index: 1001;
-        }
-        .mobile-button span {
-            display: block; width: 100%; height: 3px; background-color: var(--primary-color);
-            position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease;
-        }
-        .mobile-button::before, .mobile-button::after {
-            content: ''; width: 100%; height: 3px; background-color: var(--primary-color);
-            position: absolute; transition: all 0.3s ease;
-        }
+        .mobile-button { cursor: pointer; width: 30px; height: 20px; position: relative; z-index: 1001; }
+        .mobile-button span { display: block; width: 100%; height: 3px; background-color: var(--primary-color); position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease; }
+        .mobile-button::before, .mobile-button::after { content: ''; width: 100%; height: 3px; background-color: var(--primary-color); position: absolute; transition: all 0.3s ease; }
         .mobile-button::before { top: 0; }
         .mobile-button::after { bottom: 0; }
         .mobile-button.active span { opacity: 0; }
@@ -328,6 +319,10 @@
         .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
 
         /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 900px) {
+            .contact-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+        }
         @media (max-width: 768px) {
             .mobile-controls { display: flex; }
             .btn-header.desktop-only { display: none; }
@@ -349,9 +344,10 @@
                 overflow-y: auto; 
                 z-index: 999;
             }
+
             .nav-links.active { display: flex; }
             .nav-links li { margin: 10px 0; width: 100%; text-align: center; }
-
+            
             /* COLLAPSIBLE MOBILE DROPDOWN */
             .dropdown-parent > a {
                 display: flex; justify-content: center; align-items: center; gap: 8px;
@@ -396,36 +392,33 @@
             <a href="https://www.trackmylawn.com/login" target="_blank" class="mobile-login-btn">
                 <i class="fas fa-user-circle"></i> Login
             </a>
-            <a href="tel:+17055009000" class="mobile-call-icon"><i class="fas fa-phone"></i></a>
+            <a href="tel:+17055009000" class="mobile-call-icon" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Mobile Header Call' });"><i class="fas fa-phone"></i></a>
             <div class="mobile-button" onclick="toggleMenu()"><span></span></div>
         </div>
 
         <ul class="nav-links" id="navLinks">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html" >Home</a></li>
             
             <li class="dropdown-parent">
-                <a href="services.html" onclick="toggleDropdown(event)">Services <i class="fas fa-chevron-down"></i></a>
+                <a href="landmain.html" onclick="toggleDropdown(event)">Services <i class="fas fa-chevron-down"></i></a>
                 <ul class="dropdown" id="servicesDropdown">
-                    <li class="mobile-only-link"><a href="services.html">View All Services &rarr;</a></li>
-                    <li><a href="lawn-mowing.html">Lawn Mowing</a></li>
-                    <li><a href="gardening.html">Gardening Services</a></li>
-                    <li><a href="weed-control.html">Weed Control</a></li>
-                    <li><a href="fertilizing.html">Fertilizing</a></li>
-                    <li><a href="aeration.html">Seeding & Aeration</a></li>
-                    <li><a href="seasonal-cleanup.html">Seasonal Cleanup</a></li>
-                    <li><a href="tree-care.html">Tree & Shrub Care</a></li>
-                    <li><a href="mulch.html">Mulch Installation</a></li>
+                    <li class="mobile-only-link"><a href="landmain.html">View All Construction →</a></li>
+                    <li><a href="landscape-designs.html">Landscape Designs</a></li>
+                    <li><a href="driveways-walkways.html">Driveways & Walkways</a></li>
+                    <li><a href="interlock-patio.html">Interlock Patios</a></li>
+                    <li><a href="retaining-walls.html">Retaining Walls</a></li>
+                    <li><a href="outdoor-features.html">Outdoor Features</a></li>
+                    <li><a href="custom-porches.html">Custom Porches</a></li>
                 </ul>
             </li>
-
-            <li><a href="lawn-portfolio.html">Portfolio</a></li>
-            <li><a href="pricing.html">Pricing Plans</a></li>
-            <li><a href="about2.html">About Us</a></li>
-            <li><a href="contact2.html" style="color: var(--accent-color);">Contact</a></li>
+            
+            <li><a href="landscape-gallery.html">Portfolio</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html" style="color: var(--accent-color); font-weight: 600;">Contact</a></li>
             <li class="desktop-login-link"><a href="https://www.trackmylawn.com/login" target="_blank" class="login-btn"><i class="fas fa-user-circle"></i> Client Login</a></li>
         </ul>
         
-        <a href="tel:+17055009000" class="btn-header desktop-only">Call 705-500-9000</a>
+        <a href="tel:+17055009000" class="btn-header desktop-only" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Desktop Header Call' });">Call 705-500-9000</a>
     </header>
 
     <section class="page-hero">
@@ -441,7 +434,7 @@
                     <div class="icon-box"><i class="fas fa-phone"></i></div>
                     <div class="info-content">
                         <h3>Call Us</h3>
-                        <p><a href="tel:+17055009000">+1 705-500-9000</a></p>
+                        <p><a href="tel:+17055009000" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Body Info Call' });">+1 705-500-9000</a></p>
                     </div>
                 </div>
 
@@ -473,7 +466,7 @@
             <div class="contact-form-wrapper">
                 <h2>Request a Quote</h2>
                 
-               <form action="https://formspree.io/f/xwpevnqp" method="POST">
+                <form action="https://formspree.io/f/xwpevnqp" method="POST" onsubmit="gtag('event', 'generate_lead', { 'event_category': 'Form', 'event_label': 'Contact Page Form' });">
                     
                     <div class="form-group">
                         <label>Select a Monthly Plan (Optional)</label>
@@ -591,14 +584,14 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>About Us</h4>
-                <p>Greenworks Landscaping is committed to providing top-quality lawn care services. Locally owned and operated, we make your lawn our passion.</p>
+                <p>Greenworks Lawncare is committed to providing top-quality lawn care services. Locally owned and operated, we make your lawn our passion.</p>
             </div>
             
             <div class="footer-col">
                 <h4>Contact Info</h4>
                 <ul>
                     <li><i class="fas fa-map-marker-alt"></i> Georgetown, ON, CA</li>
-                    <li><i class="fas fa-phone"></i> <a href="tel:+17055009000">+1 705-500-9000</a></li>
+                    <li><i class="fas fa-phone"></i> <a href="tel:+17055009000" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Footer Call' });">+1 705-500-9000</a></li>
                     <li><i class="fas fa-envelope"></i> <a href="mailto:info@gnwlandscaping.ca">info@gnwlandscaping.ca</a></li>
                 </ul>
             </div>
@@ -612,7 +605,7 @@
         </div>
         
         <div class="copyright">
-            <p>Copyright © <span id="year"></span> | Greenworks Landscaping Inc. | All Rights Reserved.</p>
+            <p>Copyright © <span id="year">2026</span> | Greenworks Construction and Companies Inc. | All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -626,7 +619,7 @@
 
         // Auto-select radio button for plans
         if (plan) {
-            const radioBtn = document.getElementById('plan-' + plan);
+            const radioBtn = document.getElementById('plan-' + plan.toLowerCase());
             if (radioBtn) {
                 radioBtn.checked = true;
                 setTimeout(() => {
@@ -637,7 +630,7 @@
         
         // Auto-select checkbox for specific services
         if (service) {
-            const checkBtn = document.getElementById('srv-' + service);
+            const checkBtn = document.getElementById('srv-' + service.toLowerCase());
             if (checkBtn) {
                 checkBtn.checked = true;
                 setTimeout(() => {
@@ -646,7 +639,7 @@
             }
         }
 
-        // Mobile Menu Toggle - Added scroll lock for the body
+        // --- MOBILE MENU TOGGLE ---
         function toggleMenu() {
             const navLinks = document.getElementById("navLinks");
             const mobileBtn = document.querySelector(".mobile-button");
@@ -658,7 +651,7 @@
             document.body.classList.toggle("no-scroll");
         }
 
-        // Mobile Dropdown Toggle Logic
+        // --- MOBILE DROPDOWN TOGGLE ---
         function toggleDropdown(e) {
             // Only stop default link behavior if on mobile screen size
             if (window.innerWidth <= 768) {
