@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Greenworks Landscaping | Design & Build</title>
     
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-T9K6VD2L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      // Unified Google Tag
+      gtag('config', 'GT-T9K6VD2L');
+      // Google Analytics 4
+      gtag('config', 'G-N8165ZJRD2');
+      // Google Ads Tracking
+      gtag('config', 'AW-10820369667');
+    </script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -128,22 +142,15 @@
         .mobile-controls { display: none; align-items: center; gap: 12px; }
         
         .mobile-login-btn {
-            background-color: var(--bg-light);
-            color: var(--primary-color);
-            padding: 8px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            border: 1px solid #ddd;
+            background-color: var(--bg-light); color: var(--primary-color); padding: 8px 14px;
+            border-radius: 20px; font-size: 0.85rem; font-weight: 600;
+            display: flex; align-items: center; gap: 5px; border: 1px solid #ddd; text-decoration: none;
         }
 
         .mobile-call-icon {
             width: 40px; height: 40px; background-color: var(--accent-color); color: white;
             border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem;
-            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); transition: transform 0.2s;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); transition: transform 0.2s; text-decoration: none;
         }
         .mobile-call-icon:active { transform: scale(0.95); }
 
@@ -408,9 +415,7 @@
             <a href="https://www.trackmylawn.com/login" target="_blank" class="mobile-login-btn">
                 <i class="fas fa-user-circle"></i> Login
             </a>
-            <a href="tel:+17055009000" class="mobile-call-icon">
-                <i class="fas fa-phone"></i>
-            </a>
+            <a href="tel:+17055009000" class="mobile-call-icon" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Mobile Header Call' });"><i class="fas fa-phone"></i></a>
             <div class="mobile-button" onclick="toggleMenu()">
                 <span></span>
             </div>
@@ -438,7 +443,7 @@
             <li class="desktop-login-link"><a href="https://www.trackmylawn.com/login" target="_blank" class="login-btn"><i class="fas fa-user-circle"></i> Client Login</a></li>
         </ul>
         
-        <a href="tel:+17055009000" class="btn-header desktop-only">Call 705-500-9000</a>
+        <a href="tel:+17055009000" class="btn-header desktop-only" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Desktop Header Call' });">Call 705-500-9000</a>
     </header>
 
     <section class="hero">
@@ -697,7 +702,7 @@
             <div class="gallery-item"><img src="assets/portfolio/7.webp" alt="Project"></div>
         </div>
         <div style="text-align: center; margin-top: 40px;">
-            <a href="landscape-gallery.html" class="hero-btn" style="background: #333;">View Full Portfolio</a>
+            <a href="landscape-gallery.html" class="hero-btn" style="background: #333; opacity: 1; animation: none;">View Full Portfolio</a>
         </div>
     </section>
 
@@ -726,7 +731,7 @@
                 <h4>Contact Info</h4>
                 <ul>
                     <li><i class="fas fa-map-marker-alt"></i> Georgetown, ON, CA</li>
-                    <li><i class="fas fa-phone"></i> <a href="tel:+17055009000">+1 705-500-9000</a></li>
+                    <li><i class="fas fa-phone"></i> <a href="tel:+17055009000" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Footer Call' });">+1 705-500-9000</a></li>
                     <li><i class="fas fa-envelope"></i> <a href="mailto:info@gnwlandscaping.ca">info@gnwlandscaping.ca</a></li>
                 </ul>
             </div>

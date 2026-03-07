@@ -17,14 +17,18 @@
   <link rel="stylesheet" href="new.css" />
   <link rel="stylesheet" href="style2.css" />
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Q18BHV3W5"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GT-T9K6VD2L"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-    gtag("config", "G-N8165ZJRD2");
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    // Unified Google Tag
+    gtag('config', 'GT-T9K6VD2L');
+    // Google Analytics 4
+    gtag('config', 'G-N8165ZJRD2');
+    // Google Ads Tracking
+    gtag('config', 'AW-10820369667');
   </script>
 
   <style>
@@ -49,6 +53,8 @@
       color: var(--text-dark);
       background-color: #fff;
       line-height: 1.6;
+      /* ADDED: Offsets the body so it doesn't hide under the fixed header */
+      padding-top: 75px; 
     }
 
     /* Stops background scrolling when mobile menu is open */
@@ -86,9 +92,13 @@
       padding: 15px 5%;
       background: #fff;
       box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-      position: sticky;
+      
+      /* FIXED: Changed to Fixed to override external CSS conflicts */
+      position: fixed;
       top: 0;
-      z-index: 1000;
+      left: 0;
+      width: 100%;
+      z-index: 10000;
     }
 
     .logo {
@@ -251,7 +261,6 @@
       position: relative;
       z-index: 1001;
       margin: 0;
-      /* override style.css */
     }
 
     .mobile-button span {
@@ -264,7 +273,6 @@
       transform: translateY(-50%);
       transition: all 0.3s ease;
       margin: 0;
-      /* override style.css */
     }
 
     .mobile-button::before,
@@ -276,7 +284,6 @@
       position: absolute;
       transition: all 0.3s ease;
       transform: none;
-      /* override style.css */
     }
 
     .mobile-button::before {
@@ -286,7 +293,6 @@
     .mobile-button::after {
       bottom: 0;
       top: auto;
-      /* override style.css */
     }
 
     .mobile-button.active span {
@@ -650,6 +656,14 @@
     }
 
     @media (max-width: 768px) {
+      body {
+        padding-top: 55px; /* Smaller offset for mobile header height */
+      }
+      
+      header {
+        padding: 10px 5%;
+      }
+
       .mobile-controls {
         display: flex;
       }
@@ -687,10 +701,10 @@
       .nav-links {
         display: none;
         position: fixed;
-        top: 65px;
+        top: 55px; /* Changed from 65px to align perfectly under mobile header */
         left: 0;
         width: 100%;
-        height: calc(100vh - 65px);
+        height: calc(100vh - 55px);
         background-color: #fff;
         flex-direction: column;
         align-items: center;
@@ -812,7 +826,7 @@
       <a href="https://www.trackmylawn.com/login" target="_blank" class="mobile-login-btn">
         <i class="fas fa-user-circle"></i> Login
       </a>
-      <a href="tel:+17055009000" class="mobile-call-icon"><i class="fas fa-phone"></i></a>
+      <a href="tel:+17055009000" class="mobile-call-icon" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Mobile Header Call' });"><i class="fas fa-phone"></i></a>
       <div class="mobile-button" onclick="toggleMenu()"><span></span></div>
     </div>
 
@@ -825,7 +839,7 @@
             class="fas fa-user-circle"></i> Client Login</a></li>
     </ul>
 
-    <a href="tel:+17055009000" class="btn-header desktop-only">Call 705-500-9000</a>
+    <a href="tel:+17055009000" class="btn-header desktop-only" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Desktop Header Call' });">Call 705-500-9000</a>
   </header>
 
 
@@ -1243,10 +1257,6 @@
     </div>
   </section>
 
-
-
-
-
   <footer id="footer">
     <div class="container">
       <div class="row">
@@ -1273,7 +1283,7 @@
           </div>
           <div class="footer-contact-item">
             <label>Phone:</label>
-            <span><a href="tel:+17055009000" style="color: #999; text-decoration: none">(705)500-9000</a></span>
+            <span><a href="tel:+17055009000" style="color: #999; text-decoration: none" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Footer Call' });">(705)500-9000</a></span>
           </div>
           <div class="footer-contact-item">
             <label>E-mail:</label>

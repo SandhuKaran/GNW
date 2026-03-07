@@ -8,6 +8,20 @@
     <meta name="description" content="Greenworks Landscaping - Premium Hardscaping & Construction Services in Georgetown." />
     <title>Construction Services | Greenworks Landscaping</title>
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-T9K6VD2L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      // Unified Google Tag
+      gtag('config', 'GT-T9K6VD2L');
+      // Google Analytics 4
+      gtag('config', 'G-N8165ZJRD2');
+      // Google Ads Tracking
+      gtag('config', 'AW-10820369667');
+    </script>
+
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -29,16 +43,34 @@
             --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0; padding: 0;
+            color: var(--text-dark);
+            background-color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Added padding so content doesn't hide behind fixed header */
+            padding-top: 75px; 
+        }
+
+        /* Stops background scrolling when mobile menu is open */
         body.no-scroll { overflow: hidden; }
         .mobile-only-link { display: none !important; }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        img { max-width: 100%; height: auto; display: block; }
 
         /* --- 2. ISOLATED HEADER STYLES --- */
         .master-header {
             display: flex; justify-content: space-between; align-items: center;
             padding: 15px 5%; background: #fff; margin: 0;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            position: sticky; top: 0; z-index: 10000;
+            /* Fixed positioning ensures it sticks properly regardless of other CSS rules */
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 10000;
             font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
         }
 
         .master-logo { border-radius: 10px; overflow: hidden; transition: transform 0.3s; display: flex; align-items: center; text-decoration: none;}
@@ -96,11 +128,22 @@
             box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); transition: transform 0.2s; text-decoration: none;
         }
         .mobile-call-icon:active { transform: scale(0.95); }
-        .mobile-button { cursor: pointer; width: 30px; height: 20px; position: relative; z-index: 1001; }
-        .mobile-button span { display: block; width: 100%; height: 3px; background-color: var(--primary-color); position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease; }
-        .mobile-button::before, .mobile-button::after { content: ''; width: 100%; height: 3px; background-color: var(--primary-color); position: absolute; transition: all 0.3s ease; }
+
+        /* HAMBURGER MENU OVERRIDES TO FIX MISSING 3 LINES */
+        .mobile-button { 
+            display: block; cursor: pointer; width: 30px; height: 20px; 
+            position: relative; z-index: 1001; margin: 0; 
+        }
+        .mobile-button span { 
+            display: block; width: 100%; height: 3px; background-color: var(--primary-color); 
+            position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease; margin: 0; 
+        }
+        .mobile-button::before, .mobile-button::after { 
+            content: ''; width: 100%; height: 3px; background-color: var(--primary-color); 
+            position: absolute; left: 0; transition: all 0.3s ease; transform: none; 
+        }
         .mobile-button::before { top: 0; }
-        .mobile-button::after { bottom: 0; }
+        .mobile-button::after { bottom: 0; top: auto; }
         .mobile-button.active span { opacity: 0; }
         .mobile-button.active::before { top: 50%; transform: rotate(45deg); }
         .mobile-button.active::after { top: 50%; transform: rotate(-45deg); bottom: auto; }
@@ -182,6 +225,7 @@
 
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 991px) {
+            body { padding-top: 55px; } /* Shrink top padding to match mobile header */
             .master-header { padding: 10px 5%; }
             .master-logo img { height: 35px !important; }
             .mobile-controls { display: flex; gap: 8px; }
@@ -190,22 +234,23 @@
             
             /* SCROLLABLE MOBILE MENU */
             .master-nav {
-                display: none; position: fixed; top: 60px; left: 0; width: 100%; height: calc(100vh - 60px); 
+                display: none; position: fixed; top: 55px; left: 0; width: 100%; height: calc(100vh - 55px); 
                 background-color: #fff; flex-direction: column; align-items: center; padding: 20px 0 100px 0; 
                 box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 1px solid #eee; overflow-y: auto; z-index: 9999;
             }
             .master-nav.active { display: flex; }
             .master-nav li { margin: 10px 0; width: 100%; text-align: center; }
             
-            /* COLLAPSIBLE MOBILE DROPDOWN */
-            .has-sub-menu > a { display: flex; justify-content: center; align-items: center; gap: 8px; }
+            /* COLLAPSIBLE MOBILE DROPDOWN - FIXED */
+            .has-sub-menu > a { display: flex; justify-content: center; align-items: center; gap: 8px; cursor: pointer; }
             .has-sub-menu .fa-chevron-down { display: inline-block; transition: transform 0.3s; }
             .sub-menu-drop {
                 position: static; display: none; opacity: 1; visibility: visible;
                 transform: none; box-shadow: none; border: none; background: #f9f9f9;
                 margin-top: 10px; border-radius: 0; width: 100%; padding: 10px 0;
             }
-            .sub-menu-drop.open { display: block; }
+            /* Forced block to override desktop specificity */
+            .sub-menu-drop.open { display: block !important; } 
             .sub-menu-drop li a { padding: 12px 0; color: var(--text-light); border-bottom: 1px solid #eee; text-align: center;}
             .sub-menu-drop li:last-child a { border-bottom: none; }
             .mobile-only-link { display: block !important; font-weight: 600; color: var(--primary-color) !important; }
@@ -220,22 +265,22 @@
 
     <header class="master-header">
         <a href="index.html" class="master-logo">
-            <img src="assets/img/logo.png" alt="Greenworks Logo"> 
+            <img src="assets/img/logo-light.png" alt="Greenworks Logo" style="filter: none;"> 
         </a>
         
         <div class="mobile-controls">
             <a href="https://www.trackmylawn.com/login" target="_blank" class="mobile-login-btn">
                 <i class="fa-solid fa-user-circle"></i> Login
             </a>
-            <a href="tel:+17055009000" class="mobile-call-icon"><i class="fa-solid fa-phone"></i></a>
+            <a href="tel:+17055009000" class="mobile-call-icon" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Mobile Header Call' });">
+                <i class="fas fa-phone"></i>
+            </a>
             <div class="mobile-button" onclick="toggleMenu()"><span></span></div>
         </div>
 
         <ul class="master-nav" id="navLinks">
             <li><a href="index.html">Home</a></li>
             
-          
-
             <li class="has-sub-menu">
                 <a onclick="toggleSubMenu(event, 'constructDropdown')" style="color: var(--accent-color); font-weight: 600;">Services <i class="fa-solid fa-chevron-down"></i></a>
                 <ul class="sub-menu-drop" id="constructDropdown">
@@ -255,7 +300,7 @@
             <li class="desktop-login-link"><a href="https://www.trackmylawn.com/login" target="_blank" class="master-login-btn"><i class="fa-solid fa-user-circle"></i> Client Login</a></li>
         </ul>
         
-        <a href="tel:+17055009000" class="master-btn-header desktop-only">Call 705-500-9000</a>
+        <a href="tel:+17055009000" class="master-btn-header desktop-only" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Desktop Header Call' });">Call 705-500-9000</a>
     </header>
 
     <section class="page-hero">
@@ -355,7 +400,7 @@
                 <h4>Contact Info</h4>
                 <ul>
                     <li><i class="fa-solid fa-map-marker-alt"></i> Georgetown, ON, CA</li>
-                    <li><i class="fa-solid fa-phone"></i> <a href="tel:+17055009000">+1 705-500-9000</a></li>
+                    <li><i class="fa-solid fa-phone"></i> <a href="tel:+17055009000" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Footer Call' });">+1 705-500-9000</a></li>
                     <li><i class="fa-solid fa-envelope"></i> <a href="mailto:info@gnwlandscaping.ca">info@gnwlandscaping.ca</a></li>
                 </ul>
             </div>
@@ -387,30 +432,36 @@
             document.body.classList.toggle("no-scroll");
         }
 
-        // --- DOUBLE DROPDOWN LOGIC ---
+        // --- DOUBLE DROPDOWN LOGIC (FIXED) ---
         function toggleSubMenu(e, dropdownId) {
             if (window.innerWidth <= 991) {
                 e.preventDefault(); 
                 
-                // Close other open dropdowns
+                const dropdown = document.getElementById(dropdownId);
+                const icon = e.currentTarget.querySelector('.fa-chevron-down');
+                
+                // Close other open dropdowns safely
                 const allDropdowns = document.querySelectorAll('.sub-menu-drop');
                 allDropdowns.forEach(drop => {
                     if(drop.id !== dropdownId) {
                         drop.classList.remove('open');
-                        drop.previousElementSibling.querySelector('.fa-chevron-down').style.transform = 'rotate(0deg)';
+                        // Ensure previous icon resets if it exists
+                        if(drop.previousElementSibling) {
+                            const otherIcon = drop.previousElementSibling.querySelector('.fa-chevron-down');
+                            if(otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                        }
                     }
                 });
 
-                // Toggle target dropdown
-                const dropdown = document.getElementById(dropdownId);
-                const icon = e.currentTarget.querySelector('.fa-chevron-down');
-                
+                // Toggle the target dropdown
                 dropdown.classList.toggle('open');
                 
-                if (dropdown.classList.contains('open')) {
-                    icon.style.transform = 'rotate(180deg)';
-                } else {
-                    icon.style.transform = 'rotate(0deg)';
+                if (icon) {
+                    if (dropdown.classList.contains('open')) {
+                        icon.style.transform = 'rotate(180deg)';
+                    } else {
+                        icon.style.transform = 'rotate(0deg)';
+                    }
                 }
             }
         }
