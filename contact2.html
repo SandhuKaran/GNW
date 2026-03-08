@@ -19,6 +19,24 @@
       gtag('config', 'AW-10820369667');
     </script>
 
+    <!-- Event snippet for Contact Form conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-10820369667/haRQCN-msaIZEIP6xqco',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
+
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -569,7 +587,7 @@
                         <textarea name="message" class="form-control" placeholder="Tell us about your property..."></textarea>
                     </div>
 
-                    <button type="submit" class="btn-submit">Send Request</button>
+                    <button type="submit" class="btn-submit" onclick="return gtag_report_conversion();" >Send Request</button>
                 </form>
             </div>
 
