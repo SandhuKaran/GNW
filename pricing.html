@@ -215,9 +215,38 @@
 
         /* --- 4. MONTHLY PRICING CARDS --- */
         .pricing-section {
-            padding: 80px 5%;
+            padding: 40px 5% 80px 5%;
             background-color: var(--bg-light);
-            margin-top: -50px; /* Pull up into hero slightly */
+            margin-top: -50px; 
+            border-radius: 20px 20px 0 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* NEW PRICING INTRO BANNER */
+        .pricing-intro {
+            background: #fff;
+            max-width: 900px;
+            margin: 0 auto 50px auto;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            border-left: 5px solid var(--accent-color);
+        }
+        .pricing-intro h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+        .pricing-intro p {
+            color: var(--text-light);
+            margin-bottom: 0;
+            font-size: 1.05rem;
+        }
+        .pricing-intro strong {
+            color: var(--text-dark);
         }
 
         .pricing-grid {
@@ -262,8 +291,12 @@
         }
 
         .plan-name { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); margin-bottom: 10px; }
-        .plan-price { font-size: 2.5rem; font-weight: 700; color: var(--text-dark); margin-bottom: 20px; }
+        .plan-price { font-size: 2.5rem; font-weight: 700; color: var(--text-dark); margin-bottom: 5px; }
+        
+        /* Added context to the price span */
         .plan-price span { font-size: 1rem; font-weight: 400; color: var(--text-light); }
+        .plan-subtext { display: block; font-size: 0.85rem; color: var(--accent-color); margin-bottom: 20px; font-weight: 600;}
+
         .plan-divider { border-bottom: 1px solid #eee; margin-bottom: 20px; }
         .plan-features { flex-grow: 1; margin-bottom: 30px; }
         .plan-features li { margin-bottom: 15px; color: var(--text-light); display: flex; align-items: center; gap: 10px; }
@@ -455,6 +488,7 @@
             .pricing-card { width: 100%; }
             .page-hero h1 { font-size: 2.2rem; }
             
+            .pricing-intro { padding: 20px; }
             .comparison-table { display: block; overflow-x: auto; white-space: nowrap; } 
         }
     </style>
@@ -473,8 +507,12 @@
             <a href="https://www.trackmylawn.com/login" target="_blank" class="mobile-login-btn">
                 <i class="fas fa-user-circle"></i> Login
             </a>
-            <a href="tel:+17055009000" class="mobile-call-icon" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Mobile Header Call' });"><i class="fas fa-phone"></i></a>
-            <div class="mobile-button" onclick="toggleMenu()"><span></span></div>
+            <a href="tel:+17055009000" class="mobile-call-icon">
+                <i class="fas fa-phone"></i>
+            </a>
+            <div class="mobile-button" onclick="toggleMenu()">
+                <span></span>
+            </div>
         </div>
 
         <ul class="nav-links" id="navLinks">
@@ -502,7 +540,7 @@
             <li class="desktop-login-link"><a href="https://www.trackmylawn.com/login" target="_blank" class="login-btn"><i class="fas fa-user-circle"></i> Client Login</a></li>
         </ul>
         
-        <a href="tel:+17055009000" class="btn-header desktop-only" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Desktop Header Call' });">Call 705-500-9000</a>
+        <a href="tel:+17055009000" class="btn-header desktop-only">Call 705-500-9000</a>
     </header>
 
     <section class="page-hero">
@@ -511,11 +549,18 @@
     </section>
 
     <section class="pricing-section">
+        
+        <div class="pricing-intro">
+            <h3>Why choose a Monthly Package?</h3>
+            <p>While some companies advertise "$25 cuts," they often charge extra for edging, cleanups, and disposal—leaving you with a patchy lawn and unpredictable bills. Our flat-rate monthly plans guarantee <strong>4 visits per month</strong>, ensuring your property looks pristine all season long without any surprise costs.</p>
+        </div>
+
         <div class="pricing-grid">
             
             <div class="pricing-card">
                 <div class="plan-name">Basic Plan</div>
                 <div class="plan-price">$149 <span>/mo</span></div>
+                <span class="plan-subtext">Includes 4 visits per month</span>
                 <div class="plan-divider"></div>
                 <ul class="plan-features">
                     <li><i class="fas fa-check"></i> Lawn Mowing (Weekly)</li>
@@ -529,6 +574,7 @@
             <div class="pricing-card popular">
                 <div class="plan-name">Premium Plan</div>
                 <div class="plan-price">$198 <span>/mo</span></div>
+                <span class="plan-subtext">Includes 4 visits per month</span>
                 <div class="plan-divider"></div>
                 <ul class="plan-features">
                     <li><i class="fas fa-check"></i> <strong>Everything in Basic</strong></li>
@@ -543,6 +589,7 @@
             <div class="pricing-card">
                 <div class="plan-name">Ultimate Plan</div>
                 <div class="plan-price">$259 <span>/mo</span></div>
+                <span class="plan-subtext">Includes 4 visits per month</span>
                 <div class="plan-divider"></div>
                 <ul class="plan-features">
                     <li><i class="fas fa-check"></i> <strong>Everything in Premium</strong></li>
