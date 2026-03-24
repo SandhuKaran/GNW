@@ -370,11 +370,12 @@
     }
 
     .ai-sparkle {
-      font-size: 1.2rem;
-      background: linear-gradient(135deg, #4285f4, #9b72cb, #d96570, #f49c0e);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, #4285f4, #9b72cb, #d96570, #f49c0e);
+  -webkit-background-clip: text; /* For Safari/Chrome compatibility */
+  background-clip: text;         /* ADD THIS LINE: The standard property */
+  -webkit-text-fill-color: transparent;
+}
 
     .ai-titles h3 {
       font-size: 1.1rem;

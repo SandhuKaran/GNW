@@ -21,20 +21,7 @@
 
     <!-- Event snippet for Contact Form conversion page
 In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
-<script>
-function gtag_report_conversion(url) {
-  var callback = function () {
-    if (typeof(url) != 'undefined') {
-      window.location = url;
-    }
-  };
-  gtag('event', 'conversion', {
-      'send_to': 'AW-10820369667/haRQCN-msaIZEIP6xqco',
-      'event_callback': callback
-  });
-  return true;
-}
-</script>
+
 
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -486,7 +473,6 @@ function gtag_report_conversion(url) {
                 
                 <form action="https://formspree.io/f/xwpevnqp" method="POST" onsubmit="gtag('event', 'generate_lead', { 'event_category': 'Form', 'event_label': 'Contact Page Form' });">
                     <input type="hidden" name="_next" value="https://www.gnwlandscaping.ca/thankyou.html">
-                    
                     <div class="form-group">
                         <label>Select a Monthly Plan (Optional)</label>
                         <div class="plan-tabs">
