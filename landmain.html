@@ -220,6 +220,83 @@
         }
         .hero-btn:hover { background: #388E3C; transform: translateY(-3px); }
 
+/* --- OFFICIAL GOOGLE COLOR STAMP --- */
+        .google-stamp-wrapper {
+            margin-top: 35px;
+            display: inline-flex;
+            justify-content: center;
+            width: 100%;
+            /* Animation to make it fade in right after the button */
+            opacity: 0;
+            animation: fadeIn 1.2s ease-out 1.2s forwards;
+        }
+
+        .google-stamped-badge {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #ffffff; /* Clean white background for the 'stamp' */
+            padding: 15px 25px;
+            border-radius: 50px; /* Fully rounded "pill" or stamp shape */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Soft but official shadow */
+            border: 1px solid #e0e0e0; /* Subtle light border */
+        }
+
+        /* The Google 'G' Icon */
+        .stamped-google-logo {
+            font-size: 1.6rem;
+            /* Use a gradient to create the iconic Google 'G' colors */
+            background: linear-gradient(45deg, #4285F4 0%, #34A853 25%, #FBBC05 50%, #EA4335 75%, #4285F4 100%);
+            -webkit-background-clip: text; /* Clip background to the icon */
+            -webkit-text-fill-color: transparent; /* Make the icon transparent to show gradient */
+            background-size: 200%;
+            filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+        }
+
+        /* The Content (Stars & Text) */
+        .stamp-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1;
+        }
+
+        .stamp-content-stars {
+            color: #f5c518; /* Google's gold/yellow star color */
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            display: flex;
+            gap: 2px;
+        }
+
+        .stamp-content-text {
+            color: #444; /* Dark gray for "official" readability */
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: none; /* Keep it professional, not all caps */
+            letter-spacing: 0.2px;
+        }
+
+        /* --- MOBILE ADJUSTMENTS --- */
+        @media (max-width: 768px) {
+            .google-stamp-wrapper {
+                margin-top: 25px;
+            }
+            .google-stamped-badge {
+                padding: 10px 20px;
+                gap: 10px;
+            }
+            .stamped-google-logo {
+                font-size: 1.4rem;
+            }
+            .stamp-content-stars {
+                font-size: 1.1rem;
+            }
+            .stamp-content-text {
+                font-size: 0.85rem;
+            }
+        }
+
         /* KEYFRAMES */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(40px); }
@@ -456,7 +533,25 @@
         <div class="hero-content">
             <h1>Redefine Your Outdoor Space</h1>
             <p>From custom porches to complete backyard transformations, we bring your vision to life with precision and passion.</p>
-            <a href="contact.html" class="hero-btn">Start Your Project</a>
+            <a href="contact.html" class="hero-btn">GET a FREE ESTIMATE</a>
+       
+            <div class="google-stamp-wrapper">
+    <a href="https://maps.app.goo.gl/Lfutqf7TdYimxbwj7" 
+       target="_blank" 
+       class="google-stamped-badge"
+       onclick="gtag('event', 'generate_lead', { 'event_category': 'Engagement', 'event_label': 'Hero Google Review Link' });">
+        
+        <i class="fab fa-google stamped-google-logo"></i>
+        <div class="stamp-content">
+            <div class="stamp-content-stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <div class="stamp-content-text">
+                5-Star Rated Company
+            </div>
+        </div>
+    </a>
+</div>
         </div>
     </section>
 
