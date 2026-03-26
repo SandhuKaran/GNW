@@ -267,7 +267,122 @@
         .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
 
         .mobile-sticky-cta { display: none; }
+        /* --- HANGING PROMO BANNER --- */
+        .promo-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease;
+        }
 
+        .promo-overlay.show-promo {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .hanging-sign {
+            position: relative;
+            margin-top: 100px;
+            background: var(--bg-light);
+            border: 4px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            /* The Swing Animation */
+            transform-origin: top center;
+            animation: dropAndSwing 2.5s ease-in-out forwards;
+        }
+
+        /* The Ropes */
+        .rope {
+            position: absolute;
+            bottom: 100%;
+            width: 3px;
+            height: 105px;
+            background: #e0e0e0;
+            border-left: 1px solid #999;
+        }
+        .rope-left { left: 40px; }
+        .rope-right { right: 40px; }
+
+        /* The 'Nails' holding the ropes */
+        .rope::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -4px;
+            width: 10px;
+            height: 10px;
+            background: #555;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Close Button */
+        .close-promo {
+            position: absolute;
+            top: 10px; right: 15px;
+            font-size: 1.8rem;
+            color: var(--text-light);
+            cursor: pointer;
+            background: none; border: none; padding: 0;
+            transition: color 0.3s;
+        }
+        .close-promo:hover { color: var(--primary-color); }
+
+        /* Sign Content */
+        .hanging-sign .badge {
+            background: var(--accent-color);
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .hanging-sign h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+            line-height: 1.1;
+        }
+        .hanging-sign p {
+            color: var(--text-dark);
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+        }
+        .hanging-sign small {
+            display: block;
+            margin-top: 15px;
+            color: var(--text-light);
+            font-size: 0.75rem;
+        }
+
+        @keyframes dropAndSwing {
+            0% { transform: translateY(-300px) rotate(15deg); }
+            30% { transform: translateY(0) rotate(-10deg); }
+            50% { transform: rotate(6deg); }
+            70% { transform: rotate(-3deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        @media (max-width: 768px) {
+            .hanging-sign { margin-top: 80px; padding: 30px 20px; }
+            .rope { height: 85px; }
+            .hanging-sign h2 { font-size: 1.8rem; }
+        }
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
             header { padding: 10px 5%; }
@@ -328,14 +443,59 @@
             
             .review-card { width: 300px; padding: 30px 20px; }
 
-            /* ACTIVATED MOBILE STICKY CTA */
-            .mobile-sticky-cta { display: flex; position: fixed; bottom: 0; left: 0; width: 100%; background: var(--primary-color); z-index: 1000; padding: 15px; justify-content: center; align-items: center; box-shadow: 0 -5px 20px rgba(0,0,0,0.15); }
-            .mobile-sticky-cta a { color: #fff; font-weight: 700; font-size: 1.1rem; text-decoration: none; display: flex; align-items: center; gap: 10px; width: 100%; justify-content: center; }
-            .mobile-sticky-cta i { background: var(--accent-color); padding: 8px; border-radius: 50%; }
+            /* Promo mobile */
+            .hanging-sign { margin-top: 80px; padding: 30px 20px; }
+            .rope { height: 85px; }
+            .hanging-sign h2 { font-size: 1.8rem; }
+
+            /* ACTIVATED MOBILE FLOATING CTA */
+            .mobile-sticky-cta { 
+                display: flex; 
+                position: fixed; 
+                bottom: 25px; 
+                right: 25px; 
+                background: var(--primary-color); 
+                z-index: 1000; 
+                padding: 12px 25px 12px 15px; 
+                border-radius: 50px; 
+                box-shadow: 0 10px 25px rgba(27, 94, 32, 0.4); 
+                border: 2px solid #fff;
+            }
+            .mobile-sticky-cta a { 
+                color: #fff; 
+                font-weight: 700; 
+                font-size: 1rem; 
+                text-decoration: none; 
+                display: flex; 
+                align-items: center; 
+                gap: 10px; 
+            }
+            .mobile-sticky-cta i { 
+                background: var(--accent-color); 
+                padding: 8px; 
+                border-radius: 50%; 
+                animation: pulse-green 2s infinite; 
+            }
         }
     </style>
 </head>
 <body>
+    <div class="promo-overlay" id="earlyBirdPromo">
+        <div class="hanging-sign">
+            <div class="rope rope-left"></div>
+            <div class="rope rope-right"></div>
+            
+            <button class="close-promo" onclick="closePromo()">&times;</button>
+            
+            <div class="badge">Spring Early Bird Offer</div>
+            <h2>40% Off 1st Month!*</h2>
+            <p>Sign up for any Monthly Lawn Maintenance Plan before <strong>April 15th</strong> and save big on your first treatment.</p>
+            
+            <a href="contact2.html?offer=earlybird" class="btn-primary" style="width: 100%; display: block; padding: 12px; box-sizing: border-box;">Claim Offer Now</a>
+            
+            <small>*Offer valid for new residential customers only, applicable with the purchase of an annual pacakge. Expires April 15, 2026.</small>
+        </div>
+    </div>
 
     <header>
         <div class="logo">
@@ -395,141 +555,84 @@
         <div class="floating-reviews-track">
             
             <div class="mini-review">
-                <img src="https://ui-avatars.com/api/?name=Tina+V&background=e8f5e9&color=1b5e20" alt="Tina">
+                <img src="review/priya.png" alt="Tina">
                 <div class="mini-review-content">
                     <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     <p>"Very neat and precise..."</p>
                 </div>
             </div>
             <div class="mini-review">
-                <img src="https://ui-avatars.com/api/?name=Mazinger+Z&background=e8f5e9&color=1b5e20" alt="Mazinger">
+                <img src="review/barry.png" alt="Mazinger">
                 <div class="mini-review-content">
                     <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     <p>"The outcome was amazing!"</p>
                 </div>
             </div>
             <div class="mini-review">
-                <img src="https://ui-avatars.com/api/?name=Barry+O&background=e8f5e9&color=1b5e20" alt="Barry">
+                <img src="review/javier.png" alt="Barry">
                 <div class="mini-review-content">
                     <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     <p>"Always responsive & reliable!"</p>
                 </div>
             </div>
             <div class="mini-review">
-                <img src="https://ui-avatars.com/api/?name=Sarah+M&background=e8f5e9&color=1b5e20" alt="Sarah">
+                <img src="review/deborah.png" alt="Sarah">
                 <div class="mini-review-content">
                     <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     <p>"Best landscapers in Georgetown."</p>
                 </div>
             </div>
             <div class="mini-review">
-                <img src="https://ui-avatars.com/api/?name=David+L&background=e8f5e9&color=1b5e20" alt="David">
+                <img src="review/kimberly.png" alt="David">
                 <div class="mini-review-content">
                     <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     <p>"My lawn has never looked better."</p>
                 </div>
             </div>
             <div class="mini-review">
-                <img src="https://ui-avatars.com/api/?name=Amanda+K&background=e8f5e9&color=1b5e20" alt="Amanda">
+                <img src="review/simon.png" alt="Amanda">
                 <div class="mini-review-content">
                     <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     <p>"Professional, quick, and clean."</p>
                 </div>
             </div>
             <div class="mini-review">
-                <img src="https://ui-avatars.com/api/?name=Jason+R&background=e8f5e9&color=1b5e20" alt="Jason">
+                <img src="review/paul.png" alt="Jason">
                 <div class="mini-review-content">
                     <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     <p>"Transformed our backyard completely!"</p>
                 </div>
             </div>
             <div class="mini-review">
-                <img src="https://ui-avatars.com/api/?name=Emily+W&background=e8f5e9&color=1b5e20" alt="Emily">
+                <img src="review/sunil.png" alt="Emily">
                 <div class="mini-review-content">
                     <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     <p>"Fair prices and quality work!!"</p>
                 </div>
             </div>
             <div class="mini-review">
-                <img src="https://ui-avatars.com/api/?name=Michael+T&background=e8f5e9&color=1b5e20" alt="Michael">
+                <img src="review/tanya.png" alt="Michael">
                 <div class="mini-review-content">
                     <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     <p>"Highly recommend Greenworks!"</p>
                 </div>
             </div>
             <div class="mini-review">
-                <img src="https://ui-avatars.com/api/?name=Zubair+A&background=e8f5e9&color=1b5e20" alt="Zubair">
+                <img src="review/tina.png" alt="Zubair">
                 <div class="mini-review-content">
                     <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     <p>"Exceptional attention to detail."</p>
                 </div>
             </div>
-
             <div class="mini-review">
-                <img src="https://ui-avatars.com/api/?name=Tina+V&background=e8f5e9&color=1b5e20" alt="Tina">
+                <img src="review/zubair.png" alt="Tina">
                 <div class="mini-review-content">
                     <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     <p>"Very neat and precise..."</p>
                 </div>
-            </div>
+               </div>
             <div class="mini-review">
-                <img src="https://ui-avatars.com/api/?name=Mazinger+Z&background=e8f5e9&color=1b5e20" alt="Mazinger">
-                <div class="mini-review-content">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"The outcome was amazing!"</p>
-                </div>
-            </div>
-            <div class="mini-review">
-                <img src="https://ui-avatars.com/api/?name=Barry+O&background=e8f5e9&color=1b5e20" alt="Barry">
-                <div class="mini-review-content">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"Always responsive & reliable!"</p>
-                </div>
-            </div>
-            <div class="mini-review">
-                <img src="https://ui-avatars.com/api/?name=Sarah+M&background=e8f5e9&color=1b5e20" alt="Sarah">
-                <div class="mini-review-content">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"Best landscapers in Georgetown."</p>
-                </div>
-            </div>
-            <div class="mini-review">
-                <img src="https://ui-avatars.com/api/?name=David+L&background=e8f5e9&color=1b5e20" alt="David">
-                <div class="mini-review-content">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"My lawn has never looked better."</p>
-                </div>
-            </div>
-            <div class="mini-review">
-                <img src="https://ui-avatars.com/api/?name=Amanda+K&background=e8f5e9&color=1b5e20" alt="Amanda">
-                <div class="mini-review-content">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"Professional, quick, and clean."</p>
-                </div>
-            </div>
-            <div class="mini-review">
-                <img src="https://ui-avatars.com/api/?name=Jason+R&background=e8f5e9&color=1b5e20" alt="Jason">
-                <div class="mini-review-content">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"Transformed our backyard completely!"</p>
-                </div>
-            </div>
-            <div class="mini-review">
-                <img src="https://ui-avatars.com/api/?name=Emily+W&background=e8f5e9&color=1b5e20" alt="Emily">
-                <div class="mini-review-content">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"Fair prices and quality work!!"</p>
-                </div>
-            </div>
-            <div class="mini-review">
-                <img src="https://ui-avatars.com/api/?name=Michael+T&background=e8f5e9&color=1b5e20" alt="Michael">
-                <div class="mini-review-content">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"Highly recommend Greenworks!"</p>
-                </div>
-            </div>
-            <div class="mini-review">
-                <img src="https://ui-avatars.com/api/?name=Zubair+A&background=e8f5e9&color=1b5e20" alt="Zubair">
+                <img src="review/anish.png" alt="Zubair">
                 <div class="mini-review-content">
                     <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     <p>"Exceptional attention to detail."</p>
@@ -801,7 +904,7 @@
 
     <div class="mobile-sticky-cta">
         <a href="tel:+17055009000" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Sticky Mobile Call' });">
-            <i class="fas fa-phone-alt"></i> Call For a Free Quote
+            <i class="fas fa-phone-alt"></i> Call Now
         </a>
     </div>
 
@@ -889,6 +992,19 @@
 
         reviewTrack.addEventListener('touchstart', () => { isScrolling = false; });
         reviewTrack.addEventListener('touchend', () => { setTimeout(() => { isScrolling = true; }, 1000); });
+
+        // --- PROMO POP-UP LOGIC ---
+        // Wait 1.5 seconds after page loads, then drop the sign down
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('earlyBirdPromo').classList.add('show-promo');
+            }, 1500); 
+        });
+
+        // Function to close the sign
+        function closePromo() {
+            document.getElementById('earlyBirdPromo').classList.remove('show-promo');
+        }
     </script>
 </body>
 </html>
