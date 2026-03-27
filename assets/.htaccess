@@ -1,9 +1,0 @@
-RewriteEngine On
-
-# 1. Redirect anyone who types .html to the clean URL
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^.]+)\.html\ HTTP
-RewriteRule ^([^.]+)\.html$ https://www.gnwlandscaping.ca/$1 [R=301,L]
-
-# 2. Silently tell the server to load the .html file when a clean URL is visited
-RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^ %{REQUEST_URI}.html [L]
