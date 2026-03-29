@@ -55,6 +55,12 @@
         ul { list-style: none; padding: 0; margin: 0; }
         img { max-width: 100%; height: auto; display: block; }
 
+        /* --- ANIMATIONS --- */
+        @keyframes fadeSlideUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
         /* --- 2. HEADER & NAVIGATION --- */
         header {
             display: flex;
@@ -190,14 +196,30 @@
 
         /* --- 3. PAGE HERO --- */
         .page-hero {
-            background-color: var(--primary-color);
+            background: linear-gradient(rgba(27, 94, 32, 0.65), rgba(27, 94, 32, 0.85)), url('assets/img/lawnmain.webp');
+            background-size: cover;
+            background-position: center;
             color: #fff;
-            padding: 80px 5%;
+            padding: 100px 20px;
             text-align: center;
         }
 
-        .page-hero h1 { font-size: 3.5rem; margin-bottom: 15px; font-weight: 700; }
-        .page-hero p { font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+        .page-hero h1 { 
+            font-size: 3.5rem; 
+            margin-bottom: 15px; 
+            font-weight: 700; 
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease-out forwards; 
+        }
+        
+        .page-hero p { 
+            font-size: 1.2rem; 
+            opacity: 0.9; 
+            max-width: 700px; 
+            margin: 0 auto; 
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease-out 0.2s forwards; 
+        }
 
         /* --- 4. STORY SECTION --- */
         .story-section {
@@ -321,15 +343,15 @@
         footer {
             background: #f9f9f9;
             padding: 60px 5% 20px;
+            color: var(--text-dark);
             border-top: 1px solid #eee;
         }
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 40px; margin-bottom: 40px;
         }
-        .footer-col h4 { color: var(--primary-color); margin-bottom: 20px; }
+        .footer-col h4 { color: var(--primary-color); margin-bottom: 20px; font-size: 1.1rem; }
         .footer-col ul li { margin-bottom: 10px; color: var(--text-light); }
         .footer-col ul li i { color: var(--accent-color); margin-right: 10px; }
         .social-icons a { font-size: 1.5rem; color: var(--primary-color); margin-right: 15px; transition: color 0.3s;}
@@ -385,6 +407,7 @@
 
             .desktop-login-link { display: none; }
 
+            .page-hero { padding: 50px 15px; }
             .page-hero h1 { font-size: 2.5rem; }
             .story-gallery img { height: 160px; }
             .stats-bar { flex-direction: column; gap: 40px; }
@@ -495,7 +518,7 @@
 
             <div id="tab-guarantee" class="tab-content">
                 <h3><i class="fas fa-shield-alt"></i> Fully Licensed & Insured</h3>
-                <p>Your property is safe in our hands. Greenworks Landscaping Inc. is fully licensed, insured, and WSIB compliant. We believe in complete transparency and building trust with our community. If you are ever unsatisfied with our service, let us know, and we will return to make it right—no questions asked.</p>
+                <p>Your property is safe in our hands. Greenworks Landscaping is fully licensed, insured, and WSIB compliant. We believe in complete transparency and building trust with our community. If you are ever unsatisfied with our service, let us know, and we will return to make it right,no questions asked.</p>
             </div>
 
         </div>
@@ -511,7 +534,7 @@
             <p>Commercial Accounts</p>
         </div>
         <div class="stat-item">
-            <h3>5</h3>
+            <h3>10+</h3>
             <p>Years in Business</p>
         </div>
     </div>

@@ -55,6 +55,12 @@
         ul { list-style: none; padding: 0; margin: 0; }
         img, video { max-width: 100%; height: auto; display: block; }
 
+        /* --- ANIMATIONS --- */
+        @keyframes fadeSlideUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
         /* --- 2. HEADER & NAVIGATION --- */
         header {
             display: flex;
@@ -194,14 +200,30 @@
         .mobile-button.active::after { top: 50%; transform: rotate(-45deg); bottom: auto; }
 
         /* --- 3. PAGE HERO --- */
-        .page-hero {
-            background-color: var(--primary-color);
-            color: #fff;
-            text-align: center;
-            padding: 80px 20px;
+        .page-hero { 
+            background: linear-gradient(rgba(27, 94, 32, 0.65), rgba(27, 94, 32, 0.85)), url('assets/img/lawnmain.webp');
+            background-size: cover;
+            background-position: center;
+            color: #fff; 
+            text-align: center; 
+            padding: 100px 20px; 
         }
-        .page-hero h1 { font-size: 3rem; margin-bottom: 10px; }
-        .page-hero p { font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+        .page-hero h1 { 
+            font-size: 3rem; 
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease-out forwards; 
+        }
+
+        .page-hero p { 
+            font-size: 1.2rem; 
+            opacity: 0.9; 
+            max-width: 600px; 
+            margin: 0 auto; 
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease-out 0.2s forwards;
+        }
 
         /* --- 4. MIXED GRID LAYOUT --- */
         .portfolio-section {
@@ -362,6 +384,11 @@
             .mobile-only-link { display: block !important; font-weight: 600; color: var(--primary-color) !important; }
 
             .desktop-login-link { display: none; }
+
+            /* Hero adjustments */
+            .page-hero { padding: 50px 15px; }
+            .page-hero h1 { font-size: 1.8rem; }
+            .page-hero p { font-size: 1rem; }
             
             .mixed-grid { grid-template-columns: 1fr; }
             .grid-item.large { grid-column: auto; grid-row: auto; height: 300px; }
