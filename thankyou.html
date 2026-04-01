@@ -84,6 +84,27 @@
             margin-bottom: 30px;
         }
 
+        .contact-info {
+            background: var(--bg-light);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            border: 1px solid #eee;
+        }
+        
+        .contact-info a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .contact-info a:hover {
+            color: var(--accent-color);
+        }
+
         .btn-home {
             display: inline-block;
             background: var(--primary-color);
@@ -134,13 +155,20 @@
         <div class="thank-you-card">
             <i class="fas fa-check-circle success-icon"></i>
             <h1>Thank You!</h1>
-            <p>Your message has been successfully sent. A member of the Greenworks team will review your project details and get back to you shortly!</p>
+            <p>Your request has been successfully sent. A member of the Greenworks team will review your project details and get back to you shortly to finalize your booking.</p>
+            
+            <div class="contact-info">
+                Need immediate assistance? <br>
+                Call us at <a href="tel:+17055009000"><i class="fas fa-phone"></i> 705-500-9000</a><br>
+                Or email <a href="mailto:info@gnwlandscaping.ca"><i class="fas fa-envelope"></i> info@gnwlandscaping.ca</a>
+            </div>
+
             <a href="/" class="btn-home">Back to Homepage</a>
         </div>
     </div>
 
     <footer>
-        <p>Copyright © <span id="year"></span> | Greenworks Construction and Companies Inc. | All Rights Reserved.</p>
+        <p>Copyright © <span id="year"></span> | Greenworks Landscaping | All Rights Reserved.</p>
     </footer>
 
     <script>
