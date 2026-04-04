@@ -6,15 +6,15 @@
     <title>Greenworks Landscaping | Lawn Maintenance</title>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=GT-T9K6VD2L"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'GT-T9K6VD2L');
-  gtag('config', 'G-N8165ZJRD2');
-  gtag('config', 'AW-10820369667');
-</script>
+      gtag('config', 'GT-T9K6VD2L');
+      gtag('config', 'G-N8165ZJRD2');
+      gtag('config', 'AW-10820369667');
+    </script>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -24,20 +24,50 @@
         :root {
             --primary-color: #1b5e20;
             --accent-color: #4CAF50; 
-            --text-dark: #333333;
-            --text-light: #666666;
-            --bg-light: #f4f7f6;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
             --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
-        * { box-sizing: border-box; }
+        * { 
+            box-sizing: border-box; 
+        }
 
-        body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; color: var(--text-dark); background-color: #fff; line-height: 1.6; overflow-x: hidden; }
-        body.no-scroll { overflow: hidden; }
-        .mobile-only-link { display: none !important; }
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; padding: 0; margin: 0; }
-        img { max-width: 100%; height: auto; display: block; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            color: var(--text-dark); 
+            background-color: #fff; 
+            line-height: 1.6; 
+            overflow-x: hidden; 
+        }
+
+        body.no-scroll { 
+            overflow: hidden; 
+        }
+
+        .mobile-only-link { 
+            display: none !important; 
+        }
+
+        a { 
+            text-decoration: none; 
+            color: inherit; 
+        }
+
+        ul { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+        }
+
+        img { 
+            max-width: 100%; 
+            height: auto; 
+            display: block; 
+        }
 
         /* --- ANIMATIONS --- */
         @keyframes fadeSlideUp {
@@ -45,178 +75,920 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes shineText {
-            to { background-position: 200% center; }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         /* --- 2. HEADER & NAVIGATION --- */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: #fff; box-shadow: 0 2px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
-        .logo { border-radius: 10px; overflow: hidden; transition: transform 0.3s; }
-        .logo:hover { transform: scale(1.02); }
-        .nav-links { display: flex; gap: 30px; align-items: center; }
-        .nav-links a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); transition: color 0.3s; }
-        .nav-links a:hover { color: var(--accent-color); }
-        
-        .dropdown-parent { position: relative; padding: 10px 0;  }
-        .dropdown-parent > a { display: flex; align-items: center; gap: 5px; }
-        .dropdown-parent .fa-chevron-down { font-size: 0.7rem; transition: transform 0.3s; }
-        .dropdown-parent:hover .fa-chevron-down { transform: rotate(180deg); }
-        
-        .dropdown { position: absolute; top: 100%; left: 0; background: #fff; min-width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-radius: 8px; padding: 10px 0; opacity: 0; visibility: hidden; transform: translateY(15px); transition: all 0.3s ease; z-index: 1000; border: 1px solid #eee; }
-        .dropdown-parent:hover .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
-        .dropdown li { margin: 0; }
-        .dropdown li a { display: block; padding: 10px 20px; font-size: 0.9rem; color: var(--text-dark); transition: background 0.3s, color 0.3s; }
-        .dropdown li a:hover { background: var(--bg-light); color: var(--accent-color); }
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 15px 5%; 
+            background: #fff; 
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+        }
 
-        .nav-links .login-btn { color: var(--primary-color); font-weight: 600; }
-        .nav-links .login-btn:hover { color: var(--accent-color); }
+        .logo { 
+            border-radius: 10px; 
+            overflow: hidden; 
+            transition: transform 0.3s; 
+        }
 
-        .btn-header { background-color: var(--primary-color); color: #fff !important; padding: 10px 25px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; transition: background 0.3s; }
-        .btn-header:hover { background-color: var(--accent-color); }
+        .logo:hover { 
+            transform: scale(1.02); 
+        }
+
+        .nav-links { 
+            display: flex; 
+            gap: 30px; 
+            align-items: center; 
+        }
+
+        .nav-links a { 
+            font-weight: 500; 
+            font-size: 0.95rem; 
+            color: var(--text-dark); 
+            transition: color 0.3s; 
+        }
+
+        .nav-links a:hover { 
+            color: var(--accent-color); 
+        }
+        
+        .dropdown-parent { 
+            position: relative; 
+            padding: 10px 0;  
+        }
+
+        .dropdown-parent > a { 
+            display: flex; 
+            align-items: center; 
+            gap: 5px; 
+        }
+
+        .dropdown-parent .fa-chevron-down { 
+            font-size: 0.7rem; 
+            transition: transform 0.3s; 
+        }
+
+        .dropdown-parent:hover .fa-chevron-down { 
+            transform: rotate(180deg); 
+        }
+        
+        .dropdown { 
+            position: absolute; 
+            top: 100%; 
+            left: 0; 
+            background: #fff; 
+            min-width: 220px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+            border-radius: 12px; 
+            padding: 10px 0; 
+            opacity: 0; 
+            visibility: hidden; 
+            transform: translateY(15px); 
+            transition: all 0.3s ease; 
+            z-index: 1000; 
+            border: 1px solid #f1f5f9; 
+        }
+
+        .dropdown-parent:hover .dropdown { 
+            opacity: 1; 
+            visibility: visible; 
+            transform: translateY(0); 
+        }
+
+        .dropdown li { 
+            margin: 0; 
+        }
+
+        .dropdown li a { 
+            display: block; 
+            padding: 10px 20px; 
+            font-size: 0.9rem; 
+            color: var(--text-dark); 
+            transition: background 0.3s, color 0.3s; 
+        }
+
+        .dropdown li a:hover { 
+            background: var(--bg-light); 
+            color: var(--accent-color); 
+        }
+
+        .nav-links .login-btn { 
+            color: var(--primary-color); 
+            font-weight: 600; 
+        }
+
+        .nav-links .login-btn:hover { 
+            color: var(--accent-color); 
+        }
+
+        .btn-header { 
+            background-color: var(--primary-color); 
+            color: #fff !important; 
+            padding: 10px 25px; 
+            border-radius: 50px; 
+            font-weight: 600; 
+            font-size: 0.9rem; 
+            transition: background 0.3s; 
+        }
+
+        .btn-header:hover { 
+            background-color: var(--accent-color); 
+        }
 
         /* --- MOBILE CONTROLS --- */
-        .mobile-controls { display: none; align-items: center; gap: 12px; }
-        .mobile-login-btn { background-color: var(--bg-light); color: var(--primary-color); padding: 8px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 5px; border: 1px solid #ddd; text-decoration: none; }
-        .mobile-call-icon { width: 40px; height: 40px; background-color: var(--accent-color); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); transition: transform 0.2s; text-decoration: none; }
-        .mobile-call-icon:active { transform: scale(0.95); }
-        .mobile-button { cursor: pointer; width: 30px; height: 20px; position: relative; z-index: 1001; }
-        .mobile-button span { display: block; width: 100%; height: 3px; background-color: var(--primary-color); position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease; }
-        .mobile-button::before, .mobile-button::after { content: ''; width: 100%; height: 3px; background-color: var(--primary-color); position: absolute; transition: all 0.3s ease; }
+        .mobile-controls { 
+            display: none; 
+            align-items: center; 
+            gap: 12px; 
+        }
+
+        .mobile-login-btn { 
+            background-color: var(--bg-light); 
+            color: var(--primary-color); 
+            padding: 8px 14px; 
+            border-radius: 20px; 
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            display: flex; 
+            align-items: center; 
+            gap: 5px; 
+            border: 1px solid #e2e8f0; 
+            text-decoration: none; 
+        }
+
+        .mobile-call-icon { 
+            width: 40px; 
+            height: 40px; 
+            background-color: var(--accent-color); 
+            color: white; 
+            border-radius: 50%; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            font-size: 1.2rem; 
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); 
+            transition: transform 0.2s; 
+            text-decoration: none; 
+        }
+
+        .mobile-call-icon:active { 
+            transform: scale(0.95); 
+        }
+
+        .mobile-button { 
+            cursor: pointer; 
+            width: 30px; 
+            height: 20px; 
+            position: relative; 
+            z-index: 1001; 
+        }
+
+        .mobile-button span { 
+            display: block; 
+            width: 100%; 
+            height: 3px; 
+            background-color: var(--primary-color); 
+            position: absolute; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            transition: all 0.3s ease; 
+        }
+
+        .mobile-button::before, 
+        .mobile-button::after { 
+            content: ''; 
+            width: 100%; 
+            height: 3px; 
+            background-color: var(--primary-color); 
+            position: absolute; 
+            transition: all 0.3s ease; 
+        }
+
         .mobile-button::before { top: 0; }
         .mobile-button::after { bottom: 0; }
+        
         .mobile-button.active span { opacity: 0; }
         .mobile-button.active::before { top: 50%; transform: rotate(45deg); }
         .mobile-button.active::after { top: 50%; transform: rotate(-45deg); bottom: auto; }
 
         /* --- 3. HERO SECTION --- */
-        .hero { position: relative; display: flex; align-items: center; justify-content: center; text-align: center; background-image: linear-gradient(rgba(0, 51, 0, 0.3), rgba(0, 51, 0, 0.2)), url('assets/img/lawnmain.webp'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 90vh; padding: 0 5% 120px 5%; color: #fff; }
-        .hero-text { max-width: 900px; z-index: 2; margin-top: -40px;}
-        .hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 25px; font-weight: 700; text-shadow: 0 2px 15px rgba(0,0,0,0.5); opacity: 0; animation: fadeSlideUp 0.8s ease-out forwards; }
-        .hero p { font-size: 1.4rem; margin-bottom: 40px; color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,0.5); opacity: 0; animation: fadeSlideUp 0.8s ease-out 0.2s forwards;}
-        
-        .hero-buttons { display: flex; gap: 20px; justify-content: center; opacity: 0; animation: fadeSlideUp 0.8s ease-out 0.4s forwards;}
-        .btn-primary { background-color: var(--accent-color); color: #fff; padding: 18px 45px; border-radius: 50px; font-size: 1.1rem; font-weight: 700; border: none; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.2s; text-decoration: none;}
-        .btn-secondary { background-color: rgba(0,0,0,0.4); color: #fff; padding: 18px 45px; border-radius: 50px; font-size: 1.1rem; font-weight: 600; border: 2px solid #fff; cursor: pointer; transition: all 0.2s; text-decoration: none;}
-        .btn-primary:hover { transform: translateY(-3px); background-color: #388E3C; color: #fff;}
-        .btn-secondary:hover { background-color: #fff; color: var(--primary-color); transform: translateY(-3px);}
-
-        /* --- 3.5 SCROLLING REVIEWS MARQUEE --- */
-        .floating-reviews-wrapper { 
+        .hero { 
             position: relative; 
-            margin-top: -60px; 
-            z-index: 20; 
-            width: 100%; 
-            overflow: hidden; 
-            margin-bottom: 60px; 
-            padding: 15px 0; 
-        }
-        
-        .floating-reviews-track { 
-            display: flex; 
-            width: max-content; 
-            animation: scrollReviews 40s linear infinite; 
-            gap: 20px; 
-            padding-left: 20px; 
-        }
-
-        .floating-reviews-track:hover { 
-            animation-play-state: paused; 
-        }
-
-        @keyframes scrollReviews {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-50% - 10px)); } 
-        }
-
-        .mini-review { 
-            background: rgba(255, 255, 255, 0.85); 
-            backdrop-filter: blur(12px); 
-            padding: 12px 25px 12px 15px; 
-            border-radius: 50px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
             display: flex; 
             align-items: center; 
-            gap: 15px; 
-            border: 1px solid rgba(255,255,255,0.9); 
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            cursor: pointer; 
-            flex-shrink: 0; 
+            justify-content: center; 
+            text-align: center; 
+            background-image: linear-gradient(rgba(0, 51, 0, 0.4), rgba(0, 51, 0, 0.3)), url('assets/img/lawnmain.webp'); 
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed; 
+            min-height: 80vh; 
+            padding: 0 5% 60px 5%; 
+            color: #fff; 
         }
 
-        .mini-review:hover { 
-            transform: translateY(-8px) scale(1.03); 
-            box-shadow: 0 15px 35px rgba(76, 175, 80, 0.3); 
+        .hero-text { 
+            max-width: 900px; 
+            z-index: 2; 
+            margin-top: 40px;
+        }
+
+        .hero h1 { 
+            font-size: 4.2rem; 
+            line-height: 1.1; 
+            margin-bottom: 25px; 
+            font-weight: 800; 
+            text-shadow: 0 2px 20px rgba(0,0,0,0.6); 
+            opacity: 0; 
+            animation: fadeSlideUp 0.8s ease-out forwards; 
+        }
+
+        .hero p { 
+            font-size: 1.3rem; 
+            margin-bottom: 40px; 
+            color: #f8fafc; 
+            text-shadow: 0 1px 10px rgba(0,0,0,0.6); 
+            opacity: 0; 
+            animation: fadeSlideUp 0.8s ease-out 0.2s forwards;
+        }
+        
+        .hero-buttons { 
+            display: flex; 
+            gap: 20px; 
+            justify-content: center; 
+            opacity: 0; 
+            animation: fadeSlideUp 0.8s ease-out 0.4s forwards;
+        }
+
+        .btn-primary { 
+            background-color: var(--accent-color); 
+            color: #fff; 
+            padding: 16px 45px; 
+            border-radius: 50px; 
+            font-size: 1.1rem; 
+            font-weight: 700; 
+            border: none; 
+            cursor: pointer; 
+            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4); 
+            transition: transform 0.2s; 
+            text-decoration: none;
+        }
+
+        .btn-secondary { 
+            background-color: rgba(0,0,0,0.5); 
+            color: #fff; 
+            padding: 16px 45px; 
+            border-radius: 50px; 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            border: 2px solid #fff; 
+            cursor: pointer; 
+            transition: all 0.2s, backdrop-filter 0.2s; 
+            text-decoration: none; 
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-primary:hover { 
+            transform: translateY(-3px); 
+            background-color: #388E3C; 
+            color: #fff; 
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.5);
+        }
+
+        .btn-secondary:hover { 
+            background-color: #fff; 
+            color: var(--primary-color); 
+            transform: translateY(-3px);
+        }
+
+        /* --- 4. NEW SLEEK CUSTOM QUOTE FUNNEL --- */
+        .quote-funnel-section {
+            padding: 80px 5% 80px 5%;
+            background-color: var(--bg-light);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .quote-funnel-section h2 { 
+            font-size: 2.8rem; 
+            color: var(--primary-color); 
+            margin-bottom: 10px; 
+            font-weight: 800; 
+            letter-spacing: -1px; 
+        }
+
+        .quote-subtitle { 
+            color: var(--text-light); 
+            font-size: 1.1rem; 
+            margin-bottom: 40px; 
+        }
+
+        .funnel-container {
+            background: #fff;
+            max-width: 750px;
+            margin: 0 auto;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+            overflow: hidden;
+            border: 1px solid #f1f5f9;
+            border-top: 8px solid var(--accent-color);
+            padding: 40px;
+        }
+
+        /* Progress Bar */
+        .progress-container { 
+            display: flex; 
+            justify-content: space-between; 
+            position: relative; 
+            margin-bottom: 35px; 
+            padding: 0 10px; 
+        }
+
+        .progress-container::before { 
+            content: ''; 
+            position: absolute; 
+            top: 50%; 
+            left: 20px; 
+            right: 20px; 
+            height: 4px; 
+            background: #f1f5f9; 
+            z-index: 1; 
+            transform: translateY(-50%); 
+            border-radius: 5px; 
+        }
+
+        .progress-step { 
+            width: 34px; 
+            height: 34px; 
+            background: #f1f5f9; 
+            border-radius: 50%; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            font-weight: 700; 
+            color: #94a3b8; 
+            font-size: 0.9rem; 
+            z-index: 2; 
+            position: relative; 
+            transition: all 0.4s ease; 
+            border: 2px solid #fff; 
+        }
+
+        .progress-step.active { 
+            background: var(--accent-color); 
+            color: #fff; 
+            box-shadow: 0 0 0 6px rgba(76, 175, 80, 0.15); 
+            transform: scale(1.1); 
+            border-color: var(--accent-color); 
+        }
+
+        .progress-step.completed { 
+            background: var(--primary-color); 
+            color: #fff; 
+            border-color: var(--primary-color); 
+        }
+
+        /* Steps Layout */
+        .funnel-step { 
+            display: none; 
+            animation: fadeIn 0.4s ease; 
+            text-align: left; 
+        }
+
+        .funnel-step.active { 
+            display: block; 
+        }
+
+        .step-header { 
+            font-size: 1.6rem; 
+            color: var(--primary-color); 
+            margin-bottom: 8px; 
+            font-weight: 800; 
+            text-align: center; 
+            letter-spacing: -0.5px;
+        }
+
+        .step-desc { 
+            text-align: center; 
+            color: var(--text-light); 
+            margin-bottom: 25px; 
+            font-size: 0.95rem; 
+        }
+
+        /* Inputs & Controls */
+        .input-group { 
+            position: relative; 
+            margin-bottom: 18px; 
+        }
+
+        .input-group i { 
+            position: absolute; 
+            left: 18px; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            color: #94a3b8; 
+            font-size: 1.1rem; 
+            z-index: 2; 
+            transition: color 0.3s;
+        }
+
+        .input-group:focus-within i { 
+            color: var(--accent-color); 
+        }
+        
+        .funnel-input { 
+            width: 100%; 
+            padding: 14px 18px 14px 48px; 
+            border: 2px solid #e2e8f0; 
+            border-radius: 12px; 
+            font-family: 'Poppins', sans-serif; 
+            font-size: 1rem; 
+            color: var(--text-dark); 
+            transition: all 0.3s; 
+            background: #f8fafc; 
+            font-weight: 500;
+        }
+
+        .funnel-input:focus { 
+            border-color: var(--accent-color); 
+            background: #fff; 
+            outline: none; 
+            box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1); 
+        }
+
+        .pac-target-input { 
+            padding-left: 48px !important; 
+        }
+
+        /* Service Headers & Grid - UPDATED SLEEK DESIGN */
+        .service-category-header { 
+            font-size: 1.05rem; 
+            color: var(--primary-color); 
+            font-weight: 700; 
+            margin: 20px 0 12px 0; 
+            border-bottom: 2px solid #f1f5f9; 
+            padding-bottom: 8px; 
+        }
+
+        .services-grid-check { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+            margin-bottom: 20px; 
+        }
+
+        .full-width-option { 
+            grid-column: span 2; 
+        }
+
+        .service-option { 
+            display: flex; 
+            align-items: center; 
+            padding: 15px 18px; 
+            border: 1px solid #cbd5e1; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            transition: all 0.25s ease; 
+            background: #fff; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02); 
+            gap: 12px;
+        }
+
+        .service-option:hover { 
+            border-color: var(--accent-color); 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.1); 
+        }
+
+        .service-option input[type="checkbox"], 
+        .service-option input[type="radio"] { 
+            width: 20px; 
+            height: 20px; 
+            cursor: pointer; 
+            accent-color: var(--primary-color); 
+            flex-shrink: 0; 
+            margin: 0;
+        }
+
+        /* Service Text Column */
+        .service-title-col {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .service-title-col strong {
+            font-size: 1rem;
+            color: var(--text-dark);
+            line-height: 1.2;
+        }
+
+        .service-title-col small {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 2px;
+            font-weight: 400;
+        }
+
+        /* Service Price Column */
+        .service-price-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+            text-align: right;
+        }
+
+        .price-standalone {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .price-bundled {
+            background-color: #e0f2fe;
+            color: #0284c7;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        /* Highlight selected cards smoothly */
+        .service-option:has(input:checked) { 
+            border-color: var(--accent-color); 
+            background: #f4fce3; 
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.15); 
+        }
+
+        /* Map Placeholder */
+        .map-container { 
+            width: 100%; 
+            height: 180px; 
+            background: #e2e8f0; 
+            border-radius: 12px; 
+            margin-bottom: 18px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            color: #64748b; 
+            border: 2px dashed #cbd5e1; 
+            position: relative; 
+            overflow: hidden; 
+        }
+
+        .map-container i { 
+            font-size: 2.5rem; 
+            color: #94a3b8; 
+            margin-bottom: 8px; 
+            z-index: 2; 
+        }
+
+        .map-container strong { 
+            z-index: 2; 
+            font-size: 0.95rem; 
+        }
+        
+        .size-selector { 
+            margin-top: 10px; 
+        }
+
+        .size-selector select { 
+            width: 100%; 
+            padding: 14px 18px; 
+            border-radius: 12px; 
+            border: 2px solid #e2e8f0; 
+            font-family: 'Poppins', sans-serif; 
+            font-size: 0.95rem; 
+            font-weight: 500; 
+            outline: none; 
+            background: #f8fafc; 
+            color: var(--text-dark); 
+            transition: border-color 0.3s;
+        }
+
+        .size-selector select:focus { 
             border-color: var(--accent-color); 
             background: #fff;
         }
 
-        .mini-review img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--accent-color); object-fit: cover; }
-        .mini-review-content { display: flex; flex-direction: column; text-align: left; }
-        .mini-review-content .stars { color: #FFD700; font-size: 0.85rem; margin-bottom: 2px; }
-        .mini-review-content p { margin: 0; font-size: 0.9rem; font-weight: 600; color: var(--text-dark); font-style: italic; white-space: nowrap; }
+        /* Final Quote Receipt (Step 4) */
+        .quote-receipt { 
+            background: #f8fafc; 
+            border: 2px solid #e2e8f0; 
+            border-radius: 16px; 
+            padding: 25px; 
+            margin-bottom: 20px; 
+            text-align: left; 
+        }
 
-        /* --- 4. PRICING SECTION --- */
-        .pricing-section { padding: 40px 5% 100px 5%; background-color: var(--bg-light); text-align: center; position: relative; z-index: 10; border-radius: 20px 20px 0 0; }
-        
-        /* Updated Section Headers to match screenshot */
+        .receipt-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            margin-bottom: 10px; 
+            font-size: 0.95rem; 
+            border-bottom: 1px dashed #cbd5e1; 
+            padding-bottom: 8px; 
+            color: #334155; 
+            font-weight: 500;
+        }
+
+        .receipt-total { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-top: 15px; 
+            font-size: 1.25rem; 
+            font-weight: 800; 
+            color: var(--primary-color); 
+            border-top: 2px solid #cbd5e1; 
+            padding-top: 15px; 
+        }
+
+        .one-time-total { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            margin-top: 10px; 
+            font-size: 0.95rem; 
+            font-weight: 600; 
+            color: #475569; 
+        }
+
+        .discount-row { 
+            color: #ef4444; 
+            font-weight: 700; 
+            display: flex; 
+            justify-content: space-between; 
+            margin-top: 10px; 
+            font-size: 0.95rem; 
+        }
+
+        .remove-icon {
+            color: #ef4444;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: transform 0.2s, color 0.2s;
+        }
+
+        .remove-icon:hover {
+            color: #b91c1c;
+            transform: scale(1.1);
+        }
+
+        /* Upsell Section (Marketing) */
+        .upsell-section { 
+            margin-top: 25px; 
+            border-top: 2px dashed #cbd5e1; 
+            padding-top: 20px; 
+            text-align: left; 
+            display: none; 
+        }
+
+        .upsell-section h4 { 
+            color: var(--primary-color); 
+            margin: 0 0 12px 0; 
+            font-size: 1.05rem; 
+            font-weight: 700; 
+        }
+
+        .upsell-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 12px 16px; 
+            border: 1px solid #e2e8f0; 
+            border-radius: 12px; 
+            margin-bottom: 10px; 
+            background: #fff; 
+            transition: 0.3s; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .upsell-item:hover { 
+            border-color: var(--accent-color); 
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.08); 
+            transform: translateY(-1px);
+        }
+
+        /* Sleek Toggle Switch (Amortize) */
+        .amortize-toggle { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            background: #fff; 
+            border: 2px solid #e2e8f0; 
+            padding: 15px 20px; 
+            border-radius: 12px; 
+            margin-bottom: 20px; 
+            text-align: left; 
+            transition: border-color 0.3s; 
+        }
+
+        .amortize-toggle:has(input:checked) { 
+            border-color: var(--accent-color); 
+            background: #f4fce3; 
+        }
+
+        .switch { 
+            position: relative; 
+            display: inline-block; 
+            width: 48px; 
+            height: 26px; 
+            flex-shrink: 0; 
+        }
+
+        .switch input { 
+            opacity: 0; 
+            width: 0; 
+            height: 0; 
+        }
+
+        .slider { 
+            position: absolute; 
+            cursor: pointer; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0; 
+            background-color: #cbd5e1; 
+            transition: .4s; 
+            border-radius: 34px; 
+        }
+
+        .slider:before { 
+            position: absolute; 
+            content: ""; 
+            height: 18px; 
+            width: 18px; 
+            left: 4px; 
+            bottom: 4px; 
+            background-color: white; 
+            transition: .4s; 
+            border-radius: 50%; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        input:checked + .slider { 
+            background-color: var(--accent-color); 
+        }
+
+        input:checked + .slider:before { 
+            transform: translateX(22px); 
+        }
+
+        .toggle-text strong { 
+            display: block; 
+            color: var(--primary-color); 
+            font-size: 0.95rem; 
+            margin-bottom: 2px; 
+        }
+
+        .toggle-text small { 
+            color: var(--text-light); 
+            font-size: 0.8rem; 
+            line-height: 1.3;
+        }
+
+        /* Buttons */
+        .funnel-nav { 
+            display: flex; 
+            justify-content: space-between; 
+            gap: 15px; 
+            margin-top: 25px; 
+        }
+
+        .btn-funnel { 
+            background: var(--accent-color); 
+            color: #fff; 
+            border: none; 
+            padding: 14px 28px; 
+            border-radius: 12px; 
+            font-weight: 700; 
+            font-size: 1rem; 
+            cursor: pointer; 
+            transition: all 0.3s; 
+            flex: 1; 
+            text-align: center; 
+            letter-spacing: 0.5px; 
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.2);
+        }
+
+        .btn-funnel:hover { 
+            background: var(--primary-color); 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 15px rgba(27, 94, 32, 0.25);
+        }
+
+        .btn-funnel-back { 
+            background: #f1f5f9; 
+            color: var(--text-light); 
+            flex: 0.5; 
+            box-shadow: none;
+        }
+
+        .btn-funnel-back:hover { 
+            background: #e2e8f0; 
+            color: var(--text-dark); 
+            transform: none;
+        }
+
+        /* --- 4.5 PRICING SECTION (Pre-made plans) --- */
+        .pricing-section { 
+            padding: 0 5% 100px 5%; 
+            background-color: var(--bg-light); 
+            text-align: center; 
+            position: relative; 
+            z-index: 10; 
+        }
+
         .pricing-section h2 { 
-            font-size: 3.2rem; 
+            font-size: 2.5rem; 
             color: var(--primary-color); 
             margin-bottom: 10px; 
-            font-weight: 800;
-            letter-spacing: -1px;
+            font-weight: 800; 
+            letter-spacing: -1px; 
         }
+
         .pricing-subtitle { 
             color: var(--text-light); 
-            font-size: 1.3rem; 
+            font-size: 1.2rem; 
             margin-bottom: 50px; 
-            font-weight: 400;
+            font-weight: 400; 
         }
 
-        .pricing-intro {
-            background: #fff; 
-            max-width: 900px; 
-            margin: 0 auto 50px auto; 
-            padding: 30px 40px;
-            border-radius: 15px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
-            text-align: center;
-            border-left: 5px solid var(--primary-color);
-            opacity: 0;
-            animation: fadeSlideUp 0.8s ease-out 0.4s forwards;
+        .pricing-grid { 
+            display: flex; 
+            justify-content: center; 
+            gap: 30px; 
+            flex-wrap: wrap; 
+            align-items: stretch;
         }
 
-        .pricing-intro h3 { 
-            margin-top: 0; 
-            font-size: 1.5rem; 
-            margin-bottom: 15px; 
+        .pricing-card { 
+            background: linear-gradient(to bottom, #ffffff 0%, #74b982 100%); 
+            padding: 40px 30px; 
+            border-radius: 20px; 
+            width: 320px; 
+            box-shadow: 0 12px 35px rgba(0,0,0,0.08); 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            text-align: left; 
+            position: relative; 
+            display: flex; 
+            flex-direction: column; 
+            border: 1px solid #eaeaea; 
+            border-top: 8px solid #81c784; 
+            overflow: hidden; 
+        }
+
+        .pricing-card:hover { 
+            transform: translateY(-15px); 
+            box-shadow: 0 20px 45px rgba(27, 94, 32, 0.15); 
+        }
+        
+        .pricing-card.popular { 
+            background: linear-gradient(135deg, #1b5e20 0%, #0d3311 100%); 
+            border: none; 
+            border-top: 8px solid #ffb300; 
+            transform: scale(1.05); 
+            z-index: 2; 
+            color: #fff; 
+            box-shadow: 0 15px 40px rgba(27, 94, 32, 0.35); 
+        }
+
+        .pricing-card.popular:hover { 
+            transform: scale(1.05) translateY(-10px); 
+            box-shadow: 0 25px 50px rgba(27, 94, 32, 0.45); 
+        }
+
+        .pricing-card.popular::before { 
+            content: "★ Most Popular"; 
+            position: absolute; 
+            top: 0; 
+            right: 0; 
+            background: #ffb300; 
+            color: #333; 
+            padding: 8px 20px; 
+            font-size: 0.85rem; 
+            border-bottom-left-radius: 15px; 
             font-weight: 700; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-            background: linear-gradient(to right, var(--primary-color) 20%, var(--accent-color) 50%, var(--primary-color) 80%);
-            background-size: 200% auto;
-            color: transparent;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shineText 3s linear infinite;
         }
-        .pricing-intro p { color: var(--text-light); margin-bottom: 0; font-size: 1.05rem; }
-
-        .pricing-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; align-items: stretch;}
-
-        .pricing-card { background: linear-gradient(to bottom, #ffffff 0%, #74b982 100%); padding: 40px 30px; border-radius: 20px; width: 320px; box-shadow: 0 12px 35px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-align: left; position: relative; display: flex; flex-direction: column; border: 1px solid #eaeaea; border-top: 8px solid #81c784; overflow: hidden; }
-        .pricing-card:hover { transform: translateY(-15px); box-shadow: 0 20px 45px rgba(27, 94, 32, 0.15); }
         
-        .pricing-card.popular { background: linear-gradient(135deg, #1b5e20 0%, #0d3311 100%); border: none; border-top: 8px solid #ffb300; transform: scale(1.05); z-index: 2; color: #fff; box-shadow: 0 15px 40px rgba(27, 94, 32, 0.35); }
-        .pricing-card.popular:hover { transform: scale(1.05) translateY(-10px); box-shadow: 0 25px 50px rgba(27, 94, 32, 0.45); }
-        .pricing-card.popular::before { content: "★ Most Popular"; position: absolute; top: 0; right: 0; background: #ffb300; color: #333; padding: 8px 20px; font-size: 0.85rem; border-bottom-left-radius: 15px; font-weight: 700; }
-        
-        .pricing-card:last-child { border-top: 8px solid var(--primary-color); background: linear-gradient(to bottom, #ffffff 0%, #74b982 100%); }
-
-        .pricing-card.popular .plan-name, .pricing-card.popular .plan-price { color: #fff; }
-        .pricing-card.popular .starting-at, .pricing-card.popular .plan-price span, .pricing-card.popular .lot-size-disclaimer, .pricing-card.popular .plan-features li { color: rgba(255, 255, 255, 0.85); }
-        .pricing-card.popular .plan-subtext { color: #4CAF50; }
-        .pricing-card.popular .plan-divider { border-color: rgba(255, 255, 255, 0.15); }
+        .pricing-card:last-child { 
+            border-top: 8px solid var(--primary-color); 
+            background: linear-gradient(to bottom, #ffffff 0%, #74b982 100%); 
+        }
 
         .plan-name { font-size: 1.5rem; font-weight: 800; color: var(--primary-color); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
         .starting-at { font-size: 0.9rem; color: var(--text-light); font-weight: 500; }
@@ -225,91 +997,24 @@
         .plan-subtext { display: block; font-size: 0.85rem; color: var(--accent-color); margin-bottom: 5px; font-weight: 700;}
         .lot-size-disclaimer { font-size: 0.8rem; color: var(--text-light); margin-bottom: 20px; font-style: italic; }
 
+        .pricing-card.popular .plan-name, .pricing-card.popular .plan-price { color: #fff; }
+        .pricing-card.popular .starting-at, .pricing-card.popular .plan-price span, .pricing-card.popular .lot-size-disclaimer, .pricing-card.popular .plan-features li { color: rgba(255, 255, 255, 0.85); }
+        .pricing-card.popular .plan-subtext { color: #4CAF50; }
+        .pricing-card.popular .plan-divider { border-color: rgba(255, 255, 255, 0.15); }
+
         .plan-divider { border-bottom: 1px solid #eee; margin-bottom: 20px; }
         .plan-features { flex-grow: 0; margin-bottom: 20px; }
         .plan-features li { margin-bottom: 15px; color: var(--text-light); display: flex; align-items: center; gap: 10px; font-size: 0.95rem; font-weight: 500;}
         .plan-features i { color: var(--accent-color); font-size: 1.1rem;}
 
-        /* --- VALUE BREAKDOWN BOX --- */
-        .value-box {
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid rgba(27, 94, 32, 0.15);
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: auto; /* Pushes the box to the bottom before the button */
-            margin-bottom: 25px;
-        }
-        .value-box-title {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            border-bottom: 1px solid rgba(27, 94, 32, 0.1);
-            padding-bottom: 5px;
-            letter-spacing: 0.5px;
-        }
-        .value-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .value-list li {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            margin-bottom: 5px;
-            color: var(--text-dark);
-            border-bottom: 1px dashed rgba(0,0,0,0.05);
-            padding-bottom: 3px;
-        }
-        .value-list li:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-            margin-bottom: 0;
-        }
-        .value-list li span {
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-        
-        /* Apply inverse colors to value box on Premium plan */
-        .pricing-card.popular .value-box {
-            background: rgba(0, 0, 0, 0.2);
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-        .pricing-card.popular .value-box-title {
-            color: #ffb300;
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-        .pricing-card.popular .value-list li {
-            color: rgba(255, 255, 255, 0.9);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-        .pricing-card.popular .value-list li span {
-            color: #A5D6A7;
-        }
-
         .btn-plan { display: block; width: 100%; text-align: center; padding: 14px; border-radius: 50px; font-weight: 700; transition: all 0.3s; font-size: 1rem; text-decoration: none; margin-top: auto;}
-        
-        /* Push buttons to bottom for cards without value box */
         .pricing-card:not(.popular) .btn-plan { margin-top: auto; }
-
         .pricing-card:first-child .btn-plan { background: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); }
         .pricing-card:first-child .btn-plan:hover { background: var(--primary-color); color: #fff; box-shadow: 0 5px 15px rgba(27, 94, 32, 0.2); }
-        
         .pricing-card.popular .btn-plan { margin-top: 0; background: var(--accent-color); color: #fff; border: 2px solid var(--accent-color); box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4); animation: pulse-green 2s infinite; }
         .pricing-card.popular .btn-plan:hover { background: #fff; color: var(--primary-color); border-color: #fff; animation: none; transform: translateY(-2px); }
-        
         .pricing-card:last-child .btn-plan { background: var(--primary-color); color: #fff; border: 2px solid var(--primary-color); }
         .pricing-card:last-child .btn-plan:hover { background: var(--text-dark); border-color: var(--text-dark); box-shadow: 0 5px 15px rgba(51, 51, 51, 0.3); }
-
-        @keyframes pulse-green {
-            0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
-        }
 
         .trust-badges { text-align: center; margin-top: 50px; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
         .trust-badge { display: flex; align-items: center; gap: 10px; font-size: 1.05rem; color: var(--text-dark); font-weight: 500; }
@@ -317,12 +1022,12 @@
 
         /* --- 5. CLIENT PORTAL SECTION --- */
         .client-portal-section { padding: 60px 5%; background: #fff; margin-bottom: 40px; }
-        .portal-wrapper { background: linear-gradient(135deg, var(--primary-color) 0%, #0d3811 100%); border-radius: 20px; padding: 60px 40px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25); max-width: 1200px; margin: 0 auto; text-align: center; color: #fff; border: 1px solid rgba(255,255,255,0.1); }
+        .portal-wrapper { background: linear-gradient(135deg, var(--primary-color) 0%, #0d3811 100%); border-radius: 24px; padding: 60px 40px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25); max-width: 1200px; margin: 0 auto; text-align: center; color: #fff; border: 1px solid rgba(255,255,255,0.1); }
         .portal-header { margin-bottom: 50px; }
         .portal-header h2 { font-size: 2.8rem; margin-bottom: 15px; font-weight: 700; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.3); background: linear-gradient(to right, #ffffff 20%, #a5d6a7 50%, #ffffff 80%); background-size: 200% auto; color: #fff; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: textShine 3s linear infinite; }
         .portal-header p { font-size: 1.15rem; color: rgba(255, 255, 255, 0.9); max-width: 800px; margin: 0 auto; }
         .portal-features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 40px; }
-        .portal-feature-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px 30px; border-radius: 15px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); backdrop-filter: blur(10px); }
+        .portal-feature-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px 30px; border-radius: 16px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); backdrop-filter: blur(10px); }
         @media (hover: hover) and (min-width: 769px) {
             .portal-feature-card:hover { transform: translateY(-15px); background: rgba(255, 255, 255, 0.1); border-color: var(--accent-color); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); }
             .portal-feature-card:hover i { transform: scale(1.1) rotate(5deg); }
@@ -337,7 +1042,7 @@
         .services-section { padding: 100px 5%; background-color: var(--bg-light); text-align: center; }
         .services-section h2 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 50px; }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;}
-        .service-card { display: flex; flex-direction: column; justify-content: center; align-items: center; background: #fff; padding: 40px 30px; border-radius: 15px; text-align: center; box-shadow: var(--card-shadow); transition: all 0.3s ease; border-bottom: 4px solid transparent; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; }
+        .service-card { display: flex; flex-direction: column; justify-content: center; align-items: center; background: #fff; padding: 40px 30px; border-radius: 20px; text-align: center; box-shadow: var(--card-shadow); transition: all 0.3s ease; border-bottom: 4px solid transparent; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; }
         .service-card i { font-size: 2.5rem; color: var(--accent-color); margin-bottom: 20px; transition: transform 0.3s ease;}
         .service-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-color); transition: color 0.3s ease;}
         .service-card p { font-size: 0.95rem; color: var(--text-light); margin: 0; transition: transform 0.3s ease;}
@@ -348,24 +1053,6 @@
             .service-card:hover p { transform: translateY(-5px); }
             .service-card:hover .service-action-text { opacity: 1; transform: translateY(0); }
         }
-
-        /* --- 7. DRAGGABLE & AUTO-SCROLLING REVIEWS --- */
-        .testimonials-section { padding: 100px 0; text-align: center; background-color: #fff; position: relative; }
-        .testimonials-section h2 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 10px; padding: 0 5%; }
-        .testimonials-section > p { margin-bottom: 40px; color: var(--text-light); padding: 0 5%; }
-        .testimonials-carousel-container { position: relative; width: 100%; overflow: hidden; margin: 20px 0; }
-        .testimonials-carousel-container::before, .testimonials-carousel-container::after { content: ""; position: absolute; top: 0; width: 80px; height: 100%; z-index: 2; pointer-events: none; }
-        .testimonials-carousel-container::before { left: 0; background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0)); }
-        .testimonials-carousel-container::after { right: 0; background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0)); }
-        .scrolling-wrapper { display: flex; gap: 20px; padding: 20px 5%; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch; cursor: grab; }
-        .scrolling-wrapper:active { cursor: grabbing; }
-        .scrolling-wrapper::-webkit-scrollbar { display: none; }
-        .review-card { background: var(--bg-light); padding: 40px 30px; border: 1px solid #eee; border-radius: 15px; text-align: left; box-shadow: 0 5px 20px rgba(0,0,0,0.05); width: 380px; flex-shrink: 0; white-space: normal; position: relative; user-select: none; }
-        .google-icon { position: absolute; top: 30px; right: 30px; font-size: 1.8rem; color: #4285F4; }
-        .review-stars { color: #FFD700; margin-bottom: 15px; font-size: 1.1rem; }
-        .review-text { font-style: italic; color: var(--text-light); margin-bottom: 20px; font-size: 0.95rem; line-height: 1.6; }
-        .review-author { font-weight: 700; color: var(--text-dark); display: flex; align-items: center; gap: 15px; }
-        .reviewer-img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-color); }
 
         /* --- 8. CTA BANNER --- */
         .cta-banner { background-color: var(--primary-color); color: #fff; text-align: center; padding: 80px 20px; }
@@ -386,110 +1073,21 @@
         .mobile-sticky-cta { display: none; }
         
         /* --- HANGING PROMO BANNER --- */
-        .promo-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 10000;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.4s ease;
-        }
-
-        .promo-overlay.show-promo {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .hanging-sign {
-            position: relative;
-            margin-top: 100px;
-            background: var(--bg-light);
-            border: 4px solid var(--primary-color);
-            border-radius: 15px;
-            padding: 40px 30px;
-            text-align: center;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            transform-origin: top center;
-            animation: dropAndSwing 2.5s ease-in-out forwards;
-        }
-
-        .rope {
-            position: absolute;
-            bottom: 100%;
-            width: 3px;
-            height: 105px;
-            background: #e0e0e0;
-            border-left: 1px solid #999;
-        }
+        .promo-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 10000; display: flex; justify-content: center; align-items: flex-start; opacity: 0; visibility: hidden; transition: opacity 0.4s ease; }
+        .promo-overlay.show-promo { opacity: 1; visibility: visible; }
+        .hanging-sign { position: relative; margin-top: 100px; background: var(--bg-light); border: 4px solid var(--primary-color); border-radius: 15px; padding: 40px 30px; text-align: center; width: 90%; max-width: 500px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); transform-origin: top center; animation: dropAndSwing 2.5s ease-in-out forwards; }
+        .rope { position: absolute; bottom: 100%; width: 3px; height: 105px; background: #e0e0e0; border-left: 1px solid #999; }
         .rope-left { left: 40px; }
         .rope-right { right: 40px; }
-
-        .rope::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -4px;
-            width: 10px;
-            height: 10px;
-            background: #555;
-            border-radius: 50%;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .close-promo {
-            position: absolute;
-            top: 10px; right: 15px;
-            font-size: 1.8rem;
-            color: var(--text-light);
-            cursor: pointer;
-            background: none; border: none; padding: 0;
-            transition: color 0.3s;
-        }
+        .rope::before { content: ''; position: absolute; top: -5px; left: -4px; width: 10px; height: 10px; background: #555; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        .close-promo { position: absolute; top: 10px; right: 15px; font-size: 1.8rem; color: var(--text-light); cursor: pointer; background: none; border: none; padding: 0; transition: color 0.3s; }
         .close-promo:hover { color: var(--primary-color); }
+        .hanging-sign .badge { background: var(--accent-color); color: #fff; padding: 5px 15px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 15px; }
+        .hanging-sign h2 { font-size: 2.2rem; color: var(--primary-color); margin: 0 0 10px 0; line-height: 1.1; }
+        .hanging-sign p { color: var(--text-dark); font-size: 1.05rem; margin-bottom: 25px; }
+        .hanging-sign small { display: block; margin-top: 15px; color: var(--text-light); font-size: 0.75rem; }
 
-        .hanging-sign .badge {
-            background: var(--accent-color);
-            color: #fff;
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-        .hanging-sign h2 {
-            font-size: 2.2rem;
-            color: var(--primary-color);
-            margin: 0 0 10px 0;
-            line-height: 1.1;
-        }
-        .hanging-sign p {
-            color: var(--text-dark);
-            font-size: 1.05rem;
-            margin-bottom: 25px;
-        }
-        .hanging-sign small {
-            display: block;
-            margin-top: 15px;
-            color: var(--text-light);
-            font-size: 0.75rem;
-        }
-
-        @keyframes dropAndSwing {
-            0% { transform: translateY(-300px) rotate(15deg); }
-            30% { transform: translateY(0) rotate(-10deg); }
-            50% { transform: rotate(6deg); }
-            70% { transform: rotate(-3deg); }
-            100% { transform: rotate(0deg); }
-        }
+        @keyframes dropAndSwing { 0% { transform: translateY(-300px) rotate(15deg); } 30% { transform: translateY(0) rotate(-10deg); } 50% { transform: rotate(6deg); } 70% { transform: rotate(-3deg); } 100% { transform: rotate(0deg); } }
 
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
@@ -512,21 +1110,28 @@
             .mobile-only-link { display: block !important; font-weight: 600; color: var(--primary-color) !important; }
             .desktop-login-link { display: none; }
             
-            /* Hero fixes */
-            .hero { text-align: center; padding: 100px 20px 100px 20px; background-attachment: scroll; }
+            .hero { text-align: center; padding: 60px 20px 80px 20px; background-attachment: scroll; }
             .hero h1 { font-size: 2.5rem; }
             .hero-buttons { flex-direction: column; width: 100%; align-items: center; gap: 15px;}
             .btn-primary, .btn-secondary { width: 100%; max-width: 320px; text-align: center; }
 
-            /* Pricing Section Mobile */
-            .pricing-section { padding: 40px 15px 60px 15px; }
+            .quote-funnel-section { padding: 40px 15px 60px 15px; scroll-margin-top: 60px;}
+            .quote-funnel-section h2 { font-size: 2.2rem; }
+            .quote-subtitle { font-size: 1rem; }
+            .funnel-container { padding: 25px 20px; border-radius: 16px; }
+            
+            /* CSS Fix for proper mobile stacking */
+            .services-grid-check { grid-template-columns: 1fr !important; }
+            .service-option[style*="grid-column"], .full-width-option { grid-column: span 1 !important; }
+            .service-price-col { flex-direction: row; gap: 10px; align-items: center; justify-content: flex-end;}
+
+            .step-header { font-size: 1.3rem; }
+            .funnel-nav { flex-direction: column-reverse; gap: 10px; }
+            .btn-funnel-back { padding: 14px; border-radius: 12px; }
+
+            .pricing-section { padding: 0 15px 60px 15px; }
             .pricing-section h2 { font-size: 2.2rem; }
-            .pricing-subtitle { font-size: 1rem; }
-
-            .pricing-intro { padding: 20px 15px; margin-bottom: 30px; }
-            .pricing-intro h3 { font-size: 1.2rem; margin-bottom: 10px; }
-            .pricing-intro p { font-size: 0.95rem; }
-
+            .pricing-subtitle { font-size: 1rem; margin-bottom: 30px; }
             .pricing-grid { flex-direction: column; align-items: center; gap: 20px;}
             .pricing-card { width: 100%; padding: 25px 20px; }
             .pricing-card.popular { transform: none; }
@@ -534,63 +1139,32 @@
             .plan-name { font-size: 1.25rem; }
             .plan-price { font-size: 2.2rem; }
             .plan-features li { font-size: 0.85rem; margin-bottom: 10px; }
-            .value-list li { font-size: 0.8rem; }
             .btn-plan { padding: 12px; font-size: 0.95rem; margin-top: 20px;}
 
-            /* Client Portal Mobile */
             .client-portal-section { padding: 20px 15px; }
-            .portal-wrapper { padding: 30px 20px; background: linear-gradient(135deg, #388E3C 0%, #2e7d32 100%); border: none; }
+            .portal-wrapper { padding: 30px 20px; background: linear-gradient(135deg, #388E3C 0%, #2e7d32 100%); border: none; border-radius: 16px;}
             .portal-header { margin-bottom: 25px; }
             .portal-header h2 { font-size: 1.8rem; }
             .portal-header p { font-size: 0.95rem; margin-bottom: 10px; }
             .portal-features-grid { display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; }
-            .portal-feature-card { padding: 12px 15px; display: flex; align-items: flex-start; gap: 12px; text-align: left; background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(76, 175, 80, 0.6); border-radius: 12px; backdrop-filter: none; transform: none !important; box-shadow: none !important; transition: none !important; }
+            .portal-feature-card { padding: 20px 15px; display: flex; align-items: flex-start; gap: 12px; text-align: left; background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(76, 175, 80, 0.6); border-radius: 12px; backdrop-filter: none; transform: none !important; box-shadow: none !important; transition: none !important; }
             .portal-feature-card i { font-size: 1.3rem; margin-top: 2px; margin-bottom: 0; color: #A5D6A7; transition: none !important; transform: none !important; }
             .portal-feature-card div { display: flex; flex-direction: column; }
             .portal-feature-card h4 { font-size: 1.05rem; margin: 0 0 2px 0; display: block; color: #fff; }
             .portal-feature-card p { font-size: 0.85rem; display: block; color: rgba(255,255,255,0.9); line-height: 1.4; }
             .btn-portal { width: 100%; text-align: center; font-size: 1rem; padding: 14px 20px; background: #fff; color: var(--primary-color);}
             
-            /* Services Grid */
             .services-section { padding: 40px 15px; }
-            .service-card { border: 1px solid #eee; border-bottom: 3px solid var(--accent-color); background: #fff;}
-            .service-action-text { opacity: 1; transform: translateY(0); background-color: var(--bg-light); padding: 8px 20px; border-radius: 50px; border: 1px solid #ddd; color: var(--primary-color); margin-top: 15px; }
+            .service-card { border: 1px solid #e2e8f0; border-bottom: 3px solid var(--accent-color); background: #fff;}
+            .service-action-text { opacity: 1; transform: translateY(0); background-color: var(--bg-light); padding: 8px 20px; border-radius: 50px; border: 1px solid #cbd5e1; color: var(--primary-color); margin-top: 15px; }
             
-            .review-card { width: 300px; padding: 30px 20px; }
-
-            /* Promo mobile */
             .hanging-sign { margin-top: 80px; padding: 30px 20px; }
             .rope { height: 85px; }
             .hanging-sign h2 { font-size: 1.8rem; }
 
-            /* ACTIVATED MOBILE FLOATING CTA */
-            .mobile-sticky-cta { 
-                display: flex; 
-                position: fixed; 
-                bottom: 25px; 
-                right: 25px; 
-                background: var(--primary-color); 
-                z-index: 1000; 
-                padding: 12px 25px 12px 15px; 
-                border-radius: 50px; 
-                box-shadow: 0 10px 25px rgba(27, 94, 32, 0.4); 
-                border: 2px solid #fff;
-            }
-            .mobile-sticky-cta a { 
-                color: #fff; 
-                font-weight: 700; 
-                font-size: 1rem; 
-                text-decoration: none; 
-                display: flex; 
-                align-items: center; 
-                gap: 10px; 
-            }
-            .mobile-sticky-cta i { 
-                background: var(--accent-color); 
-                padding: 8px; 
-                border-radius: 50%; 
-                animation: pulse-green 2s infinite; 
-            }
+            .mobile-sticky-cta { display: flex; position: fixed; bottom: 25px; right: 25px; background: var(--primary-color); z-index: 1000; padding: 12px 25px 12px 15px; border-radius: 50px; box-shadow: 0 10px 25px rgba(27, 94, 32, 0.4); border: 2px solid #fff; }
+            .mobile-sticky-cta a { color: #fff; font-weight: 700; font-size: 1rem; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+            .mobile-sticky-cta i { background: var(--accent-color); padding: 8px; border-radius: 50%; animation: pulse-green 2s infinite; }
         }
     </style>
 </head>
@@ -599,15 +1173,11 @@
         <div class="hanging-sign">
             <div class="rope rope-left"></div>
             <div class="rope rope-right"></div>
-            
             <button class="close-promo" onclick="closePromo()">&times;</button>
-            
             <div class="badge">Spring Early Bird Offer</div>
-            <h2>40% Off 1st Month!*</h2>
+            <h2>20% Off 1st Month!*</h2>
             <p>Sign up for any Monthly Lawn Maintenance Plan before <strong>April 15th</strong> and save big on your first month.</p>
-            
-            <a href="contact2?offer=earlybird" class="btn-primary" style="width: 100%; display: block; padding: 12px; box-sizing: border-box;">Claim Offer Now</a>
-            
+            <a href="pricing" class="btn-primary" style="width: 100%; display: block; padding: 12px; box-sizing: border-box;">Claim Offer Now</a>
             <small>*Offer valid for new residential customers only, applicable with the purchase of an annual pacakge. Expires April 15, 2026.</small>
         </div>
     </div>
@@ -618,7 +1188,6 @@
                 <img src="assets/img/logo-light.png" alt="Greenworks Logo" style="height: 45px; width: auto; filter: none;"> 
             </a>
         </div>
-        
         <div class="mobile-controls">
             <a href="https://www.trackmylawn.com" target="_blank" class="mobile-login-btn">
                 <i class="fa-solid fa-user-circle"></i> Login
@@ -628,7 +1197,6 @@
                 <span></span>
             </div>
         </div>
-
         <ul class="nav-links" id="navLinks">
             <li><a href="/" style="color: var(--accent-color);">Home</a></li>
             <li class="dropdown-parent">
@@ -651,129 +1219,302 @@
             <li><a href="contact2">Contact</a></li>
             <li class="desktop-login-link"><a href="https://www.trackmylawn.com" target="_blank" class="login-btn"><i class="fa-solid fa-user-circle"></i> Client Login</a></li>
         </ul>
-        
-      <a href="tel:+17055009000" class="btn-header desktop-only" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Desktop Header Call' });">Call 705-500-9000</a>
+        <a href="tel:+17055009000" class="btn-header desktop-only" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Desktop Header Call' });">Call 705-500-9000</a>
     </header>
 
     <section class="hero">
         <div class="hero-text">
             <h1>Your Weekend is for Living, Not Mowing</h1>
-            <p>Professional and reliable lawn maintenance, serving homeowners in Georgetown and the entire Greater Toronto Area.</p>
+            <p>Professional and reliable lawn maintenance, serving homeowners in Halton Hills and the entire Greater Toronto Area.</p>
             <div class="hero-buttons">
-                <a href="contact2" class="btn-primary">Get a Free Quote</a>
+                <a href="#custom-quote" class="btn-primary">Build My Custom Quote</a>
                 <a href="pricing" class="btn-secondary">View Pricing Plans</a>
             </div>
         </div>
     </section>
 
-    <div class="floating-reviews-wrapper">
-        <div class="floating-reviews-track">
-            
-            <div class="mini-review">
-                <img src="review/priya.png" alt="Tina">
-                <div class="mini-review-content">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"Very neat and precise..."</p>
-                </div>
+    <section class="quote-funnel-section" id="custom-quote">
+        <h2>Build Your Custom Plan...</h2>
+        <p class="quote-subtitle">Use our interactive calculator to get a price based on your exact needs.</p>
+
+        <div class="funnel-container">
+            <div class="progress-container">
+                <div class="progress-step active" id="indicator-1">1</div>
+                <div class="progress-step" id="indicator-2">2</div>
+                <div class="progress-step" id="indicator-3">3</div>
+                <div class="progress-step" id="indicator-4">4</div>
+                <div class="progress-step" id="indicator-5"><i class="fa-solid fa-check"></i></div>
             </div>
-            <div class="mini-review">
-                <img src="review/barry.png" alt="Mazinger">
-                <div class="mini-review-content">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"The outcome was amazing!"</p>
+
+            <div class="funnel-step active" id="step-1">
+                <div class="step-header">Where is your property?</div>
+                <p class="step-desc">Enter your address to ensure we service your area.</p>
+                
+                <div class="input-group">
+                    <i class="fa-solid fa-map-marker-alt"></i>
+                    <input type="text" id="qAddress" class="funnel-input" placeholder="Start typing your address..." autocomplete="off">
                 </div>
-            </div>
-            <div class="mini-review">
-                <img src="review/javier.png" alt="Barry">
-                <div class="mini-review-content">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"Always responsive & reliable!"</p>
-                </div>
-            </div>
-            <div class="mini-review">
-                <img src="review/deborah.png" alt="Sarah">
-                <div class="mini-review-content">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"Best landscapers in Georgetown."</p>
-                </div>
-            </div>
-            <div class="mini-review">
-                <img src="review/kimberly.png" alt="David">
-                <div class="mini-review-content">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"My lawn has never looked better."</p>
-                </div>
-            </div>
-            <div class="mini-review">
-                <img src="review/simon.png" alt="Amanda">
-                <div class="mini-review-content">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"Professional, quick, and clean."</p>
-                </div>
-            </div>
-            <div class="mini-review">
-                <img src="review/paul.png" alt="Jason">
-                <div class="mini-review-content">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"Transformed our backyard completely!"</p>
-                </div>
-            </div>
-            <div class="mini-review">
-                <img src="review/sunil.png" alt="Emily">
-                <div class="mini-review-content">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"Fair prices and quality work!!"</p>
-                </div>
-            </div>
-            <div class="mini-review">
-                <img src="review/tanya.png" alt="Michael">
-                <div class="mini-review-content">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"Highly recommend Greenworks!"</p>
-                </div>
-            </div>
-            <div class="mini-review">
-                <img src="review/tina.png" alt="Zubair">
-                <div class="mini-review-content">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"Exceptional attention to detail."</p>
+                
+                <div class="funnel-nav" style="justify-content: center;">
+                    <button class="btn-funnel" id="nextStep1Btn" style="max-width: 300px;" onclick="goToStep(2)">Next Step <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
 
-            <div class="mini-review">
-                <img src="review/zubair.png" alt="Tina">
-                <div class="mini-review-content">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"Very neat and precise..."</p>
+            <div class="funnel-step" id="step-2">
+                <div class="step-header">Select Your Services</div>
+                <p class="step-desc">Build your perfect package. Base prices below are for a lot <strong>up to 1,000 sq ft</strong>. Larger lots will be adjusted in the next step.<br><strong style="color:var(--accent-color);">🌟 Special: Bundle 2 or more Add-ons to save 25%!</strong></p>
+                
+                <div class="service-category-header">Lawn Mowing Frequency</div>
+                <div class="services-grid-check">
+                    <label class="service-option">
+                        <input type="radio" name="mowFreq" value="weekly" id="mow-weekly" checked>
+                        <div class="service-title-col">
+                            <strong>Weekly</strong>
+                            <small>(28 visits)</small>
+                        </div>
+                        <div class="service-price-col">
+                            <span class="price-standalone">Standalone: <br>$119.25/mo</span>
+                            <span class="price-bundled">Bundled: <br>$87.00/mo</span>
+                        </div>
+                    </label>
+                    
+                    <label class="service-option">
+                        <input type="radio" name="mowFreq" value="biweekly" id="mow-biweekly">
+                        <div class="service-title-col">
+                            <strong>Bi-Weekly</strong>
+                            <small>(14 visits)</small>
+                        </div>
+                        <div class="service-price-col">
+                            <span class="price-standalone">Standalone: <br>$96.75/mo</span>
+                            <span class="price-bundled">Bundled: <br>$60.00/mo</span>
+                        </div>
+                    </label>
+                    
+                    <label class="service-option full-width-option">
+                        <input type="radio" name="mowFreq" value="none" id="mow-none">
+                        <div class="service-title-col">
+                            <strong style="margin-top: 5px;">No Mowing Required</strong>
+                        </div>
+                    </label>
                 </div>
-               </div>
-            <div class="mini-review">
-                <img src="review/anish.png" alt="Zubair">
-                <div class="mini-review-content">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"Exceptional attention to detail."</p>
+
+                <div class="service-category-header">Core Maintenance</div>
+                <div class="services-grid-check">
+                    <label class="service-option">
+                        <input type="checkbox" id="chk-fert" value="9" data-type="monthly">
+                        <div class="service-title-col">
+                            <strong>Fertilizer Program</strong>
+                        </div>
+                        <div class="service-price-col">
+                            <span class="price-standalone">+$6.75/mo</span>
+                        </div>
+                    </label>
+                    
+                    <label class="service-option">
+                        <input type="checkbox" id="chk-weed" value="19" data-standalone="39" data-type="monthly">
+                        <div class="service-title-col">
+                            <strong>Weed Control</strong>
+                        </div>
+                        <div class="service-price-col">
+                            <span class="price-standalone">Standalone: <br>$29.25/mo</span>
+                            <span class="price-bundled">Bundled: <br>$14.25/mo</span>
+                        </div>
+                    </label>
+                    
+                    <label class="service-option">
+                        <input type="checkbox" id="chk-land" value="9" data-standalone="50" data-type="monthly">
+                        <div class="service-title-col">
+                            <strong>Landscape Maintenance</strong>
+                        </div>
+                        <div class="service-price-col">
+                            <span class="price-standalone">Standalone: <br>$37.50/mo</span>
+                            <span class="price-bundled">Bundled: <br>$6.75/mo</span>
+                        </div>
+                    </label>
+                    
+                    <label class="service-option">
+                        <input type="checkbox" id="chk-spring" value="139" data-standalone="199" data-type="onetime">
+                        <div class="service-title-col">
+                            <strong>Spring Cleanup</strong>
+                        </div>
+                        <div class="service-price-col">
+                            <span class="price-standalone">Standalone: <br>$149.25/season</span>
+                            <span class="price-bundled">Bundled: <br>$104.25/season</span>
+                        </div>
+                    </label>
+                    
+                    <label class="service-option">
+                        <input type="checkbox" id="chk-fall" value="179" data-standalone="249" data-type="onetime">
+                        <div class="service-title-col">
+                            <strong>Fall Cleanup</strong>
+                        </div>
+                        <div class="service-price-col">
+                            <span class="price-standalone">Standalone: <br>$186.75/season</span>
+                            <span class="price-bundled">Bundled: <br>$134.25/season</span>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="service-category-header">Discountable Add-ons (Save 25% on 2+)</div>
+                <div class="services-grid-check">
+                    <label class="service-option">
+                        <input type="checkbox" id="chk-aeration" value="120" data-type="addon">
+                        <div class="service-title-col">
+                            <strong>Core Aeration</strong>
+                            <small>(Fall)</small>
+                        </div>
+                        <div class="service-price-col">
+                            <span class="price-standalone">+$90.00</span>
+                        </div>
+                    </label>
+                    
+                    <label class="service-option">
+                        <input type="checkbox" id="chk-overseed" value="70" data-type="addon">
+                        <div class="service-title-col">
+                            <strong>Overseeding</strong>
+                            <small>(Fall/Spring)</small>
+                        </div>
+                        <div class="service-price-col">
+                            <span class="price-standalone">+$52.50</span>
+                        </div>
+                    </label>
+                    
+                    <label class="service-option">
+                        <input type="checkbox" id="chk-dethatch" value="120" data-type="addon">
+                        <div class="service-title-col">
+                            <strong>Dethatching</strong>
+                            <small>(Spring)</small>
+                        </div>
+                        <div class="service-price-col">
+                            <span class="price-standalone">+$90.00</span>
+                        </div>
+                    </label>
+                </div>
+                
+                <div class="funnel-nav">
+                    <button class="btn-funnel btn-funnel-back" onclick="goToStep(1)">Back</button>
+                    <button class="btn-funnel" onclick="goToStep(3)">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div class="funnel-step" id="step-3">
+                <div class="step-header">Verify Your Lot Size</div>
+                <p class="step-desc">Confirm your property details to ensure accurate scaling.</p>
+                
+                <div class="map-container" id="satelliteMapBox">
+                    <i class="fa-solid fa-satellite"></i>
+                    <strong>Satellite View Loading...</strong>
+                    <small id="mapAddressDisplay">Address will appear here</small>
+                </div>
+                
+                <div class="size-selector">
+                    <label style="font-weight: 600; color: var(--primary-color);">Estimated Total Lot Size:</label>
+                    <select id="qLotSize" class="funnel-input" style="padding-left: 20px;">
+                        <option value="0.75" selected>Up to 1,000 sq ft</option>
+                        <option value="1">Standard (1,001 - 3,000 sq ft)</option>
+                        <option value="1.3">Large (3,001 - 6,000 sq ft)</option>
+                        <option value="contact">Estate (6,000+ sq ft)</option>
+                    </select>
+                </div>
+
+                <div class="funnel-nav">
+                    <button class="btn-funnel btn-funnel-back" onclick="goToStep(2)">Back</button>
+                    <button class="btn-funnel" onclick="calculateQuote(false)">View My Quote <i class="fa-solid fa-file-invoice-dollar"></i></button>
+                </div>
+            </div>
+
+            <div class="funnel-step" id="step-4">
+                <div class="step-header" style="color: var(--accent-color);"><i class="fa-solid fa-check-circle"></i> Quote Generated</div>
+                <p class="step-desc">Here is your customized transparent pricing based on your property size and selected services.</p>
+                
+                <div class="quote-receipt">
+                    <div style="font-size: 0.9rem; color: #64748b; margin-bottom: 15px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">
+                        Quote for Property: <br><strong id="resAddress" style="color:var(--text-dark);">Address</strong>
+                    </div>
+
+                    <div id="receipt-monthly-items"></div>
+                    
+                    <div style="margin-top: 15px; border-top: 1px dashed #cbd5e1; padding-top: 15px;">
+                        <label style="font-weight:600; display:block; margin-bottom:8px; color:var(--primary-color); text-align: left;">Have a Promo Code?</label>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="text" id="promoCodeInput" class="funnel-input" placeholder="Add Code" style="margin-bottom: 0; padding-left: 15px; text-transform: uppercase;">
+                            <button onclick="calculateQuote(true)" class="btn-funnel" style="padding: 12px 20px; flex: 0 0 auto;">Apply</button>
+                        </div>
+                        <div id="promoMessage" style="font-size: 0.85rem; margin-top: 5px; font-weight: 600; text-align: left;"></div>
+                    </div>
+
+                    <div id="promo-discount-row" class="discount-row" style="display:none;">
+                        <span>New Customer Discount (20% Off First Month):</span>
+                        <span id="resDiscountAmount">-$0.00</span>
+                    </div>
+
+                    <div class="receipt-total" id="monthlyTotalContainer">
+                        <span>Total Monthly Plan:</span>
+                        <span id="resMonthlyTotal">$0.00 /mo</span>
+                    </div>
+                    
+                    <div id="receipt-onetime-items" style="margin-top: 20px; border-top: 1px dashed #cbd5e1; padding-top: 15px;"></div>
+                </div>
+
+                <div class="amortize-toggle" id="amortizeContainer" style="display: none;">
+                    <label class="switch">
+                        <input type="checkbox" id="amortizeCheckbox" onchange="calculateQuote(true)">
+                        <span class="slider"></span>
+                    </label>
+                    <div class="toggle-text">
+                        <strong>Add Seasonal Services to Monthly Billing</strong>
+                        <small>Split one-time costs evenly across your 7-month plan.</small>
+                    </div>
+                </div>
+
+                <div class="upsell-section" id="upsell-section">
+                    <h4>Recommended For Your Property:</h4>
+                    <div id="upsell-container"></div>
+                </div>
+
+                <div class="funnel-nav">
+                    <button class="btn-funnel btn-funnel-back" onclick="location.reload()">Restart</button>
+                    <button class="btn-funnel" onclick="goToStep(5)">Proceed to Booking <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div class="funnel-step" id="step-5">
+                <div class="step-header">Who are we quoting?</div>
+                <p class="step-desc">We need your contact info to finalize your booking and send a copy of your customized breakdown.</p>
+                
+                <div class="input-group">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="qName" class="funnel-input" placeholder="Your Full Name">
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-phone"></i>
+                    <input type="tel" id="qPhone" class="funnel-input" placeholder="Your Phone Number">
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="qEmail" class="funnel-input" placeholder="Your Email Address">
+                </div>
+                
+                <div class="funnel-nav">
+                    <button class="btn-funnel btn-funnel-back" onclick="goToStep(4)">Back to Quote</button>
+                    <button class="btn-funnel" id="submitQuoteBtn" onclick="submitFinal()">Submit Request & Book</button>
                 </div>
             </div>
 
         </div>
-    </div>
+    </section>
 
     <section class="pricing-section" id="pricing">
-        <h2>Transparent Monthly Plans</h2>
-        <p class="pricing-subtitle">Predictable, flat-rate property care. No surprise bills.</p>
-        
-        <div class="pricing-intro">
-            <h3>The Unbeatable Value Challenge</h3>
-            <p>We confidently offer the most comprehensive property care packages in the GTA. Check out the breakdown on our Premium Plan to see exactly where every dollar goes. Premium service, honest pricing, zero hidden markups.</p>
-        </div>
+        <h2>...Or Choose a Pre-Made Package</h2>
+        <p class="pricing-subtitle">Prefer a standard bundle? Select one of our popular monthly maintenance plans below.</p>
 
         <div class="pricing-grid">
             <div class="pricing-card">
                 <div class="plan-name">Basic Plan</div>
                 <div class="starting-at">Starting at</div>
-                <div class="plan-price">$149 <span>/mo</span></div>
+                <div class="plan-price">$119 <span>/mo</span></div>
                 <span class="plan-subtext">Includes 4 visits per month</span>
-                <div class="lot-size-disclaimer">*Based on standard up to 3,000 sq ft lot</div>
+                <div class="lot-size-disclaimer">*Based on up to 1,000 sq ft lot</div>
                 <div class="plan-divider"></div>
                 <ul class="plan-features">
                     <li><i class="fa-solid fa-check"></i> Lawn Mowing (Weekly)</li>
@@ -786,9 +1527,9 @@
             <div class="pricing-card popular">
                 <div class="plan-name">Premium Plan</div>
                 <div class="starting-at">Starting at</div>
-                <div class="plan-price">$198 <span>/mo</span></div>
+                <div class="plan-price">$148 <span>/mo</span></div>
                 <span class="plan-subtext">Includes 4 visits per month</span>
-                <div class="lot-size-disclaimer">*Based on standard up to 3,000 sq ft lot</div>
+                <div class="lot-size-disclaimer">*Based on up to 1,000 sq ft lot</div>
                 <div class="plan-divider"></div>
                 <ul class="plan-features">
                     <li><i class="fa-solid fa-check"></i> <strong>Everything in Basic</strong></li>
@@ -797,28 +1538,15 @@
                     <li><i class="fa-solid fa-check"></i> Weed Control</li>
                     <li><i class="fa-solid fa-check"></i> Landscape Maintenance</li>
                 </ul>
-
-                <div class="value-box">
-                    <div class="value-box-title">Unbeatable Value Breakdown:</div>
-                    <ul class="value-list">
-                        <li>Lawn Mowing <span>$29.00 / visit</span></li>
-                        <li>Fertilizer Program <span>$9.00 / month</span></li>
-                        <li>Weed Control <span>$19.00 / month</span></li>
-                        <li>Landscape Maint. <span>$9.00 / month</span></li>
-                        <li>Spring Cleanup <span>$140.00 / season</span></li>
-                        <li>Fall Cleanup <span>$175.00 / season</span></li>
-                    </ul>
-                </div>
-
                 <a href="contact2?plan=premium" class="btn-plan">Get a Free Quote</a>
             </div>
 
             <div class="pricing-card">
                 <div class="plan-name">Ultimate Plan</div>
                 <div class="starting-at">Starting at</div>
-                <div class="plan-price">$259 <span>/mo</span></div>
+                <div class="plan-price">$198 <span>/mo</span></div>
                 <span class="plan-subtext">Includes 4 visits per month</span>
-                <div class="lot-size-disclaimer">*Based on standard up to 3,000 sq ft lot</div>
+                <div class="lot-size-disclaimer">*Based on up to 1,000 sq ft lot</div>
                 <div class="plan-divider"></div>
                 <ul class="plan-features">
                     <li><i class="fa-solid fa-check"></i> <strong>Everything in Premium</strong></li>
@@ -928,85 +1656,9 @@
         </div>
     </section>
 
-    <section class="testimonials-section">
-        <h2>Trusted by Homes on Your Block</h2>
-        <p>Drag or swipe to see what your neighbors are saying about us on Google</p>
-        
-        <div class="testimonials-carousel-container">
-            <div class="scrolling-wrapper" id="reviewTrack">
-                <div class="review-card">
-                    <i class="fa-brands fa-google google-icon"></i>
-                    <div class="review-stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="review-text">"We have been dealing with Greenworks for the last two years doing the maintenance of our grass. Very respectful team. Very Neat and precise. If you want a worry free experience this is the team to call. Highly recommend."</p>
-                    <div class="review-author">
-                        <img src="review/tina.png" alt="Tina Vitale" class="reviewer-img">
-                        Tina Vitale
-                    </div>
-                </div>
-                <div class="review-card">
-                    <i class="fa-brands fa-google google-icon"></i>
-                    <div class="review-stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="review-text">"We made the best decision to have our backyard and front yard managed by Greenworks! The outcome was amazing! we couldn't ask for more! Keep up the good work for the team and we highly recommend this Company"</p>
-                    <div class="review-author">
-                        <img src="review/barry.png" alt="Mazinger Z" class="reviewer-img">
-                        Mazinger Z
-                    </div>
-                </div>
-                <div class="review-card">
-                    <i class="fa-brands fa-google google-icon"></i>
-                    <div class="review-stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="review-text">"I recently had the pleasure of working with Greenworks Landscaping for a sodding project, and I couldn't be more satisfied! From start to finish, their team demonstrated exceptional attention to detail."</p>
-                    <div class="review-author">
-                        <img src="review/zubair.png" alt="Zubair Ahmed" class="reviewer-img">
-                        Zubair Ahmed
-                    </div>
-                </div>
-                <div class="review-card">
-                    <i class="fa-brands fa-google google-icon"></i>
-                    <div class="review-stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="review-text">"Just completed my third job with Greenworks this year. The team works hard and cleans up the site perfectly. Always responsive and reliable!"</p>
-                    <div class="review-author">
-                        <img src="review/javier.png" alt="Barry Olson" class="reviewer-img">
-                        Barry Olson
-                    </div>
-                </div>
-                <div class="review-card" aria-hidden="true">
-                    <i class="fa-brands fa-google google-icon"></i>
-                    <div class="review-stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="review-text">"We have been dealing with Greenworks for the last two years doing the maintenance of our grass. Very respectful team. Very Neat and precise. If you want a worry free experience this is the team to call. Highly recommend."</p>
-                    <div class="review-author">
-                        <img src="review/tina.png" alt="Tina Vitale" class="reviewer-img">
-                        Tina Vitale
-                    </div>
-                </div>
-                <div class="review-card" aria-hidden="true">
-                    <i class="fa-brands fa-google google-icon"></i>
-                    <div class="review-stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="review-text">"We made the best decision to have our backyard and front yard managed by Greenworks! The outcome was amazing! we couldn't ask for more! Keep up the good work for the team and we highly recommend this Company"</p>
-                    <div class="review-author">
-                        <img src="review/barry.png" alt="Mazinger Z" class="reviewer-img">
-                        Mazinger Z
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="cta-banner">
         <h2>Ready to transform your yard?</h2>
-        <p>Join hundreds of happy homeowners in Georgetown.</p>
+        <p>Join hundreds of happy homeowners in Halton Hills.</p>
         <a href="contact2" class="btn-white">Get a Free Quote</a>
     </section>
 
@@ -1014,7 +1666,7 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>About Us</h4>
-                <p>Greenworks Landscaping is committed to providing top-quality lawn care services. Locally owned and operated, we make your lawn our passion.</p>
+                <p>Greenworks Landscaping Inc. is committed to providing top-quality lawn care services. Locally owned and operated, we make your lawn our passion.</p>
             </div>
             <div class="footer-col">
                 <h4>Contact Info</h4>
@@ -1032,7 +1684,7 @@
             </div>
         </div>
         <div class="copyright">
-            <p>Copyright © <span id="year"></span> | Greenworks Construction and Companies Inc. | All Rights Reserved.</p>
+            <p>Copyright © <span id="year"></span> | Greenworks Landscaping Inc. | All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -1042,8 +1694,28 @@
         </a>
     </div>
 
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUt43sR5tnk55iykNlqrKMhRcv51Ku-nY&libraries=places&callback=initAutocomplete"></script>
+
     <script>
         document.getElementById("year").innerHTML = new Date().getFullYear();
+
+        // --- 1. GOOGLE MAPS AUTOCOMPLETE ---
+        window.initAutocomplete = function() {
+            const addressInput = document.getElementById('qAddress');
+            if (addressInput) {
+                const autocomplete = new google.maps.places.Autocomplete(addressInput, {
+                    types: ['address'],
+                    componentRestrictions: { country: 'ca' } // Restricts to Canada
+                });
+                
+                autocomplete.addListener('place_changed', function() {
+                    const place = autocomplete.getPlace();
+                    if(place.formatted_address) {
+                        addressInput.value = place.formatted_address;
+                    }
+                });
+            }
+        };
 
         function toggleMenu() {
             const navLinks = document.getElementById("navLinks");
@@ -1067,68 +1739,378 @@
             }
         }
 
-        // --- Auto-Scrolling & Dragging Reviews JS ---
-        const reviewTrack = document.getElementById('reviewTrack');
-        let isScrolling = true;
-        let scrollSpeed = 0.5; 
-        let animationId;
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-        function autoScroll() {
-            if (isScrolling && !isDown) {
-                reviewTrack.scrollLeft += scrollSpeed;
-                if (reviewTrack.scrollLeft >= reviewTrack.scrollWidth / 2) {
-                    reviewTrack.scrollLeft = 0;
-                }
-            }
-            animationId = requestAnimationFrame(autoScroll);
-        }
-        animationId = requestAnimationFrame(autoScroll);
-
-        reviewTrack.addEventListener('mousedown', (e) => {
-            isDown = true;
-            isScrolling = false; 
-            reviewTrack.style.cursor = 'grabbing';
-            startX = e.pageX - reviewTrack.offsetLeft;
-            scrollLeft = reviewTrack.scrollLeft;
-        });
-
-        reviewTrack.addEventListener('mouseleave', () => {
-            isDown = false;
-            isScrolling = true; 
-            reviewTrack.style.cursor = 'grab';
-        });
-
-        reviewTrack.addEventListener('mouseup', () => {
-            isDown = false;
-            isScrolling = true; 
-            reviewTrack.style.cursor = 'grab';
-        });
-
-        reviewTrack.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - reviewTrack.offsetLeft;
-            const walk = (x - startX) * 2; 
-            reviewTrack.scrollLeft = scrollLeft - walk;
-        });
-
-        reviewTrack.addEventListener('touchstart', () => { isScrolling = false; });
-        reviewTrack.addEventListener('touchend', () => { setTimeout(() => { isScrolling = true; }, 1000); });
-
         // --- PROMO POP-UP LOGIC ---
-        // Wait 1.5 seconds after page loads, then drop the sign down
         window.addEventListener('load', () => {
             setTimeout(() => {
-                document.getElementById('earlyBirdPromo').classList.add('show-promo');
+                const promo = document.getElementById('earlyBirdPromo');
+                if(promo) promo.classList.add('show-promo');
             }, 1500); 
         });
 
-        // Function to close the sign
         function closePromo() {
-            document.getElementById('earlyBirdPromo').classList.remove('show-promo');
+            const promo = document.getElementById('earlyBirdPromo');
+            if(promo) promo.classList.remove('show-promo');
+        }
+
+        // --- CUSTOM QUOTE FUNNEL LOGIC ---
+        function goToStep(stepNumber) {
+            if(stepNumber === 2) {
+                const addr = document.getElementById('qAddress').value.trim();
+                if(addr === "") { alert("Please enter your address first."); return; }
+            }
+
+            if(stepNumber === 3) {
+                const addr = document.getElementById('qAddress').value;
+                document.getElementById('mapAddressDisplay').innerText = addr;
+
+                const apiKey = 'AIzaSyDUt43sR5tnk55iykNlqrKMhRcv51Ku-nY'; 
+                const mapContainer = document.getElementById('satelliteMapBox');
+                const encodedAddress = encodeURIComponent(addr);
+                
+                const imgUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${encodedAddress}&zoom=19&size=600x200&maptype=satellite&markers=color:red%7C${encodedAddress}&key=${apiKey}`;
+                mapContainer.innerHTML = `<img src="${imgUrl}" style="width:100%; height:100%; object-fit:cover; border-radius:12px;" alt="Satellite view" onerror="this.onerror=null; this.parentNode.innerHTML='<div style=\\'text-align:center; padding:20px;\\'><i class=\\'fa-solid fa-satellite\\' style=\\'font-size:3rem; color:#cbd5e1; margin-bottom:10px;\\'></i><br><strong style=\\'color:#ef4444;\\'>Google Maps Blocked Request</strong><br><small>Check API Key, Billing, or Restrictions in Google Cloud Console.</small></div>';">`;
+            }
+
+            document.querySelectorAll('.funnel-step').forEach(step => {
+                step.classList.remove('active');
+            });
+            
+            document.getElementById(`step-${stepNumber}`).classList.add('active');
+
+            document.querySelectorAll('.progress-step').forEach((indicator, index) => {
+                indicator.classList.remove('active', 'completed');
+                if (index + 1 < stepNumber) {
+                    indicator.classList.add('completed');
+                } else if (index + 1 === stepNumber) {
+                    indicator.classList.add('active');
+                }
+            });
+
+            const funnel = document.getElementById('custom-quote');
+            if(funnel) {
+                const y = funnel.getBoundingClientRect().top + window.scrollY - 80; 
+                window.scrollTo({top: y, behavior: 'smooth'});
+            }
+        }
+
+        // --- UPSELL & REMOVE LOGIC ---
+        function addUpsell(elementId) {
+            const el = document.getElementById(elementId);
+            if(el) el.checked = true;
+            calculateQuote(true);
+        }
+
+        function removeService(elementId) {
+            const el = document.getElementById(elementId);
+            if(el) el.checked = false;
+            calculateQuote(true);
+        }
+        
+        function removeMowing() {
+            const noMowRadio = document.querySelector('input[name="mowFreq"][value="none"]');
+            if(noMowRadio) noMowRadio.checked = true;
+            calculateQuote(true);
+        }
+
+        function calculateQuote(isRecalculating = false) {
+            const lotSelect = document.getElementById('qLotSize');
+            const lotVal = lotSelect.value;
+            
+            document.getElementById('resAddress').innerText = document.getElementById('qAddress').value;
+
+            // Handle Estate / Contact branch
+            if(lotVal === 'contact') {
+                document.getElementById('receipt-monthly-items').innerHTML = `<div style="padding:15px; text-align:center; color:var(--primary-color); font-weight:600; line-height:1.5;">Your property size requires an on-site evaluation.<br>Please submit your request and our team will reach out with a specialized custom quote!</div>`;
+                document.getElementById('resMonthlyTotal').innerText = `Custom Quote`;
+                document.getElementById('monthlyTotalContainer').style.display = 'flex';
+                document.getElementById('receipt-onetime-items').innerHTML = "";
+                document.getElementById('amortizeContainer').style.display = 'none';
+                document.getElementById('promo-discount-row').style.display = 'none';
+                document.getElementById('upsell-section').style.display = 'none';
+                if(!isRecalculating) goToStep(4);
+                return; 
+            }
+
+            // Normal calculation
+            const sizeMultiplier = parseFloat(lotVal);
+            let monthlyHTML = "";
+            let onetimeHTML = "";
+            let rawMonthlyTotal = 0;
+            let totalOnetime = 0;
+            let addonCount = 0;
+
+            const checkedServices = [];
+
+            // Grab radio for mowing
+            const mowFreqNode = document.querySelector('input[name="mowFreq"]:checked');
+            const mowFreq = mowFreqNode ? mowFreqNode.value : 'none';
+
+            // Grab all other checkboxes
+const checkboxes = document.querySelectorAll('.services-grid-check input[type="checkbox"]');
+
+// FIX: Bundled discounts are ONLY unlocked if Lawn Mowing is selected
+let isBundled = (mowFreq !== 'none');
+            
+            // Process Mowing explicitly
+            if (mowFreq !== 'none') {
+                let baseMowPrice = 0;
+                let mowLabel = "";
+                
+                if (mowFreq === 'weekly') {
+                    baseMowPrice = isBundled ? 116 : 159;
+                    mowLabel = "Weekly Lawn Mowing";
+                } else if (mowFreq === 'biweekly') {
+                    baseMowPrice = isBundled ? 80 : 129;
+                    mowLabel = "Bi-Weekly Lawn Mowing";
+                }
+                
+                const finalMowPrice = baseMowPrice * sizeMultiplier;
+                rawMonthlyTotal += finalMowPrice;
+                monthlyHTML += `
+                    <div class="receipt-item">
+                        <span>${mowLabel} ${isBundled ? '<small style="color:var(--accent-color)">(Bundled Discount)</small>' : '<small style="color:#94a3b8">(Standalone)</small>'}</span> 
+                        <span style="display:flex; align-items:center;">$${finalMowPrice.toFixed(2)} <i class="fa-solid fa-times-circle remove-icon" onclick="removeMowing()"></i></span>
+                    </div>`;
+            }
+
+            // Process Addons logic
+            checkboxes.forEach(box => {
+                if(box.checked && box.getAttribute('data-type') === 'addon') addonCount++;
+            });
+            let addonMultiplier = (addonCount >= 2) ? 0.75 : 1.0;
+
+            let upsellHTML = "";
+            let missedCount = 0;
+
+            // Loop checkboxes
+            checkboxes.forEach((box, index) => {
+                let serviceName = "";
+                const titleCol = box.parentElement.querySelector('.service-title-col strong') || box.parentElement.querySelector('span');
+                if(titleCol) serviceName = titleCol.innerText.trim();
+                
+                let basePrice = parseFloat(box.value);
+                const type = box.getAttribute('data-type');
+                const standalonePrice = box.getAttribute('data-standalone');
+                
+                // Safely assign an ID if missing
+                if (!box.id) box.id = 'service-chk-' + index;
+
+                if (box.checked) {
+                    if(standalonePrice && !isBundled) basePrice = parseFloat(standalonePrice);
+                    
+                    if (type === 'addon') {
+                        const finalPrice = basePrice * sizeMultiplier * addonMultiplier;
+                        totalOnetime += finalPrice;
+                        onetimeHTML += `
+                            <div class="one-time-total">
+                                <span>${serviceName}</span> 
+                                <span style="display:flex; align-items:center;">$${finalPrice.toFixed(2)} <i class="fa-solid fa-times-circle remove-icon" onclick="removeService('${box.id}')"></i></span>
+                            </div>`;
+                    } else if (type === 'onetime') {
+                        const finalPrice = basePrice * sizeMultiplier;
+                        totalOnetime += finalPrice;
+                        const bundleTag = (standalonePrice && isBundled) ? ' <small style="color:var(--accent-color)">(Bundled Discount)</small>' : (standalonePrice ? ' <small style="color:#94a3b8">(Standalone)</small>' : '');
+                        onetimeHTML += `
+                            <div class="one-time-total">
+                                <span>${serviceName}${bundleTag}</span> 
+                                <span style="display:flex; align-items:center;">$${finalPrice.toFixed(2)} <i class="fa-solid fa-times-circle remove-icon" onclick="removeService('${box.id}')"></i></span>
+                            </div>`;
+                    } else {
+                        const finalPrice = basePrice * sizeMultiplier;
+                        rawMonthlyTotal += finalPrice;
+                        const bundleTag = (standalonePrice && isBundled) ? ' <small style="color:var(--accent-color)">(Bundled Discount)</small>' : (standalonePrice ? ' <small style="color:#94a3b8">(Standalone)</small>' : '');
+                        monthlyHTML += `
+                            <div class="receipt-item">
+                                <span>${serviceName}${bundleTag}</span> 
+                                <span style="display:flex; align-items:center;">$${finalPrice.toFixed(2)} <i class="fa-solid fa-times-circle remove-icon" onclick="removeService('${box.id}')"></i></span>
+                            </div>`;
+                    }
+                } else {
+                    missedCount++;
+                    // Upsell shows the bundled price (or discounted addon price) to look tempting
+                    let upsellBase = basePrice;
+                    let finalUpsellPrice = upsellBase * sizeMultiplier;
+                    if(type === 'addon') {
+                        finalUpsellPrice = upsellBase * sizeMultiplier * ((addonCount + 1) >= 2 ? 0.75 : 1.0);
+                    }
+                    
+                    upsellHTML += `
+                        <div class="upsell-item">
+                            <div class="service-title-col" style="text-align: left;">
+                                <strong style="color:var(--text-dark); margin-bottom: 2px;">${serviceName}</strong>
+                                <small style="color:var(--accent-color); font-weight:700; display:block;">Add for +$${finalUpsellPrice.toFixed(2)}${type==='monthly'?'/mo':(type==='onetime'?'/season':'')}</small>
+                            </div>
+                            <button class="btn-funnel" style="padding:8px 16px; font-size:0.85rem; flex:none; width:auto; border-radius: 8px; box-shadow: none;" onclick="addUpsell('${box.id}')">Add <i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    `;
+                }
+            });
+
+            // Amortization (7-Month Split) Logic
+            const amortizeContainer = document.getElementById('amortizeContainer');
+            const amortizeChecked = document.getElementById('amortizeCheckbox').checked;
+
+            if (totalOnetime > 0) {
+                amortizeContainer.style.display = 'flex';
+                if (amortizeChecked) {
+                    let amortizedAmount = totalOnetime / 7;
+                    rawMonthlyTotal += amortizedAmount;
+                    monthlyHTML += `
+                        <div class="receipt-item" style="color:var(--primary-color); font-weight:600; margin-top:5px; padding-top:10px; border-top:1px dashed #e2e8f0;">
+                            <span>Seasonal Add-ons (7-Month Split)</span> 
+                            <span>+$${amortizedAmount.toFixed(2)}/mo</span>
+                        </div>`;
+                }
+            } else {
+                amortizeContainer.style.display = 'none';
+                document.getElementById('amortizeCheckbox').checked = false; 
+            }
+
+            // Promo Logic with Code Input
+            let promoDiscount = 0;
+            const promoCode = document.getElementById('promoCodeInput') ? document.getElementById('promoCodeInput').value.trim().toUpperCase() : '';
+            const promoMsgEl = document.getElementById('promoMessage');
+            const discountRow = document.getElementById('promo-discount-row');
+            
+            if (promoCode === 'SAVE20') {
+                if (mowFreq === 'weekly') {
+                    promoDiscount = rawMonthlyTotal * 0.20;
+                    if(promoMsgEl) {
+                        promoMsgEl.innerText = "✅ 20% Off First Month applied!";
+                        promoMsgEl.style.color = "var(--accent-color)";
+                    }
+                } else {
+                    if(promoMsgEl) {
+                        promoMsgEl.innerText = "❌ SAVE20 requires Weekly Lawn Mowing.";
+                        promoMsgEl.style.color = "#ef4444";
+                    }
+                }
+            } else if (promoCode !== "") {
+                if(promoMsgEl) {
+                    promoMsgEl.innerText = "❌ Invalid promo code.";
+                    promoMsgEl.style.color = "#ef4444";
+                }
+            } else {
+                if(promoMsgEl) promoMsgEl.innerText = "";
+            }
+
+            if (promoDiscount > 0) {
+                document.getElementById('resDiscountAmount').innerText = `-$${promoDiscount.toFixed(2)}`;
+                discountRow.style.display = 'flex';
+            } else {
+                discountRow.style.display = 'none';
+            }
+
+            let firstMonthMonthly = rawMonthlyTotal - promoDiscount;
+
+            // Render Monthly
+            document.getElementById('receipt-monthly-items').innerHTML = monthlyHTML || `<div class="receipt-item" style="justify-content:center; color:#94a3b8; font-style:italic;">No monthly services selected</div>`;
+            
+            if(rawMonthlyTotal > 0) {
+                document.getElementById('monthlyTotalContainer').style.display = 'flex';
+                document.getElementById('resMonthlyTotal').innerText = `$${firstMonthMonthly.toFixed(2)} /mo`;
+            } else {
+                document.getElementById('monthlyTotalContainer').style.display = 'none';
+            }
+
+            // Render Onetime
+            if(onetimeHTML !== "") {
+                let discountText = (addonCount >= 2) ? `<div style="font-size:0.85rem; color:var(--accent-color); font-weight:700; margin-bottom:10px;">🌟 25% Multi-Service Discount Applied to Add-ons!</div>` : '';
+                let onetimeHeader = amortizeChecked 
+                    ? `<div style="font-size:0.85rem; color:var(--primary-color); font-weight:700; margin-bottom:5px; text-transform:uppercase;">Seasonal / Add-Ons (Split in Monthly Plan):</div>`
+                    : `<div style="font-size:0.85rem; color:#64748b; margin-bottom:5px; text-transform:uppercase;">Seasonal / Add-Ons (Billed at time of service):</div>`;
+
+                document.getElementById('receipt-onetime-items').innerHTML = discountText + onetimeHeader + onetimeHTML;
+            } else {
+                document.getElementById('receipt-onetime-items').innerHTML = "";
+            }
+
+            // Display Marketing Upsells
+            const upsellSection = document.getElementById('upsell-section');
+            if(missedCount > 0 && upsellSection) {
+                document.getElementById('upsell-container').innerHTML = upsellHTML;
+                upsellSection.style.display = 'block';
+            } else if (upsellSection) {
+                upsellSection.style.display = 'none';
+            }
+
+            // Advance to Step 4 if not just a recalculation
+            if(!isRecalculating) goToStep(4);
+        }
+
+        // --- NEW FORMSPREE SUBMISSION SCRIPT ---
+        function submitFinal() {
+            const submitBtn = document.getElementById('submitQuoteBtn');
+            if(submitBtn) {
+                submitBtn.innerText = "Sending...";
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = "0.7";
+            }
+
+            const name = document.getElementById('qName').value.trim();
+            const phone = document.getElementById('qPhone').value.trim();
+            const email = document.getElementById('qEmail').value.trim();
+            const address = document.getElementById('qAddress').value.trim();
+            const lotSelect = document.getElementById('qLotSize');
+            const lotSizeText = lotSelect.options[lotSelect.selectedIndex].text;
+
+            if(name === "" || phone === "" || email === "") {
+                alert("Please ensure your Name, Phone, and Email are filled out before submitting.");
+                if(submitBtn) {
+                    submitBtn.innerText = "Submit Request & Book";
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = "1";
+                }
+                return;
+            }
+            
+            const monthlyBreakdown = document.getElementById('receipt-monthly-items').innerText.replace(/✖/g, '').trim();
+            const onetimeBreakdown = document.getElementById('receipt-onetime-items').innerText.replace(/✖/g, '').trim();
+            const monthlyTotal = document.getElementById('resMonthlyTotal').innerText;
+            
+            const promoApplied = (document.getElementById('resDiscountAmount') && document.getElementById('promo-discount-row').style.display !== 'none') ? "YES (SAVE20)" : "NO";
+            const amortizeApplied = (document.getElementById('amortizeContainer').style.display !== 'none' && document.getElementById('amortizeCheckbox').checked) ? "YES (Split over 7 months)" : "NO";
+
+            const formData = new FormData();
+            formData.append('Name', name);
+            formData.append('Phone', phone);
+            formData.append('Email', email);
+            formData.append('Address', address);
+            formData.append('Lot Size', lotSizeText);
+            formData.append('---', '---------------------------');
+            formData.append('Monthly Services Selected', monthlyBreakdown || 'None');
+            formData.append('Seasonal/One-time Services Selected', onetimeBreakdown || 'None');
+            formData.append('---', '---------------------------');
+            formData.append('Promo Applied?', promoApplied);
+            formData.append('Amortized Billing?', amortizeApplied);
+            formData.append('First Month Total', monthlyTotal);
+
+            // 🚨 REPLACE THE URL BELOW WITH YOUR ACTUAL FORMSPREE ENDPOINT URL 🚨
+            fetch('https://formspree.io/f/xwpevnqp', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = "thankyou.html";
+                } else {
+                    alert("Oops! There was a problem submitting your form. Please try calling us instead.");
+                    if(submitBtn) {
+                        submitBtn.innerText = "Submit Request & Book";
+                        submitBtn.disabled = false;
+                        submitBtn.style.opacity = "1";
+                    }
+                }
+            }).catch(error => {
+                alert("Oops! There was a network error. Please try calling us instead.");
+                if(submitBtn) {
+                    submitBtn.innerText = "Submit Request & Book";
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = "1";
+                }
+            });
         }
     </script>
 </body>
