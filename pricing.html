@@ -291,7 +291,7 @@
             background-color: #1b5e20; 
             
             /* 2. LIVE TEST IMAGE: This guarantees you will see the gradient + image */
-            background-image: linear-gradient(rgba(0, 51, 0, 0.4), rgba(0, 51, 0, 0.3)), url('assets/img/lawnmain.webp'); 
+            background-image: linear-gradient(rgba(0, 51, 0, 0.8), rgba(0, 51, 0, 0.3)), url('assets/img/lawnmain.webp'); 
             
             background-size: cover; 
             background-position: center; 
@@ -1537,10 +1537,10 @@
         <a href="tel:+17055009000" class="btn-header desktop-only" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Desktop Header Call' });">Call 705-500-9000</a>
     </header>
 
-    <section class="hero">
-        <div class="hero-text">
-            <h1>Simple, Transparent Pricing</h1>
-            <p>Choose the plan that fits your yard and your budget. No hidden fees, just great service.</p>
+    <section class="hero" style="min-height: 40vh; padding: 80px 5% 40px;">
+        <div class="hero-text" style="margin-top: 0; width: 100%; padding: 0 10px;">
+            <h1 style="font-size: clamp(2.5rem, 6vw, 3.5rem); line-height: 1.2;">Simple, Transparent Pricing</h1>
+            <p style="font-size: clamp(1.1rem, 3vw, 1.2rem);">Choose the plan that fits your yard and your budget. No hidden fees, just great service.</p>
         </div>
     </section>
 
@@ -1574,7 +1574,7 @@
                 </div>
                 
                 <div class="funnel-nav" style="justify-content: center;">
-                    <button class="btn-funnel" id="nextStep1Btn" style="display:none; max-width: 300px;" onclick="goToStep(2)">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+                    <button class="btn-funnel" id="nextStep1Btn" style="max-width: 300px;" onclick="goToStep(2)">Next Step <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
 
