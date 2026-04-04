@@ -1185,7 +1185,7 @@
             <div class="badge">Spring Early Bird Offer</div>
             <h2>20% Off 1st Month!*</h2>
             <p>Sign up for any Monthly Lawn Maintenance Plan before <strong>April 15th</strong> and save big on your first month.</p>
-            <a href="pricing" class="btn-primary" style="width: 100%; display: block; padding: 12px; box-sizing: border-box;">Claim Offer Now</a>
+            <a href="#custom-quote" class="btn-primary" style="width: 100%; display: block; padding: 12px; box-sizing: border-box;" onclick="closePromo()">Claim Offer Now</a>
             <small>*Offer valid for new residential customers only, applicable with the purchase of an annual pacakge. Expires April 15, 2026.</small>
         </div>
     </div>
@@ -2097,7 +2097,7 @@ let isBundled = (mowFreq !== 'none') && (activeCheckboxes > 0);
             formData.append('First Month Total', monthlyTotal);
 
             // 🚨 REPLACE THE URL BELOW WITH YOUR ACTUAL FORMSPREE ENDPOINT URL 🚨
-            fetch('https://formspree.io/f/xwpevnqp', {
+            fetch('https://formspree.io/f/mjgpprnw', {
                 method: 'POST',
                 body: formData,
                 headers: {
