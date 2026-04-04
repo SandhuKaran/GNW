@@ -1115,15 +1115,23 @@
             .hero-buttons { flex-direction: column; width: 100%; align-items: center; gap: 15px;}
             .btn-primary, .btn-secondary { width: 100%; max-width: 320px; text-align: center; }
 
-            .quote-funnel-section { padding: 40px 15px 60px 15px; scroll-margin-top: 60px;}
+            /* Custom Quote Funnel Mobile Fixes */
+            .quote-funnel-section { padding: 40px 10px 60px 10px; scroll-margin-top: 60px;}
             .quote-funnel-section h2 { font-size: 2.2rem; }
             .quote-subtitle { font-size: 1rem; }
-            .funnel-container { padding: 25px 20px; border-radius: 16px; }
+            .funnel-container { padding: 25px 15px; border-radius: 16px; }
             
-            /* CSS Fix for proper mobile stacking */
-            .services-grid-check { grid-template-columns: 1fr !important; }
-            .service-option[style*="grid-column"], .full-width-option { grid-column: span 1 !important; }
-            .service-price-col { flex-direction: row; gap: 10px; align-items: center; justify-content: flex-end;}
+            /* CRITICAL FIX: Ensure mobile stacks to 1 column and ignores span */
+            .services-grid-check { 
+                display: flex !important; 
+                flex-direction: column !important; 
+                gap: 12px; 
+            }
+            .service-option { 
+                width: 100% !important; 
+                box-sizing: border-box;
+            }
+            .service-price-col { flex-direction: column; gap: 4px; align-items: flex-end; justify-content: center;}
 
             .step-header { font-size: 1.3rem; }
             .funnel-nav { flex-direction: column-reverse; gap: 10px; }
@@ -1848,8 +1856,11 @@
             // Grab all other checkboxes
 const checkboxes = document.querySelectorAll('.services-grid-check input[type="checkbox"]');
 
-// FIX: Bundled discounts are ONLY unlocked if Lawn Mowing is selected
-let isBundled = (mowFreq !== 'none');
+// Count how many additional services are actively selected
+const activeCheckboxes = document.querySelectorAll('.services-grid-check input[type="checkbox"]:checked').length;
+
+// FIX: A "Bundle" requires Lawn Mowing AND at least one other service. Single items pay standalone.
+let isBundled = (mowFreq !== 'none') && (activeCheckboxes > 0);
             
             // Process Mowing explicitly
             if (mowFreq !== 'none') {
