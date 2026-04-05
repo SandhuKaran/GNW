@@ -1859,8 +1859,14 @@ const checkboxes = document.querySelectorAll('.services-grid-check input[type="c
 // Count how many additional services are actively selected
 const activeCheckboxes = document.querySelectorAll('.services-grid-check input[type="checkbox"]:checked').length;
 
-// FIX: A "Bundle" requires Lawn Mowing AND at least one other service. Single items pay standalone.
-let isBundled = (mowFreq !== 'none') && (activeCheckboxes > 0);
+// Count Mowing as 1 service (if they didn't choose "No Mowing")
+const mowingCount = (mowFreq !== 'none') ? 1 : 0;
+
+// Calculate total services in the cart
+const totalServices = mowingCount + activeCheckboxes;
+
+// FIX: A "Bundle" now requires a MINIMUM of 3 SERVICES total to unlock the discounted pricing.
+let isBundled = (totalServices >= 3);
             
             // Process Mowing explicitly
             if (mowFreq !== 'none') {
