@@ -215,6 +215,7 @@
             background: var(--primary-color); color: #fff; border: none;
             padding: 15px 30px; border-radius: 50px; font-weight: 600; cursor: pointer;
             text-transform: uppercase; letter-spacing: 1px; width: 100%; transition: background 0.3s;
+            margin-top: 20px;
         }
         .btn-submit:hover { background: var(--accent-color); }
 
@@ -246,19 +247,6 @@
         .trust-text { text-align: left; }
         .trust-text h4 { margin: 0; font-size: 1.1rem; }
         .trust-text span { font-size: 0.85rem; color: #777; }
-
-        /* --- 6. STICKY ESTIMATE --- */
-        .sticky-estimate {
-            position: fixed; bottom: 30px; right: 30px; background-color: var(--accent-color); color: #fff;
-            padding: 15px 25px; border-radius: 50px; box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            display: flex; align-items: center; gap: 15px; z-index: 9999;
-            transition: transform 0.3s ease; text-decoration: none; border: 2px solid #fff;
-        }
-        .sticky-estimate:hover { transform: translateY(-5px); background-color: var(--primary-color); color: #fff; }
-        .sticky-icon { font-size: 1.8rem; }
-        .sticky-text { display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
-        .sticky-text span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
-        .sticky-text strong { font-size: 1.1rem; font-weight: 700; }
 
         /* --- 7. FOOTER --- */
         footer { background: #f9f9f9; padding: 60px 5% 20px; color: var(--text-dark); border-top: 1px solid #eee; }
@@ -322,9 +310,6 @@
             .mobile-only-link { display: block !important; font-weight: 600; color: var(--primary-color) !important; }
 
             .desktop-login-link { display: none; }
-            
-            .sticky-estimate { bottom: 20px; right: 20px; padding: 10px 20px; }
-            .sticky-text strong { font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -386,10 +371,10 @@
             <div class="form-container">
                 <h2>Request a Free Estimate</h2>
                 
-                <form action="https://formspree.io/f/mjgpprnw" method="POST" onsubmit="gtag('event', 'generate_lead', { 'event_category': 'Form', 'event_label': 'Contact Page Form' });">
+                <form id="contactForm">
                     
-                    <input type="hidden" name="_next" value="https://www.gnwlandscaping.ca/thankyou">
-    
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
                     <div class="form-row">
                         <div class="form-group">
                             <label>First Name</label>
@@ -446,7 +431,7 @@
                         <textarea name="message" rows="5" placeholder="Tell us about your vision..."></textarea>
                     </div>
 
-                    <button type="submit" class="btn-submit">Submit Request</button>
+                    <button type="submit" id="contactSubmitBtn" class="btn-submit">Send Request</button>
                 </form>
             </div>
 
@@ -580,6 +565,81 @@
                     icon.style.transform = 'rotate(0deg)';
                 }
             }
+        }
+    </script>
+
+    <script>
+        // --- WEB3FORMS STRICT JSON SUBMISSION ---
+        const form = document.getElementById('contactForm');
+        
+        if(form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); // Stop standard browser reload
+                
+                // Fire Google Analytics tracking
+                if(typeof gtag === 'function') {
+                    gtag('event', 'generate_lead', { 'event_category': 'Form', 'event_label': 'Contact Page Form' });
+                }
+
+                // Update UI Button
+                const submitBtn = document.getElementById('contactSubmitBtn');
+                if(submitBtn) {
+                    submitBtn.innerText = "Sending...";
+                    submitBtn.disabled = true;
+                    submitBtn.style.opacity = "0.7";
+                }
+
+                // Build the strict JSON payload exactly how Web3Forms likes it
+                // Note: We are targeting the specific names of your inputs here (firstName, lastName, etc.)
+                const payload = {
+                    access_key: "6b0a383e-1fbf-4ede-9e86-2d0634c48564",
+                    subject: "New Lead from Landscaping Form: " + form.firstName.value + " " + form.lastName.value,
+                    from_name: "Greenworks Contact Form",
+                    email: form.email.value, // Crucial standard key
+                    First_Name: form.firstName.value,
+                    Last_Name: form.lastName.value,
+                    Phone: form.phone.value,
+                    Address: form.address.value || "Not provided",
+                    Service_Needed: form.service.value,
+                    Timeline: form.timeline.value,
+                    Message: form.message.value || "No message provided",
+                    botcheck: form.botcheck ? form.botcheck.checked : false
+                };
+
+                // Send the payload safely using AJAX
+                fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                })
+                .then(async (response) => {
+                    let json = await response.json();
+                    if (response.status === 200 && json.success) {
+                        // SUCCESS! Execute local redirect
+                        window.location.href = "thankyou.html";
+                    } else {
+                        console.log(response);
+                        alert("Oops! " + json.message);
+                        if(submitBtn) {
+                            submitBtn.innerText = "Send Request";
+                            submitBtn.disabled = false;
+                            submitBtn.style.opacity = "1";
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    alert("Oops! There was a network error. Please try calling us instead.");
+                    if(submitBtn) {
+                        submitBtn.innerText = "Send Request";
+                        submitBtn.disabled = false;
+                        submitBtn.style.opacity = "1";
+                    }
+                });
+            });
         }
     </script>
 </body>

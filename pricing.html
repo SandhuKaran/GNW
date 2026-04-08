@@ -11,15 +11,12 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      // Unified Google Tag
       gtag('config', 'GT-T9K6VD2L');
-      // Google Analytics 4
       gtag('config', 'G-N8165ZJRD2');
-      // Google Ads Tracking
       gtag('config', 'AW-10820369667');
     </script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
@@ -27,9 +24,9 @@
         :root {
             --primary-color: #1b5e20; 
             --accent-color: #4CAF50; 
-            --text-dark: #333333;
-            --text-light: #666666;
-            --bg-light: #f4f7f6;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
             --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
@@ -44,6 +41,7 @@
             color: var(--text-dark);
             background-color: #fff;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         body.no-scroll { 
@@ -65,10 +63,21 @@
             margin: 0; 
         }
 
+        img { 
+            max-width: 100%; 
+            height: auto; 
+            display: block; 
+        }
+
         /* --- ANIMATIONS --- */
         @keyframes fadeSlideUp {
             0% { opacity: 0; transform: translateY(30px); }
             100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         @keyframes shineText {
@@ -106,6 +115,7 @@
 
         .nav-links a { 
             font-weight: 500; 
+            font-size: 0.95rem;
             color: var(--text-dark); 
             transition: color 0.3s; 
         }
@@ -141,14 +151,14 @@
             background: #fff; 
             min-width: 220px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-            border-radius: 8px; 
+            border-radius: 12px; 
             padding: 10px 0;
             opacity: 0; 
             visibility: hidden; 
             transform: translateY(15px); 
             transition: all 0.3s ease;
             z-index: 1000; 
-            border: 1px solid #eee;
+            border: 1px solid #f1f5f9;
         }
 
         .dropdown-parent:hover .dropdown { 
@@ -214,7 +224,7 @@
             display: flex;
             align-items: center; 
             gap: 5px; 
-            border: 1px solid #ddd;
+            border: 1px solid #e2e8f0;
         }
 
         .mobile-call-icon {
@@ -269,37 +279,659 @@
         .mobile-button.active::before { top: 50%; transform: rotate(45deg); }
         .mobile-button.active::after { top: 50%; transform: rotate(-45deg); bottom: auto; }
 
-        /* --- 3. PAGE HERO --- */
-        .page-hero { 
-            background: linear-gradient(rgba(27, 94, 32, 0.65), rgba(27, 94, 32, 0.85)), url('assets/img/lawnmain.webp');
-            background-size: cover;
-            background-position: center;
-            color: #fff; 
+        /* --- 3. HERO SECTION --- */
+        .hero { 
+            position: relative; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
             text-align: center; 
-            padding: 100px 20px; 
+            
+            /* 1. FALLBACK COLOR: Shows this green if the image breaks */
+            background-color: #1b5e20; 
+            
+            /* 2. LIVE TEST IMAGE: This guarantees you will see the gradient + image */
+            background-image: linear-gradient(rgba(0, 51, 0, 0.8), rgba(0, 51, 0, 0.3)), url('assets/img/lawnmain.webp'); 
+            
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed; 
+            min-height: 80vh; 
+            padding: 0 5% 60px 5%; 
+            color: #fff; 
         }
 
-        .page-hero h1 { 
-            font-size: 3rem; 
-            margin-bottom: 10px;
-            opacity: 0;
+        .hero-text { 
+            max-width: 900px; 
+            z-index: 2; 
+            margin-top: 40px;
+        }
+
+        .hero h1 { 
+            font-size: 4.2rem; 
+            line-height: 1.1; 
+            margin-bottom: 25px; 
+            font-weight: 800; 
+            text-shadow: 0 2px 20px rgba(0,0,0,0.6); 
+            opacity: 0; 
             animation: fadeSlideUp 0.8s ease-out forwards; 
         }
 
-        .page-hero p { 
-            font-size: 1.2rem; 
-            max-width: 600px; 
-            margin: 0 auto; 
-            opacity: 0;
-            animation: fadeSlideUp 0.8s ease-out 0.2s forwards; /* Delays slightly after the H1 */
+        .hero p { 
+            font-size: 1.3rem; 
+            margin-bottom: 40px; 
+            color: #f8fafc; 
+            text-shadow: 0 1px 10px rgba(0,0,0,0.6); 
+            opacity: 0; 
+            animation: fadeSlideUp 0.8s ease-out 0.2s forwards;
+        }
+        
+        .hero-buttons { 
+            display: flex; 
+            gap: 20px; 
+            justify-content: center; 
+            opacity: 0; 
+            animation: fadeSlideUp 0.8s ease-out 0.4s forwards;
         }
 
-        /* --- 4. MONTHLY PRICING CARDS --- */
+        .btn-primary { 
+            background-color: var(--accent-color); 
+            color: #fff; 
+            padding: 16px 45px; 
+            border-radius: 50px; 
+            font-size: 1.1rem; 
+            font-weight: 700; 
+            border: none; 
+            cursor: pointer; 
+            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4); 
+            transition: transform 0.2s; 
+            text-decoration: none;
+        }
+
+        .btn-secondary { 
+            background-color: rgba(0,0,0,0.5); 
+            color: #fff; 
+            padding: 16px 45px; 
+            border-radius: 50px; 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            border: 2px solid #fff; 
+            cursor: pointer; 
+            transition: all 0.2s, backdrop-filter 0.2s; 
+            text-decoration: none; 
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-primary:hover { 
+            transform: translateY(-3px); 
+            background-color: #388E3C; 
+            color: #fff; 
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.5);
+        }
+
+        .btn-secondary:hover { 
+            background-color: #fff; 
+            color: var(--primary-color); 
+            transform: translateY(-3px);
+        }
+
+        /* --- 4. NEW SLEEK CUSTOM QUOTE FUNNEL --- */
+        .quote-funnel-section {
+            padding: 80px 5% 80px 5%;
+            background-color: var(--bg-light);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .quote-funnel-section h2 { 
+            font-size: 2.8rem; 
+            color: var(--primary-color); 
+            margin-bottom: 10px; 
+            font-weight: 800; 
+            letter-spacing: -1px; 
+        }
+
+        .quote-subtitle { 
+            color: var(--text-light); 
+            font-size: 1.1rem; 
+            margin-bottom: 40px; 
+        }
+
+        .funnel-container {
+            background: #fff;
+            max-width: 750px;
+            margin: 0 auto;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+            overflow: hidden;
+            border: 1px solid #f1f5f9;
+            border-top: 8px solid var(--accent-color);
+            padding: 40px;
+        }
+
+        /* Progress Bar */
+        .progress-container { 
+            display: flex; 
+            justify-content: space-between; 
+            position: relative; 
+            margin-bottom: 35px; 
+            padding: 0 10px; 
+        }
+
+        .progress-container::before { 
+            content: ''; 
+            position: absolute; 
+            top: 50%; 
+            left: 20px; 
+            right: 20px; 
+            height: 4px; 
+            background: #f1f5f9; 
+            z-index: 1; 
+            transform: translateY(-50%); 
+            border-radius: 5px; 
+        }
+
+        .progress-step { 
+            width: 34px; 
+            height: 34px; 
+            background: #f1f5f9; 
+            border-radius: 50%; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            font-weight: 700; 
+            color: #94a3b8; 
+            font-size: 0.9rem; 
+            z-index: 2; 
+            position: relative; 
+            transition: all 0.4s ease; 
+            border: 2px solid #fff; 
+        }
+
+        .progress-step.active { 
+            background: var(--accent-color); 
+            color: #fff; 
+            box-shadow: 0 0 0 6px rgba(76, 175, 80, 0.15); 
+            transform: scale(1.1); 
+            border-color: var(--accent-color); 
+        }
+
+        .progress-step.completed { 
+            background: var(--primary-color); 
+            color: #fff; 
+            border-color: var(--primary-color); 
+        }
+
+        /* Steps Layout */
+        .funnel-step { 
+            display: none; 
+            animation: fadeIn 0.4s ease; 
+            text-align: left; 
+        }
+
+        .funnel-step.active { 
+            display: block; 
+        }
+
+        .step-header { 
+            font-size: 1.6rem; 
+            color: var(--primary-color); 
+            margin-bottom: 8px; 
+            font-weight: 800; 
+            text-align: center; 
+            letter-spacing: -0.5px;
+        }
+
+        .step-desc { 
+            text-align: center; 
+            color: var(--text-light); 
+            margin-bottom: 25px; 
+            font-size: 0.95rem; 
+        }
+
+        /* Inputs & Controls */
+        .input-group { 
+            position: relative; 
+            margin-bottom: 18px; 
+        }
+
+        .input-group i { 
+            position: absolute; 
+            left: 18px; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            color: #94a3b8; 
+            font-size: 1.1rem; 
+            z-index: 2; 
+            transition: color 0.3s;
+        }
+
+        .input-group:focus-within i { 
+            color: var(--accent-color); 
+        }
+        
+        .funnel-input { 
+            width: 100%; 
+            padding: 14px 18px 14px 48px; 
+            border: 2px solid #e2e8f0; 
+            border-radius: 12px; 
+            font-family: 'Poppins', sans-serif; 
+            font-size: 1rem; 
+            color: var(--text-dark); 
+            transition: all 0.3s; 
+            background: #f8fafc; 
+            font-weight: 500;
+        }
+
+        .funnel-input:focus { 
+            border-color: var(--accent-color); 
+            background: #fff; 
+            outline: none; 
+            box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1); 
+        }
+
+        .pac-target-input { 
+            padding-left: 48px !important; 
+        }
+
+        /* Service Headers & Grid - SLEEK DESIGN */
+        .service-category-header { 
+            font-size: 1.05rem; 
+            color: var(--primary-color); 
+            font-weight: 700; 
+            margin: 20px 0 12px 0; 
+            border-bottom: 2px solid #f1f5f9; 
+            padding-bottom: 8px; 
+        }
+
+        .services-grid-check { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 12px; 
+            margin-bottom: 15px; 
+        }
+
+        .full-width-option { 
+            grid-column: span 2; 
+        }
+
+        .service-option { 
+            display: flex; 
+            align-items: center; 
+            padding: 14px 16px; 
+            border: 1px solid #cbd5e1; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            transition: all 0.25s ease; 
+            background: #fff; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02); 
+            gap: 12px;
+        }
+
+        .service-option:hover { 
+            border-color: var(--accent-color); 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.1); 
+        }
+
+        .service-option input[type="checkbox"], 
+        .service-option input[type="radio"] { 
+            width: 20px; 
+            height: 20px; 
+            cursor: pointer; 
+            accent-color: var(--primary-color); 
+            flex-shrink: 0; 
+            margin: 0;
+        }
+
+        .service-title-col {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .service-title-col strong {
+            font-size: 1rem;
+            color: var(--text-dark);
+            line-height: 1.2;
+        }
+
+        .service-title-col small {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 2px;
+            font-weight: 400;
+        }
+
+        .service-price-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+            text-align: right;
+        }
+
+        .price-standalone {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .price-bundled {
+            background-color: #e0f2fe;
+            color: #0284c7;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        /* Highlight selected cards smoothly */
+        .service-option:has(input:checked) { 
+            border-color: var(--accent-color); 
+            background: #f4fce3; 
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.15); 
+        }
+
+        /* Map Placeholder */
+        .map-container { 
+            width: 100%; 
+            height: 180px; 
+            background: #e2e8f0; 
+            border-radius: 12px; 
+            margin-bottom: 18px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            color: #64748b; 
+            border: 2px dashed #cbd5e1; 
+            position: relative; 
+            overflow: hidden; 
+        }
+
+        .map-container i { 
+            font-size: 2.5rem; 
+            color: #94a3b8; 
+            margin-bottom: 8px; 
+            z-index: 2; 
+        }
+
+        .map-container strong { 
+            z-index: 2; 
+            font-size: 0.95rem; 
+        }
+        
+        .size-selector { 
+            margin-top: 10px; 
+        }
+
+        .size-selector select { 
+            width: 100%; 
+            padding: 14px 18px; 
+            border-radius: 12px; 
+            border: 2px solid #e2e8f0; 
+            font-family: 'Poppins', sans-serif; 
+            font-size: 0.95rem; 
+            font-weight: 500; 
+            outline: none; 
+            background: #f8fafc; 
+            color: var(--text-dark); 
+            transition: border-color 0.3s;
+        }
+
+        .size-selector select:focus { 
+            border-color: var(--accent-color); 
+            background: #fff;
+        }
+
+        /* Success Weather Box Step 1 */
+        .area-success-box { 
+            display: none; 
+            background: #e8f5e9; 
+            border: 1px solid #c8e6c9; 
+            border-radius: 12px; 
+            padding: 15px; 
+            margin-bottom: 20px; 
+            text-align: center; 
+            animation: fadeIn 0.4s ease; 
+        }
+
+        .area-success-box p { 
+            color: #1b5e20; 
+            margin-bottom: 0; 
+            font-size: 0.95rem; 
+        }
+
+        /* Final Quote (Step 4) */
+        .quote-receipt { 
+            background: #f8fafc; 
+            border: 2px solid #e2e8f0; 
+            border-radius: 16px; 
+            padding: 25px; 
+            margin-bottom: 20px; 
+            text-align: left; 
+        }
+
+        .receipt-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            margin-bottom: 10px; 
+            font-size: 0.95rem; 
+            border-bottom: 1px dashed #cbd5e1; 
+            padding-bottom: 8px; 
+            color: #334155; 
+            font-weight: 500;
+        }
+
+        .receipt-total { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-top: 15px; 
+            font-size: 1.25rem; 
+            font-weight: 800; 
+            color: var(--primary-color); 
+            border-top: 2px solid #cbd5e1; 
+            padding-top: 15px; 
+        }
+
+        .one-time-total { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            margin-top: 10px; 
+            font-size: 0.95rem; 
+            font-weight: 600; 
+            color: #475569; 
+        }
+
+        .discount-row { 
+            color: #ef4444; 
+            font-weight: 700; 
+            display: flex; 
+            justify-content: space-between; 
+            margin-top: 10px; 
+            font-size: 0.95rem; 
+        }
+
+        .remove-icon {
+            color: #ef4444;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: transform 0.2s, color 0.2s;
+        }
+
+        .remove-icon:hover {
+            color: #b91c1c;
+            transform: scale(1.1);
+        }
+
+        /* Upsell Section (Marketing) */
+        .upsell-section { 
+            margin-top: 25px; 
+            border-top: 2px dashed #cbd5e1; 
+            padding-top: 20px; 
+            text-align: left; 
+            display: none; 
+        }
+
+        .upsell-section h4 { 
+            color: var(--primary-color); 
+            margin: 0 0 12px 0; 
+            font-size: 1.05rem; 
+            font-weight: 700; 
+        }
+
+        .upsell-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 12px 16px; 
+            border: 1px solid #e2e8f0; 
+            border-radius: 12px; 
+            margin-bottom: 10px; 
+            background: #fff; 
+            transition: 0.3s; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .upsell-item:hover { 
+            border-color: var(--accent-color); 
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.08); 
+            transform: translateY(-1px);
+        }
+
+        /* Sleek Toggle Switch (Amortize) */
+        .amortize-toggle { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            background: #fff; 
+            border: 1px solid #cbd5e1; 
+            padding: 15px 20px; 
+            border-radius: 12px; 
+            margin-bottom: 20px; 
+            text-align: left; 
+            transition: border-color 0.3s; 
+        }
+
+        .amortize-toggle:has(input:checked) { 
+            border-color: var(--accent-color); 
+            background: #f4fce3; 
+        }
+
+        .switch { 
+            position: relative; 
+            display: inline-block; 
+            width: 48px; 
+            height: 26px; 
+            flex-shrink: 0; 
+        }
+
+        .switch input { 
+            opacity: 0; 
+            width: 0; 
+            height: 0; 
+        }
+
+        .slider { 
+            position: absolute; 
+            cursor: pointer; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0; 
+            background-color: #cbd5e1; 
+            transition: .4s; 
+            border-radius: 34px; 
+        }
+
+        .slider:before { 
+            position: absolute; 
+            content: ""; 
+            height: 18px; 
+            width: 18px; 
+            left: 4px; 
+            bottom: 4px; 
+            background-color: white; 
+            transition: .4s; 
+            border-radius: 50%; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        input:checked + .slider { 
+            background-color: var(--accent-color); 
+        }
+
+        input:checked + .slider:before { 
+            transform: translateX(22px); 
+        }
+
+        .toggle-text strong { 
+            display: block; 
+            color: var(--text-dark); 
+            font-size: 0.95rem; 
+            margin-bottom: 2px; 
+        }
+
+        .toggle-text small { 
+            color: var(--text-light); 
+            font-size: 0.8rem; 
+            line-height: 1.3;
+        }
+
+        /* Buttons */
+        .funnel-nav { 
+            display: flex; 
+            justify-content: space-between; 
+            gap: 15px; 
+            margin-top: 25px; 
+        }
+
+        .btn-funnel { 
+            background: var(--accent-color); 
+            color: #fff; 
+            border: none; 
+            padding: 14px 28px; 
+            border-radius: 12px; 
+            font-weight: 700; 
+            font-size: 1rem; 
+            cursor: pointer; 
+            transition: all 0.3s; 
+            flex: 1; 
+            text-align: center; 
+            letter-spacing: 0.5px; 
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.2);
+        }
+
+        .btn-funnel:hover { 
+            background: var(--primary-color); 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 15px rgba(27, 94, 32, 0.25);
+        }
+
+        .btn-funnel-back { 
+            background: #f1f5f9; 
+            color: var(--text-light); 
+            flex: 0.5; 
+            box-shadow: none;
+        }
+
+        .btn-funnel-back:hover { 
+            background: #e2e8f0; 
+            color: var(--text-dark); 
+            transform: none;
+        }
+
+        /* --- 5. MONTHLY PRICING CARDS --- */
         .pricing-section {
             padding: 40px 5% 80px 5%; 
             background-color: var(--bg-light); 
             margin-top: -50px; 
-            border-radius: 20px 20px 0 0; 
+            border-radius: 24px 24px 0 0; 
             position: relative; 
             z-index: 10;
         }
@@ -309,12 +941,12 @@
             max-width: 900px; 
             margin: 0 auto 50px auto; 
             padding: 30px 40px;
-            border-radius: 15px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+            border-radius: 16px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03); 
             text-align: center;
             border-left: 5px solid var(--primary-color);
             opacity: 0;
-            animation: fadeSlideUp 0.8s ease-out 0.4s forwards; /* Delays slightly after the hero text */
+            animation: fadeSlideUp 0.8s ease-out 0.4s forwards; 
         }
 
         .pricing-intro h3 { 
@@ -324,7 +956,6 @@
             font-weight: 700; 
             text-transform: uppercase; 
             letter-spacing: 1px;
-            /* Animated Shine Text Effect */
             background: linear-gradient(to right, var(--primary-color) 20%, var(--accent-color) 50%, var(--primary-color) 80%);
             background-size: 200% auto;
             color: transparent;
@@ -339,44 +970,49 @@
             font-size: 1.05rem; 
         }
 
-        .pricing-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; align-items: stretch; }
+        .pricing-grid { 
+            display: flex; 
+            justify-content: center; 
+            gap: 30px; 
+            flex-wrap: wrap; 
+            align-items: stretch; 
+        }
 
-        /* Base Card Styling for ALL cards */
         .pricing-card {
-            background: linear-gradient(to bottom, #ffffff 0%, #95c09e 100%);  
+            background: linear-gradient(to bottom, #ffffff 0%, #f1f5f9 100%);  
             padding: 40px 30px; 
-            border-radius: 20px; 
+            border-radius: 24px; 
             width: 320px;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.08); 
+            box-shadow: 0 12px 35px rgba(0,0,0,0.06); 
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             text-align: left;
             position: relative; 
             display: flex; 
             flex-direction: column; 
-            border: 1px solid #eaeaea;
-            border-top: 8px solid #49894c;
+            border: 1px solid #e2e8f0;
+            border-top: 8px solid #94a3b8;
             overflow: hidden;
         }
 
         .pricing-card:hover { 
             transform: translateY(-15px); 
-            box-shadow: 0 20px 45px rgba(27, 94, 32, 0.15); 
+            box-shadow: 0 20px 45px rgba(0,0,0,0.1); 
         }
 
-        /* --- PREMIUM CARD (MIDDLE) --- */
+        /* Premium Card */
         .pricing-card.popular { 
-            background: linear-gradient(135deg, #25862c 0%, #043908 100%); 
+            background: linear-gradient(135deg, #1b5e20 0%, #064e3b 100%); 
             border: none; 
             border-top: 8px solid #ffb300; 
             transform: scale(1.05); 
             z-index: 2; 
             color: #fff;
-            box-shadow: 0 15px 40px rgba(27, 94, 32, 0.35);
+            box-shadow: 0 15px 40px rgba(27, 94, 32, 0.25);
         }
 
         .pricing-card.popular:hover {
             transform: scale(1.05) translateY(-10px);
-            box-shadow: 0 25px 50px rgba(27, 94, 32, 0.45);
+            box-shadow: 0 25px 50px rgba(27, 94, 32, 0.35);
         }
 
         .pricing-card.popular::before {
@@ -393,41 +1029,39 @@
         .pricing-card.popular .plan-subtext { color: #4CAF50; }
         .pricing-card.popular .plan-divider { border-color: rgba(255, 255, 255, 0.15); }
 
-        /* --- ULTIMATE CARD (RIGHT) --- */
+        /* Ultimate Card */
         .pricing-card:last-child {
             border-top: 8px solid var(--primary-color);
-            background: linear-gradient(to bottom, #ffffff 0%, #95c09e 100%); 
         }
 
-        /* Default Typography */
         .plan-name { font-size: 1.5rem; font-weight: 800; color: var(--primary-color); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
         .starting-at { font-size: 0.9rem; color: var(--text-light); font-weight: 500; }
-        .plan-price { font-size: 2.8rem; font-weight: 800; color: var(--text-dark); margin-bottom: 0px; letter-spacing: -1px;}
-        .plan-price span { font-size: 1rem; font-weight: 500; color: var(--text-light); letter-spacing: 0;}
+        .plan-price { font-size: 2.8rem; font-weight: 800; margin-bottom: 0px; letter-spacing: -1px;}
+        .plan-price span { font-size: 1rem; font-weight: 500; letter-spacing: 0;}
         .plan-subtext { display: block; font-size: 0.85rem; color: var(--accent-color); margin-bottom: 5px; font-weight: 700;}
-        .lot-size-disclaimer { font-size: 0.8rem; color: var(--text-light); margin-bottom: 20px; font-style: italic; }
+        .lot-size-disclaimer { font-size: 0.8rem; margin-bottom: 20px; font-style: italic; }
 
-        .plan-divider { border-bottom: 1px solid #eee; margin-bottom: 20px; }
+        .plan-divider { border-bottom: 1px solid #e2e8f0; margin-bottom: 20px; }
         
         .plan-features { flex-grow: 1; margin-bottom: 20px; }
-        .plan-features li { margin-bottom: 15px; color: var(--text-light); display: flex; align-items: center; gap: 10px; font-size: 0.95rem; font-weight: 500;}
+        .plan-features li { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; font-size: 0.95rem; font-weight: 500;}
         .plan-features i { color: var(--accent-color); font-size: 1.1rem;}
 
-        /* --- VALUE BREAKDOWN BOX --- */
+        /* Value Box in Premium */
         .value-box {
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid rgba(27, 94, 32, 0.15);
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
             padding: 15px;
             margin-bottom: 20px;
         }
         .value-box-title {
             font-size: 0.8rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: #ffb300;
             text-transform: uppercase;
             margin-bottom: 8px;
-            border-bottom: 1px solid rgba(27, 94, 32, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             padding-bottom: 5px;
             letter-spacing: 0.5px;
         }
@@ -442,8 +1076,8 @@
             align-items: center;
             font-size: 0.85rem;
             margin-bottom: 5px;
-            color: var(--text-dark);
-            border-bottom: 1px dashed rgba(0,0,0,0.05);
+            color: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px dashed rgba(255,255,255,0.15);
             padding-bottom: 3px;
         }
         .value-list li:last-child {
@@ -453,17 +1087,15 @@
         }
         .value-list li span {
             font-weight: 700;
-            color: var(--primary-color);
+            color: #fff;
         }
 
-        /* --- BUTTON STYLES --- */
         .btn-plan {
             display: block; width: 100%; text-align: center; padding: 14px; 
-            border-radius: 50px; font-weight: 700; transition: all 0.3s; font-size: 1rem;
-            margin-top: auto; /* Pushes button to bottom */
+            border-radius: 12px; font-weight: 700; transition: all 0.3s; font-size: 1rem;
+            margin-top: auto; 
         }
 
-        /* Basic Button: Sleek Outline */
         .pricing-card:first-child .btn-plan {
             background: transparent;
             color: var(--primary-color);
@@ -475,23 +1107,19 @@
             box-shadow: 0 5px 15px rgba(27, 94, 32, 0.2); 
         }
 
-        /* Premium Button: Glowing Pulse */
         .pricing-card.popular .btn-plan {
             background: var(--accent-color);
             color: #fff;
             border: 2px solid var(--accent-color);
             box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
-            animation: pulse-green 2s infinite; 
         }
         .pricing-card.popular .btn-plan:hover {
             background: #fff;
             color: var(--primary-color);
             border-color: #fff;
-            animation: none;
             transform: translateY(-2px);
         }
 
-        /* Ultimate Button: Bold Solid */
         .pricing-card:last-child .btn-plan {
             background: var(--primary-color);
             color: #fff;
@@ -500,17 +1128,9 @@
         .pricing-card:last-child .btn-plan:hover {
             background: var(--text-dark);
             border-color: var(--text-dark);
-            box-shadow: 0 5px 15px rgba(51, 51, 51, 0.3); 
+            box-shadow: 0 5px 15px rgba(51, 51, 51, 0.2); 
         }
 
-        /* Pulse Animation */
-        @keyframes pulse-green {
-            0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
-        }
-
-        /* TRUST BADGES */
         .trust-badges { 
             text-align: center; 
             margin-top: 50px; 
@@ -534,7 +1154,7 @@
             font-size: 1.4rem; 
         }
 
-        /* --- 5. SINGLE SERVICES --- */
+        /* --- 6. SINGLE SERVICES --- */
         .single-services-section { 
             padding: 80px 5%; 
             background: #fff; 
@@ -545,7 +1165,8 @@
             margin-bottom: 15px; 
             color: var(--primary-color); 
             font-size: 2.2rem; 
-            font-weight: 700; 
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
 
         .section-subtitle { 
@@ -566,12 +1187,12 @@
         .single-service-card {
             background: var(--bg-light); 
             padding: 25px; 
-            border-radius: 15px; 
-            border: 1px solid #eee;
+            border-radius: 16px; 
+            border: 1px solid #e2e8f0;
             display: flex; 
             align-items: center; 
             gap: 20px; 
-            transition: transform 0.3s, border-color 0.3s;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
             cursor: pointer; 
             text-decoration: none;
         }
@@ -579,41 +1200,173 @@
         .single-service-card:hover { 
             transform: translateY(-5px); 
             border-color: var(--accent-color); 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
         }
 
-        .single-service-icon { font-size: 2.2rem; color: var(--accent-color); min-width: 50px; text-align: center; }
-        .single-service-info h4 { margin: 0 0 5px 0; color: var(--primary-color); font-size: 1.1rem; }
-        .single-service-price { font-weight: 700; color: var(--text-dark); font-size: 1rem; display: block; }
-        .single-service-price span { color: var(--text-light); font-weight: 400; font-size: 0.9rem; }
+        .single-service-icon { 
+            font-size: 2.2rem; 
+            color: var(--accent-color); 
+            min-width: 50px; 
+            text-align: center; 
+        }
 
-        /* --- 6. COMPARISON TABLE --- */
-        .comparison-section { padding: 80px 5%; background: var(--bg-light); }
-        .comparison-table { width: 100%; max-width: 900px; margin: 0 auto; border-collapse: collapse; background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-        .comparison-table th, .comparison-table td { padding: 20px 15px; text-align: center; border-bottom: 1px solid #eee; }
-        .comparison-table th { background: #f1f1f1; color: var(--text-dark); font-weight: 700; font-size: 1.1rem; }
-        .comparison-table th:first-child, .comparison-table td:first-child { text-align: left; padding-left: 30px; font-weight: 600; color: var(--text-dark); }
-        .fa-check { color: var(--accent-color); font-size: 1.2rem; }
-        .fa-minus { color: #ddd; font-size: 1.2rem; }
+        .single-service-info h4 { 
+            margin: 0 0 5px 0; 
+            color: var(--text-dark); 
+            font-size: 1.1rem; 
+            font-weight: 700;
+        }
 
-        /* --- 7. FAQ SECTION --- */
-        .faq-section { padding: 80px 5%; background: #fff; }
-        .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
-        .faq-item h4 { color: var(--primary-color); margin-bottom: 10px; font-size: 1.1rem; }
-        .faq-item p { color: var(--text-light); font-size: 0.95rem; }
+        .single-service-price { 
+            font-weight: 700; 
+            color: var(--primary-color); 
+            font-size: 1rem; 
+            display: block; 
+        }
 
-        /* --- 8. FOOTER --- */
-        footer { background: #f9f9f9; padding: 60px 5% 100px; color: var(--text-dark); border-top: 1px solid #eee; } 
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
-        .footer-col h4 { color: var(--primary-color); margin-bottom: 20px; font-size: 1.1rem; }
-        .footer-col ul li { margin-bottom: 10px; color: var(--text-light); }
-        .footer-col ul li i { color: var(--accent-color); margin-right: 10px; }
-        .social-icons a { font-size: 1.5rem; color: var(--primary-color); margin-right: 15px; }
-        .social-icons a:hover { color: var(--accent-color); }
-        .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
+        .single-service-price span { 
+            color: var(--text-light); 
+            font-weight: 400; 
+            font-size: 0.9rem; 
+        }
+
+        /* --- 7. COMPARISON TABLE --- */
+        .comparison-section { 
+            padding: 80px 5%; 
+            background: var(--bg-light); 
+        }
+
+        .comparison-table { 
+            width: 100%; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            border-collapse: separate; 
+            border-spacing: 0;
+            background: #fff; 
+            border-radius: 16px; 
+            overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04); 
+            border: 1px solid #e2e8f0;
+        }
+
+        .comparison-table th, .comparison-table td { 
+            padding: 20px 15px; 
+            text-align: center; 
+            border-bottom: 1px solid #e2e8f0; 
+        }
+
+        .comparison-table th { 
+            background: #f1f5f9; 
+            color: var(--text-dark); 
+            font-weight: 700; 
+            font-size: 1.1rem; 
+        }
+
+        .comparison-table th:first-child, .comparison-table td:first-child { 
+            text-align: left; 
+            padding-left: 30px; 
+            font-weight: 600; 
+            color: var(--text-dark); 
+        }
+
+        .fa-check { 
+            color: var(--accent-color); 
+            font-size: 1.2rem; 
+        }
+
+        .fa-minus { 
+            color: #cbd5e1; 
+            font-size: 1.2rem; 
+        }
+
+        /* --- 8. FAQ SECTION --- */
+        .faq-section { 
+            padding: 80px 5%; 
+            background: #fff; 
+        }
+
+        .faq-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+            max-width: 1000px; 
+            margin: 0 auto; 
+        }
+
+        .faq-item {
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .faq-item h4 { 
+            color: var(--primary-color); 
+            margin-top: 0;
+            margin-bottom: 10px; 
+            font-size: 1.1rem; 
+            font-weight: 700;
+        }
+
+        .faq-item p { 
+            color: var(--text-light); 
+            font-size: 0.95rem; 
+            margin-bottom: 0;
+        }
+
+        /* --- 9. FOOTER --- */
+        footer { 
+            background: #f9f9f9; 
+            padding: 60px 5% 100px; 
+            color: var(--text-dark); 
+            border-top: 1px solid #eee; 
+        } 
+
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 40px; 
+            margin-bottom: 40px; 
+        }
+
+        .footer-col h4 { 
+            color: var(--primary-color); 
+            margin-bottom: 20px; 
+            font-size: 1.1rem; 
+        }
+
+        .footer-col ul li { 
+            margin-bottom: 10px; 
+            color: var(--text-light); 
+        }
+
+        .footer-col ul li i { 
+            color: var(--accent-color); 
+            margin-right: 10px; 
+        }
+
+        .social-icons a { 
+            font-size: 1.5rem; 
+            color: var(--primary-color); 
+            margin-right: 15px; 
+        }
+
+        .social-icons a:hover { 
+            color: var(--accent-color); 
+        }
+
+        .copyright { 
+            text-align: center; 
+            border-top: 1px solid #ddd; 
+            padding-top: 20px; 
+            font-size: 0.9rem; 
+            color: var(--text-light); 
+        }
 
         /* --- MOBILE STICKY CTA --- */
-        .mobile-sticky-cta { display: none; }
+        .mobile-sticky-cta { 
+            display: none; 
+        }
 
         /* --- MOBILE RESPONSIVE --- */
         @media (max-width: 768px) {
@@ -657,9 +1410,31 @@
             .desktop-login-link { display: none; }
 
             /* 1. Hero Section */
-            .page-hero { padding: 50px 15px; }
-            .page-hero h1 { font-size: 1.8rem; }
+            .page-hero { padding: 60px 15px; }
+            .page-hero h1 { font-size: 2.2rem; }
             .page-hero p { font-size: 1rem; }
+
+            /* Custom Quote Funnel Mobile Fixes */
+            .quote-funnel-section { padding: 40px 10px 60px 10px; scroll-margin-top: 60px;}
+            .quote-funnel-section h2 { font-size: 2.2rem; }
+            .quote-subtitle { font-size: 1rem; }
+            .funnel-container { padding: 25px 15px; border-radius: 16px; }
+            
+            /* CRITICAL FIX: Ensure mobile stacks to 1 column and ignores span */
+            .services-grid-check { 
+                display: flex !important; 
+                flex-direction: column !important; 
+                gap: 12px; 
+            }
+            .service-option { 
+                width: 100% !important; 
+                box-sizing: border-box;
+            }
+            .service-price-col { flex-direction: column; gap: 4px; align-items: flex-end; justify-content: center;}
+
+            .step-header { font-size: 1.3rem; }
+            .funnel-nav { flex-direction: column-reverse; gap: 10px; }
+            .btn-funnel-back { padding: 14px; border-radius: 12px; }
 
             /* 2. Pricing Section & Cards */
             .pricing-section { padding: 30px 15px 60px 15px; margin-top: -30px; }
@@ -693,6 +1468,7 @@
             .comparison-table { display: block; overflow-x: auto; white-space: nowrap; } 
             
             .faq-grid { gap: 20px; }
+            .faq-item { padding: 15px; }
             .faq-item h4 { font-size: 1rem; margin-bottom: 5px; }
             .faq-item p { font-size: 0.85rem; }
 
@@ -761,26 +1537,303 @@
         <a href="tel:+17055009000" class="btn-header desktop-only" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Desktop Header Call' });">Call 705-500-9000</a>
     </header>
 
-    <section class="page-hero">
-        <h1>Simple, Transparent Pricing</h1>
-        <p>Choose the plan that fits your yard and your budget. No hidden fees, just great service.</p>
+    <section class="hero" style="min-height: 40vh; padding: 80px 5% 40px;">
+        <div class="hero-text" style="margin-top: 0; width: 100%; padding: 0 10px;">
+            <h1 style="font-size: clamp(2.5rem, 6vw, 3.5rem); line-height: 1.2;">Simple, Transparent Pricing</h1>
+            <p style="font-size: clamp(1.1rem, 3vw, 1.2rem);">Choose the plan that fits your yard and your budget. No hidden fees, just great service.</p>
+        </div>
+    </section>
+
+    <section class="quote-funnel-section" id="custom-quote">
+        <h2>Build Your Custom Plan...</h2>
+        <p class="quote-subtitle">Use our interactive calculator to get a price based on your exact needs.</p>
+
+        <div class="funnel-container">
+            <div class="progress-container">
+                <div class="progress-step active" id="indicator-1">1</div>
+                <div class="progress-step" id="indicator-2">2</div>
+                <div class="progress-step" id="indicator-3">3</div>
+                <div class="progress-step" id="indicator-4">4</div>
+                <div class="progress-step" id="indicator-5"><i class="fa-solid fa-check"></i></div>
+            </div>
+
+            <div class="funnel-step active" id="step-1">
+                <div class="step-header">Where is your property?</div>
+                <p class="step-desc">Enter your address to verify coverage and start your quote.</p>
+                
+                <div class="input-group">
+                    <i class="fa-solid fa-map-marker-alt"></i>
+                    <input type="text" id="qAddress" class="funnel-input" placeholder="Start typing your address..." autocomplete="off">
+                </div>
+
+                <div class="area-success-box" id="areaSuccessBox">
+                    <p><strong>Property:</strong> <span id="confirmedAddressDisplay"></span></p>
+                    <p style="margin: 5px 0 0 0; font-size: 0.95rem; color: #1b5e20;" id="localWeatherDisplay">
+                        <i class="fa-solid fa-spinner fa-spin"></i> Checking local weather...
+                    </p>
+                </div>
+                
+                <div class="funnel-nav" style="justify-content: center;">
+                    <button class="btn-funnel" id="nextStep1Btn" style="max-width: 300px;" onclick="goToStep(2)">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div class="funnel-step" id="step-2">
+                <div class="step-header">Select Your Services</div>
+                <p class="step-desc">Build your perfect package. Base prices below are for a lot <strong>up to 1,000 sq ft</strong>. Larger lots will be adjusted in the next step.<br><strong style="color:var(--accent-color);">🌟 Special: Bundle 2 or more Add-ons to save 25%!</strong></p>
+                
+                <div class="service-category-header">Lawn Mowing Frequency</div>
+                <div class="services-grid-check">
+                    <label class="service-option">
+                        <input type="radio" name="mowFreq" value="weekly" id="mow-weekly" checked>
+                        <div class="service-title-col">
+                            <strong>Weekly</strong>
+                            <small>(28 visits)</small>
+                        </div>
+                        <div class="service-price-col">
+                            <span class="price-standalone">Standalone: <br>$119.25/mo</span>
+                            <span class="price-bundled">Bundled: <br>$87.00/mo</span>
+                        </div>
+                    </label>
+                    
+                    <label class="service-option">
+                        <input type="radio" name="mowFreq" value="biweekly" id="mow-biweekly">
+                        <div class="service-title-col">
+                            <strong>Bi-Weekly</strong>
+                            <small>(14 visits)</small>
+                        </div>
+                        <div class="service-price-col">
+                            <span class="price-standalone">Standalone: <br>$96.75/mo</span>
+                            <span class="price-bundled">Bundled: <br>$60.00/mo</span>
+                        </div>
+                    </label>
+                    
+                    <label class="service-option full-width-option">
+                        <input type="radio" name="mowFreq" value="none" id="mow-none">
+                        <div class="service-title-col">
+                            <strong style="margin-top: 5px;">No Mowing Required</strong>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="service-category-header">Core Maintenance</div>
+                <div class="services-grid-check">
+                    <label class="service-option">
+                        <input type="checkbox" id="chk-fert" value="9" data-type="monthly">
+                        <div class="service-title-col">
+                            <strong>Fertilizer Program</strong>
+                        </div>
+                        <div class="service-price-col">
+                            <span class="price-standalone">+$6.75/mo</span>
+                        </div>
+                    </label>
+                    
+                    <label class="service-option">
+                        <input type="checkbox" id="chk-weed" value="19" data-standalone="39" data-type="monthly">
+                        <div class="service-title-col">
+                            <strong>Weed Control</strong>
+                        </div>
+                        <div class="service-price-col">
+                            <span class="price-standalone">Standalone: <br>$29.25/mo</span>
+                            <span class="price-bundled">Bundled: <br>$14.25/mo</span>
+                        </div>
+                    </label>
+                    
+                    <label class="service-option">
+                        <input type="checkbox" id="chk-land" value="9" data-standalone="50" data-type="monthly">
+                        <div class="service-title-col">
+                            <strong>Landscape Maintenance</strong>
+                        </div>
+                        <div class="service-price-col">
+                            <span class="price-standalone">Standalone: <br>$37.50/mo</span>
+                            <span class="price-bundled">Bundled: <br>$6.75/mo</span>
+                        </div>
+                    </label>
+                    
+                    <label class="service-option">
+                        <input type="checkbox" id="chk-spring" value="139" data-standalone="199" data-type="onetime">
+                        <div class="service-title-col">
+                            <strong>Spring Cleanup</strong>
+                        </div>
+                        <div class="service-price-col">
+                            <span class="price-standalone">Standalone: <br>$149.25/season</span>
+                            <span class="price-bundled">Bundled: <br>$104.25/season</span>
+                        </div>
+                    </label>
+                    
+                    <label class="service-option">
+                        <input type="checkbox" id="chk-fall" value="179" data-standalone="249" data-type="onetime">
+                        <div class="service-title-col">
+                            <strong>Fall Cleanup</strong>
+                        </div>
+                        <div class="service-price-col">
+                            <span class="price-standalone">Standalone: <br>$186.75/season</span>
+                            <span class="price-bundled">Bundled: <br>$134.25/season</span>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="service-category-header">Discountable Add-ons (Save 25% on 2+)</div>
+                <div class="services-grid-check">
+                    <label class="service-option">
+                        <input type="checkbox" id="chk-aeration" value="120" data-type="addon">
+                        <div class="service-title-col">
+                            <strong>Core Aeration</strong>
+                            <small>(Fall)</small>
+                        </div>
+                        <div class="service-price-col">
+                            <span class="price-standalone">+$90.00</span>
+                        </div>
+                    </label>
+                    
+                    <label class="service-option">
+                        <input type="checkbox" id="chk-overseed" value="70" data-type="addon">
+                        <div class="service-title-col">
+                            <strong>Overseeding</strong>
+                            <small>(Fall/Spring)</small>
+                        </div>
+                        <div class="service-price-col">
+                            <span class="price-standalone">+$52.50</span>
+                        </div>
+                    </label>
+                    
+                    <label class="service-option">
+                        <input type="checkbox" id="chk-dethatch" value="120" data-type="addon">
+                        <div class="service-title-col">
+                            <strong>Dethatching</strong>
+                            <small>(Spring)</small>
+                        </div>
+                        <div class="service-price-col">
+                            <span class="price-standalone">+$90.00</span>
+                        </div>
+                    </label>
+                </div>
+                
+                <div class="funnel-nav">
+                    <button class="btn-funnel btn-funnel-back" onclick="resetStep1()">Back</button>
+                    <button class="btn-funnel" onclick="goToStep(3)">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div class="funnel-step" id="step-3">
+                <div class="step-header">Verify Your Lot Size</div>
+                <p class="step-desc">Confirm your property details to ensure accurate scaling.</p>
+                
+                <div class="map-container" id="satelliteMapBox">
+                    <i class="fa-solid fa-satellite"></i>
+                    <strong>Satellite View Loading...</strong>
+                    <small id="mapAddressDisplay">Address will appear here</small>
+                </div>
+                
+                <div class="size-selector">
+                    <label style="font-weight: 600; color: var(--primary-color);">Estimated Total Lot Size:</label>
+                    <select id="qLotSize" class="funnel-input" style="padding-left: 20px;">
+                        <option value="0.75" selected>Up to 1,000 sq ft</option>
+                        <option value="1">Standard (1,001 - 3,000 sq ft)</option>
+                        <option value="1.3">Large (3,001 - 6,000 sq ft)</option>
+                        <option value="contact">Estate (6,000+ sq ft)</option>
+                    </select>
+                </div>
+
+                <div class="funnel-nav">
+                    <button class="btn-funnel btn-funnel-back" onclick="goToStep(2)">Back</button>
+                    <button class="btn-funnel" onclick="calculateQuote(false)">View My Quote <i class="fa-solid fa-file-invoice-dollar"></i></button>
+                </div>
+            </div>
+
+            <div class="funnel-step" id="step-4">
+                <div class="step-header" style="color: var(--accent-color);"><i class="fa-solid fa-check-circle"></i> Quote Generated</div>
+                <p class="step-desc">Here is your customized transparent pricing based on your property size and selected services.</p>
+                
+                <div class="quote-receipt">
+                    <div style="font-size: 0.9rem; color: #64748b; margin-bottom: 15px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">
+                        Quote for Property: <br><strong id="resAddress" style="color:var(--text-dark);">Address</strong>
+                    </div>
+
+                    <div id="receipt-monthly-items"></div>
+                    
+                    <div style="margin-top: 15px; border-top: 1px dashed #cbd5e1; padding-top: 15px;">
+                        <label style="font-weight:600; display:block; margin-bottom:8px; color:var(--primary-color); text-align: left;">Have a Promo Code?</label>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="text" id="promoCodeInput" class="funnel-input" placeholder="e.g. Add code" style="margin-bottom: 0; padding-left: 15px; text-transform: uppercase;">
+                            <button onclick="calculateQuote(true)" class="btn-funnel" style="padding: 12px 20px; flex: 0 0 auto;">Apply</button>
+                        </div>
+                        <div id="promoMessage" style="font-size: 0.85rem; margin-top: 5px; font-weight: 600; text-align: left;"></div>
+                    </div>
+
+                    <div id="promo-discount-row" class="discount-row" style="display:none;">
+                        <span>New Customer Discount (20% Off First Month):</span>
+                        <span id="resDiscountAmount">-$0.00</span>
+                    </div>
+
+                    <div class="receipt-total" id="monthlyTotalContainer">
+                        <span>Total Monthly Plan:</span>
+                        <span id="resMonthlyTotal">$0.00 /mo</span>
+                    </div>
+                    
+                    <div id="receipt-onetime-items" style="margin-top: 20px; border-top: 1px dashed #cbd5e1; padding-top: 15px;"></div>
+                </div>
+
+                <div class="amortize-toggle" id="amortizeContainer" style="display: none;">
+                    <label class="switch">
+                        <input type="checkbox" id="amortizeCheckbox" onchange="calculateQuote(true)">
+                        <span class="slider"></span>
+                    </label>
+                    <div class="toggle-text">
+                        <strong>Add Seasonal Services to Monthly Billing</strong>
+                        <small>Split one-time costs evenly across your 7-month plan.</small>
+                    </div>
+                </div>
+
+                <div class="upsell-section" id="upsell-section">
+                    <h4>Recommended For Your Property:</h4>
+                    <div id="upsell-container"></div>
+                </div>
+
+                <div class="funnel-nav">
+                    <button class="btn-funnel btn-funnel-back" onclick="location.reload()">Restart</button>
+                    <button class="btn-funnel" onclick="goToStep(5)">Proceed to Booking <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div class="funnel-step" id="step-5">
+                <div class="step-header">Who are we quoting?</div>
+                <p class="step-desc">We need your contact info to finalize your booking and send a copy of your customized breakdown.</p>
+                
+                <div class="input-group">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="qName" class="funnel-input" placeholder="Your Full Name">
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-phone"></i>
+                    <input type="tel" id="qPhone" class="funnel-input" placeholder="Your Phone Number">
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="qEmail" class="funnel-input" placeholder="Your Email Address">
+                </div>
+                
+                <div class="funnel-nav">
+                    <button class="btn-funnel btn-funnel-back" onclick="goToStep(4)">Back to Quote</button>
+                    <button class="btn-funnel" id="submitQuoteBtn" onclick="submitFinal()">Submit Request & Book</button>
+                </div>
+            </div>
+
+        </div>
     </section>
 
     <section class="pricing-section">
         
-        <div class="pricing-intro">
-            <h3>The Unbeatable Value Challenge</h3>
-            <p>We confidently offer the most comprehensive property care packages in the GTA. Check out the breakdown on our Premium Plan to see exactly where every dollar goes. Premium service, honest pricing, zero hidden markups.</p>
-        </div>
+        
 
         <div class="pricing-grid">
             
             <div class="pricing-card">
                 <div class="plan-name">Basic Plan</div>
                 <div class="starting-at">Starting at</div>
-                <div class="plan-price">$149 <span>/mo</span></div>
+                <div class="plan-price">$119 <span>/mo</span></div>
                 <span class="plan-subtext">Includes 4 visits per month</span>
-                <div class="lot-size-disclaimer">*Based on standard up to 3,000 sq ft lot</div>
+                <div class="lot-size-disclaimer">*Based on standard up to 1,000 sq ft lot</div>
                 <div class="plan-divider"></div>
                 <ul class="plan-features">
                     <li><i class="fas fa-check"></i> Lawn Mowing (Weekly)</li>
@@ -794,9 +1847,9 @@
             <div class="pricing-card popular">
                 <div class="plan-name">Premium Plan</div>
                 <div class="starting-at">Starting at</div>
-                <div class="plan-price">$198 <span>/mo</span></div>
+                <div class="plan-price">$148 <span>/mo</span></div>
                 <span class="plan-subtext">Includes 4 visits per month</span>
-                <div class="lot-size-disclaimer">*Based on standard up to 3,000 sq ft lot</div>
+                <div class="lot-size-disclaimer">*Based on standard up to 1,000 sq ft lot</div>
                 <div class="plan-divider"></div>
                 <ul class="plan-features">
                     <li><i class="fas fa-check"></i> <strong>Everything in Basic</strong></li>
@@ -805,28 +1858,15 @@
                     <li><i class="fas fa-check"></i> Weed Control</li>
                     <li><i class="fas fa-check"></i> Landscape Maintenance</li>
                 </ul>
-
-                <div class="value-box">
-                    <div class="value-box-title">Unbeatable Value Breakdown:</div>
-                    <ul class="value-list">
-                        <li>Lawn Mowing <span>$29.00 / visit</span></li>
-                        <li>Fertilizer Program <span>$9.00 / month</span></li>
-                        <li>Weed Control <span>$19.00 / month</span></li>
-                        <li>Landscape Maint. <span>$9.00 / month</span></li>
-                        <li>Spring Cleanup <span>$140.00 / season</span></li>
-                        <li>Fall Cleanup <span>$175.00 / season</span></li>
-                    </ul>
-                </div>
-
                 <a href="contact2?plan=premium" class="btn-plan" style="background:var(--accent-color);">Get a Free Quote</a>
             </div>
 
             <div class="pricing-card">
                 <div class="plan-name">Ultimate Plan</div>
                 <div class="starting-at">Starting at</div>
-                <div class="plan-price">$259 <span>/mo</span></div>
+                <div class="plan-price">$198 <span>/mo</span></div>
                 <span class="plan-subtext">Includes 4 visits per month</span>
-                <div class="lot-size-disclaimer">*Based on standard up to 3,000 sq ft lot</div>
+                <div class="lot-size-disclaimer">*Based on standard up to 1,000 sq ft lot</div>
                 <div class="plan-divider"></div>
                 
                 <ul class="plan-features">
@@ -1049,6 +2089,451 @@
                     icon.style.transform = 'rotate(0deg)';
                 }
             }
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUt43sR5tnk55iykNlqrKMhRcv51Ku-nY&libraries=places&callback=initAutocomplete"></script>
+    
+    <script>
+        // --- 1. GOOGLE MAPS AUTOCOMPLETE ---
+        window.initAutocomplete = function() {
+            const addressInput = document.getElementById('qAddress');
+            if (addressInput) {
+                const autocomplete = new google.maps.places.Autocomplete(addressInput, {
+                    types: ['address'],
+                    componentRestrictions: { country: 'ca' } // Restricts to Canada
+                });
+                
+                // Automatically fetch weather when an address is clicked from dropdown
+                autocomplete.addListener('place_changed', function() {
+                    const place = autocomplete.getPlace();
+                    if(place.geometry) {
+                        fetchWeatherAndShowBox(place.geometry.location.lat(), place.geometry.location.lng(), place.formatted_address);
+                    } else {
+                        fetchWeatherAndShowBox(null, null, addressInput.value);
+                    }
+                });
+            }
+        };
+
+        // --- CUSTOM QUOTE FUNNEL LOGIC ---
+        function fetchWeatherAndShowBox(lat, lng, formattedAddr) {
+            const addr = formattedAddr || document.getElementById('qAddress').value.trim();
+            if(addr === "") return;
+            
+            document.getElementById('confirmedAddressDisplay').innerText = addr;
+            document.getElementById('areaSuccessBox').style.display = 'block';
+            document.getElementById('nextStep1Btn').style.display = 'block';
+            
+            const weatherEl = document.getElementById('localWeatherDisplay');
+            
+            // If we have coordinates from Google Autocomplete, fetch real live weather using Open-Meteo!
+            if(lat && lng) {
+                weatherEl.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Checking local weather...`;
+                fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current_weather=true`)
+                .then(res => res.json())
+                .then(data => {
+                    const temp = Math.round(data.current_weather.temperature);
+                    const code = data.current_weather.weathercode;
+                    let condition = "Clear"; let icon = "fa-sun"; let color = "#f57c00";
+                    if(code > 0 && code <= 3) { condition = "Partly Cloudy"; icon = "fa-cloud-sun"; color = "#f57c00"; }
+                    if(code >= 45 && code <= 48) { condition = "Foggy"; icon = "fa-smog"; color = "#9e9e9e"; }
+                    if(code >= 51 && code <= 67) { condition = "Rain"; icon = "fa-cloud-rain"; color = "#1976d2"; }
+                    if(code >= 71 && code <= 77) { condition = "Snow"; icon = "fa-snowflake"; color = "#00bcd4"; }
+                    if(code >= 80 && code <= 99) { condition = "Storms"; icon = "fa-cloud-showers-heavy"; color = "#303f9f"; }
+                    
+                    weatherEl.innerHTML = `<i class="fa-solid ${icon}" style="color: ${color};"></i> Local Weather: <strong>${temp}°C and ${condition}</strong>`;
+                })
+                .catch(err => {
+                    weatherEl.innerHTML = `<i class="fa-solid fa-check-circle" style="color: #4CAF50;"></i> Address Confirmed`;
+                });
+            } else {
+                weatherEl.innerHTML = `<i class="fa-solid fa-check-circle" style="color: #4CAF50;"></i> Address Confirmed`;
+            }
+        }
+        
+        function resetStep1() {
+            document.getElementById('areaSuccessBox').style.display = 'none';
+            document.getElementById('nextStep1Btn').style.display = 'none';
+            goToStep(1);
+        }
+
+        function goToStep(stepNumber) {
+            if(stepNumber === 2) {
+                const addr = document.getElementById('qAddress').value.trim();
+                if(addr === "") { alert("Please enter your address first."); return; }
+            }
+
+            if(stepNumber === 3) {
+                const addr = document.getElementById('qAddress').value;
+                document.getElementById('mapAddressDisplay').innerText = addr;
+
+                // --- SATELLITE MAP GENERATION (Step 3) ---
+                const apiKey = 'AIzaSyDUt43sR5tnk55iykNlqrKMhRcv51Ku-nY'; 
+                const mapContainer = document.getElementById('satelliteMapBox');
+                const encodedAddress = encodeURIComponent(addr);
+                
+                const imgUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${encodedAddress}&zoom=19&size=600x200&maptype=satellite&markers=color:red%7C${encodedAddress}&key=${apiKey}`;
+                
+                mapContainer.innerHTML = `<img src="${imgUrl}" style="width:100%; height:100%; object-fit:cover; border-radius:12px;" alt="Satellite view" onerror="this.onerror=null; this.parentNode.innerHTML='<div style=\\'text-align:center; padding:20px;\\'><i class=\\'fa-solid fa-satellite\\' style=\\'font-size:3rem; color:#cbd5e1; margin-bottom:10px;\\'></i><br><strong style=\\'color:#ef4444;\\'>Google Maps Blocked Request</strong><br><small>Check API Key, Billing, or Restrictions in Google Cloud Console.</small></div>';">`;
+            }
+
+            document.querySelectorAll('.funnel-step').forEach(step => {
+                step.classList.remove('active');
+            });
+            
+            document.getElementById(`step-${stepNumber}`).classList.add('active');
+
+            document.querySelectorAll('.progress-step').forEach((indicator, index) => {
+                indicator.classList.remove('active', 'completed');
+                if (index + 1 < stepNumber) {
+                    indicator.classList.add('completed');
+                } else if (index + 1 === stepNumber) {
+                    indicator.classList.add('active');
+                }
+            });
+
+            // Smooth Scroll to Top of Funnel Container
+            const funnel = document.getElementById('custom-quote');
+            if(funnel) {
+                const y = funnel.getBoundingClientRect().top + window.scrollY - 80; 
+                window.scrollTo({top: y, behavior: 'smooth'});
+            }
+        }
+
+        // --- UPSELL HELPER FUNCTION ---
+        function addUpsell(elementId) {
+            document.getElementById(elementId).checked = true;
+            calculateQuote(true);
+        }
+
+        // --- REMOVE HELPER FUNCTIONS ---
+        function removeService(elementId) {
+            document.getElementById(elementId).checked = false;
+            calculateQuote(true);
+        }
+        
+        function removeMowing() {
+            document.getElementById('mow-none').checked = true;
+            calculateQuote(true);
+        }
+
+        function calculateQuote(isRecalculating = false) {
+            const lotSelect = document.getElementById('qLotSize');
+            const lotVal = lotSelect.value;
+            
+            document.getElementById('resAddress').innerText = document.getElementById('qAddress').value;
+
+            // Handle Estate / Contact branch
+            if(lotVal === 'contact') {
+                document.getElementById('receipt-monthly-items').innerHTML = `<div style="padding:15px; text-align:center; color:var(--primary-color); font-weight:600; line-height:1.5;">Your property size requires an on-site evaluation.<br>Please submit your request and our team will reach out with a specialized custom quote!</div>`;
+                document.getElementById('resMonthlyTotal').innerText = `Custom Quote`;
+                document.getElementById('monthlyTotalContainer').style.display = 'flex';
+                document.getElementById('receipt-onetime-items').innerHTML = "";
+                document.getElementById('amortizeContainer').style.display = 'none';
+                document.getElementById('promo-discount-row').style.display = 'none';
+                document.getElementById('upsell-section').style.display = 'none';
+                if(!isRecalculating) goToStep(4);
+                return; 
+            }
+
+            // Normal calculation
+            const sizeMultiplier = parseFloat(lotVal);
+            let monthlyHTML = "";
+            let onetimeHTML = "";
+            let rawMonthlyTotal = 0;
+            let totalOnetime = 0;
+            let addonCount = 0;
+
+            // Grab radio for mowing
+            const mowFreqNode = document.querySelector('input[name="mowFreq"]:checked');
+            const mowFreq = mowFreqNode ? mowFreqNode.value : 'none';
+
+           // Grab all other checkboxes
+const checkboxes = document.querySelectorAll('.services-grid-check input[type="checkbox"]');
+
+// Count how many additional services are actively selected
+const activeCheckboxes = document.querySelectorAll('.services-grid-check input[type="checkbox"]:checked').length;
+
+// Count Mowing as 1 service (if they didn't choose "No Mowing")
+const mowingCount = (mowFreq !== 'none') ? 1 : 0;
+
+// Calculate total services in the cart
+const totalServices = mowingCount + activeCheckboxes;
+
+// FIX: A "Bundle" now requires a MINIMUM of 3 SERVICES total to unlock the discounted pricing.
+let isBundled = (totalServices >= 3);
+            
+            // Process Mowing explicitly
+            if (mowFreq !== 'none') {
+                let baseMowPrice = 0;
+                let mowLabel = "";
+                
+                if (mowFreq === 'weekly') {
+                    baseMowPrice = isBundled ? 116 : 159;
+                    mowLabel = "Weekly Lawn Mowing";
+                } else if (mowFreq === 'biweekly') {
+                    baseMowPrice = isBundled ? 80 : 129;
+                    mowLabel = "Bi-Weekly Lawn Mowing";
+                }
+                
+                const finalMowPrice = baseMowPrice * sizeMultiplier;
+                rawMonthlyTotal += finalMowPrice;
+                monthlyHTML += `
+                    <div class="receipt-item">
+                        <span>${mowLabel} ${isBundled ? '<small style="color:var(--accent-color)">(Bundled Discount)</small>' : '<small style="color:#94a3b8">(Standalone)</small>'}</span> 
+                        <span style="display:flex; align-items:center;">$${finalMowPrice.toFixed(2)} <i class="fa-solid fa-times-circle remove-icon" onclick="removeMowing()"></i></span>
+                    </div>`;
+            }
+
+            // Process Addons count for multiplier
+            checkboxes.forEach(box => {
+                if(box.checked && box.getAttribute('data-type') === 'addon') addonCount++;
+            });
+            let addonMultiplier = (addonCount >= 2) ? 0.75 : 1.0;
+
+            let upsellHTML = "";
+            let missedCount = 0;
+
+            // Loop checkboxes
+checkboxes.forEach((box, index) => {
+    let serviceName = "";
+    const titleCol = box.parentElement.querySelector('.service-title-col strong') || box.parentElement.querySelector('span');
+    
+    // FIX: Changed innerText to textContent so it can read the text while Step 2 is hidden!
+    if(titleCol) serviceName = titleCol.textContent.trim();
+                
+                let basePrice = parseFloat(box.value);
+                const type = box.getAttribute('data-type');
+                const standalonePrice = box.getAttribute('data-standalone');
+                
+                // Add ID to checkbox dynamically if it doesn't have one for the Upsell button to target
+                if (!box.id) box.id = 'service-chk-' + index;
+
+                if (box.checked) {
+                    if(standalonePrice && !isBundled) basePrice = parseFloat(standalonePrice);
+                    
+                    if (type === 'addon') {
+                        const finalPrice = basePrice * sizeMultiplier * addonMultiplier;
+                        totalOnetime += finalPrice;
+                        onetimeHTML += `
+                            <div class="one-time-total">
+                                <span>${serviceName}</span> 
+                                <span style="display:flex; align-items:center;">$${finalPrice.toFixed(2)} <i class="fa-solid fa-times-circle remove-icon" onclick="removeService('${box.id}')"></i></span>
+                            </div>`;
+                    } else if (type === 'onetime') {
+                        const finalPrice = basePrice * sizeMultiplier;
+                        totalOnetime += finalPrice;
+                        const bundleTag = (standalonePrice && isBundled) ? ' <small style="color:var(--accent-color)">(Bundled Discount)</small>' : (standalonePrice ? ' <small style="color:#94a3b8">(Standalone)</small>' : '');
+                        onetimeHTML += `
+                            <div class="one-time-total">
+                                <span>${serviceName}${bundleTag}</span> 
+                                <span style="display:flex; align-items:center;">$${finalPrice.toFixed(2)} <i class="fa-solid fa-times-circle remove-icon" onclick="removeService('${box.id}')"></i></span>
+                            </div>`;
+                    } else {
+                        const finalPrice = basePrice * sizeMultiplier;
+                        rawMonthlyTotal += finalPrice;
+                        const bundleTag = (standalonePrice && isBundled) ? ' <small style="color:var(--accent-color)">(Bundled Discount)</small>' : (standalonePrice ? ' <small style="color:#94a3b8">(Standalone)</small>' : '');
+                        monthlyHTML += `
+                            <div class="receipt-item">
+                                <span>${serviceName}${bundleTag}</span> 
+                                <span style="display:flex; align-items:center;">$${finalPrice.toFixed(2)} <i class="fa-solid fa-times-circle remove-icon" onclick="removeService('${box.id}')"></i></span>
+                            </div>`;
+                    }
+                } else {
+                    // Create Marketing Upsell items for unchecked boxes
+                    missedCount++;
+                    // Base price for upsell display should show the BUNDLED price to make it look like a good deal
+                    let finalUpsellPrice = basePrice * sizeMultiplier; 
+                    if(type === 'addon') {
+                        // Assuming they add this to the cart, the addon multiplier might trigger
+                        finalUpsellPrice = basePrice * sizeMultiplier * ((addonCount + 1) >= 2 ? 0.75 : 1.0);
+                    }
+                    
+                    upsellHTML += `
+                        <div class="upsell-item">
+                            <div class="service-title-col" style="text-align: left;">
+                                <strong style="color:var(--text-dark); margin-bottom: 2px;">${serviceName}</strong>
+                                <small style="color:var(--accent-color); font-weight:700; display:block;">Add for +$${finalUpsellPrice.toFixed(2)}${type==='monthly'?'/mo':(type==='onetime'?'/season':'')}</small>
+                            </div>
+                            <button class="btn-funnel" style="padding:8px 16px; font-size:0.85rem; flex:none; width:auto; border-radius: 8px; box-shadow: none;" onclick="addUpsell('${box.id}')">Add <i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    `;
+                }
+            });
+
+            // Amortization (7-Month Split) Logic
+            const amortizeContainer = document.getElementById('amortizeContainer');
+            const amortizeChecked = document.getElementById('amortizeCheckbox').checked;
+
+            if (totalOnetime > 0) {
+                amortizeContainer.style.display = 'flex';
+                if (amortizeChecked) {
+                    let amortizedAmount = totalOnetime / 7;
+                    rawMonthlyTotal += amortizedAmount;
+                    monthlyHTML += `
+                        <div class="receipt-item" style="color:var(--primary-color); font-weight:600; margin-top:5px; padding-top:10px; border-top:1px dashed #e2e8f0;">
+                            <span>Seasonal Add-ons (7-Month Split)</span> 
+                            <span>+$${amortizedAmount.toFixed(2)}/mo</span>
+                        </div>`;
+                }
+            } else {
+                amortizeContainer.style.display = 'none';
+                document.getElementById('amortizeCheckbox').checked = false; 
+            }
+
+            // Promo Logic with Code Input
+            let promoDiscount = 0;
+            const promoCode = document.getElementById('promoCodeInput') ? document.getElementById('promoCodeInput').value.trim().toUpperCase() : '';
+            const promoMsgEl = document.getElementById('promoMessage');
+            const discountRow = document.getElementById('promo-discount-row');
+            
+            if (promoCode === 'SAVE20') {
+                if (mowFreq === 'weekly') {
+                    promoDiscount = rawMonthlyTotal * 0.20;
+                    if(promoMsgEl) {
+                        promoMsgEl.innerText = "✅ 20% Off First Month applied!";
+                        promoMsgEl.style.color = "var(--accent-color)";
+                    }
+                } else {
+                    if(promoMsgEl) {
+                        promoMsgEl.innerText = "❌ SAVE20 requires Weekly Lawn Mowing.";
+                        promoMsgEl.style.color = "#ef4444";
+                    }
+                }
+            } else if (promoCode !== "") {
+                if(promoMsgEl) {
+                    promoMsgEl.innerText = "❌ Invalid promo code.";
+                    promoMsgEl.style.color = "#ef4444";
+                }
+            } else {
+                if(promoMsgEl) promoMsgEl.innerText = "";
+            }
+
+            if (promoDiscount > 0) {
+                document.getElementById('resDiscountAmount').innerText = `-$${promoDiscount.toFixed(2)}`;
+                discountRow.style.display = 'flex';
+            } else {
+                discountRow.style.display = 'none';
+            }
+
+            let firstMonthMonthly = rawMonthlyTotal - promoDiscount;
+
+            // Render Monthly
+            document.getElementById('receipt-monthly-items').innerHTML = monthlyHTML || `<div class="receipt-item" style="justify-content:center; color:#94a3b8; font-style:italic;">No monthly services selected</div>`;
+            
+            if(rawMonthlyTotal > 0) {
+                document.getElementById('monthlyTotalContainer').style.display = 'flex';
+                document.getElementById('resMonthlyTotal').innerText = `$${firstMonthMonthly.toFixed(2)} /mo`;
+            } else {
+                document.getElementById('monthlyTotalContainer').style.display = 'none';
+            }
+
+            // Render Onetime
+            if(onetimeHTML !== "") {
+                let discountText = (addonCount >= 2) ? `<div style="font-size:0.85rem; color:var(--accent-color); font-weight:700; margin-bottom:10px;">🌟 25% Multi-Service Discount Applied to Add-ons!</div>` : '';
+                let onetimeHeader = amortizeChecked 
+                    ? `<div style="font-size:0.85rem; color:var(--primary-color); font-weight:700; margin-bottom:5px; text-transform:uppercase;">Seasonal / Add-Ons (Split in Monthly Plan):</div>`
+                    : `<div style="font-size:0.85rem; color:#64748b; margin-bottom:5px; text-transform:uppercase;">Seasonal / Add-Ons (Billed at time of service):</div>`;
+
+                document.getElementById('receipt-onetime-items').innerHTML = discountText + onetimeHeader + onetimeHTML;
+            } else {
+                document.getElementById('receipt-onetime-items').innerHTML = "";
+            }
+
+            // Display Marketing Upsells
+            const upsellSection = document.getElementById('upsell-section');
+            if(missedCount > 0 && upsellSection) {
+                document.getElementById('upsell-container').innerHTML = upsellHTML;
+                upsellSection.style.display = 'block';
+            } else if (upsellSection) {
+                upsellSection.style.display = 'none';
+            }
+
+            // Advance to Step 4 if not just a recalculation
+            if(!isRecalculating) goToStep(4);
+        }
+
+       // --- BULLETPROOF WEB3FORMS SCRIPT ---
+        function submitFinal() {
+            const submitBtn = document.getElementById('submitQuoteBtn');
+            if(submitBtn) {
+                submitBtn.innerText = "Sending...";
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = "0.7";
+            }
+
+            const name = document.getElementById('qName').value.trim();
+            const phone = document.getElementById('qPhone').value.trim();
+            const email = document.getElementById('qEmail').value.trim();
+            const address = document.getElementById('qAddress').value.trim();
+            const lotSelect = document.getElementById('qLotSize');
+            const lotSizeText = lotSelect.options[lotSelect.selectedIndex].text;
+
+            if(name === "" || phone === "" || email === "") {
+                alert("Please ensure your Name, Phone, and Email are filled out before submitting.");
+                if(submitBtn) {
+                    submitBtn.innerText = "Submit Request & Book";
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = "1";
+                }
+                return;
+            }
+
+            // Clean up the text for the email
+            const monthlyBreakdown = document.getElementById('receipt-monthly-items').innerText.replace(/✖/g, '').trim();
+            const onetimeBreakdown = document.getElementById('receipt-onetime-items').innerText.replace(/✖/g, '').trim();
+            const monthlyTotal = document.getElementById('resMonthlyTotal').innerText;
+            
+            const promoApplied = (document.getElementById('resDiscountAmount') && document.getElementById('promo-discount-row').style.display !== 'none') ? "YES (SAVE20)" : "NO";
+            const amortizeApplied = (document.getElementById('amortizeContainer').style.display !== 'none' && document.getElementById('amortizeCheckbox').checked) ? "YES (Split over 7 months)" : "NO";
+
+            // --- BUILD THE PAYLOAD ---
+            const formData = new FormData();
+            
+            formData.append('access_key', '27b923fa-9ee6-4eb6-abab-79c3f79b41b1');
+            formData.append('subject', 'New Custom Quote Request: ' + name);
+            formData.append('from_name', 'Greenworks Quote Funnel'); 
+            // NOTE: We deliberately removed the 'email' reply-to field here to prevent spoofing blocks!
+
+            // Append all the visual data
+            formData.append('Name', name);
+            formData.append('Phone', phone);
+            formData.append('Email provided by customer', email); // Changed label so it doesn't trigger reply-to
+            formData.append('Address', address);
+            formData.append('Lot Size', lotSizeText);
+            formData.append('Monthly Services', monthlyBreakdown || 'None');
+            formData.append('One-Time Services', onetimeBreakdown || 'None');
+            formData.append('Promo Applied', promoApplied);
+            formData.append('Amortized Billing', amortizeApplied);
+            formData.append('First Month Total', monthlyTotal);
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(async (response) => {
+                let json = await response.json();
+                if (json.success) {
+                    window.location.href = "thankyou.html";
+                } else {
+                    console.log(response);
+                    alert("Oops! " + json.message);
+                    if(submitBtn) {
+                        submitBtn.innerText = "Submit Request & Book";
+                        submitBtn.disabled = false;
+                        submitBtn.style.opacity = "1";
+                    }
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                alert("Oops! There was a network error. Please try calling us instead.");
+                if(submitBtn) {
+                    submitBtn.innerText = "Submit Request & Book";
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = "1";
+                }
+            });
         }
     </script>
 </body>

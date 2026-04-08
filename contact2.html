@@ -482,11 +482,11 @@
             <div class="contact-form-wrapper">
                 <h2>Request a Quote</h2>
                 
-                <form action="https://formspree.io/f/mjgpprnw" method="POST" onsubmit="gtag('event', 'generate_lead', { 'event_category': 'Form', 'event_label': 'Contact Page Form' });">
+                <form id="contactForm">
                     
-                    <input type="hidden" name="_next" value="https://www.gnwlandscaping.ca/thankyou">
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
-                    <div class="form-group">
+                    <div class="form-row">
                         <label>Select a Monthly Plan (Optional)</label>
                         <div class="plan-tabs">
                             <input type="radio" id="plan-basic" name="plan" value="Basic">
@@ -587,7 +587,7 @@
                         <textarea name="message" class="form-control" placeholder="Tell us about your property..."></textarea>
                     </div>
 
-                    <button type="submit" class="btn-submit">Send Request</button>
+                    <button type="submit" id="contactSubmitBtn" class="btn-submit">Send Request</button>
                 </form>
             </div>
 
@@ -686,6 +686,89 @@
                     icon.style.transform = 'rotate(0deg)';
                 }
             }
+        }
+    </script>
+    
+    <script>
+        // --- WEB3FORMS STRICT JSON SUBMISSION ---
+        const form = document.getElementById('contactForm');
+        
+        if(form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); // Stop standard browser reload
+                
+                // Fire Google Analytics tracking
+                if(typeof gtag === 'function') {
+                    gtag('event', 'generate_lead', { 'event_category': 'Form', 'event_label': 'Contact Page Form' });
+                }
+
+                // Update UI Button
+                const submitBtn = document.getElementById('contactSubmitBtn');
+                if(submitBtn) {
+                    submitBtn.innerText = "Sending...";
+                    submitBtn.disabled = true;
+                    submitBtn.style.opacity = "0.7";
+                }
+
+                // 1. Gather all checked "Services" into a single, clean list
+                const selectedServices = [];
+                document.querySelectorAll('input[name="services"]:checked').forEach(checkbox => {
+                    selectedServices.push(checkbox.value);
+                });
+
+                // 2. Check if a Monthly Plan was selected
+                const selectedPlan = document.querySelector('input[name="plan"]:checked');
+                const planValue = selectedPlan ? selectedPlan.value : "None selected";
+
+                // 3. Build the strict JSON payload exactly how Web3Forms likes it
+                const payload = {
+                    access_key: "6b0a383e-1fbf-4ede-9e86-2d0634c48564",
+                    subject: "New Lead from Contact Page: " + (form.name ? form.name.value : "Unknown"),
+                    from_name: "Greenworks Contact Form",
+                    email: form.email ? form.email.value : "",
+                    Name: form.name ? form.name.value : "",
+                    Phone: form.phone ? form.phone.value : "",
+                    Address: form.address ? form.address.value : "Not provided",
+                    Monthly_Plan: planValue,
+                    Requested_Services: selectedServices.length > 0 ? selectedServices.join(", ") : "None selected",
+                    Message: form.message ? form.message.value : "No message provided",
+                    botcheck: form.botcheck ? form.botcheck.checked : false
+                };
+
+                // 4. Send the payload safely using AJAX
+                fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                })
+                .then(async (response) => {
+                    let json = await response.json();
+                    if (response.status === 200 && json.success) {
+                        // SUCCESS! Execute local redirect
+                        window.location.href = "thankyou.html";
+                    } else {
+                        console.log(response);
+                        alert("Oops! " + json.message);
+                        if(submitBtn) {
+                            submitBtn.innerText = "Send Request";
+                            submitBtn.disabled = false;
+                            submitBtn.style.opacity = "1";
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    alert("Oops! There was a network error. Please try calling us instead.");
+                    if(submitBtn) {
+                        submitBtn.innerText = "Send Request";
+                        submitBtn.disabled = false;
+                        submitBtn.style.opacity = "1";
+                    }
+                });
+            });
         }
     </script>
 </body>
