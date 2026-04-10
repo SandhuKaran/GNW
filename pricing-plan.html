@@ -1574,7 +1574,7 @@
                 </div>
                 
                 <div class="funnel-nav" style="justify-content: center;">
-                    <button class="btn-funnel" id="nextStep1Btn" style="max-width: 300px;" onclick="goToStep(2)">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+                    <button class="btn-funnel" id="nextStep1Btn" style="max-width: 300px; margin: 0 auto;" onclick="goToStep(2)">Next Step <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
 
@@ -2242,118 +2242,188 @@
             let onetimeHTML = "";
             let rawMonthlyTotal = 0;
             let totalOnetime = 0;
-            let addonCount = 0;
 
             // Grab radio for mowing
             const mowFreqNode = document.querySelector('input[name="mowFreq"]:checked');
             const mowFreq = mowFreqNode ? mowFreqNode.value : 'none';
 
-           // Grab all other checkboxes
-const checkboxes = document.querySelectorAll('.services-grid-check input[type="checkbox"]');
+            // Count Mowing as 1 service
+            const mowingCount = (mowFreq !== 'none') ? 1 : 0;
 
-// Count how many additional services are actively selected
-const activeCheckboxes = document.querySelectorAll('.services-grid-check input[type="checkbox"]:checked').length;
+            // Grab all checkboxes
+            const checkboxes = document.querySelectorAll('.services-grid-check input[type="checkbox"]');
 
-// Count Mowing as 1 service (if they didn't choose "No Mowing")
-const mowingCount = (mowFreq !== 'none') ? 1 : 0;
+            // Separate Core Services from Add-ons
+            let coreActiveCount = 0;
+            let addonCount = 0;
 
-// Calculate total services in the cart
-const totalServices = mowingCount + activeCheckboxes;
+            checkboxes.forEach(box => {
+                if (box.checked) {
+                    if (box.getAttribute('data-type') === 'addon') {
+                        addonCount++; // Only Aeration, Overseeding, Dethatching
+                    } else {
+                        coreActiveCount++; // Fertilizer, Weed Control, Cleanups, etc.
+                    }
+                }
+            });
 
-// FIX: A "Bundle" now requires a MINIMUM of 3 SERVICES total to unlock the discounted pricing.
-let isBundled = (totalServices >= 3);
+            // Calculate ONLY Core services (Mowing + Fertilizer/Weed/Cleanups)
+            const totalCoreServices = mowingCount + coreActiveCount;
+
+            // Bundle requires a MINIMUM of 3 CORE SERVICES
+            let isBundled = (totalCoreServices >= 3);
             
             // Process Mowing explicitly
             if (mowFreq !== 'none') {
                 let baseMowPrice = 0;
+                let standaloneMowPrice = 0;
                 let mowLabel = "";
                 
                 if (mowFreq === 'weekly') {
                     baseMowPrice = isBundled ? 116 : 159;
+                    standaloneMowPrice = 159;
                     mowLabel = "Weekly Lawn Mowing";
                 } else if (mowFreq === 'biweekly') {
                     baseMowPrice = isBundled ? 80 : 129;
+                    standaloneMowPrice = 129;
                     mowLabel = "Bi-Weekly Lawn Mowing";
                 }
                 
                 const finalMowPrice = baseMowPrice * sizeMultiplier;
+                const originalMowPrice = standaloneMowPrice * sizeMultiplier;
                 rawMonthlyTotal += finalMowPrice;
+                
+                // Format strikethrough if discounted
+                let priceStr = isBundled 
+                    ? `<s style="color:#94a3b8; font-size:0.85rem; margin-right:6px;">$${originalMowPrice.toFixed(2)}</s>$${finalMowPrice.toFixed(2)}` 
+                    : `$${finalMowPrice.toFixed(2)}`;
+
                 monthlyHTML += `
                     <div class="receipt-item">
                         <span>${mowLabel} ${isBundled ? '<small style="color:var(--accent-color)">(Bundled Discount)</small>' : '<small style="color:#94a3b8">(Standalone)</small>'}</span> 
-                        <span style="display:flex; align-items:center;">$${finalMowPrice.toFixed(2)} <i class="fa-solid fa-times-circle remove-icon" onclick="removeMowing()"></i></span>
+                        <span style="display:flex; align-items:center;">${priceStr} <i class="fa-solid fa-times-circle remove-icon" onclick="removeMowing()"></i></span>
                     </div>`;
             }
 
-            // Process Addons count for multiplier
-            checkboxes.forEach(box => {
-                if(box.checked && box.getAttribute('data-type') === 'addon') addonCount++;
-            });
+            // Set Add-on multiplier (25% off if 2 or more ADD-ONS are selected)
             let addonMultiplier = (addonCount >= 2) ? 0.75 : 1.0;
 
             let upsellHTML = "";
             let missedCount = 0;
 
+            // --- MINIMUM MARGIN ENFORCER ---
+            const enforceMinimums = (price, boxId) => {
+                if (mowFreq !== 'none') return price; // Only enforce if Mowing is NOT selected
+                if (boxId === 'chk-land' && price < 28) return 28;
+                if (boxId === 'chk-weed' && price < 25) return 25;
+                return price;
+            };
+
             // Loop checkboxes
-checkboxes.forEach((box, index) => {
-    let serviceName = "";
-    const titleCol = box.parentElement.querySelector('.service-title-col strong') || box.parentElement.querySelector('span');
-    
-    // FIX: Changed innerText to textContent so it can read the text while Step 2 is hidden!
-    if(titleCol) serviceName = titleCol.textContent.trim();
+            checkboxes.forEach((box, index) => {
+                let serviceName = "";
+                const titleCol = box.parentElement.querySelector('.service-title-col strong') || box.parentElement.querySelector('span');
+                
+                if(titleCol) serviceName = titleCol.textContent.trim();
                 
                 let basePrice = parseFloat(box.value);
                 const type = box.getAttribute('data-type');
-                const standalonePrice = box.getAttribute('data-standalone');
+                const standalonePriceAttr = box.getAttribute('data-standalone');
                 
-                // Add ID to checkbox dynamically if it doesn't have one for the Upsell button to target
+                // Add ID to checkbox dynamically if missing
                 if (!box.id) box.id = 'service-chk-' + index;
 
                 if (box.checked) {
-                    if(standalonePrice && !isBundled) basePrice = parseFloat(standalonePrice);
+                    let standalonePrice = standalonePriceAttr ? parseFloat(standalonePriceAttr) : basePrice;
+                    if(standalonePriceAttr && !isBundled) basePrice = standalonePrice;
                     
                     if (type === 'addon') {
-                        const finalPrice = basePrice * sizeMultiplier * addonMultiplier;
+                        const originalPrice = basePrice * sizeMultiplier;
+                        const finalPrice = originalPrice * addonMultiplier;
                         totalOnetime += finalPrice;
+                        
+                        let priceStr = (addonMultiplier < 1.0) 
+                            ? `<s style="color:#94a3b8; font-size:0.85rem; margin-right:6px;">$${originalPrice.toFixed(2)}</s>$${finalPrice.toFixed(2)}` 
+                            : `$${finalPrice.toFixed(2)}`;
+
                         onetimeHTML += `
-                            <div class="one-time-total">
-                                <span>${serviceName}</span> 
-                                <span style="display:flex; align-items:center;">$${finalPrice.toFixed(2)} <i class="fa-solid fa-times-circle remove-icon" onclick="removeService('${box.id}')"></i></span>
+                            <div class="receipt-item">
+                                <span>${serviceName} ${addonMultiplier < 1.0 ? '<small style="color:var(--accent-color)">(25% Off)</small>' : ''}</span> 
+                                <span style="display:flex; align-items:center;">${priceStr} <i class="fa-solid fa-times-circle remove-icon" onclick="removeService('${box.id}')"></i></span>
                             </div>`;
                     } else if (type === 'onetime') {
                         const finalPrice = basePrice * sizeMultiplier;
+                        const originalPrice = standalonePrice * sizeMultiplier;
                         totalOnetime += finalPrice;
-                        const bundleTag = (standalonePrice && isBundled) ? ' <small style="color:var(--accent-color)">(Bundled Discount)</small>' : (standalonePrice ? ' <small style="color:#94a3b8">(Standalone)</small>' : '');
+                        
+                        const isDiscounted = (standalonePriceAttr && isBundled);
+                        const bundleTag = isDiscounted ? ' <small style="color:var(--accent-color)">(Bundled Discount)</small>' : (standalonePriceAttr ? ' <small style="color:#94a3b8">(Standalone)</small>' : '');
+                        
+                        let priceStr = isDiscounted 
+                            ? `<s style="color:#94a3b8; font-size:0.85rem; margin-right:6px;">$${originalPrice.toFixed(2)}</s>$${finalPrice.toFixed(2)}` 
+                            : `$${finalPrice.toFixed(2)}`;
+
                         onetimeHTML += `
-                            <div class="one-time-total">
+                            <div class="receipt-item">
                                 <span>${serviceName}${bundleTag}</span> 
-                                <span style="display:flex; align-items:center;">$${finalPrice.toFixed(2)} <i class="fa-solid fa-times-circle remove-icon" onclick="removeService('${box.id}')"></i></span>
+                                <span style="display:flex; align-items:center;">${priceStr} <i class="fa-solid fa-times-circle remove-icon" onclick="removeService('${box.id}')"></i></span>
                             </div>`;
                     } else {
-                        const finalPrice = basePrice * sizeMultiplier;
+                        // Monthly service
+                        let finalPrice = basePrice * sizeMultiplier;
+                        let originalPrice = standalonePrice * sizeMultiplier;
+                        
+                        // Enforce margins!
+                        finalPrice = enforceMinimums(finalPrice, box.id);
+                        originalPrice = enforceMinimums(originalPrice, box.id);
+
                         rawMonthlyTotal += finalPrice;
-                        const bundleTag = (standalonePrice && isBundled) ? ' <small style="color:var(--accent-color)">(Bundled Discount)</small>' : (standalonePrice ? ' <small style="color:#94a3b8">(Standalone)</small>' : '');
+                        
+                        const isDiscounted = (standalonePriceAttr && isBundled && originalPrice > finalPrice);
+                        const bundleTag = isDiscounted ? ' <small style="color:var(--accent-color)">(Bundled Discount)</small>' : (standalonePriceAttr ? ' <small style="color:#94a3b8">(Standalone)</small>' : '');
+                        
+                        let priceStr = isDiscounted 
+                            ? `<s style="color:#94a3b8; font-size:0.85rem; margin-right:6px;">$${originalPrice.toFixed(2)}</s>$${finalPrice.toFixed(2)}` 
+                            : `$${finalPrice.toFixed(2)}`;
+
                         monthlyHTML += `
                             <div class="receipt-item">
                                 <span>${serviceName}${bundleTag}</span> 
-                                <span style="display:flex; align-items:center;">$${finalPrice.toFixed(2)} <i class="fa-solid fa-times-circle remove-icon" onclick="removeService('${box.id}')"></i></span>
+                                <span style="display:flex; align-items:center;">${priceStr} <i class="fa-solid fa-times-circle remove-icon" onclick="removeService('${box.id}')"></i></span>
                             </div>`;
                     }
                 } else {
                     // Create Marketing Upsell items for unchecked boxes
                     missedCount++;
-                    // Base price for upsell display should show the BUNDLED price to make it look like a good deal
+                    
+                    let originalUpsellPrice = (standalonePriceAttr ? parseFloat(standalonePriceAttr) : basePrice) * sizeMultiplier;
                     let finalUpsellPrice = basePrice * sizeMultiplier; 
+                    
                     if(type === 'addon') {
-                        // Assuming they add this to the cart, the addon multiplier might trigger
                         finalUpsellPrice = basePrice * sizeMultiplier * ((addonCount + 1) >= 2 ? 0.75 : 1.0);
+                    } else if (standalonePriceAttr) {
+                         if (totalCoreServices + 1 >= 3) {
+                             finalUpsellPrice = basePrice * sizeMultiplier; // will be bundled
+                         } else {
+                             finalUpsellPrice = originalUpsellPrice; // standalone
+                         }
                     }
                     
+                    // Enforce margins on upsells so we don't accidentally advertise a price below our floor!
+                    finalUpsellPrice = enforceMinimums(finalUpsellPrice, box.id);
+                    originalUpsellPrice = enforceMinimums(originalUpsellPrice, box.id);
+
+                    let priceStr = (originalUpsellPrice > finalUpsellPrice) 
+                        ? `<s style="color:#94a3b8; font-size:0.75rem; margin-right:4px;">$${originalUpsellPrice.toFixed(2)}</s>+$${finalUpsellPrice.toFixed(2)}` 
+                        : `+$${finalUpsellPrice.toFixed(2)}`;
+                        
+                    let perUnit = type==='monthly'?'/mo':(type==='onetime'?'/season':'');
+
                     upsellHTML += `
                         <div class="upsell-item">
                             <div class="service-title-col" style="text-align: left;">
                                 <strong style="color:var(--text-dark); margin-bottom: 2px;">${serviceName}</strong>
-                                <small style="color:var(--accent-color); font-weight:700; display:block;">Add for +$${finalUpsellPrice.toFixed(2)}${type==='monthly'?'/mo':(type==='onetime'?'/season':'')}</small>
+                                <small style="color:var(--accent-color); font-weight:700; display:block;">Add for ${priceStr}${perUnit}</small>
                             </div>
                             <button class="btn-funnel" style="padding:8px 16px; font-size:0.85rem; flex:none; width:auto; border-radius: 8px; box-shadow: none;" onclick="addUpsell('${box.id}')">Add <i class="fa-solid fa-plus"></i></button>
                         </div>
@@ -2435,7 +2505,13 @@ checkboxes.forEach((box, index) => {
                     ? `<div style="font-size:0.85rem; color:var(--primary-color); font-weight:700; margin-bottom:5px; text-transform:uppercase;">Seasonal / Add-Ons (Split in Monthly Plan):</div>`
                     : `<div style="font-size:0.85rem; color:#64748b; margin-bottom:5px; text-transform:uppercase;">Seasonal / Add-Ons (Billed at time of service):</div>`;
 
-                document.getElementById('receipt-onetime-items').innerHTML = discountText + onetimeHeader + onetimeHTML;
+                let totalOnetimeHTML = !amortizeChecked ? `
+                    <div class="receipt-total" style="border-top: 2px solid #cbd5e1; margin-top: 15px; padding-top: 15px; font-size: 1.1rem;">
+                        <span>Total One-Time Services:</span>
+                        <span>$${totalOnetime.toFixed(2)}</span>
+                    </div>` : '';
+
+                document.getElementById('receipt-onetime-items').innerHTML = discountText + onetimeHeader + onetimeHTML + totalOnetimeHTML;
             } else {
                 document.getElementById('receipt-onetime-items').innerHTML = "";
             }
