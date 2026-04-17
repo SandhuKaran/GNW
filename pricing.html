@@ -2270,8 +2270,10 @@
             // Calculate ONLY Core services (Mowing + Fertilizer/Weed/Cleanups)
             const totalCoreServices = mowingCount + coreActiveCount;
 
-            // Bundle requires a MINIMUM of 3 CORE SERVICES
-            let isBundled = (totalCoreServices >= 3);
+            
+           // NEW: Require 4 core services for a bundle discount on small lots (0.75x), otherwise require 3
+            let requiredForBundle = (sizeMultiplier === 0.75) ? 4 : 3;
+            let isBundled = (totalCoreServices >= requiredForBundle);
             
             // Process Mowing explicitly
             if (mowFreq !== 'none') {
