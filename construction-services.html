@@ -35,11 +35,11 @@
     <style>
         /* --- 1. GENERAL STYLES --- */
         :root {
-            --primary-color: #1b5e20;
-            --accent-color: #4CAF50; 
-            --text-dark: #222;
-            --text-light: #666;
-            --bg-light: #f9f9f9;
+            --primary-color: #0f2e14;
+            --accent-color: #c9a24b; 
+            --text-dark: #201d16;
+            --text-light: #5d5747;
+            --bg-light: #f2ecdb;
             --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
@@ -47,7 +47,7 @@
             font-family: 'Poppins', sans-serif;
             margin: 0; padding: 0;
             color: var(--text-dark);
-            background-color: #fff;
+            background-color: #faf6ea;
             line-height: 1.6;
             overflow-x: hidden;
             /* Added padding so content doesn't hide behind fixed header */
@@ -65,7 +65,7 @@
         /* --- 2. ISOLATED HEADER STYLES --- */
         .master-header {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 5%; background: #fff; margin: 0;
+            padding: 15px 5%; background: #faf6ea; margin: 0;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             /* Fixed positioning ensures it sticks properly regardless of other CSS rules */
             position: fixed; top: 0; left: 0; width: 100%; z-index: 10000;
@@ -89,11 +89,11 @@
         .has-sub-menu:hover .fa-chevron-down { transform: rotate(180deg); }
         
         .sub-menu-drop {
-            position: absolute; top: 100%; left: 0; background: #fff;
+            position: absolute; top: 100%; left: 0; background: #faf6ea;
             min-width: 240px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             border-radius: 8px; padding: 10px 0; opacity: 0; visibility: hidden;
             transform: translateY(15px); transition: all 0.3s ease;
-            z-index: 1000; border: 1px solid #eee; list-style: none; margin: 0;
+            z-index: 1000; border: 1px solid #e6dec9; list-style: none; margin: 0;
         }
         .has-sub-menu:hover .sub-menu-drop { opacity: 1; visibility: visible; transform: translateY(0); }
         .sub-menu-drop li { margin: 0; padding: 0; }
@@ -107,7 +107,7 @@
         .master-login-btn:hover { color: var(--accent-color) !important; }
 
         .master-btn-header {
-            background-color: var(--primary-color) !important; color: #fff !important;
+            background-color: var(--primary-color) !important; color: #faf6ea !important;
             padding: 10px 25px !important; border-radius: 50px !important; 
             font-weight: 600 !important; font-size: 0.9rem !important;
             transition: background 0.3s !important; text-decoration: none !important;
@@ -120,12 +120,12 @@
         .mobile-login-btn {
             background-color: var(--bg-light); color: var(--primary-color);
             padding: 8px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600;
-            display: flex; align-items: center; gap: 5px; border: 1px solid #ddd; text-decoration: none;
+            display: flex; align-items: center; gap: 5px; border: 1px solid #d8cfb6; text-decoration: none;
         }
         .mobile-call-icon {
             width: 40px; height: 40px; background-color: var(--accent-color); color: white;
             border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem;
-            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); transition: transform 0.2s; text-decoration: none;
+            box-shadow: 0 4px 10px rgba(201, 162, 75, 0.3); transition: transform 0.2s; text-decoration: none;
         }
         .mobile-call-icon:active { transform: scale(0.95); }
 
@@ -151,7 +151,7 @@
         /* --- 3. PAGE HERO --- */
         .page-hero {
             position: relative; display: flex; align-items: center; justify-content: center; text-align: center;
-            height: 60vh; padding: 0 5%; color: #fff; font-family: 'Poppins', sans-serif;
+            height: 60vh; padding: 0 5%; color: #faf6ea; font-family: 'Poppins', sans-serif;
             background-image: url('assets/img/landmain2.webp'); /* Update image path as needed */
             background-size: cover; background-position: center;
         }
@@ -160,11 +160,11 @@
             background: rgba(0, 0, 0, 0.6); z-index: 0;
         }
         .hero-content { position: relative; z-index: 1; max-width: 800px; }
-        .hero-content h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; color: #fff; }
-        .hero-content p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 30px; color: #fff; }
+        .hero-content h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; color: #faf6ea; }
+        .hero-content p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 30px; color: #faf6ea; }
 
         /* --- 4. SERVICES GRID --- */
-        .section-padding { padding: 80px 5%; background-color: #fff; text-align: center; font-family: 'Poppins', sans-serif; }
+        .section-padding { padding: 80px 5%; background-color: #faf6ea; text-align: center; font-family: 'Poppins', sans-serif; }
         .section-title { text-align: center; margin-bottom: 50px; }
         .section-title h2 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 15px; text-transform: uppercase; font-weight: 700; }
         .section-title h2::after { content: ''; display: block; width: 60px; height: 3px; background: var(--accent-color); margin: 10px auto 0; }
@@ -187,30 +187,30 @@
         }
         .service-card:hover img { transform: scale(1.08); }
         .service-card:hover .service-info { transform: translateY(0); }
-        .service-info h3 { color: #fff; font-size: 1.5rem; margin-bottom: 10px; font-weight: 600; text-transform: uppercase; border-bottom: 3px solid var(--accent-color); display: inline-block; padding-bottom: 5px; }
-        .service-info p { color: #ddd; font-size: 0.95rem; line-height: 1.5; margin: 0; }
+        .service-info h3 { color: #faf6ea; font-size: 1.5rem; margin-bottom: 10px; font-weight: 600; text-transform: uppercase; border-bottom: 3px solid var(--accent-color); display: inline-block; padding-bottom: 5px; }
+        .service-info p { color: #d8cfb6; font-size: 0.95rem; line-height: 1.5; margin: 0; }
 
         /* --- 5. CTA BANNER --- */
-        .cta-banner { background-color: var(--primary-color); color: #fff; text-align: center; padding: 80px 20px; font-family: 'Poppins', sans-serif;}
-        .cta-banner h2 { font-size: 2.5rem; margin-bottom: 20px; color: #fff; }
-        .btn-white { background: #fff; color: var(--primary-color); padding: 15px 40px; border-radius: 50px; font-weight: 700; display: inline-block; margin-top: 20px; font-size: 1.1rem; transition: transform 0.2s; text-decoration: none; }
+        .cta-banner { background-color: var(--primary-color); color: #faf6ea; text-align: center; padding: 80px 20px; font-family: 'Poppins', sans-serif;}
+        .cta-banner h2 { font-size: 2.5rem; margin-bottom: 20px; color: #faf6ea; }
+        .btn-white { background: #faf6ea; color: var(--primary-color); padding: 15px 40px; border-radius: 50px; font-weight: 700; display: inline-block; margin-top: 20px; font-size: 1.1rem; transition: transform 0.2s; text-decoration: none; }
         .btn-white:hover { transform: scale(1.05); }
 
         /* --- 6. STICKY ESTIMATE --- */
         .sticky-estimate {
-            position: fixed; bottom: 30px; right: 30px; background-color: var(--accent-color); color: #fff;
+            position: fixed; bottom: 30px; right: 30px; background-color: var(--accent-color); color: #faf6ea;
             padding: 15px 25px; border-radius: 50px; box-shadow: 0 5px 20px rgba(0,0,0,0.3);
             display: flex; align-items: center; gap: 15px; z-index: 9999;
-            transition: transform 0.3s ease; text-decoration: none; border: 2px solid #fff; font-family: 'Poppins', sans-serif;
+            transition: transform 0.3s ease; text-decoration: none; border: 2px solid #faf6ea; font-family: 'Poppins', sans-serif;
         }
-        .sticky-estimate:hover { transform: translateY(-5px); background-color: var(--primary-color); color: #fff; }
+        .sticky-estimate:hover { transform: translateY(-5px); background-color: var(--primary-color); color: #faf6ea; }
         .sticky-icon { font-size: 1.8rem; }
         .sticky-text { display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
         .sticky-text span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
         .sticky-text strong { font-size: 1.1rem; font-weight: 700; }
 
         /* --- 7. FOOTER --- */
-        .master-footer { background: #f9f9f9; padding: 60px 5% 20px; color: var(--text-dark); border-top: 1px solid #eee; font-family: 'Poppins', sans-serif;}
+        .master-footer { background: #f2ecdb; padding: 60px 5% 20px; color: var(--text-dark); border-top: 1px solid #e6dec9; font-family: 'Poppins', sans-serif;}
         .master-footer .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
         .master-footer .footer-col h4 { color: var(--primary-color); margin-bottom: 20px; font-size: 1.1rem; font-weight: 600; margin-top:0;}
         .master-footer .footer-col p { color: var(--text-light); line-height: 1.6; margin:0;}
@@ -221,7 +221,7 @@
         .master-footer .footer-col ul li i { color: var(--accent-color); margin-right: 10px; width: 15px; text-align: center;}
         .master-footer .social-icons a { font-size: 1.5rem; color: var(--primary-color); margin-right: 15px; transition: color 0.3s; text-decoration: none;}
         .master-footer .social-icons a:hover { color: var(--accent-color); }
-        .master-footer .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); margin:0;}
+        .master-footer .copyright { text-align: center; border-top: 1px solid #d8cfb6; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); margin:0;}
 
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 991px) {
@@ -235,8 +235,8 @@
             /* SCROLLABLE MOBILE MENU */
             .master-nav {
                 display: none; position: fixed; top: 55px; left: 0; width: 100%; height: calc(100vh - 55px); 
-                background-color: #fff; flex-direction: column; align-items: center; padding: 20px 0 100px 0; 
-                box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 1px solid #eee; overflow-y: auto; z-index: 9999;
+                background-color: #faf6ea; flex-direction: column; align-items: center; padding: 20px 0 100px 0; 
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 1px solid #e6dec9; overflow-y: auto; z-index: 9999;
             }
             .master-nav.active { display: flex; }
             .master-nav li { margin: 10px 0; width: 100%; text-align: center; }
@@ -246,12 +246,12 @@
             .has-sub-menu .fa-chevron-down { display: inline-block; transition: transform 0.3s; }
             .sub-menu-drop {
                 position: static; display: none; opacity: 1; visibility: visible;
-                transform: none; box-shadow: none; border: none; background: #f9f9f9;
+                transform: none; box-shadow: none; border: none; background: #f2ecdb;
                 margin-top: 10px; border-radius: 0; width: 100%; padding: 10px 0;
             }
             /* Forced block to override desktop specificity */
             .sub-menu-drop.open { display: block !important; } 
-            .sub-menu-drop li a { padding: 12px 0; color: var(--text-light); border-bottom: 1px solid #eee; text-align: center;}
+            .sub-menu-drop li a { padding: 12px 0; color: var(--text-light); border-bottom: 1px solid #e6dec9; text-align: center;}
             .sub-menu-drop li:last-child a { border-bottom: none; }
             .mobile-only-link { display: block !important; font-weight: 600; color: var(--primary-color) !important; }
             
@@ -260,6 +260,7 @@
             .sticky-text strong { font-size: 0.9rem; }
         }
     </style>
+    <link rel="stylesheet" href="assets/css/luxe.css">
 </head>
 <body>
 

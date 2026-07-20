@@ -1,0 +1,66 @@
+/* ============================================================
+   GREENWORKS — DEEP FOREST LUXE THEME
+   Loaded last on every page. Typography + gold CTA treatment.
+   Palette: forest #0f2e14 | ivory #faf6ea | gold #c9a24b
+   ============================================================ */
+/* --- Warm page canvas --- */
+body {
+    background-color: #f6f1e2;
+}
+
+/* --- Gold CTA buttons: gold gradient + deep forest text --- */
+.explore-btn,
+.explore-btn:hover,
+.btn-primary,
+.btn-funnel,
+.btn-header,
+.btn-header:hover,
+.btn-submit,
+.btn-submit:hover,
+.btn-portal,
+.hero-btn,
+.master-btn-header,
+.mobile-call-icon,
+.pricing-card.popular .btn-plan,
+.plan-tabs input[type="radio"]:checked + label,
+.btn-home:hover,
+.btn-plan:hover,
+.pricing-card:first-child .btn-plan:hover {
+    background: linear-gradient(135deg, #d8b466 0%, #c9a24b 55%, #b08a3e 100%) !important;
+    color: #172c12 !important;
+    border-color: #b08a3e !important;
+    text-shadow: none !important;
+}
+.btn-primary:hover,
+.btn-funnel:hover,
+.btn-portal:hover,
+.hero-btn:hover,
+.master-btn-header:hover,
+.pricing-card.popular .btn-plan:hover {
+    background: linear-gradient(135deg, #e2c078 0%, #d4ad55 55%, #bb9345 100%) !important;
+    color: #172c12 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(176, 138, 62, 0.35) !important;
+}
+
+/* Icons inside gold elements inherit the dark text */
+.mobile-call-icon i,
+.btn-portal i,
+.btn-primary i { color: inherit !important; }
+
+/* --- Gold detail lines under section headings --- */
+.section-title h2::after {
+    background: linear-gradient(90deg, #c9a24b, #b08a3e) !important;
+}
+
+/* --- Refined text selection + scrollbar --- */
+::selection { background: #c9a24b; color: #172c12; }
+::-webkit-scrollbar { width: 11px; }
+::-webkit-scrollbar-track { background: #ece5d0; }
+::-webkit-scrollbar-thumb { background: #0f2e14; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #16421f; }
+
+/* --- Soften harsh pure-white cards that slipped through --- */
+input, select, textarea {
+    background-color: #fffdf6;
+}

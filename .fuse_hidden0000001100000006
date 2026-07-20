@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Quote | Greenworks Landscaping</title>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-T9K6VD2L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      // Unified Google Tag
+      gtag('config', 'GT-T9K6VD2L');
+      // Google Analytics 4
+      gtag('config', 'G-N8165ZJRD2');
+      // Google Ads Tracking
+      gtag('config', 'AW-10820369667');
+    </script>
+
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WVHBF97C');</script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- 1. GENERAL STYLES (Matches Master Reference) --- */
+        :root {
+            --primary-color: #1b5e20;
+            --accent-color: #4CAF50; 
+            --text-dark: #222;
+            --text-light: #666;
+            --bg-light: #f9f9f9;
+            --card-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0; padding: 0;
+            color: var(--text-dark);
+            background-color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Stops background scrolling when mobile menu is open */
+        body.no-scroll {
+            overflow: hidden;
+        }
+
+        /* Mobile specific link visible only on mobile */
+        .mobile-only-link { display: none !important; }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* --- 2. HEADER --- */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: #fff;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .logo { border-radius: 10px; overflow: hidden; transition: transform 0.3s; }
+        .logo:hover { transform: scale(1.02); }
+
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent-color); }
+        
+        /* DROPDOWN MENU STYLING (Desktop) */
+        .dropdown-parent {
+            position: relative;
+            padding: 10px 0; 
+        }
+        .dropdown-parent > a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .dropdown-parent .fa-chevron-down {
+            font-size: 0.7rem;
+            transition: transform 0.3s;
+        }
+        .dropdown-parent:hover .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid #eee;
+        }
+        .dropdown-parent:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown li { margin: 0; }
+        .dropdown li a {
+            display: block;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            transition: background 0.3s, color 0.3s;
+        }
+        .dropdown li a:hover {
+            background: var(--bg-light);
+            color: var(--accent-color);
+        }
+
+        /* LOGIN BUTTON STYLING */
+        .nav-links .login-btn { color: var(--primary-color); font-weight: 600; }
+        .nav-links .login-btn:hover { color: var(--accent-color); }
+
+        .btn-header {
+            background-color: var(--primary-color); color: #fff !important;
+            padding: 10px 25px; border-radius: 50px; font-weight: 600; font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        .btn-header:hover { background-color: var(--accent-color); }
+
+        /* Mobile Controls */
+        .mobile-controls { display: none; align-items: center; gap: 15px; }
+        
+        .mobile-login-btn {
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid #ddd;
+        }
+        
+        .mobile-call-icon {
+            width: 40px; height: 40px; background-color: var(--accent-color); color: white;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); transition: transform 0.2s;
+        }
+        .mobile-call-icon:active { transform: scale(0.95); }
+        .mobile-button { cursor: pointer; width: 30px; height: 20px; position: relative; z-index: 1001; }
+        .mobile-button span { display: block; width: 100%; height: 3px; background-color: var(--primary-color); position: absolute; top: 50%; transform: translateY(-50%); transition: all 0.3s ease; }
+        .mobile-button::before, .mobile-button::after { content: ''; width: 100%; height: 3px; background-color: var(--primary-color); position: absolute; transition: all 0.3s ease; }
+        .mobile-button::before { top: 0; }
+        .mobile-button::after { bottom: 0; }
+        .mobile-button.active span { opacity: 0; }
+        .mobile-button.active::before { top: 50%; transform: rotate(45deg); }
+        .mobile-button.active::after { top: 50%; transform: rotate(-45deg); bottom: auto; }
+
+        /* --- 3. PAGE HERO --- */
+        .page-hero {
+            position: relative;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+            height: 50vh; padding: 0 5%; color: #fff;
+            background-image: url('assets/img/landmain1.webp'); 
+            background-size: cover; background-position: center;
+        }
+        .page-hero::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; }
+        .hero-content h1 { font-size: 3rem; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .hero-content p { font-size: 1.1rem; opacity: 0.9; }
+
+        /* --- 4. CONTACT & FORM SECTION --- */
+        .contact-section { padding: 80px 5%; background-color: var(--bg-light); }
+        .contact-grid {
+            display: grid; grid-template-columns: 3fr 2fr; gap: 50px;
+            max-width: 1200px; margin: 0 auto;
+        }
+
+        /* FORM STYLES */
+        .form-container {
+            background: #fff; padding: 40px; border-radius: 15px;
+            box-shadow: var(--card-shadow);
+        }
+        .form-container h2 { font-size: 1.8rem; color: var(--primary-color); margin-bottom: 20px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 12px 15px; border: 1px solid #ddd;
+            border-radius: 5px; font-family: 'Poppins', sans-serif;
+            transition: border 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--accent-color); outline: none;
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        
+        .btn-submit {
+            background: var(--primary-color); color: #fff; border: none;
+            padding: 15px 30px; border-radius: 50px; font-weight: 600; cursor: pointer;
+            text-transform: uppercase; letter-spacing: 1px; width: 100%; transition: background 0.3s;
+            margin-top: 20px;
+        }
+        .btn-submit:hover { background: var(--accent-color); }
+
+        /* CONTACT INFO STYLES */
+        .info-container h2 { font-size: 1.8rem; color: var(--primary-color); margin-bottom: 20px; }
+        .info-item { display: flex; align-items: flex-start; margin-bottom: 25px; }
+        .info-icon { 
+            width: 50px; height: 50px; background: #e8f5e9; color: var(--primary-color);
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            font-size: 1.2rem; margin-right: 20px; flex-shrink: 0;
+        }
+        .info-text h4 { margin: 0 0 5px; font-size: 1.1rem; }
+        .info-text p { margin: 0; color: var(--text-light); font-size: 0.95rem; }
+        .info-text a { color: var(--accent-color); font-weight: 600; }
+
+        .map-container {
+            width: 100%; height: 300px; background: #eee;
+            border-radius: 15px; overflow: hidden; margin-top: 30px;
+        }
+        .map-container iframe { width: 100%; height: 100%; border: 0; }
+
+        /* --- 5. TRUST SIGNALS --- */
+        .trust-bar {
+            padding: 40px 5%; background: #fff; border-top: 1px solid #eee; text-align: center;
+        }
+        .trust-grid { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
+        .trust-item { display: flex; align-items: center; gap: 15px; }
+        .trust-item i { font-size: 2rem; color: var(--accent-color); }
+        .trust-text { text-align: left; }
+        .trust-text h4 { margin: 0; font-size: 1.1rem; }
+        .trust-text span { font-size: 0.85rem; color: #777; }
+
+        /* --- 7. FOOTER --- */
+        footer { background: #f9f9f9; padding: 60px 5% 20px; color: var(--text-dark); border-top: 1px solid #eee; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { color: var(--primary-color); margin-bottom: 20px; font-size: 1.1rem; }
+        .footer-col ul li { margin-bottom: 10px; color: var(--text-light); }
+        .footer-col ul li i { color: var(--accent-color); margin-right: 10px; }
+        .social-icons a { font-size: 1.5rem; color: var(--primary-color); margin-right: 15px; transition: color 0.3s; }
+        .social-icons a:hover { color: var(--accent-color); }
+        .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 900px) {
+            .contact-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .mobile-controls { display: flex; gap: 8px; }
+            .mobile-login-btn { padding: 6px 10px; font-size: 0.75rem; border: 1px solid var(--accent-color); }
+            .mobile-call-icon { width: 32px; height: 32px; font-size: 1rem; }
+            
+            .btn-header.desktop-only { display: none; }
+            
+            /* SCROLLABLE MOBILE MENU */
+            .nav-links {
+                display: none;
+                position: fixed; 
+                top: 65px; 
+                left: 0; 
+                width: 100%;
+                height: calc(100vh - 65px); 
+                background-color: #fff;
+                flex-direction: column; 
+                align-items: center;
+                padding: 20px 0 100px 0; 
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                border-top: 1px solid #eee;
+                overflow-y: auto; 
+                z-index: 999;
+            }
+
+            .nav-links.active { display: flex; }
+            .nav-links li { margin: 10px 0; width: 100%; text-align: center; }
+            
+            /* COLLAPSIBLE MOBILE DROPDOWN */
+            .dropdown-parent > a {
+                display: flex; justify-content: center; align-items: center; gap: 8px;
+            }
+            .dropdown-parent .fa-chevron-down { 
+                display: inline-block; transition: transform 0.3s;
+            }
+            .dropdown {
+                position: static; display: none; opacity: 1; visibility: visible;
+                transform: none; box-shadow: none; border: none; background: #f9f9f9;
+                margin-top: 10px; border-radius: 0; width: 100%; padding: 10px 0;
+            }
+            .dropdown.open { display: block; }
+            .dropdown li a { padding: 12px 0; color: var(--text-light); border-bottom: 1px solid #eee;}
+            .dropdown li:last-child a { border-bottom: none; }
+            
+            .mobile-only-link { display: block !important; font-weight: 600; color: var(--primary-color) !important; }
+
+            .desktop-login-link { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WVHBF97C"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <header>
+        <div class="logo">
+            <a href="/">
+                <img src="assets/img/logo-light.png" alt="Greenworks Logo" 
+                     style="height: 45px; width: auto; filter: none; display: block;"> 
+            </a>
+        </div>
+        
+        <div class="mobile-controls">
+            <a href="https://www.trackmylawn.com/login" target="_blank" class="mobile-login-btn">
+                <i class="fas fa-user-circle"></i> Login
+            </a>
+            <a href="tel:+17055009000" class="mobile-call-icon" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Mobile Header Call' });"><i class="fas fa-phone"></i></a>
+            <div class="mobile-button" onclick="toggleMenu()"><span></span></div>
+        </div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/" >Home</a></li>
+            
+            <li class="dropdown-parent">
+                <a href="landmain" onclick="toggleDropdown(event)">Services <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown" id="servicesDropdown">
+                    <li class="mobile-only-link"><a href="landmain">View All Construction →</a></li>
+                    <li><a href="landscape-designs">Landscape Designs</a></li>
+                    <li><a href="driveways-walkways">Driveways & Walkways</a></li>
+                    <li><a href="interlock-patio">Interlock Patios</a></li>
+                    <li><a href="retaining-walls">Retaining Walls</a></li>
+                    <li><a href="outdoor-features">Outdoor Features</a></li>
+                    <li><a href="custom-porches">Custom Porches</a></li>
+                </ul>
+            </li>
+            
+            <li><a href="landscape-gallery">Portfolio</a></li>
+            <li><a href="about">About Us</a></li>
+            <li><a href="contact" style="color: var(--accent-color); font-weight: 600;">Contact</a></li>
+            <li class="desktop-login-link"><a href="https://www.trackmylawn.com/login" target="_blank" class="login-btn"><i class="fas fa-user-circle"></i> Client Login</a></li>
+        </ul>
+        
+        <a href="tel:+17055009000" class="btn-header desktop-only" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Desktop Header Call' });">Call (705)500-9000</a>
+    </header>
+
+    <section class="page-hero">
+        <div class="hero-content">
+            <h1>Contact Us</h1>
+            <p>Ready to transform your property? Let's discuss your project.</p>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="contact-grid">
+            
+            <div class="form-container">
+                <h2>Request a Free Estimate</h2>
+                
+                <form id="contactForm">
+                    
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" name="firstName" placeholder="John" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" name="lastName" placeholder="Doe" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" name="email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" name="phone" placeholder="(123) 456-7890" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Property Address</label>
+                        <input type="text" name="address" placeholder="Street, City, Postal Code">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Service Needed</label>
+                            <select name="service">
+                                <option value="Interlock Driveway">Interlock Driveway</option>
+                                <option value="Patio & Walkway">Patio & Walkway</option>
+                                <option value="Retaining Wall">Retaining Wall</option>
+                                <option value="Outdoor Kitchen">Outdoor Kitchen</option>
+                                <option value="Full Landscape Design">Full Landscape Design</option>
+                                <option value="Pool Landscape">Pool Landscape</option>
+                                <option value="Repair / Maintenance">Repair / Maintenance</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Timeline</label>
+                            <select name="timeline">
+                                <option value="ASAP">As Soon As Possible</option>
+                                <option value="1 Month">Within 1 Month</option>
+                                <option value="This Season">This Season</option>
+                                <option value="Next Year">Planning for Next Year</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Project Details / Message</label>
+                        <textarea name="message" rows="5" placeholder="Tell us about your vision..."></textarea>
+                    </div>
+
+                    <button type="submit" id="contactSubmitBtn" class="btn-submit">Send Request</button>
+                </form>
+            </div>
+
+            <div class="info-container">
+                <h2>Get in Touch</h2>
+                
+                <div class="info-item">
+                    <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+                    <div class="info-text">
+                        <h4>Call Us</h4>
+                        <p><a href="tel:+17055009000" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Body Info Call' });">+1 (705)500-9000</a></p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="info-text">
+                        <h4>Email Us</h4>
+                        <p><a href="mailto:info@gnwlandscaping.ca">info@gnwlandscaping.ca</a></p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="info-text">
+                        <h4>Service Area</h4>
+                        <p>Georgetown, Halton Hills, Brampton, Mississauga & Surroundings.</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fas fa-clock"></i></div>
+                    <div class="info-text">
+                        <h4>Working Hours</h4>
+                        <p>Mon - Sat: 8:00 AM - 6:00 PM<br>Sun: Closed</p>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46059.85461974737!2d-79.95754593465714!3d43.65219762199127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b683e95079875%3A0xc476e33930490797!2sGeorgetown%2C%20ON!5e0!3m2!1sen!2sca!4v1709230000000!5m2!1sen!2sca" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="trust-bar">
+        <div class="trust-grid">
+            <div class="trust-item">
+                <i class="fas fa-certificate"></i>
+                <div class="trust-text">
+                    <h4>Fully Insured</h4>
+                    <span>WSIB Compliant</span>
+                </div>
+            </div>
+            <div class="trust-item">
+                <i class="fas fa-check-double"></i>
+                <div class="trust-text">
+                    <h4>2-Year Warranty</h4>
+                    <span>On All Hardscaping</span>
+                </div>
+            </div>
+            <div class="trust-item">
+                <i class="fas fa-star"></i>
+                <div class="trust-text">
+                    <h4>Top Rated</h4>
+                    <span>5-Star Google Reviews</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>About Us</h4>
+                <p>Greenworks Lawncare is committed to providing top-quality lawn care services. Locally owned and operated, we make your lawn our passion.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Georgetown, ON, CA</li>
+                    <li><i class="fas fa-phone"></i> <a href="tel:+17055009000" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Footer Call' });">+1 (705)500-9000</a></li>
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:info@gnwlandscaping.ca">info@gnwlandscaping.ca</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/gnwlandscaping/" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>Copyright © <span id="year"></span> | Greenworks Construction and Companies Inc. | All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+
+        // --- MOBILE MENU TOGGLE ---
+        function toggleMenu() {
+            const navLinks = document.getElementById("navLinks");
+            const mobileBtn = document.querySelector(".mobile-button");
+            
+            navLinks.classList.toggle("active");
+            mobileBtn.classList.toggle("active");
+            
+            // Toggle the no-scroll class on the body to lock background scrolling
+            document.body.classList.toggle("no-scroll");
+        }
+
+        // --- MOBILE DROPDOWN TOGGLE ---
+        function toggleDropdown(e) {
+            // Only stop default link behavior if on mobile screen size
+            if (window.innerWidth <= 768) {
+                e.preventDefault(); 
+                
+                const dropdown = document.getElementById('servicesDropdown');
+                const icon = e.currentTarget.querySelector('.fa-chevron-down');
+                
+                dropdown.classList.toggle('open');
+                
+                if (dropdown.classList.contains('open')) {
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            }
+        }
+    </script>
+
+    <script>
+        // --- WEB3FORMS STRICT JSON SUBMISSION ---
+        const form = document.getElementById('contactForm');
+        
+        if(form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); // Stop standard browser reload
+                
+                // Fire Google Analytics tracking
+                if(typeof gtag === 'function') {
+                    gtag('event', 'generate_lead', { 'event_category': 'Form', 'event_label': 'Contact Page Form' });
+                }
+
+                // Update UI Button
+                const submitBtn = document.getElementById('contactSubmitBtn');
+                if(submitBtn) {
+                    submitBtn.innerText = "Sending...";
+                    submitBtn.disabled = true;
+                    submitBtn.style.opacity = "0.7";
+                }
+
+                // Build the strict JSON payload exactly how Web3Forms likes it
+                // Note: We are targeting the specific names of your inputs here (firstName, lastName, etc.)
+                const payload = {
+                    access_key: "6b0a383e-1fbf-4ede-9e86-2d0634c48564",
+                    subject: "New Lead from Landscaping Form: " + form.firstName.value + " " + form.lastName.value,
+                    from_name: "Greenworks Contact Form",
+                    email: form.email.value, // Crucial standard key
+                    First_Name: form.firstName.value,
+                    Last_Name: form.lastName.value,
+                    Phone: form.phone.value,
+                    Address: form.address.value || "Not provided",
+                    Service_Needed: form.service.value,
+                    Timeline: form.timeline.value,
+                    Message: form.message.value || "No message provided",
+                    botcheck: form.botcheck ? form.botcheck.checked : false
+                };
+
+                // Send the payload safely using AJAX
+                fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                })
+                .then(async (response) => {
+                    let json = await response.json();
+                    if (response.status === 200 && json.success) {
+                        // SUCCESS! Execute local redirect
+                        window.location.href = "thankyou.html";
+                    } else {
+                        console.log(response);
+                        alert("Oops! " + json.message);
+                        if(submitBtn) {
+                            submitBtn.innerText = "Send Request";
+                            submitBtn.disabled = false;
+                            submitBtn.style.opacity = "1";
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    alert("Oops! There was a network error. Please try calling us instead.");
+                    if(submitBtn) {
+                        submitBtn.innerText = "Send Request";
+                        submitBtn.disabled = false;
+                        submitBtn.style.opacity = "1";
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

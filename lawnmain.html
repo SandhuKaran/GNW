@@ -22,11 +22,11 @@
     <style>
         /* --- 1. GENERAL STYLES --- */
         :root {
-            --primary-color: #1b5e20;
-            --accent-color: #4CAF50; 
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --bg-light: #f8fafc;
+            --primary-color: #0f2e14;
+            --accent-color: #c9a24b; 
+            --text-dark: #23301f;
+            --text-light: #6a614b;
+            --bg-light: #f5f0e1;
             --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
@@ -39,7 +39,7 @@
             margin: 0; 
             padding: 0; 
             color: var(--text-dark); 
-            background-color: #fff; 
+            background-color: #faf6ea; 
             line-height: 1.6; 
             overflow-x: hidden; 
         }
@@ -86,7 +86,7 @@
             justify-content: space-between; 
             align-items: center; 
             padding: 15px 5%; 
-            background: #fff; 
+            background: #faf6ea; 
             box-shadow: 0 2px 15px rgba(0,0,0,0.05); 
             position: sticky; 
             top: 0; 
@@ -144,7 +144,7 @@
             position: absolute; 
             top: 100%; 
             left: 0; 
-            background: #fff; 
+            background: #faf6ea; 
             min-width: 220px; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
             border-radius: 12px; 
@@ -154,7 +154,7 @@
             transform: translateY(15px); 
             transition: all 0.3s ease; 
             z-index: 1000; 
-            border: 1px solid #f1f5f9; 
+            border: 1px solid #eee7d3; 
         }
 
         .dropdown-parent:hover .dropdown { 
@@ -191,7 +191,7 @@
 
         .btn-header { 
             background-color: var(--primary-color); 
-            color: #fff !important; 
+            color: #faf6ea !important; 
             padding: 10px 25px; 
             border-radius: 50px; 
             font-weight: 600; 
@@ -220,7 +220,7 @@
             display: flex; 
             align-items: center; 
             gap: 5px; 
-            border: 1px solid #e2e8f0; 
+            border: 1px solid #ded5be; 
             text-decoration: none; 
         }
 
@@ -234,7 +234,7 @@
             justify-content: center; 
             align-items: center; 
             font-size: 1.2rem; 
-            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); 
+            box-shadow: 0 4px 10px rgba(201, 162, 75, 0.3); 
             transition: transform 0.2s; 
             text-decoration: none; 
         }
@@ -292,7 +292,7 @@
             background-attachment: fixed; 
             min-height: 80vh; 
             padding: 0 5% 60px 5%; 
-            color: #fff; 
+            color: #faf6ea; 
         }
 
         .hero-text { 
@@ -314,7 +314,7 @@
         .hero p { 
             font-size: 1.3rem; 
             margin-bottom: 40px; 
-            color: #f8fafc; 
+            color: #f5f0e1; 
             text-shadow: 0 1px 10px rgba(0,0,0,0.6); 
             opacity: 0; 
             animation: fadeSlideUp 0.8s ease-out 0.2s forwards;
@@ -330,26 +330,26 @@
 
         .btn-primary { 
             background-color: var(--accent-color); 
-            color: #fff; 
+            color: #faf6ea; 
             padding: 16px 45px; 
             border-radius: 50px; 
             font-size: 1.1rem; 
             font-weight: 700; 
             border: none; 
             cursor: pointer; 
-            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4); 
+            box-shadow: 0 5px 20px rgba(201, 162, 75, 0.4); 
             transition: transform 0.2s; 
             text-decoration: none;
         }
 
         .btn-secondary { 
             background-color: rgba(0,0,0,0.5); 
-            color: #fff; 
+            color: #faf6ea; 
             padding: 16px 45px; 
             border-radius: 50px; 
             font-size: 1.1rem; 
             font-weight: 600; 
-            border: 2px solid #fff; 
+            border: 2px solid #faf6ea; 
             cursor: pointer; 
             transition: all 0.2s, backdrop-filter 0.2s; 
             text-decoration: none; 
@@ -358,13 +358,13 @@
 
         .btn-primary:hover { 
             transform: translateY(-3px); 
-            background-color: #388E3C; 
-            color: #fff; 
-            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.5);
+            background-color: #1a4d23; 
+            color: #faf6ea; 
+            box-shadow: 0 8px 25px rgba(201, 162, 75, 0.5);
         }
 
         .btn-secondary:hover { 
-            background-color: #fff; 
+            background-color: #faf6ea; 
             color: var(--primary-color); 
             transform: translateY(-3px);
         }
@@ -393,13 +393,13 @@
         }
 
         .funnel-container {
-            background: #fff;
+            background: #faf6ea;
             max-width: 750px;
             margin: 0 auto;
             border-radius: 24px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.06);
             overflow: hidden;
-            border: 1px solid #f1f5f9;
+            border: 1px solid #eee7d3;
             border-top: 8px solid var(--accent-color);
             padding: 40px;
         }
@@ -420,7 +420,7 @@
             left: 20px; 
             right: 20px; 
             height: 4px; 
-            background: #f1f5f9; 
+            background: #eee7d3; 
             z-index: 1; 
             transform: translateY(-50%); 
             border-radius: 5px; 
@@ -429,31 +429,31 @@
         .progress-step { 
             width: 34px; 
             height: 34px; 
-            background: #f1f5f9; 
+            background: #eee7d3; 
             border-radius: 50%; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
             font-weight: 700; 
-            color: #94a3b8; 
+            color: #8d8468; 
             font-size: 0.9rem; 
             z-index: 2; 
             position: relative; 
             transition: all 0.4s ease; 
-            border: 2px solid #fff; 
+            border: 2px solid #faf6ea; 
         }
 
         .progress-step.active { 
             background: var(--accent-color); 
-            color: #fff; 
-            box-shadow: 0 0 0 6px rgba(76, 175, 80, 0.15); 
+            color: #faf6ea; 
+            box-shadow: 0 0 0 6px rgba(201, 162, 75, 0.15); 
             transform: scale(1.1); 
             border-color: var(--accent-color); 
         }
 
         .progress-step.completed { 
             background: var(--primary-color); 
-            color: #fff; 
+            color: #faf6ea; 
             border-color: var(--primary-color); 
         }
 
@@ -495,7 +495,7 @@
             left: 18px; 
             top: 50%; 
             transform: translateY(-50%); 
-            color: #94a3b8; 
+            color: #8d8468; 
             font-size: 1.1rem; 
             z-index: 2; 
             transition: color 0.3s;
@@ -508,21 +508,21 @@
         .funnel-input { 
             width: 100%; 
             padding: 14px 18px 14px 48px; 
-            border: 2px solid #e2e8f0; 
+            border: 2px solid #ded5be; 
             border-radius: 12px; 
             font-family: 'Poppins', sans-serif; 
             font-size: 1rem; 
             color: var(--text-dark); 
             transition: all 0.3s; 
-            background: #f8fafc; 
+            background: #f5f0e1; 
             font-weight: 500;
         }
 
         .funnel-input:focus { 
             border-color: var(--accent-color); 
-            background: #fff; 
+            background: #faf6ea; 
             outline: none; 
-            box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1); 
+            box-shadow: 0 0 0 4px rgba(201, 162, 75, 0.1); 
         }
 
         .pac-target-input { 
@@ -535,7 +535,7 @@
             color: var(--primary-color); 
             font-weight: 700; 
             margin: 20px 0 12px 0; 
-            border-bottom: 2px solid #f1f5f9; 
+            border-bottom: 2px solid #eee7d3; 
             padding-bottom: 8px; 
         }
 
@@ -554,11 +554,11 @@
             display: flex; 
             align-items: center; 
             padding: 15px 18px; 
-            border: 1px solid #cbd5e1; 
+            border: 1px solid #cec3a6; 
             border-radius: 12px; 
             cursor: pointer; 
             transition: all 0.25s ease; 
-            background: #fff; 
+            background: #faf6ea; 
             box-shadow: 0 2px 5px rgba(0,0,0,0.02); 
             gap: 12px;
         }
@@ -566,7 +566,7 @@
         .service-option:hover { 
             border-color: var(--accent-color); 
             transform: translateY(-2px); 
-            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.1); 
+            box-shadow: 0 6px 15px rgba(201, 162, 75, 0.1); 
         }
 
         .service-option input[type="checkbox"], 
@@ -626,30 +626,30 @@
         /* Highlight selected cards smoothly */
         .service-option:has(input:checked) { 
             border-color: var(--accent-color); 
-            background: #f4fce3; 
-            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.15); 
+            background: #f0e9d2; 
+            box-shadow: 0 4px 12px rgba(201, 162, 75, 0.15); 
         }
 
         /* Map Placeholder */
         .map-container { 
             width: 100%; 
             height: 180px; 
-            background: #e2e8f0; 
+            background: #ded5be; 
             border-radius: 12px; 
             margin-bottom: 18px; 
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
             align-items: center; 
-            color: #64748b; 
-            border: 2px dashed #cbd5e1; 
+            color: #6a614b; 
+            border: 2px dashed #cec3a6; 
             position: relative; 
             overflow: hidden; 
         }
 
         .map-container i { 
             font-size: 2.5rem; 
-            color: #94a3b8; 
+            color: #8d8468; 
             margin-bottom: 8px; 
             z-index: 2; 
         }
@@ -667,19 +667,19 @@
             width: 100%; 
             padding: 14px 18px; 
             border-radius: 12px; 
-            border: 2px solid #e2e8f0; 
+            border: 2px solid #ded5be; 
             font-family: 'Poppins', sans-serif; 
             font-size: 0.95rem; 
             font-weight: 500; 
             outline: none; 
-            background: #f8fafc; 
+            background: #f5f0e1; 
             color: var(--text-dark); 
             transition: border-color 0.3s;
         }
 
         .size-selector select:focus { 
             border-color: var(--accent-color); 
-            background: #fff;
+            background: #faf6ea;
         }
 
         .area-success-box { 
@@ -694,15 +694,15 @@
         }
 
         .area-success-box p { 
-            color: #1b5e20; 
+            color: #0f2e14; 
             margin-bottom: 0; 
             font-size: 0.95rem; 
         }
 
         /* Final Quote Receipt (Step 4) */
         .quote-receipt { 
-            background: #f8fafc; 
-            border: 2px solid #e2e8f0; 
+            background: #f5f0e1; 
+            border: 2px solid #ded5be; 
             border-radius: 16px; 
             padding: 25px; 
             margin-bottom: 20px; 
@@ -715,7 +715,7 @@
             align-items: center;
             margin-bottom: 10px; 
             font-size: 0.95rem; 
-            border-bottom: 1px dashed #cbd5e1; 
+            border-bottom: 1px dashed #cec3a6; 
             padding-bottom: 8px; 
             color: #334155; 
             font-weight: 500;
@@ -728,7 +728,7 @@
             font-size: 1.25rem; 
             font-weight: 800; 
             color: var(--primary-color); 
-            border-top: 2px solid #cbd5e1; 
+            border-top: 2px solid #cec3a6; 
             padding-top: 15px; 
         }
 
@@ -757,7 +757,7 @@
         /* Upsell Section (Marketing) */
         .upsell-section { 
             margin-top: 25px; 
-            border-top: 2px dashed #cbd5e1; 
+            border-top: 2px dashed #cec3a6; 
             padding-top: 20px; 
             text-align: left; 
             display: none; 
@@ -775,17 +775,17 @@
             justify-content: space-between; 
             align-items: center; 
             padding: 12px 16px; 
-            border: 1px solid #e2e8f0; 
+            border: 1px solid #ded5be; 
             border-radius: 12px; 
             margin-bottom: 10px; 
-            background: #fff; 
+            background: #faf6ea; 
             transition: 0.3s; 
             box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
 
         .upsell-item:hover { 
             border-color: var(--accent-color); 
-            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.08); 
+            box-shadow: 0 4px 10px rgba(201, 162, 75, 0.08); 
             transform: translateY(-1px);
         }
 
@@ -794,8 +794,8 @@
             display: flex; 
             align-items: center; 
             gap: 15px; 
-            background: #fff; 
-            border: 2px solid #e2e8f0; 
+            background: #faf6ea; 
+            border: 2px solid #ded5be; 
             padding: 15px 20px; 
             border-radius: 12px; 
             margin-bottom: 20px; 
@@ -805,7 +805,7 @@
 
         .amortize-toggle:has(input:checked) { 
             border-color: var(--accent-color); 
-            background: #f4fce3; 
+            background: #f0e9d2; 
         }
 
         .switch { 
@@ -826,7 +826,7 @@
             position: absolute; 
             cursor: pointer; 
             top: 0; left: 0; right: 0; bottom: 0; 
-            background-color: #cbd5e1; 
+            background-color: #cec3a6; 
             transition: .4s; 
             border-radius: 34px; 
         }
@@ -836,7 +836,7 @@
             content: ""; 
             height: 18px; width: 18px; 
             left: 4px; bottom: 4px; 
-            background-color: white; 
+            background-color: #faf6ea; 
             transition: .4s; 
             border-radius: 50%; 
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
@@ -873,7 +873,7 @@
 
         .btn-funnel { 
             background: var(--accent-color); 
-            color: #fff; 
+            color: #faf6ea; 
             border: none; 
             padding: 14px 28px; 
             border-radius: 12px; 
@@ -884,24 +884,24 @@
             flex: 1; 
             text-align: center; 
             letter-spacing: 0.5px; 
-            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.2);
+            box-shadow: 0 4px 10px rgba(201, 162, 75, 0.2);
         }
 
         .btn-funnel:hover { 
             background: var(--primary-color); 
             transform: translateY(-2px); 
-            box-shadow: 0 6px 15px rgba(27, 94, 32, 0.25);
+            box-shadow: 0 6px 15px rgba(15, 46, 20, 0.25);
         }
 
         .btn-funnel-back { 
-            background: #f1f5f9; 
+            background: #eee7d3; 
             color: var(--text-light); 
             flex: 0.5; 
             box-shadow: none;
         }
 
         .btn-funnel-back:hover { 
-            background: #e2e8f0; 
+            background: #ded5be; 
             color: var(--text-dark); 
             transform: none;
         }
@@ -939,7 +939,7 @@
         }
 
         .pricing-card { 
-            background: linear-gradient(to bottom, #ffffff 0%, #74b982 100%); 
+            background: linear-gradient(to bottom, #faf6ea 0%, #74b982 100%); 
             padding: 40px 30px; 
             border-radius: 20px; 
             width: 320px; 
@@ -949,29 +949,29 @@
             position: relative; 
             display: flex; 
             flex-direction: column; 
-            border: 1px solid #eaeaea; 
+            border: 1px solid #e6dec9; 
             border-top: 8px solid #81c784; 
             overflow: hidden; 
         }
 
         .pricing-card:hover { 
             transform: translateY(-15px); 
-            box-shadow: 0 20px 45px rgba(27, 94, 32, 0.15); 
+            box-shadow: 0 20px 45px rgba(15, 46, 20, 0.15); 
         }
         
         .pricing-card.popular { 
-            background: linear-gradient(135deg, #1b5e20 0%, #0d3311 100%); 
+            background: linear-gradient(135deg, #0f2e14 0%, #0d3311 100%); 
             border: none; 
             border-top: 8px solid #ffb300; 
             transform: scale(1.05); 
             z-index: 2; 
-            color: #fff; 
-            box-shadow: 0 15px 40px rgba(27, 94, 32, 0.35); 
+            color: #faf6ea; 
+            box-shadow: 0 15px 40px rgba(15, 46, 20, 0.35); 
         }
 
         .pricing-card.popular:hover { 
             transform: scale(1.05) translateY(-10px); 
-            box-shadow: 0 25px 50px rgba(27, 94, 32, 0.45); 
+            box-shadow: 0 25px 50px rgba(15, 46, 20, 0.45); 
         }
 
         .pricing-card.popular::before { 
@@ -980,7 +980,7 @@
             top: 0; 
             right: 0; 
             background: #ffb300; 
-            color: #333; 
+            color: #322e26; 
             padding: 8px 20px; 
             font-size: 0.85rem; 
             border-bottom-left-radius: 15px; 
@@ -989,7 +989,7 @@
         
         .pricing-card:last-child { 
             border-top: 8px solid var(--primary-color); 
-            background: linear-gradient(to bottom, #ffffff 0%, #74b982 100%); 
+            background: linear-gradient(to bottom, #faf6ea 0%, #74b982 100%); 
         }
 
         .plan-name { font-size: 1.5rem; font-weight: 800; color: var(--primary-color); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -999,12 +999,12 @@
         .plan-subtext { display: block; font-size: 0.85rem; color: var(--accent-color); margin-bottom: 5px; font-weight: 700;}
         .lot-size-disclaimer { font-size: 0.8rem; color: var(--text-light); margin-bottom: 20px; font-style: italic; }
 
-        .pricing-card.popular .plan-name, .pricing-card.popular .plan-price { color: #fff; }
+        .pricing-card.popular .plan-name, .pricing-card.popular .plan-price { color: #faf6ea; }
         .pricing-card.popular .starting-at, .pricing-card.popular .plan-price span, .pricing-card.popular .lot-size-disclaimer, .pricing-card.popular .plan-features li { color: rgba(255, 255, 255, 0.85); }
-        .pricing-card.popular .plan-subtext { color: #4CAF50; }
+        .pricing-card.popular .plan-subtext { color: #c9a24b; }
         .pricing-card.popular .plan-divider { border-color: rgba(255, 255, 255, 0.15); }
 
-        .plan-divider { border-bottom: 1px solid #eee; margin-bottom: 20px; }
+        .plan-divider { border-bottom: 1px solid #e6dec9; margin-bottom: 20px; }
         .plan-features { flex-grow: 0; margin-bottom: 20px; }
         .plan-features li { margin-bottom: 15px; color: var(--text-light); display: flex; align-items: center; gap: 10px; font-size: 0.95rem; font-weight: 500;}
         .plan-features i { color: var(--accent-color); font-size: 1.1rem;}
@@ -1012,10 +1012,10 @@
         .btn-plan { display: block; width: 100%; text-align: center; padding: 14px; border-radius: 50px; font-weight: 700; transition: all 0.3s; font-size: 1rem; text-decoration: none; margin-top: auto;}
         .pricing-card:not(.popular) .btn-plan { margin-top: auto; }
         .pricing-card:first-child .btn-plan { background: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); }
-        .pricing-card:first-child .btn-plan:hover { background: var(--primary-color); color: #fff; box-shadow: 0 5px 15px rgba(27, 94, 32, 0.2); }
-        .pricing-card.popular .btn-plan { margin-top: 0; background: var(--accent-color); color: #fff; border: 2px solid var(--accent-color); box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4); animation: pulse-green 2s infinite; }
-        .pricing-card.popular .btn-plan:hover { background: #fff; color: var(--primary-color); border-color: #fff; animation: none; transform: translateY(-2px); }
-        .pricing-card:last-child .btn-plan { background: var(--primary-color); color: #fff; border: 2px solid var(--primary-color); }
+        .pricing-card:first-child .btn-plan:hover { background: var(--primary-color); color: #faf6ea; box-shadow: 0 5px 15px rgba(15, 46, 20, 0.2); }
+        .pricing-card.popular .btn-plan { margin-top: 0; background: var(--accent-color); color: #faf6ea; border: 2px solid var(--accent-color); box-shadow: 0 4px 15px rgba(201, 162, 75, 0.4); animation: pulse-green 2s infinite; }
+        .pricing-card.popular .btn-plan:hover { background: #faf6ea; color: var(--primary-color); border-color: #faf6ea; animation: none; transform: translateY(-2px); }
+        .pricing-card:last-child .btn-plan { background: var(--primary-color); color: #faf6ea; border: 2px solid var(--primary-color); }
         .pricing-card:last-child .btn-plan:hover { background: var(--text-dark); border-color: var(--text-dark); box-shadow: 0 5px 15px rgba(51, 51, 51, 0.3); }
 
         .trust-badges { text-align: center; margin-top: 50px; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
@@ -1023,10 +1023,10 @@
         .trust-badge i { color: var(--accent-color); font-size: 1.4rem; }
 
         /* --- 5. CLIENT PORTAL SECTION --- */
-        .client-portal-section { padding: 60px 5%; background: #fff; margin-bottom: 40px; }
-        .portal-wrapper { background: linear-gradient(135deg, var(--primary-color) 0%, #0d3811 100%); border-radius: 24px; padding: 60px 40px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25); max-width: 1200px; margin: 0 auto; text-align: center; color: #fff; border: 1px solid rgba(255,255,255,0.1); }
+        .client-portal-section { padding: 60px 5%; background: #faf6ea; margin-bottom: 40px; }
+        .portal-wrapper { background: linear-gradient(135deg, var(--primary-color) 0%, #0a2110 100%); border-radius: 24px; padding: 60px 40px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25); max-width: 1200px; margin: 0 auto; text-align: center; color: #faf6ea; border: 1px solid rgba(255,255,255,0.1); }
         .portal-header { margin-bottom: 50px; }
-        .portal-header h2 { font-size: 2.8rem; margin-bottom: 15px; font-weight: 700; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.3); background: linear-gradient(to right, #ffffff 20%, #a5d6a7 50%, #ffffff 80%); background-size: 200% auto; color: #fff; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: textShine 3s linear infinite; }
+        .portal-header h2 { font-size: 2.8rem; margin-bottom: 15px; font-weight: 700; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.3); background: linear-gradient(to right, #faf6ea 20%, #dfc98f 50%, #faf6ea 80%); background-size: 200% auto; color: #faf6ea; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: textShine 3s linear infinite; }
         .portal-header p { font-size: 1.15rem; color: rgba(255, 255, 255, 0.9); max-width: 800px; margin: 0 auto; }
         .portal-features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 40px; }
         .portal-feature-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px 30px; border-radius: 16px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); backdrop-filter: blur(10px); }
@@ -1035,16 +1035,16 @@
             .portal-feature-card:hover i { transform: scale(1.1) rotate(5deg); }
         }
         .portal-feature-card i { font-size: 3rem; color: var(--accent-color); margin-bottom: 20px; transition: transform 0.4s ease; }
-        .portal-feature-card h4 { font-size: 1.3rem; color: #fff; margin-bottom: 10px; font-weight: 600; }
+        .portal-feature-card h4 { font-size: 1.3rem; color: #faf6ea; margin-bottom: 10px; font-weight: 600; }
         .portal-feature-card p { font-size: 1rem; color: rgba(255, 255, 255, 0.8); margin: 0; line-height: 1.6; }
-        .btn-portal { display: inline-block; background: var(--accent-color); color: #fff; padding: 16px 40px; font-size: 1.1rem; font-weight: 700; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4); text-decoration: none; }
-        .btn-portal:hover { background: #fff; color: var(--primary-color); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); }
+        .btn-portal { display: inline-block; background: var(--accent-color); color: #faf6ea; padding: 16px 40px; font-size: 1.1rem; font-weight: 700; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(201, 162, 75, 0.4); text-decoration: none; }
+        .btn-portal:hover { background: #faf6ea; color: var(--primary-color); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); }
 
         /* --- 6. SERVICES GRID --- */
         .services-section { padding: 100px 5%; background-color: var(--bg-light); text-align: center; }
         .services-section h2 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 50px; }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;}
-        .service-card { display: flex; flex-direction: column; justify-content: center; align-items: center; background: #fff; padding: 40px 30px; border-radius: 20px; text-align: center; box-shadow: var(--card-shadow); transition: all 0.3s ease; border-bottom: 4px solid transparent; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; }
+        .service-card { display: flex; flex-direction: column; justify-content: center; align-items: center; background: #faf6ea; padding: 40px 30px; border-radius: 20px; text-align: center; box-shadow: var(--card-shadow); transition: all 0.3s ease; border-bottom: 4px solid transparent; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; }
         .service-card i { font-size: 2.5rem; color: var(--accent-color); margin-bottom: 20px; transition: transform 0.3s ease;}
         .service-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-color); transition: color 0.3s ease;}
         .service-card p { font-size: 0.95rem; color: var(--text-light); margin: 0; transition: transform 0.3s ease;}
@@ -1057,20 +1057,20 @@
         }
 
         /* --- 8. CTA BANNER --- */
-        .cta-banner { background-color: var(--primary-color); color: #fff; text-align: center; padding: 80px 20px; }
+        .cta-banner { background-color: var(--primary-color); color: #faf6ea; text-align: center; padding: 80px 20px; }
         .cta-banner h2 { font-size: 2.5rem; margin-bottom: 20px; }
-        .btn-white { background: #fff; color: var(--primary-color); padding: 15px 40px; border-radius: 50px; font-weight: 700; display: inline-block; margin-top: 20px; font-size: 1.1rem; transition: transform 0.2s; text-decoration: none;}
+        .btn-white { background: #faf6ea; color: var(--primary-color); padding: 15px 40px; border-radius: 50px; font-weight: 700; display: inline-block; margin-top: 20px; font-size: 1.1rem; transition: transform 0.2s; text-decoration: none;}
         .btn-white:hover { transform: scale(1.05); }
 
         /* --- 9. FOOTER --- */
-        footer { background: #f9f9f9; padding: 60px 5% 100px; color: var(--text-dark); border-top: 1px solid #eee; }
+        footer { background: #f2ecdb; padding: 60px 5% 100px; color: var(--text-dark); border-top: 1px solid #e6dec9; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
         .footer-col h4 { color: var(--primary-color); margin-bottom: 20px; font-size: 1.1rem; }
         .footer-col ul li { margin-bottom: 10px; color: var(--text-light); }
         .footer-col ul li i { color: var(--accent-color); margin-right: 10px; }
         .social-icons a { font-size: 1.5rem; color: var(--primary-color); margin-right: 15px; transition: color 0.3s; }
         .social-icons a:hover { color: var(--accent-color); }
-        .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
+        .copyright { text-align: center; border-top: 1px solid #d8cfb6; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
 
         .mobile-sticky-cta { display: none; }
         
@@ -1078,13 +1078,13 @@
         .promo-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 10000; display: flex; justify-content: center; align-items: flex-start; opacity: 0; visibility: hidden; transition: opacity 0.4s ease; }
         .promo-overlay.show-promo { opacity: 1; visibility: visible; }
         .hanging-sign { position: relative; margin-top: 100px; background: var(--bg-light); border: 4px solid var(--primary-color); border-radius: 15px; padding: 40px 30px; text-align: center; width: 90%; max-width: 500px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); transform-origin: top center; animation: dropAndSwing 2.5s ease-in-out forwards; }
-        .rope { position: absolute; bottom: 100%; width: 3px; height: 105px; background: #e0e0e0; border-left: 1px solid #999; }
+        .rope { position: absolute; bottom: 100%; width: 3px; height: 105px; background: #e0e0e0; border-left: 1px solid #97907a; }
         .rope-left { left: 40px; }
         .rope-right { right: 40px; }
         .rope::before { content: ''; position: absolute; top: -5px; left: -4px; width: 10px; height: 10px; background: #555; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.5); }
         .close-promo { position: absolute; top: 10px; right: 15px; font-size: 1.8rem; color: var(--text-light); cursor: pointer; background: none; border: none; padding: 0; transition: color 0.3s; }
         .close-promo:hover { color: var(--primary-color); }
-        .hanging-sign .badge { background: var(--accent-color); color: #fff; padding: 5px 15px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 15px; }
+        .hanging-sign .badge { background: var(--accent-color); color: #faf6ea; padding: 5px 15px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 15px; }
         .hanging-sign h2 { font-size: 2.2rem; color: var(--primary-color); margin: 0 0 10px 0; line-height: 1.1; }
         .hanging-sign p { color: var(--text-dark); font-size: 1.05rem; margin-bottom: 25px; }
         .hanging-sign small { display: block; margin-top: 15px; color: var(--text-light); font-size: 0.75rem; }
@@ -1100,14 +1100,14 @@
             .mobile-call-icon { width: 32px; height: 32px; font-size: 1rem; }
             .btn-header.desktop-only { display: none; }
 
-            .nav-links { display: none; position: fixed; top: 65px; left: 0; width: 100%; height: calc(100vh - 65px); background-color: #fff; flex-direction: column; align-items: center; padding: 20px 0 100px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 1px solid #eee; overflow-y: auto; z-index: 999; }
+            .nav-links { display: none; position: fixed; top: 65px; left: 0; width: 100%; height: calc(100vh - 65px); background-color: #faf6ea; flex-direction: column; align-items: center; padding: 20px 0 100px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 1px solid #e6dec9; overflow-y: auto; z-index: 999; }
             .nav-links.active { display: flex; }
             .nav-links li { margin: 10px 0; width: 100%; text-align: center; }
             .dropdown-parent > a { display: flex; justify-content: center; align-items: center; gap: 8px; }
             .dropdown-parent .fa-chevron-down { display: inline-block; transition: transform 0.3s; }
-            .dropdown { position: static; display: none; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: none; background: #f9f9f9; margin-top: 10px; border-radius: 0; width: 100%; padding: 10px 0; }
+            .dropdown { position: static; display: none; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: none; background: #f2ecdb; margin-top: 10px; border-radius: 0; width: 100%; padding: 10px 0; }
             .dropdown.open { display: block; }
-            .dropdown li a { padding: 12px 0; color: var(--text-light); border-bottom: 1px solid #eee;}
+            .dropdown li a { padding: 12px 0; color: var(--text-light); border-bottom: 1px solid #e6dec9;}
             .dropdown li:last-child a { border-bottom: none; }
             .mobile-only-link { display: block !important; font-weight: 600; color: var(--primary-color) !important; }
             .desktop-login-link { display: none; }
@@ -1152,31 +1152,32 @@
             .btn-plan { padding: 12px; font-size: 0.95rem; margin-top: 20px;}
 
             .client-portal-section { padding: 20px 15px; }
-            .portal-wrapper { padding: 30px 20px; background: linear-gradient(135deg, #388E3C 0%, #2e7d32 100%); border: none; border-radius: 16px;}
+            .portal-wrapper { padding: 30px 20px; background: linear-gradient(135deg, #1a4d23 0%, #16421f 100%); border: none; border-radius: 16px;}
             .portal-header { margin-bottom: 25px; }
             .portal-header h2 { font-size: 1.8rem; }
             .portal-header p { font-size: 0.95rem; margin-bottom: 10px; }
             .portal-features-grid { display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; }
-            .portal-feature-card { padding: 20px 15px; display: flex; align-items: flex-start; gap: 12px; text-align: left; background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(76, 175, 80, 0.6); border-radius: 12px; backdrop-filter: none; transform: none !important; box-shadow: none !important; transition: none !important; }
-            .portal-feature-card i { font-size: 1.3rem; margin-top: 2px; margin-bottom: 0; color: #A5D6A7; transition: none !important; transform: none !important; }
+            .portal-feature-card { padding: 20px 15px; display: flex; align-items: flex-start; gap: 12px; text-align: left; background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(201, 162, 75, 0.6); border-radius: 12px; backdrop-filter: none; transform: none !important; box-shadow: none !important; transition: none !important; }
+            .portal-feature-card i { font-size: 1.3rem; margin-top: 2px; margin-bottom: 0; color: #dfc98f; transition: none !important; transform: none !important; }
             .portal-feature-card div { display: flex; flex-direction: column; }
-            .portal-feature-card h4 { font-size: 1.05rem; margin: 0 0 2px 0; display: block; color: #fff; }
+            .portal-feature-card h4 { font-size: 1.05rem; margin: 0 0 2px 0; display: block; color: #faf6ea; }
             .portal-feature-card p { font-size: 0.85rem; display: block; color: rgba(255,255,255,0.9); line-height: 1.4; }
-            .btn-portal { width: 100%; text-align: center; font-size: 1rem; padding: 14px 20px; background: #fff; color: var(--primary-color);}
+            .btn-portal { width: 100%; text-align: center; font-size: 1rem; padding: 14px 20px; background: #faf6ea; color: var(--primary-color);}
             
             .services-section { padding: 40px 15px; }
-            .service-card { border: 1px solid #e2e8f0; border-bottom: 3px solid var(--accent-color); background: #fff;}
-            .service-action-text { opacity: 1; transform: translateY(0); background-color: var(--bg-light); padding: 8px 20px; border-radius: 50px; border: 1px solid #cbd5e1; color: var(--primary-color); margin-top: 15px; }
+            .service-card { border: 1px solid #ded5be; border-bottom: 3px solid var(--accent-color); background: #faf6ea;}
+            .service-action-text { opacity: 1; transform: translateY(0); background-color: var(--bg-light); padding: 8px 20px; border-radius: 50px; border: 1px solid #cec3a6; color: var(--primary-color); margin-top: 15px; }
             
             .hanging-sign { margin-top: 80px; padding: 30px 20px; }
             .rope { height: 85px; }
             .hanging-sign h2 { font-size: 1.8rem; }
 
-            .mobile-sticky-cta { display: flex; position: fixed; bottom: 25px; right: 25px; background: var(--primary-color); z-index: 1000; padding: 12px 25px 12px 15px; border-radius: 50px; box-shadow: 0 10px 25px rgba(27, 94, 32, 0.4); border: 2px solid #fff; }
-            .mobile-sticky-cta a { color: #fff; font-weight: 700; font-size: 1rem; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+            .mobile-sticky-cta { display: flex; position: fixed; bottom: 25px; right: 25px; background: var(--primary-color); z-index: 1000; padding: 12px 25px 12px 15px; border-radius: 50px; box-shadow: 0 10px 25px rgba(15, 46, 20, 0.4); border: 2px solid #faf6ea; }
+            .mobile-sticky-cta a { color: #faf6ea; font-weight: 700; font-size: 1rem; text-decoration: none; display: flex; align-items: center; gap: 10px; }
             .mobile-sticky-cta i { background: var(--accent-color); padding: 8px; border-radius: 50%; animation: pulse-green 2s infinite; }
         }
     </style>
+    <link rel="stylesheet" href="assets/css/luxe.css">
 </head>
 <body>
     <header>
@@ -1426,13 +1427,13 @@
                 <p class="step-desc">Here is your customized transparent pricing based on your property size and selected services.</p>
                 
                 <div class="quote-receipt">
-                    <div style="font-size: 0.9rem; color: #64748b; margin-bottom: 15px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">
+                    <div style="font-size: 0.9rem; color: #6a614b; margin-bottom: 15px; border-bottom: 2px solid #ded5be; padding-bottom: 10px;">
                         Quote for Property: <br><strong id="resAddress" style="color:var(--text-dark);">Address</strong>
                     </div>
 
                     <div id="receipt-monthly-items"></div>
                     
-                    <div style="margin-top: 15px; border-top: 1px dashed #cbd5e1; padding-top: 15px; display:none;">
+                    <div style="margin-top: 15px; border-top: 1px dashed #cec3a6; padding-top: 15px; display:none;">
                         <label style="font-weight:600; display:block; margin-bottom:8px; color:var(--primary-color); text-align: left;">Have a Promo Code?</label>
                         <div style="display: flex; gap: 10px; align-items: center;">
                             <input type="text" id="promoCodeInput" class="funnel-input" placeholder="Add Code" style="margin-bottom: 0; padding-left: 15px; text-transform: uppercase;">
@@ -1451,7 +1452,7 @@
                         <span id="resMonthlyTotal">$0.00 /mo</span>
                     </div>
                     
-                    <div id="receipt-onetime-items" style="margin-top: 20px; border-top: 1px dashed #cbd5e1; padding-top: 15px;"></div>
+                    <div id="receipt-onetime-items" style="margin-top: 20px; border-top: 1px dashed #cec3a6; padding-top: 15px;"></div>
                 </div>
 
                 <div class="amortize-toggle" id="amortizeContainer" style="display: none;">
@@ -1753,7 +1754,7 @@
                 const encodedAddress = encodeURIComponent(addr);
                 
                 const imgUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${encodedAddress}&zoom=19&size=600x200&maptype=satellite&markers=color:red%7C${encodedAddress}&key=${apiKey}`;
-                mapContainer.innerHTML = `<img src="${imgUrl}" style="width:100%; height:100%; object-fit:cover; border-radius:12px;" alt="Satellite view" onerror="this.onerror=null; this.parentNode.innerHTML='<div style=\\'text-align:center; padding:20px;\\'><i class=\\'fa-solid fa-satellite\\' style=\\'font-size:3rem; color:#cbd5e1; margin-bottom:10px;\\'></i><br><strong style=\\'color:#ef4444;\\'>Google Maps Blocked Request</strong><br><small>Check API Key, Billing, or Restrictions in Google Cloud Console.</small></div>';">`;
+                mapContainer.innerHTML = `<img src="${imgUrl}" style="width:100%; height:100%; object-fit:cover; border-radius:12px;" alt="Satellite view" onerror="this.onerror=null; this.parentNode.innerHTML='<div style=\\'text-align:center; padding:20px;\\'><i class=\\'fa-solid fa-satellite\\' style=\\'font-size:3rem; color:#cec3a6; margin-bottom:10px;\\'></i><br><strong style=\\'color:#ef4444;\\'>Google Maps Blocked Request</strong><br><small>Check API Key, Billing, or Restrictions in Google Cloud Console.</small></div>';">`;
             }
 
             document.querySelectorAll('.funnel-step').forEach(step => {
@@ -1890,12 +1891,12 @@
                 rawMonthlyTotal += finalMowPrice;
                 
                 let priceStr = isBundled 
-                    ? `<s style="color:#94a3b8; font-size:0.85rem; margin-right:6px;">$${originalMowPrice.toFixed(2)}</s>$${finalMowPrice.toFixed(2)}` 
+                    ? `<s style="color:#8d8468; font-size:0.85rem; margin-right:6px;">$${originalMowPrice.toFixed(2)}</s>$${finalMowPrice.toFixed(2)}` 
                     : `$${finalMowPrice.toFixed(2)}`;
 
                 monthlyHTML += `
                     <div class="receipt-item">
-                        <span>${mowLabel} ${isBundled ? '<small style="color:var(--accent-color)">(Bundled Discount)</small>' : '<small style="color:#94a3b8">(Standalone)</small>'}</span> 
+                        <span>${mowLabel} ${isBundled ? '<small style="color:var(--accent-color)">(Bundled Discount)</small>' : '<small style="color:#8d8468">(Standalone)</small>'}</span> 
                         <span style="display:flex; align-items:center;">${priceStr} <i class="fa-solid fa-times-circle remove-icon" onclick="removeMowing()"></i></span>
                     </div>`;
             }
@@ -1949,7 +1950,7 @@
                         totalOnetime += finalPrice;
                         
                         let priceStr = (addonMultiplier < 1.0) 
-                            ? `<s style="color:#94a3b8; font-size:0.85rem; margin-right:6px;">$${originalPrice.toFixed(2)}</s>$${finalPrice.toFixed(2)}` 
+                            ? `<s style="color:#8d8468; font-size:0.85rem; margin-right:6px;">$${originalPrice.toFixed(2)}</s>$${finalPrice.toFixed(2)}` 
                             : `$${finalPrice.toFixed(2)}`;
 
                         onetimeHTML += `
@@ -1970,10 +1971,10 @@
                         totalOnetime += finalPrice;
                         
                         const isDiscounted = (standalonePriceAttr && isBundled);
-                        const bundleTag = isDiscounted ? ' <small style="color:var(--accent-color)">(Bundled Discount)</small>' : (standalonePriceAttr ? ' <small style="color:#94a3b8">(Standalone)</small>' : '');
+                        const bundleTag = isDiscounted ? ' <small style="color:var(--accent-color)">(Bundled Discount)</small>' : (standalonePriceAttr ? ' <small style="color:#8d8468">(Standalone)</small>' : '');
                         
                         let priceStr = isDiscounted 
-                            ? `<s style="color:#94a3b8; font-size:0.85rem; margin-right:6px;">$${originalPrice.toFixed(2)}</s>$${finalPrice.toFixed(2)}` 
+                            ? `<s style="color:#8d8468; font-size:0.85rem; margin-right:6px;">$${originalPrice.toFixed(2)}</s>$${finalPrice.toFixed(2)}` 
                             : `$${finalPrice.toFixed(2)}`;
 
                         onetimeHTML += `
@@ -1997,10 +1998,10 @@
                         rawMonthlyTotal += finalPrice;
                         
                         const isDiscounted = (standalonePriceAttr && isBundled && originalPrice > finalPrice);
-                        const bundleTag = isDiscounted ? ' <small style="color:var(--accent-color)">(Bundled Discount)</small>' : (standalonePriceAttr ? ' <small style="color:#94a3b8">(Standalone)</small>' : '');
+                        const bundleTag = isDiscounted ? ' <small style="color:var(--accent-color)">(Bundled Discount)</small>' : (standalonePriceAttr ? ' <small style="color:#8d8468">(Standalone)</small>' : '');
                         
                         let priceStr = isDiscounted 
-                            ? `<s style="color:#94a3b8; font-size:0.85rem; margin-right:6px;">$${originalPrice.toFixed(2)}</s>$${finalPrice.toFixed(2)}` 
+                            ? `<s style="color:#8d8468; font-size:0.85rem; margin-right:6px;">$${originalPrice.toFixed(2)}</s>$${finalPrice.toFixed(2)}` 
                             : `$${finalPrice.toFixed(2)}`;
 
                         monthlyHTML += `
@@ -2033,7 +2034,7 @@
                     originalUpsellPrice = enforceMinimums(originalUpsellPrice, box.id);
 
                     let priceStr = (originalUpsellPrice > finalUpsellPrice) 
-                        ? `<s style="color:#94a3b8; font-size:0.75rem; margin-right:4px;">$${originalUpsellPrice.toFixed(2)}</s>+$${finalUpsellPrice.toFixed(2)}` 
+                        ? `<s style="color:#8d8468; font-size:0.75rem; margin-right:4px;">$${originalUpsellPrice.toFixed(2)}</s>+$${finalUpsellPrice.toFixed(2)}` 
                         : `+$${finalUpsellPrice.toFixed(2)}`;
                         
                     let perUnit = type==='monthly'?'/mo':(type==='onetime'?'/season':'');
@@ -2060,7 +2061,7 @@
                     let amortizedAmount = totalOnetime / 7;
                     rawMonthlyTotal += amortizedAmount;
                     monthlyHTML += `
-                        <div class="receipt-item" style="color:var(--primary-color); font-weight:600; margin-top:5px; padding-top:10px; border-top:1px dashed #e2e8f0;">
+                        <div class="receipt-item" style="color:var(--primary-color); font-weight:600; margin-top:5px; padding-top:10px; border-top:1px dashed #ded5be;">
                             <span>Seasonal Add-ons (7-Month Split)</span> 
                             <span>+$${amortizedAmount.toFixed(2)}/mo</span>
                         </div>`;
@@ -2108,19 +2109,19 @@
             let firstMonthMonthly = rawMonthlyTotal - promoDiscount;
 
             // Render Monthly
-            document.getElementById('receipt-monthly-items').innerHTML = monthlyHTML || `<div class="receipt-item" style="justify-content:center; color:#94a3b8; font-style:italic;">No monthly services selected</div>`;
+            document.getElementById('receipt-monthly-items').innerHTML = monthlyHTML || `<div class="receipt-item" style="justify-content:center; color:#8d8468; font-style:italic;">No monthly services selected</div>`;
             
             // Render Onetime
             if(onetimeHTML !== "") {
                 let discountText = (addonCount === 3) ? `<div style="font-size:0.85rem; color:var(--accent-color); font-weight:700; margin-bottom:10px;">🌟 25% Multi-Service Discount Applied to Add-ons!</div>` : '';
                 let onetimeHeader = amortizeChecked 
                     ? `<div style="font-size:0.85rem; color:var(--primary-color); font-weight:700; margin-bottom:5px; text-transform:uppercase;">Seasonal / Add-Ons (Split in Monthly Plan):</div>`
-                    : `<div style="font-size:0.85rem; color:#64748b; margin-bottom:5px; text-transform:uppercase;">Seasonal / Add-Ons (Billed at time of service):</div>`;
+                    : `<div style="font-size:0.85rem; color:#6a614b; margin-bottom:5px; text-transform:uppercase;">Seasonal / Add-Ons (Billed at time of service):</div>`;
 
                 let totalOnetimeHTML = "";
                 if (!amortizeChecked && firstMonthMonthly > 0) {
                     totalOnetimeHTML = `
-                        <div class="receipt-total" style="border-top: 2px solid #cbd5e1; margin-top: 15px; padding-top: 15px; font-size: 1.1rem;">
+                        <div class="receipt-total" style="border-top: 2px solid #cec3a6; margin-top: 15px; padding-top: 15px; font-size: 1.1rem;">
                             <span>Total One-Time Services:</span>
                             <span>$${totalOnetime.toFixed(2)}</span>
                         </div>`;

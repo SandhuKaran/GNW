@@ -25,11 +25,11 @@
     <style>
         /* --- 1. GENERAL STYLES --- */
         :root {
-            --primary-color: #1b5e20;
-            --accent-color: #4CAF50; 
-            --text-dark: #333333;
-            --text-light: #666666;
-            --bg-light: #f4f7f6;
+            --primary-color: #0f2e14;
+            --accent-color: #c9a24b; 
+            --text-dark: #322e26;
+            --text-light: #5d5747;
+            --bg-light: #f2ecdb;
             --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
@@ -39,7 +39,7 @@
             font-family: 'Poppins', sans-serif;
             margin: 0; padding: 0;
             color: var(--text-dark);
-            background-color: #fff;
+            background-color: #faf6ea;
             line-height: 1.6;
         }
 
@@ -67,7 +67,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 5%;
-            background: #fff;
+            background: #faf6ea;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             position: sticky;
             top: 0; z-index: 1000;
@@ -104,7 +104,7 @@
             position: absolute;
             top: 100%;
             left: 0;
-            background: #fff;
+            background: #faf6ea;
             min-width: 220px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             border-radius: 8px;
@@ -114,7 +114,7 @@
             transform: translateY(15px);
             transition: all 0.3s ease;
             z-index: 1000;
-            border: 1px solid #eee;
+            border: 1px solid #e6dec9;
         }
         .dropdown-parent:hover .dropdown {
             opacity: 1;
@@ -141,7 +141,7 @@
         /* Desktop Call Button */
         .btn-header {
             background-color: var(--primary-color);
-            color: #fff !important;
+            color: #faf6ea !important;
             padding: 10px 25px;
             border-radius: 50px;
             font-weight: 600;
@@ -167,7 +167,7 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            border: 1px solid #ddd;
+            border: 1px solid #d8cfb6;
         }
 
         .mobile-call-icon {
@@ -176,7 +176,7 @@
             color: white; border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
             font-size: 1.2rem;
-            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+            box-shadow: 0 4px 10px rgba(201, 162, 75, 0.3);
             transition: transform 0.2s;
         }
         .mobile-call-icon:active { transform: scale(0.95); }
@@ -201,10 +201,10 @@
 
         /* --- 3. PAGE HERO --- */
         .page-hero { 
-            background: linear-gradient(rgba(27, 94, 32, 0.65), rgba(27, 94, 32, 0.85)), url('assets/img/lawnmain.webp');
+            background: linear-gradient(rgba(15, 46, 20, 0.65), rgba(15, 46, 20, 0.85)), url('assets/img/lawnmain.webp');
             background-size: cover;
             background-position: center;
-            color: #fff; 
+            color: #faf6ea; 
             text-align: center; 
             padding: 100px 20px; 
         }
@@ -268,7 +268,7 @@
             top: 0; left: 0; width: 100%; height: 100%;
             display: flex; justify-content: center; align-items: center;
             opacity: 0; transition: opacity 0.3s ease;
-            background: rgba(27, 94, 32, 0.6);
+            background: rgba(15, 46, 20, 0.6);
         }
         
         .grid-item.video::after {
@@ -282,7 +282,7 @@
         .grid-item.video:hover::after { opacity: 0; }
 
         .play-overlay i, .zoom-overlay i {
-            color: #fff; font-size: 3rem; transform: scale(0.5); transition: transform 0.3s ease;
+            color: #faf6ea; font-size: 3rem; transform: scale(0.5); transition: transform 0.3s ease;
         }
 
         .grid-item:hover .media-content { transform: scale(1.05); }
@@ -310,16 +310,16 @@
         .close-lightbox {
             position: absolute;
             top: 20px; right: 30px;
-            color: #fff; font-size: 3rem;
+            color: #faf6ea; font-size: 3rem;
             cursor: pointer; z-index: 2001;
         }
 
         /* --- 6. FOOTER --- */
         footer {
-            background: #f9f9f9;
+            background: #f2ecdb;
             padding: 60px 5% 20px;
             color: var(--text-dark);
-            border-top: 1px solid #eee;
+            border-top: 1px solid #e6dec9;
         }
 
         .footer-grid {
@@ -332,7 +332,7 @@
         .footer-col ul li i { color: var(--accent-color); margin-right: 10px; }
         .social-icons a { font-size: 1.5rem; color: var(--primary-color); margin-right: 15px; transition: color 0.3s; }
         .social-icons a:hover { color: var(--accent-color); }
-        .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
+        .copyright { text-align: center; border-top: 1px solid #d8cfb6; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
 
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
@@ -353,12 +353,12 @@
                 left: 0; 
                 width: 100%;
                 height: calc(100vh - 65px); 
-                background-color: #fff;
+                background-color: #faf6ea;
                 flex-direction: column; 
                 align-items: center;
                 padding: 20px 0 100px 0; 
                 box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-                border-top: 1px solid #eee;
+                border-top: 1px solid #e6dec9;
                 overflow-y: auto; 
                 z-index: 999;
             }
@@ -374,11 +374,11 @@
             }
             .dropdown {
                 position: static; display: none; opacity: 1; visibility: visible;
-                transform: none; box-shadow: none; border: none; background: #f9f9f9;
+                transform: none; box-shadow: none; border: none; background: #f2ecdb;
                 margin-top: 10px; border-radius: 0; width: 100%; padding: 10px 0;
             }
             .dropdown.open { display: block; }
-            .dropdown li a { padding: 12px 0; color: var(--text-light); border-bottom: 1px solid #eee;}
+            .dropdown li a { padding: 12px 0; color: var(--text-light); border-bottom: 1px solid #e6dec9;}
             .dropdown li:last-child a { border-bottom: none; }
             
             .mobile-only-link { display: block !important; font-weight: 600; color: var(--primary-color) !important; }
@@ -394,6 +394,7 @@
             .grid-item.large { grid-column: auto; grid-row: auto; height: 300px; }
         }
     </style>
+    <link rel="stylesheet" href="assets/css/luxe.css">
 </head>
 <body>
 

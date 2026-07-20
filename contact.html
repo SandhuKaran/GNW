@@ -30,11 +30,11 @@
     <style>
         /* --- 1. GENERAL STYLES (Matches Master Reference) --- */
         :root {
-            --primary-color: #1b5e20;
-            --accent-color: #4CAF50; 
-            --text-dark: #222;
-            --text-light: #666;
-            --bg-light: #f9f9f9;
+            --primary-color: #0f2e14;
+            --accent-color: #c9a24b; 
+            --text-dark: #201d16;
+            --text-light: #5d5747;
+            --bg-light: #f2ecdb;
             --card-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
 
@@ -44,7 +44,7 @@
             font-family: 'Poppins', sans-serif;
             margin: 0; padding: 0;
             color: var(--text-dark);
-            background-color: #fff;
+            background-color: #faf6ea;
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -64,7 +64,7 @@
         /* --- 2. HEADER --- */
         header {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 5%; background: #fff;
+            padding: 15px 5%; background: #faf6ea;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             position: sticky; top: 0; z-index: 1000;
         }
@@ -98,7 +98,7 @@
             position: absolute;
             top: 100%;
             left: 0;
-            background: #fff;
+            background: #faf6ea;
             min-width: 220px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             border-radius: 8px;
@@ -108,7 +108,7 @@
             transform: translateY(15px);
             transition: all 0.3s ease;
             z-index: 1000;
-            border: 1px solid #eee;
+            border: 1px solid #e6dec9;
         }
         .dropdown-parent:hover .dropdown {
             opacity: 1;
@@ -133,7 +133,7 @@
         .nav-links .login-btn:hover { color: var(--accent-color); }
 
         .btn-header {
-            background-color: var(--primary-color); color: #fff !important;
+            background-color: var(--primary-color); color: #faf6ea !important;
             padding: 10px 25px; border-radius: 50px; font-weight: 600; font-size: 0.9rem;
             transition: background 0.3s;
         }
@@ -152,13 +152,13 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            border: 1px solid #ddd;
+            border: 1px solid #d8cfb6;
         }
         
         .mobile-call-icon {
             width: 40px; height: 40px; background-color: var(--accent-color); color: white;
             border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem;
-            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); transition: transform 0.2s;
+            box-shadow: 0 4px 10px rgba(201, 162, 75, 0.3); transition: transform 0.2s;
         }
         .mobile-call-icon:active { transform: scale(0.95); }
         .mobile-button { cursor: pointer; width: 30px; height: 20px; position: relative; z-index: 1001; }
@@ -174,7 +174,7 @@
         .page-hero {
             position: relative;
             display: flex; align-items: center; justify-content: center; text-align: center;
-            height: 50vh; padding: 0 5%; color: #fff;
+            height: 50vh; padding: 0 5%; color: #faf6ea;
             background-image: url('assets/img/landmain1.webp'); 
             background-size: cover; background-position: center;
         }
@@ -195,14 +195,14 @@
 
         /* FORM STYLES */
         .form-container {
-            background: #fff; padding: 40px; border-radius: 15px;
+            background: #faf6ea; padding: 40px; border-radius: 15px;
             box-shadow: var(--card-shadow);
         }
         .form-container h2 { font-size: 1.8rem; color: var(--primary-color); margin-bottom: 20px; }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem; }
         .form-group input, .form-group select, .form-group textarea {
-            width: 100%; padding: 12px 15px; border: 1px solid #ddd;
+            width: 100%; padding: 12px 15px; border: 1px solid #d8cfb6;
             border-radius: 5px; font-family: 'Poppins', sans-serif;
             transition: border 0.3s;
         }
@@ -212,7 +212,7 @@
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         
         .btn-submit {
-            background: var(--primary-color); color: #fff; border: none;
+            background: var(--primary-color); color: #faf6ea; border: none;
             padding: 15px 30px; border-radius: 50px; font-weight: 600; cursor: pointer;
             text-transform: uppercase; letter-spacing: 1px; width: 100%; transition: background 0.3s;
             margin-top: 20px;
@@ -232,31 +232,31 @@
         .info-text a { color: var(--accent-color); font-weight: 600; }
 
         .map-container {
-            width: 100%; height: 300px; background: #eee;
+            width: 100%; height: 300px; background: #e6dec9;
             border-radius: 15px; overflow: hidden; margin-top: 30px;
         }
         .map-container iframe { width: 100%; height: 100%; border: 0; }
 
         /* --- 5. TRUST SIGNALS --- */
         .trust-bar {
-            padding: 40px 5%; background: #fff; border-top: 1px solid #eee; text-align: center;
+            padding: 40px 5%; background: #faf6ea; border-top: 1px solid #e6dec9; text-align: center;
         }
         .trust-grid { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
         .trust-item { display: flex; align-items: center; gap: 15px; }
         .trust-item i { font-size: 2rem; color: var(--accent-color); }
         .trust-text { text-align: left; }
         .trust-text h4 { margin: 0; font-size: 1.1rem; }
-        .trust-text span { font-size: 0.85rem; color: #777; }
+        .trust-text span { font-size: 0.85rem; color: #6f684f; }
 
         /* --- 7. FOOTER --- */
-        footer { background: #f9f9f9; padding: 60px 5% 20px; color: var(--text-dark); border-top: 1px solid #eee; }
+        footer { background: #f2ecdb; padding: 60px 5% 20px; color: var(--text-dark); border-top: 1px solid #e6dec9; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
         .footer-col h4 { color: var(--primary-color); margin-bottom: 20px; font-size: 1.1rem; }
         .footer-col ul li { margin-bottom: 10px; color: var(--text-light); }
         .footer-col ul li i { color: var(--accent-color); margin-right: 10px; }
         .social-icons a { font-size: 1.5rem; color: var(--primary-color); margin-right: 15px; transition: color 0.3s; }
         .social-icons a:hover { color: var(--accent-color); }
-        .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
+        .copyright { text-align: center; border-top: 1px solid #d8cfb6; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
 
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 900px) {
@@ -278,12 +278,12 @@
                 left: 0; 
                 width: 100%;
                 height: calc(100vh - 65px); 
-                background-color: #fff;
+                background-color: #faf6ea;
                 flex-direction: column; 
                 align-items: center;
                 padding: 20px 0 100px 0; 
                 box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-                border-top: 1px solid #eee;
+                border-top: 1px solid #e6dec9;
                 overflow-y: auto; 
                 z-index: 999;
             }
@@ -300,11 +300,11 @@
             }
             .dropdown {
                 position: static; display: none; opacity: 1; visibility: visible;
-                transform: none; box-shadow: none; border: none; background: #f9f9f9;
+                transform: none; box-shadow: none; border: none; background: #f2ecdb;
                 margin-top: 10px; border-radius: 0; width: 100%; padding: 10px 0;
             }
             .dropdown.open { display: block; }
-            .dropdown li a { padding: 12px 0; color: var(--text-light); border-bottom: 1px solid #eee;}
+            .dropdown li a { padding: 12px 0; color: var(--text-light); border-bottom: 1px solid #e6dec9;}
             .dropdown li:last-child a { border-bottom: none; }
             
             .mobile-only-link { display: block !important; font-weight: 600; color: var(--primary-color) !important; }
@@ -312,6 +312,7 @@
             .desktop-login-link { display: none; }
         }
     </style>
+    <link rel="stylesheet" href="assets/css/luxe.css">
 </head>
 <body>
 

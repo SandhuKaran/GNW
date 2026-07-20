@@ -26,11 +26,11 @@
     <style>
         /* --- 1. GENERAL STYLES (Matches landmain.html) --- */
         :root {
-            --primary-color: #1b5e20;
-            --accent-color: #4CAF50; 
-            --text-dark: #222;
-            --text-light: #666;
-            --bg-light: #f9f9f9;
+            --primary-color: #0f2e14;
+            --accent-color: #c9a24b; 
+            --text-dark: #201d16;
+            --text-light: #5d5747;
+            --bg-light: #f2ecdb;
             --card-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
 
@@ -40,7 +40,7 @@
             font-family: 'Poppins', sans-serif;
             margin: 0; padding: 0;
             color: var(--text-dark);
-            background-color: #fff;
+            background-color: #faf6ea;
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -60,7 +60,7 @@
         /* --- 2. HEADER (Matches landmain.html) --- */
         header {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 5%; background: #fff;
+            padding: 15px 5%; background: #faf6ea;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             position: sticky; top: 0; z-index: 1000;
         }
@@ -94,7 +94,7 @@
             position: absolute;
             top: 100%;
             left: 0;
-            background: #fff;
+            background: #faf6ea;
             min-width: 220px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             border-radius: 8px;
@@ -104,7 +104,7 @@
             transform: translateY(15px);
             transition: all 0.3s ease;
             z-index: 1000;
-            border: 1px solid #eee;
+            border: 1px solid #e6dec9;
         }
         .dropdown-parent:hover .dropdown {
             opacity: 1;
@@ -129,7 +129,7 @@
         .nav-links .login-btn:hover { color: var(--accent-color); }
 
         .btn-header {
-            background-color: var(--primary-color); color: #fff !important;
+            background-color: var(--primary-color); color: #faf6ea !important;
             padding: 10px 25px; border-radius: 50px; font-weight: 600; font-size: 0.9rem;
             transition: background 0.3s;
         }
@@ -147,12 +147,12 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            border: 1px solid #ddd;
+            border: 1px solid #d8cfb6;
         }
         .mobile-call-icon {
             width: 40px; height: 40px; background-color: var(--accent-color); color: white;
             border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem;
-            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); transition: transform 0.2s;
+            box-shadow: 0 4px 10px rgba(201, 162, 75, 0.3); transition: transform 0.2s;
         }
         .mobile-call-icon:active { transform: scale(0.95); }
         .mobile-button { cursor: pointer; width: 30px; height: 20px; position: relative; z-index: 1001; }
@@ -168,7 +168,7 @@
         .page-hero {
             position: relative;
             display: flex; align-items: center; justify-content: center; text-align: center;
-            height: 60vh; padding: 0 5%; color: #fff;
+            height: 60vh; padding: 0 5%; color: #faf6ea;
             background-image: url('assets/img/landscape-designs/1.webp'); 
             background-size: cover; background-position: center;
         }
@@ -182,12 +182,12 @@
 
         .hero-btn {
             display: inline-block; padding: 15px 40px;
-            background: var(--accent-color); color: #fff;
+            background: var(--accent-color); color: #faf6ea;
             font-weight: 600; text-transform: uppercase;
             border-radius: 50px; letter-spacing: 1px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.2s;
         }
-        .hero-btn:hover { background: #388E3C; transform: translateY(-3px); }
+        .hero-btn:hover { background: #1a4d23; transform: translateY(-3px); }
 
         /* --- 4. INTRO SECTION (Split Layout) --- */
         .intro-section { padding: 100px 5%; display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
@@ -199,7 +199,7 @@
         .section-desc { color: var(--text-light); margin-bottom: 30px; font-size: 1rem; line-height: 1.8; }
         
         .check-list { margin-bottom: 30px; }
-        .check-list li { margin-bottom: 10px; display: flex; align-items: center; color: #444; font-weight: 500; }
+        .check-list li { margin-bottom: 10px; display: flex; align-items: center; color: #4a4437; font-weight: 500; }
         .check-list li i { color: var(--accent-color); margin-right: 10px; font-size: 1.1rem; }
 
         /* --- 5. PROCESS SECTION (Timeline) --- */
@@ -207,36 +207,36 @@
         .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-top: 50px; }
         
         .process-card {
-            background: #fff; padding: 40px 20px; border-radius: 15px;
+            background: #faf6ea; padding: 40px 20px; border-radius: 15px;
             box-shadow: var(--card-shadow); transition: transform 0.3s;
             position: relative;
         }
         .process-card:hover { transform: translateY(-10px); }
         
         .process-step { 
-            background: var(--accent-color); color: #fff; 
+            background: var(--accent-color); color: #faf6ea; 
             width: 40px; height: 40px; border-radius: 50%; 
             display: flex; justify-content: center; align-items: center; 
             font-weight: 700; margin: 0 auto 20px;
         }
         .process-icon { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px; }
-        .process-card h3 { font-size: 1.2rem; color: #333; margin-bottom: 10px; }
+        .process-card h3 { font-size: 1.2rem; color: #322e26; margin-bottom: 10px; }
         .process-card p { font-size: 0.9rem; color: var(--text-light); line-height: 1.5; }
 
         /* --- 6. 3D DESIGN FEATURE --- */
-        .design-feature { padding: 100px 5% 50px; text-align: center; background: #fff; }
+        .design-feature { padding: 100px 5% 50px; text-align: center; background: #faf6ea; }
         .design-img-wrap { margin-top: 40px; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
         
         /* --- 6B. INSTAGRAM & PORTFOLIO CTA --- */
         .ig-cta-container {
-            text-align: center; margin-top: 60px; padding-top: 50px; border-top: 1px solid #ddd; padding-bottom: 50px;
+            text-align: center; margin-top: 60px; padding-top: 50px; border-top: 1px solid #d8cfb6; padding-bottom: 50px;
         }
         .ig-cta-container h3 {
             font-size: 1.6rem; color: var(--text-dark); margin-bottom: 20px; font-weight: 600;
         }
         .btn-instagram {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            color: #fff !important; font-weight: 600; font-size: 1.1rem;
+            color: #faf6ea !important; font-weight: 600; font-size: 1.1rem;
             padding: 15px 35px; border-radius: 50px; display: inline-flex; align-items: center; gap: 10px;
             box-shadow: 0 5px 15px rgba(220, 39, 67, 0.3); transition: transform 0.3s, box-shadow 0.3s;
             text-decoration: none; margin: 10px;
@@ -245,18 +245,18 @@
             transform: translateY(-3px); box-shadow: 0 8px 20px rgba(220, 39, 67, 0.4);
         }
         .btn-portfolio {
-            background: #333; color: #fff !important; font-weight: 600; font-size: 1.1rem;
+            background: #322e26; color: #faf6ea !important; font-weight: 600; font-size: 1.1rem;
             padding: 15px 35px; border-radius: 50px; display: inline-flex; align-items: center; gap: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); transition: transform 0.3s;
             text-decoration: none; margin: 10px;
         }
-        .btn-portfolio:hover { transform: translateY(-3px); background: #111; }
+        .btn-portfolio:hover { transform: translateY(-3px); background: #14120c; }
 
         /* --- 7. FAQ SECTION (Accordion) --- */
         .faq-section { padding: 80px 5%; background-color: var(--bg-light); }
         .faq-container { max-width: 800px; margin: 0 auto; }
         
-        .faq-item { background: #fff; margin-bottom: 15px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .faq-item { background: #faf6ea; margin-bottom: 15px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         .faq-question {
             padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
             font-weight: 600; color: var(--primary-color); transition: background 0.3s;
@@ -264,7 +264,7 @@
         .faq-question:hover { background: #f1f1f1; }
         .faq-answer {
             max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
-            background: #fff; color: var(--text-light); padding: 0 20px;
+            background: #faf6ea; color: var(--text-light); padding: 0 20px;
         }
         .faq-answer p { padding-bottom: 20px; margin-top: 0; }
         .faq-icon { transition: transform 0.3s; }
@@ -272,33 +272,33 @@
         .faq-item.active .faq-answer { max-height: 200px; }
 
         /* --- 8. CTA BANNER --- */
-        .cta-banner { background-color: var(--primary-color); color: #fff; text-align: center; padding: 80px 20px; }
+        .cta-banner { background-color: var(--primary-color); color: #faf6ea; text-align: center; padding: 80px 20px; }
         .cta-banner h2 { font-size: 2.5rem; margin-bottom: 20px; }
-        .btn-white { background: #fff; color: var(--primary-color); padding: 15px 40px; border-radius: 50px; font-weight: 700; display: inline-block; margin-top: 20px; font-size: 1.1rem; transition: transform 0.2s; }
+        .btn-white { background: #faf6ea; color: var(--primary-color); padding: 15px 40px; border-radius: 50px; font-weight: 700; display: inline-block; margin-top: 20px; font-size: 1.1rem; transition: transform 0.2s; }
         .btn-white:hover { transform: scale(1.05); }
 
         /* --- 9. STICKY ESTIMATE --- */
         .sticky-estimate {
-            position: fixed; bottom: 30px; right: 30px; background-color: var(--accent-color); color: #fff;
+            position: fixed; bottom: 30px; right: 30px; background-color: var(--accent-color); color: #faf6ea;
             padding: 15px 25px; border-radius: 50px; box-shadow: 0 5px 20px rgba(0,0,0,0.3);
             display: flex; align-items: center; gap: 15px; z-index: 9999;
-            transition: transform 0.3s ease; text-decoration: none; border: 2px solid #fff;
+            transition: transform 0.3s ease; text-decoration: none; border: 2px solid #faf6ea;
         }
-        .sticky-estimate:hover { transform: translateY(-5px); background-color: var(--primary-color); color: #fff; }
+        .sticky-estimate:hover { transform: translateY(-5px); background-color: var(--primary-color); color: #faf6ea; }
         .sticky-icon { font-size: 1.8rem; }
         .sticky-text { display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
         .sticky-text span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
         .sticky-text strong { font-size: 1.1rem; font-weight: 700; }
 
         /* --- 10. FOOTER --- */
-        footer { background: #f9f9f9; padding: 60px 5% 20px; color: var(--text-dark); border-top: 1px solid #eee; }
+        footer { background: #f2ecdb; padding: 60px 5% 20px; color: var(--text-dark); border-top: 1px solid #e6dec9; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
         .footer-col h4 { color: var(--primary-color); margin-bottom: 20px; font-size: 1.1rem; }
         .footer-col ul li { margin-bottom: 10px; color: var(--text-light); }
         .footer-col ul li i { color: var(--accent-color); margin-right: 10px; }
         .social-icons a { font-size: 1.5rem; color: var(--primary-color); margin-right: 15px; transition: color 0.3s; }
         .social-icons a:hover { color: var(--accent-color); }
-        .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
+        .copyright { text-align: center; border-top: 1px solid #d8cfb6; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
 
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
@@ -316,12 +316,12 @@
                 left: 0; 
                 width: 100%;
                 height: calc(100vh - 65px); 
-                background-color: #fff;
+                background-color: #faf6ea;
                 flex-direction: column; 
                 align-items: center;
                 padding: 20px 0 100px 0; 
                 box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-                border-top: 1px solid #eee;
+                border-top: 1px solid #e6dec9;
                 overflow-y: auto; 
                 z-index: 999;
             }
@@ -338,11 +338,11 @@
             }
             .dropdown {
                 position: static; display: none; opacity: 1; visibility: visible;
-                transform: none; box-shadow: none; border: none; background: #f9f9f9;
+                transform: none; box-shadow: none; border: none; background: #f2ecdb;
                 margin-top: 10px; border-radius: 0; width: 100%; padding: 10px 0;
             }
             .dropdown.open { display: block; }
-            .dropdown li a { padding: 12px 0; color: var(--text-light); border-bottom: 1px solid #eee;}
+            .dropdown li a { padding: 12px 0; color: var(--text-light); border-bottom: 1px solid #e6dec9;}
             .dropdown li:last-child a { border-bottom: none; }
             
             .mobile-only-link { display: block !important; font-weight: 600; color: var(--primary-color) !important; }
@@ -354,6 +354,7 @@
             .sticky-text strong { font-size: 0.9rem; }
         }
     </style>
+    <link rel="stylesheet" href="assets/css/luxe.css">
 </head>
 <body>
 

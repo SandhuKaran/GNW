@@ -10,7 +10,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    color: #333;
+    color: #322e26;
     line-height: 1.6;
     overflow-x: hidden;
     padding-top: 125px;
@@ -52,7 +52,7 @@ h6 {
 
 /* Navigation */
 #site-header {
-    background: #ffffff !important;
+    background: #faf6ea !important;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 
 }
@@ -80,7 +80,7 @@ h6 {
     }
 
     .mobile-nav-contact a {
-        color: #333;
+        color: #322e26;
         font-weight: 600;
         font-size: 14px;
         text-decoration: none;
@@ -90,7 +90,7 @@ h6 {
     }
 
     .mobile-nav-contact i {
-        color: #1b5e20;
+        color: #0f2e14;
         font-size: 16px;
     }
 }
@@ -122,24 +122,24 @@ h6 {
 
 #main-nav>ul>li>a:hover,
 #main-nav>ul>li.current-menu-item>a {
-    color: #1b5e20 !important;
+    color: #0f2e14 !important;
 }
 
 /* Mobile hamburger button - dark bars for visibility on white bg */
 .mobile-button:before,
 .mobile-button:after,
 .mobile-button span {
-    background-color: #333 !important;
+    background-color: #322e26 !important;
 }
 
 /* Mobile menu text color */
 #main-nav-mobi ul>li>a {
-    color: #f4f4f4 !important;
+    color: #f2ecdb !important;
 }
 
 .wprt-button.small {
-    background-color: #1b5e20;
-    color: #fff !important;
+    background-color: #0f2e14;
+    color: #faf6ea !important;
     border-radius: 30px;
     padding: 10px 28px;
     font-weight: 600;
@@ -150,9 +150,9 @@ h6 {
 }
 
 .wprt-button.small:hover {
-    background-color: #3a5231;
+    background-color: #16421f;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(74, 103, 65, 0.3);
+    box-shadow: 0 4px 12px rgba(176, 138, 62, 0.3);
 }
 
 /* Hero Section */
@@ -164,7 +164,7 @@ h6 {
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #fff;
+    color: #faf6ea;
     overflow: hidden;
 }
 
@@ -197,7 +197,7 @@ h6 {
 .hero-title {
     font-size: 3.5rem;
     font-weight: 400;
-    color: #ffffff;
+    color: #faf6ea;
     margin-bottom: 20px;
     line-height: 1.2;
     text-shadow: none;
@@ -207,7 +207,7 @@ h6 {
 
 .hero-subtitle {
     font-size: 1.3rem;
-    color: #ffffff;
+    color: #faf6ea;
     margin-bottom: 35px;
     line-height: 1.6;
     text-shadow: none;
@@ -235,8 +235,8 @@ h6 {
 }
 
 .hero-btn {
-    background: #fff;
-    color: #333;
+    background: #faf6ea;
+    color: #322e26;
     padding: 14px 32px;
     border-radius: 30px;
     font-weight: 500;
@@ -253,7 +253,7 @@ h6 {
 }
 
 .hero-btn:hover {
-    background: #f0f0f0;
+    background: #ece5d0;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
@@ -311,7 +311,7 @@ h6 {
     flex-shrink: 0;
     width: 300px;
     /* Reduced from 350px to ensure 3 fit clearly */
-    background: #fff;
+    background: #faf6ea;
     border-radius: 16px;
     padding: 30px 20px 24px;
     text-align: center;
@@ -334,7 +334,7 @@ h6 {
     right: -5px;
     width: 24px;
     height: 24px;
-    background: #fff;
+    background: #faf6ea;
     border-radius: 50%;
     padding: 2px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -359,8 +359,8 @@ h6 {
     justify-content: center;
     font-size: 28px;
     font-weight: 700;
-    color: #fff;
-    border: 3px solid #fff;
+    color: #faf6ea;
+    border: 3px solid #faf6ea;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
@@ -369,7 +369,7 @@ h6 {
     height: 64px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #fff;
+    border: 3px solid #faf6ea;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
@@ -379,7 +379,7 @@ h6 {
     right: -6px;
     width: 24px;
     height: 24px;
-    background: #fff;
+    background: #faf6ea;
     border-radius: 50%;
     padding: 2px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
@@ -394,7 +394,7 @@ h6 {
 
 .review-date {
     font-size: 12px;
-    color: #999;
+    color: #97907a;
     margin-bottom: 8px;
 }
 
@@ -413,7 +413,7 @@ h6 {
 .review-text {
     font-size: 14px;
     line-height: 1.6;
-    color: #555;
+    color: #55503f;
     margin-bottom: 12px;
 
     /* Truncate text */
@@ -454,8 +454,8 @@ h6 {
     min-height: 36px;
     border-radius: 50%;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    background: #fff;
-    color: #333;
+    background: #faf6ea;
+    color: #322e26;
     font-size: 18px;
     cursor: pointer;
     display: flex !important;
@@ -471,9 +471,9 @@ h6 {
 }
 
 .review-arrow:hover {
-    background: #1b5e20;
-    color: #fff;
-    border-color: #1b5e20;
+    background: #0f2e14;
+    color: #faf6ea;
+    border-color: #0f2e14;
 }
 
 .review-arrow-left {
@@ -507,7 +507,7 @@ h6 {
 /* Gallery Section - Horizontal Scroll */
 .gallery-section {
     padding: 80px 0;
-    background-color: #f9f9f9;
+    background-color: #f2ecdb;
     overflow: hidden;
 }
 
@@ -590,8 +590,8 @@ h6 {
 .explore-btn {
     display: inline-block;
     margin-top: 50px;
-    background-color: #1b5e20;
-    color: #fff;
+    background-color: #0f2e14;
+    color: #faf6ea;
     padding: 16px 48px;
     border-radius: 30px;
     font-weight: 600;
@@ -601,16 +601,16 @@ h6 {
 }
 
 .explore-btn:hover {
-    background-color: #3a5231;
+    background-color: #16421f;
     transform: translateY(-2px);
     color: white !important;
-    box-shadow: 0 4px 12px rgba(74, 103, 65, 0.3);
+    box-shadow: 0 4px 12px rgba(176, 138, 62, 0.3);
 }
 
 /* Testimonials Section */
 .testimonials-section {
     padding: 80px 0;
-    background-color: #fff;
+    background-color: #faf6ea;
     text-align: center;
 }
 
@@ -628,7 +628,7 @@ h6 {
 }
 
 .review-count {
-    color: #666;
+    color: #5d5747;
     font-size: 14px;
 }
 
@@ -652,7 +652,7 @@ h6 {
 .testimonial-card {
     flex-shrink: 0;
     width: 400px;
-    background: #fff;
+    background: #faf6ea;
     padding: 35px;
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
@@ -676,13 +676,13 @@ h6 {
 .testimonial-text {
     font-size: 15px;
     line-height: 1.7;
-    color: #555;
+    color: #55503f;
     margin-bottom: 20px;
 }
 
 .testimonial-meta {
     font-size: 13px;
-    color: #999;
+    color: #97907a;
 }
 
 /* CTA Section */
@@ -713,8 +713,8 @@ h6 {
 
 .cta-button {
     display: inline-block;
-    background: #fff;
-    color: #333;
+    background: #faf6ea;
+    color: #322e26;
     padding: 18px 42px;
     border-radius: 30px;
     font-weight: 600;
@@ -724,7 +724,7 @@ h6 {
 }
 
 .cta-button:hover {
-    background: #f0f0f0;
+    background: #ece5d0;
     color: black !important;
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
@@ -733,7 +733,7 @@ h6 {
 /* Why Choose Us - Toggle/Accordion */
 .info-section {
     padding: 80px 0;
-    background-color: #fff;
+    background-color: #faf6ea;
 }
 
 .info-section h2 {
@@ -746,14 +746,14 @@ h6 {
 .info-section .green-underline {
     width: 60px;
     height: 3px;
-    background-color: #1b5e20;
+    background-color: #0f2e14;
     margin: 20px 0 40px 0;
 }
 
 .about-content {
     font-size: 15px;
     line-height: 1.8;
-    color: #666;
+    color: #5d5747;
     text-shadow: none;
 }
 
@@ -781,7 +781,7 @@ h6 {
 
 .gnw-toggle {
     margin-bottom: 20px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #e6dec9;
     padding-bottom: 20px;
 }
 
@@ -798,7 +798,7 @@ h6 {
 }
 
 .toggle-title:hover {
-    color: #1b5e20;
+    color: #0f2e14;
 }
 
 .toggle-title::after {
@@ -819,7 +819,7 @@ h6 {
 .toggle-content {
     font-size: 15px;
     line-height: 1.8;
-    color: #666;
+    color: #5d5747;
     max-height: 0;
     overflow: hidden;
     padding-top: 0;
@@ -835,12 +835,12 @@ h6 {
 /* Instagram Section */
 .instagram-section {
     padding: 80px 0;
-    background-color: #f9f9f9;
+    background-color: #f2ecdb;
 }
 
 .instagram-subtitle {
     text-align: center;
-    color: #666;
+    color: #5d5747;
     font-size: 16px;
     margin-top: -30px;
     margin-bottom: 50px;
@@ -872,7 +872,7 @@ h6 {
 }
 
 .instagram-profile-link:hover {
-    color: #1b5e20;
+    color: #0f2e14;
 }
 
 .instagram-profile-link .fa {
@@ -882,7 +882,7 @@ h6 {
 
 .instagram-follow-btn {
     background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    color: #fff;
+    color: #faf6ea;
     padding: 12px 32px;
     border-radius: 30px;
     font-weight: 600;
@@ -901,12 +901,12 @@ h6 {
 /* Footer */
 footer#footer {
     background-color: #1a1a1a;
-    color: #fff;
+    color: #faf6ea;
     padding: 60px 0 30px;
 }
 
 footer h3 {
-    color: #fff;
+    color: #faf6ea;
     margin-bottom: 25px;
     font-size: 18px;
     font-weight: 600;
@@ -917,7 +917,7 @@ footer h3 {
 }
 
 .footer-text {
-    color: #999;
+    color: #97907a;
     font-size: 14px;
     line-height: 1.8;
     margin-bottom: 20px;
@@ -933,12 +933,12 @@ footer h3 {
 
 .footer-contact-item label {
     font-weight: 600;
-    color: #fff;
+    color: #faf6ea;
     min-width: 80px;
 }
 
 .footer-contact-item span {
-    color: #999;
+    color: #97907a;
 }
 
 .footer-social {
@@ -950,18 +950,18 @@ footer h3 {
 .footer-social a {
     width: 40px;
     height: 40px;
-    background: #333;
+    background: #322e26;
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: #faf6ea;
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .footer-social a:hover {
-    background: #1b5e20;
+    background: #0f2e14;
     transform: translateY(-2px);
 }
 
@@ -969,7 +969,7 @@ footer h3 {
     background-color: #111;
     padding: 25px 0;
     text-align: center;
-    color: #666;
+    color: #5d5747;
     font-size: 13px;
     margin-top: 40px;
 }
@@ -983,21 +983,21 @@ footer h3 {
 }
 
 .footer-links a {
-    color: #666;
+    color: #5d5747;
     text-decoration: none;
     font-size: 13px;
     transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
-    color: #fff;
+    color: #faf6ea;
 }
 
 /* Green Underline */
 .green-underline {
     width: 80px;
     height: 3px;
-    background: #1b5e20;
+    background: #0f2e14;
     margin: 0 auto 40px;
 }
 
@@ -1253,7 +1253,7 @@ footer h3 {
     position: sticky;
     top: 0;
     z-index: 9999;
-    background: #fff;
+    background: #faf6ea;
     width: 100%;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     /* separation shadow */

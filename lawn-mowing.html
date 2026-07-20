@@ -25,11 +25,11 @@
     <style>
         /* --- 1. GENERAL STYLES --- */
         :root {
-            --primary-color: #1b5e20;
-            --accent-color: #4CAF50; 
-            --text-dark: #333333;
-            --text-light: #666666;
-            --bg-light: #f4f7f6;
+            --primary-color: #0f2e14;
+            --accent-color: #c9a24b; 
+            --text-dark: #322e26;
+            --text-light: #5d5747;
+            --bg-light: #f2ecdb;
             --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
@@ -39,7 +39,7 @@
             font-family: 'Poppins', sans-serif;
             margin: 0; padding: 0;
             color: var(--text-dark);
-            background-color: #fff;
+            background-color: #faf6ea;
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -62,7 +62,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 5%;
-            background: #fff;
+            background: #faf6ea;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             position: sticky;
             top: 0; z-index: 1000;
@@ -101,7 +101,7 @@
             position: absolute;
             top: 100%;
             left: 0;
-            background: #fff;
+            background: #faf6ea;
             min-width: 220px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             border-radius: 8px;
@@ -111,7 +111,7 @@
             transform: translateY(15px);
             transition: all 0.3s ease;
             z-index: 1000;
-            border: 1px solid #eee;
+            border: 1px solid #e6dec9;
         }
         .dropdown-parent:hover .dropdown {
             opacity: 1;
@@ -138,7 +138,7 @@
         /* Desktop Call Button */
         .btn-header {
             background-color: var(--primary-color);
-            color: #fff !important;
+            color: #faf6ea !important;
             padding: 10px 25px;
             border-radius: 50px;
             font-weight: 600;
@@ -164,7 +164,7 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            border: 1px solid #ddd;
+            border: 1px solid #d8cfb6;
         }
 
         .mobile-call-icon {
@@ -174,7 +174,7 @@
             border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
             font-size: 1.2rem;
-            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+            box-shadow: 0 4px 10px rgba(201, 162, 75, 0.3);
             transition: transform 0.2s;
         }
         .mobile-call-icon:active { transform: scale(0.95); }
@@ -206,7 +206,7 @@
             background-image: url('assets/img/lawnmain.webp'); 
             background-size: cover; 
             background-position: center; 
-            min-height: 55vh; padding: 0 5%; color: #fff;
+            min-height: 55vh; padding: 0 5%; color: #faf6ea;
         }
 
         .page-hero::before {
@@ -220,15 +220,15 @@
 
         .hero-btn {
             display: inline-block; padding: 15px 40px;
-            background: var(--accent-color); color: #fff;
+            background: var(--accent-color); color: #faf6ea;
             font-weight: 600; text-transform: uppercase;
             border-radius: 50px; letter-spacing: 1px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.2s;
         }
-        .hero-btn:hover { background: #388E3C; transform: translateY(-3px); }
+        .hero-btn:hover { background: #1a4d23; transform: translateY(-3px); }
 
         /* --- 4. CONTENT SECTIONS --- */
-        .section-padding { padding: 80px 5%; background-color: #fff; }
+        .section-padding { padding: 80px 5%; background-color: #faf6ea; }
         .bg-light { background-color: var(--bg-light); }
 
         .flex-row { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
@@ -245,7 +245,7 @@
         /* --- 5. WHAT'S INCLUDED GRID --- */
         .included-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
         .included-card { 
-            background: #fff; padding: 30px; border-radius: 15px; 
+            background: #faf6ea; padding: 30px; border-radius: 15px; 
             box-shadow: var(--card-shadow); text-align: left; 
             border-left: 4px solid var(--accent-color); 
             transition: transform 0.3s; 
@@ -256,20 +256,20 @@
         .included-card p { font-size: 0.95rem; color: var(--text-light); margin: 0; }
 
         /* --- 6. CTA BANNER --- */
-        .cta-banner { background-color: var(--primary-color); color: #fff; text-align: center; padding: 80px 20px; }
+        .cta-banner { background-color: var(--primary-color); color: #faf6ea; text-align: center; padding: 80px 20px; }
         .cta-banner h2 { font-size: 2.5rem; margin-bottom: 20px; }
-        .btn-white { background: #fff; color: var(--primary-color); padding: 15px 40px; border-radius: 50px; font-weight: 700; display: inline-block; margin-top: 20px; font-size: 1.1rem; transition: transform 0.2s; }
+        .btn-white { background: #faf6ea; color: var(--primary-color); padding: 15px 40px; border-radius: 50px; font-weight: 700; display: inline-block; margin-top: 20px; font-size: 1.1rem; transition: transform 0.2s; }
         .btn-white:hover { transform: scale(1.05); }
 
         /* --- 7. FOOTER --- */
-        footer { background: #f9f9f9; padding: 60px 5% 20px; color: var(--text-dark); border-top: 1px solid #eee; }
+        footer { background: #f2ecdb; padding: 60px 5% 20px; color: var(--text-dark); border-top: 1px solid #e6dec9; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
         .footer-col h4 { color: var(--primary-color); margin-bottom: 20px; font-size: 1.1rem; }
         .footer-col ul li { margin-bottom: 10px; color: var(--text-light); }
         .footer-col ul li i { color: var(--accent-color); margin-right: 10px; }
         .social-icons a { font-size: 1.5rem; color: var(--primary-color); margin-right: 15px; transition: color 0.3s; }
         .social-icons a:hover { color: var(--accent-color); }
-        .copyright { text-align: center; border-top: 1px solid #ddd; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
+        .copyright { text-align: center; border-top: 1px solid #d8cfb6; padding-top: 20px; font-size: 0.9rem; color: var(--text-light); }
 
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
@@ -290,12 +290,12 @@
                 left: 0; 
                 width: 100%;
                 height: calc(100vh - 65px); 
-                background-color: #fff;
+                background-color: #faf6ea;
                 flex-direction: column; 
                 align-items: center;
                 padding: 20px 0 100px 0; 
                 box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-                border-top: 1px solid #eee;
+                border-top: 1px solid #e6dec9;
                 overflow-y: auto; 
                 z-index: 999;
             }
@@ -312,11 +312,11 @@
             }
             .dropdown {
                 position: static; display: none; opacity: 1; visibility: visible;
-                transform: none; box-shadow: none; border: none; background: #f9f9f9;
+                transform: none; box-shadow: none; border: none; background: #f2ecdb;
                 margin-top: 10px; border-radius: 0; width: 100%; padding: 10px 0;
             }
             .dropdown.open { display: block; }
-            .dropdown li a { padding: 12px 0; color: var(--text-light); border-bottom: 1px solid #eee;}
+            .dropdown li a { padding: 12px 0; color: var(--text-light); border-bottom: 1px solid #e6dec9;}
             .dropdown li:last-child a { border-bottom: none; }
             
             .mobile-only-link { display: block !important; font-weight: 600; color: var(--primary-color) !important; }
@@ -328,6 +328,7 @@
             .check-list li { text-align: left; }
         }
     </style>
+    <link rel="stylesheet" href="assets/css/luxe.css">
 </head>
 <body>
 
