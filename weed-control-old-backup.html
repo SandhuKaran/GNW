@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expert Tree & Shrub Care | Greenworks Landscaping</title>
+    <title>Weed Control Services | Greenworks Landscaping</title>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=GT-T9K6VD2L"></script>
 <script>
@@ -363,122 +363,6 @@
             .hero-content h1 { font-size: 2.5rem; }
             .flex-row { flex-direction: column; text-align: left; } 
         }
-    
-        /* ============ DEEP FOREST LUXE — LAWN PAGES REDESIGN ============ */
-
-        /* Hero */
-        .page-hero { min-height: 62vh !important; }
-        .page-hero::before, .page-hero .hero-overlay {
-            background: linear-gradient(to bottom, rgba(10, 33, 16, 0.55), rgba(10, 33, 16, 0.85)) !important;
-        }
-        .hero-kicker {
-            display: inline-flex; align-items: center; gap: 14px;
-            color: #dfc98f; font-size: 0.82rem; font-weight: 600;
-            letter-spacing: 4px; text-transform: uppercase; margin-bottom: 18px;
-        }
-        .hero-kicker::before, .hero-kicker::after { content: ''; width: 40px; height: 2px; background: #c9a24b; }
-        .hero-content h1 { font-size: clamp(2.3rem, 5vw, 3.6rem) !important; font-weight: 800 !important; text-shadow: 0 4px 30px rgba(0,0,0,0.4); }
-
-        /* Section titles + checklists */
-        .section-title { font-weight: 800 !important; color: #0f2e14 !important; }
-        .flex-col .section-title, .story-text h2 { position: relative; padding-bottom: 16px; }
-        .flex-col .section-title::after, .story-text h2::after {
-            content: ''; position: absolute; left: 0; bottom: 0; width: 60px; height: 3px;
-            background: linear-gradient(90deg, #c9a24b, #b08a3e); border-radius: 2px;
-        }
-        .text-center .section-title::after { left: 50%; transform: translateX(-50%); }
-        .check-list li i { color: #b08a3e !important; }
-        .flex-col img, .story-gallery img {
-            border-radius: 18px !important;
-            box-shadow: 0 20px 45px rgba(15, 46, 20, 0.18) !important;
-        }
-
-        /* Included / feature cards */
-        .included-card {
-            background: #fffdf6 !important; border: 1px solid #e6dec9 !important;
-            border-left: 4px solid #c9a24b !important; border-radius: 16px !important;
-            box-shadow: 0 15px 35px rgba(15, 46, 20, 0.08) !important;
-            transition: transform 0.4s ease, box-shadow 0.4s ease !important;
-        }
-        .included-card:hover { transform: translateY(-8px) !important; box-shadow: 0 22px 45px rgba(15, 46, 20, 0.14) !important; }
-        .included-card i { color: #b08a3e !important; }
-
-        /* Tabs (about2) */
-        .tab-btn {
-            border-radius: 50px !important; font-weight: 600 !important;
-            border: 1px solid #d8cfb6 !important; background: #fffdf6 !important; color: #0f2e14 !important;
-        }
-        .tab-btn.active {
-            background: linear-gradient(135deg, #d8b466, #c9a24b 55%, #b08a3e) !important;
-            color: #0a2110 !important; border-color: #b08a3e !important;
-        }
-        .tab-content { background: #fffdf6 !important; border: 1px solid #e6dec9 !important; border-radius: 18px !important; }
-        .tab-content h3 i { color: #b08a3e !important; }
-
-        /* Stats bar */
-        .stats-bar { background: #0a2110 !important; }
-        .stat-item .stat-number, .stats-bar .stat-number { color: #c9a24b !important; }
-        .stat-item .stat-label, .stats-bar .stat-label { color: rgba(250, 246, 234, 0.75) !important; }
-        .stat-item i { color: #c9a24b !important; }
-
-        /* Contact (contact2) */
-        .icon-box { background: #0f2e14 !important; color: #c9a24b !important; box-shadow: 0 8px 20px rgba(15, 46, 20, 0.25); }
-        .info-card { background: #fffdf6 !important; border: 1px solid #e6dec9 !important; border-radius: 16px !important; }
-        .contact-form-wrapper { background: #fffdf6 !important; border: 1px solid #e6dec9 !important; border-radius: 22px !important; box-shadow: 0 25px 55px rgba(15, 46, 20, 0.1) !important; }
-        .form-control { border: 1px solid #d8cfb6 !important; border-radius: 10px !important; background: #fffdf6 !important; }
-        .form-control:focus { border-color: #c9a24b !important; box-shadow: 0 0 0 4px rgba(201, 162, 75, 0.15) !important; outline: none !important; }
-        .price-tag { color: #b08a3e !important; font-weight: 600; }
-        .checkbox-item { border-radius: 10px !important; }
-
-        /* Portfolio (lawn-portfolio) */
-        .grid-item { border-radius: 16px !important; overflow: hidden !important; box-shadow: 0 12px 28px rgba(15, 46, 20, 0.12) !important; }
-        .grid-item img, .grid-item video { transition: transform 0.7s ease !important; }
-        .grid-item:hover img, .grid-item:hover video { transform: scale(1.05) !important; }
-        .zoom-overlay, .play-overlay {
-            background: linear-gradient(135deg, #d8b466, #c9a24b 55%, #b08a3e) !important;
-            color: #0a2110 !important;
-        }
-        .lightbox { background: rgba(10, 33, 16, 0.96) !important; }
-        .close-lightbox:hover { color: #c9a24b !important; }
-
-        /* CTA banner — rounded gradient */
-        .cta-banner {
-            position: relative; margin: 40px 5% 90px !important; padding: 70px 8% !important;
-            background: linear-gradient(120deg, #0a2110, #16421f) !important;
-            border-radius: 26px !important; overflow: hidden !important;
-        }
-        .cta-banner::before {
-            content: ''; position: absolute; right: -80px; top: -80px;
-            width: 320px; height: 320px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(201, 162, 75, 0.35), transparent 65%);
-        }
-        .cta-banner h2, .cta-banner p, .cta-banner a { position: relative; }
-        .cta-banner p { color: rgba(250, 246, 234, 0.8) !important; }
-        .btn-white {
-            background: linear-gradient(135deg, #d8b466, #c9a24b 55%, #b08a3e) !important;
-            color: #0a2110 !important; font-weight: 700 !important;
-            box-shadow: 0 12px 30px rgba(176, 138, 62, 0.4) !important;
-            transition: transform 0.35s ease, box-shadow 0.35s ease !important;
-        }
-        .btn-white:hover { transform: translateY(-4px) !important; box-shadow: 0 18px 40px rgba(176, 138, 62, 0.55) !important; }
-
-        /* Footer — dark forest */
-        footer { background: #0a2110 !important; color: rgba(250, 246, 234, 0.8) !important; border-top: none !important; }
-        footer .footer-col h4 { color: #faf6ea !important; position: relative; padding-bottom: 10px; }
-        footer .footer-col h4::after { content: ''; position: absolute; left: 0; bottom: 0; width: 38px; height: 2px; background: #c9a24b; }
-        footer .footer-col p, footer .footer-col li, footer .footer-col a { color: rgba(250, 246, 234, 0.8) !important; font-weight: 300; }
-        footer .footer-col li i, footer .footer-col ul li i { color: #c9a24b !important; }
-        footer .footer-col a:hover { color: #c9a24b !important; }
-        footer .social-icons a { color: rgba(250, 246, 234, 0.85) !important; }
-        footer .social-icons a:hover { color: #c9a24b !important; }
-        footer .copyright { border-top: 1px solid rgba(201, 162, 75, 0.2) !important; color: rgba(250, 246, 234, 0.5) !important; }
-
-        /* Scroll reveal */
-        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.85s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.85s cubic-bezier(0.22, 0.61, 0.36, 1); }
-        .reveal.in-view { opacity: 1; transform: none; }
-        @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
-
-        .page-hero { background-image: linear-gradient(to bottom, rgba(10,33,16,0.55), rgba(10,33,16,0.85)), url('assets/img/lawn_gallery/25.webp') !important; background-size: cover !important; background-position: center !important; }
     </style>
     <link rel="stylesheet" href="assets/css/luxe.css">
 </head>
@@ -510,11 +394,11 @@
                     <li class="mobile-only-link"><a href="services">View All Services &rarr;</a></li>
                     <li><a href="lawn-mowing">Lawn Mowing</a></li>
                     <li><a href="gardening">Gardening Services</a></li>
-                    <li><a href="weed-control">Weed Control</a></li>
+                    <li><a href="weed-control" style="color: var(--accent-color); font-weight: 600;">Weed Control</a></li>
                     <li><a href="fertilizing">Fertilizing</a></li>
                     <li><a href="aeration">Seeding & Aeration</a></li>
                     <li><a href="seasonal-cleanup">Seasonal Cleanup</a></li>
-                    <li><a href="tree-care" style="color: var(--accent-color); font-weight: 600;">Tree & Shrub Care</a></li>
+                    <li><a href="tree-care">Tree & Shrub Care</a></li>
                     <li><a href="mulch">Mulch Installation</a></li>
                 </ul>
             </li>
@@ -531,93 +415,92 @@
 
     <section class="page-hero">
         <div class="hero-content">
-            <span class="hero-kicker">Trees & Shrubs</span>
-            <h1>Professional Tree & Shrub Care</h1>
-            <p>Protect your landscape investment with expert pruning, disease management, and seasonal care.</p>
-            <a href="contact2.html?service=tree-care" class="hero-btn">Get a Free Quote</a>
+            <h1>Weed Control Services</h1>
+            <p>Eradicate stubborn weeds and stop them from coming back with our safe and effective treatments.</p>
+            <a href="contact2.html?service=weed-control" class="hero-btn">Get a Free Quote</a>
         </div>
     </section>
 
     <section class="section-padding">
         <div class="flex-row">
             <div class="flex-col">
-                <h2 class="section-title">Nurturing Your Landscape's Biggest Assets</h2>
-                <p class="section-desc">Trees and shrubs are the foundation of your property's landscape. They provide shade, structure, and beauty, but they also require specialized attention to stay healthy. From precise pruning to deep root fertilization, Greenworks Landscaping ensures your woody plants thrive year after year.</p>
+                <h2 class="section-title">Take Back Your Lawn</h2>
+                <p class="section-desc">Weeds do more than just make your property look unkempt—they aggressively compete with your grass and garden plants for essential sunlight, water, and soil nutrients. Hand-pulling is exhausting, and store-bought sprays often fail to kill the root. Greenworks Landscaping provides professional-grade weed management to clear your lawn safely and effectively.</p>
                 
                 <ul class="check-list">
                     <li>
                         <i class="fas fa-check-circle"></i> 
                         <div>
-                            <strong>Health & Longevity</strong>
-                            Proper, regular care extends the life of your trees and prevents costly, dangerous removals down the road.
+                            <strong>Early Intervention</strong>
+                            We target weeds during their critical growth period in early spring, preventing them from establishing a foothold in your lawn.
                         </div>
                     </li>
                     <li>
                         <i class="fas fa-check-circle"></i> 
                         <div>
-                            <strong>Disease & Pest Control</strong>
-                            We identify and treat infestations early before they can cause irreversible damage or spread to the rest of your garden.
+                            <strong>Targeted Applications</strong>
+                            Different weeds require different solutions. We identify the specific invasive species on your property and apply the correct treatment.
                         </div>
                     </li>
                     <li>
                         <i class="fas fa-check-circle"></i> 
                         <div>
-                            <strong>Structural Integrity</strong>
-                            Expert pruning removes dead, diseased, or crossing branches, promoting strong, wind-resistant growth.
+                            <strong>Ontario Compliant</strong>
+                            We strictly adhere to local regulations, utilizing highly effective, environmentally safe iron-based treatments that won't harm your family or pets.
                         </div>
                     </li>
                     <li>
                         <i class="fas fa-check-circle"></i> 
                         <div>
-                            <strong>Aesthetic Shaping</strong>
-                            We maintain the natural beauty and desired shape of your ornamental shrubs, hedges, and small trees.
+                            <strong>Long-Term Prevention</strong>
+                            We don't just kill the visible weeds; we reduce the weed seed bank in your soil to ensure a thicker, greener lawn over time.
                         </div>
                     </li>
                 </ul>
                 
-                <a href="pricing.html?service=tree-care" class="btn-header" style="text-decoration:none; display: inline-block; margin-top: 10px;">View Pricing Plans</a>
+                <a href="pricing.html?service=weed-control" class="btn-header" style="text-decoration:none; display: inline-block; margin-top: 10px;">View Pricing Plans</a>
             </div>
             <div class="flex-col">
-                <img src="assets/img/lawn_gallery/25.webp" alt="Professional Tree and Shrub Care Services">
+                <img src="assets/img/lawn_gallery/21.webp" alt="Professional Weed Control Service">
             </div>
         </div>
     </section>
 
     <section class="section-padding bg-light text-center">
-        <h2 class="section-title" style="text-align: center;">Our Tree & Shrub Services</h2>
-        <p class="section-desc" style="text-align: center; max-width: 700px; margin: 0 auto; margin-bottom: 35px;">Comprehensive care tailored to the specific species in your yard.</p>
+        <h2 class="section-title" style="text-align: center;">Our Approach to Weed Management</h2>
+        <p class="section-desc" style="text-align: center; max-width: 700px; margin: 0 auto; margin-bottom: 35px;">We use a comprehensive, multi-step system to eradicate existing weeds and protect your property from future invasions.</p>
         
         <div class="included-grid">
             <div class="included-card">
-                <i class="fas fa-cut"></i>
-                <h3>Pruning & Trimming</h3>
-                <p>Strategic cuts to remove deadwood, improve airflow, and maintain the perfect shape and size for your hedges and ornamental trees.</p>
+                <i class="fas fa-search"></i>
+                <h3>Inspection & Identification</h3>
+                <p>We begin by surveying your property to identify broadleaf weeds, crabgrass, and other invasive species so we can tailor our treatment precisely to your lawn's needs.</p>
+            </div>
+            
+            <div class="included-card">
+                <i class="fas fa-spray-can"></i>
+                <h3>Pre-Emergent Defense</h3>
+                <p>Applied in the early spring, these proactive treatments stop weed seeds from germinating before they ever break the surface of your soil.</p>
             </div>
             
             <div class="included-card">
                 <i class="fas fa-leaf"></i>
-                <h3>Deep Root Fertilization</h3>
-                <p>We inject essential liquid nutrients directly into the root zone where your trees and shrubs need them most, bypassing the competing grass roots.</p>
+                <h3>Post-Emergent Control</h3>
+                <p>For weeds that have already sprouted, we utilize highly effective, selective spot-treatments that destroy the weed down to the root without harming your healthy grass.</p>
             </div>
             
             <div class="included-card">
-                <i class="fas fa-bug"></i>
-                <h3>Pest & Disease Management</h3>
-                <p>Targeted, eco-friendly treatments to protect your plants from common local pests like aphids and scale, as well as destructive fungal infections.</p>
-            </div>
-            
-            <div class="included-card">
-                <i class="fas fa-snowflake"></i>
-                <h3>Winter Protection</h3>
-                <p>Wrapping delicate plants, installing burlap windbreaks, and applying anti-desiccant sprays to shield sensitive shrubs from harsh winter winds and freezing temperatures.</p>
+                <i class="fas fa-shield-alt"></i>
+                <h3>Hardscape Vegetation Control</h3>
+                <p>We don't stop at the grass. We carefully eliminate unsightly weeds pushing through your driveway cracks, interlock patios, walkways, and garden beds.</p>
             </div>
         </div>
     </section>
 
     <section class="cta-banner">
-        <h2>Protect the beauty of your property.</h2>
-        <p>Book a consultation for your trees and shrubs today.</p>
-        <a href="contact2.html?service=tree-care" class="btn-white">Get Your Free Estimate</a>
+        <h2>Stop fighting weeds on your own.</h2>
+        <p>Let our experts clear your lawn so you can enjoy a lush, green yard.</p>
+        <a href="contact2.html?service=weed-control" class="btn-white">Get Your Free Estimate</a>
     </section>
 
     <footer>
@@ -682,22 +565,6 @@
                 }
             }
         }
-    </script>
-
-    <script>
-        (function () {
-            if (!('IntersectionObserver' in window)) return;
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach((e) => {
-                    if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
-                });
-            }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
-            document.querySelectorAll('.flex-col, .included-card, .info-card, .story-text, .story-gallery, .tab-buttons, .contact-form-wrapper, .cta-banner').forEach((el, i) => {
-                el.classList.add('reveal');
-                el.style.transitionDelay = (i % 4) * 0.1 + 's';
-                io.observe(el);
-            });
-        })();
     </script>
 </body>
 </html>

@@ -1,826 +1,431 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="GNW Landscaping" />
-  <meta name="description" content="GNW Landscaping - Top Landscaping and Lawn Care Services in Georgetown" />
-  <title>GNW | Home</title>
+  <meta name="description" content="Greenworks Landscaping. Georgetown's trusted landscaping construction and lawn maintenance company. Interlock patios, driveways, retaining walls, weekly mowing, fertilizing and more. 5-star rated, locally owned, fully insured." />
+  <title>Greenworks Landscaping | Landscaping & Lawn Care in Georgetown, ON</title>
 
   <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="new.css" />
-  <link rel="stylesheet" href="style2.css" />
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=GT-T9K6VD2L"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
-    // Unified Google Tag
     gtag('config', 'GT-T9K6VD2L');
-    // Google Analytics 4
     gtag('config', 'G-N8165ZJRD2');
-    // Google Ads Tracking
     gtag('config', 'AW-10820369667');
   </script>
 
   <style>
-    /* --- 1. GENERAL STYLES --- */
+    /* ============ DEEP FOREST LUXE — HOMEPAGE ============ */
     :root {
-      --primary-color: #0f2e14;
-      --accent-color: #c9a24b;
-      --text-dark: #322e26;
+      --forest: #0f2e14;
+      --forest-2: #16421f;
+      --forest-deep: #0a2110;
+      --gold: #c9a24b;
+      --gold-light: #dfc98f;
+      --gold-dark: #b08a3e;
+      --ivory: #faf6ea;
+      --cream: #f2ecdb;
+      --text-dark: #201d16;
       --text-light: #5d5747;
-      --bg-light: #f2ecdb;
-      --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
       color: var(--text-dark);
-      background-color: #faf6ea;
-      line-height: 1.6;
-      /* ADDED: Offsets the body so it doesn't hide under the fixed header */
-      padding-top: 75px; 
+      background: var(--ivory);
+      line-height: 1.65;
+      overflow-x: hidden;
     }
+    body.no-scroll { overflow: hidden; }
+    a { text-decoration: none; color: inherit; transition: 0.3s; }
+    ul { list-style: none; }
+    img { max-width: 100%; height: auto; display: block; }
 
-    /* Stops background scrolling when mobile menu is open */
-    body.no-scroll {
-      overflow: hidden;
-    }
-
-    /* Mobile specific link visible only on mobile */
-    .mobile-only-link {
-      display: none !important;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* --- 2. HEADER & NAVIGATION --- */
+    /* ============ HEADER ============ */
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: flex; justify-content: space-between; align-items: center;
       padding: 15px 5%;
-      background: #faf6ea;
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-      
-      /* FIXED: Changed to Fixed to override external CSS conflicts */
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 10000;
+      background: rgba(250, 246, 234, 0.92);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(15, 46, 20, 0.08);
+      position: sticky; top: 0; z-index: 1000;
     }
-
-    .logo {
-      border-radius: 10px;
-      overflow: hidden;
-      transition: transform 0.3s;
-    }
-
-    .logo:hover {
-      transform: scale(1.02);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      align-items: center;
-    }
-
-    .nav-links a {
-      font-weight: 500;
-      font-size: 0.95rem;
-      color: var(--text-dark);
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent-color);
-    }
-
-    /* DROPDOWN MENU STYLING */
-    .dropdown-parent {
-      position: relative;
-      padding: 10px 0;
-    }
-
-    .dropdown-parent>a {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .dropdown-parent .fa-chevron-down {
-      font-size: 0.7rem;
-      transition: transform 0.3s;
-    }
-
-    .dropdown-parent:hover .fa-chevron-down {
-      transform: rotate(180deg);
-    }
-
-    .dropdown {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: #faf6ea;
-      min-width: 220px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      padding: 10px 0;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(15px);
-      transition: all 0.3s ease;
-      z-index: 1000;
-      border: 1px solid #e6dec9;
-    }
-
-    .dropdown-parent:hover .dropdown {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .dropdown li {
-      margin: 0;
-    }
-
-    .dropdown li a {
-      display: block;
-      padding: 10px 20px;
-      font-size: 0.9rem;
-      color: var(--text-dark);
-      transition: background 0.3s, color 0.3s;
-    }
-
-    .dropdown li a:hover {
-      background: var(--bg-light);
-      color: var(--accent-color);
-    }
-
-    /* LOGIN BUTTON */
-    .nav-links .login-btn {
-      color: var(--primary-color);
-      font-weight: 600;
-    }
-
-    .nav-links .login-btn:hover {
-      color: var(--accent-color);
-    }
-
-    /* Desktop Call Button */
+    .logo { border-radius: 10px; overflow: hidden; transition: transform 0.3s; }
+    .logo:hover { transform: scale(1.02); }
+    .nav-links { display: flex; gap: 30px; align-items: center; }
+    .nav-links a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); }
+    .nav-links a:hover { color: var(--gold); }
     .btn-header {
-      background-color: var(--primary-color);
-      color: #faf6ea !important;
-      padding: 10px 25px;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: background 0.3s;
       display: inline-block;
+      background: var(--forest); color: var(--ivory);
+      padding: 11px 26px; border-radius: 50px; font-weight: 600; font-size: 0.9rem;
+      border: 1px solid var(--forest);
     }
-
-    .btn-header:hover {
-      background-color: var(--accent-color);
+    .btn-header:hover { background: var(--gold); border-color: var(--gold); color: var(--forest-deep); }
+    .mobile-controls { display: none; }
+    .mobile-button { width: 30px; height: 22px; position: relative; cursor: pointer; }
+    .mobile-button span, .mobile-button span::before, .mobile-button span::after {
+      content: ''; position: absolute; width: 100%; height: 3px;
+      background: var(--forest); border-radius: 3px; transition: 0.3s;
     }
+    .mobile-button span { top: 50%; transform: translateY(-50%); }
+    .mobile-button span::before { top: -9px; }
+    .mobile-button span::after { top: 9px; }
+    .mobile-button.active span { background: transparent; }
+    .mobile-button.active span::before { top: 0; transform: rotate(45deg); }
+    .mobile-button.active span::after { top: 0; transform: rotate(-45deg); }
 
-    /* --- MOBILE CONTROLS --- */
-    .mobile-controls {
-      display: none;
-      align-items: center;
-      gap: 12px;
+    /* ============ HERO ============ */
+    .hero {
+      position: relative; min-height: 88vh;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 70px 6% 90px;
+      color: var(--ivory); overflow: hidden;
     }
-
-    .mobile-login-btn {
-      background-color: var(--bg-light);
-      color: var(--primary-color);
-      padding: 8px 14px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      border: 1px solid #d8cfb6;
+    .hero-video {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; z-index: 0;
     }
-
-    .mobile-call-icon {
-      width: 40px;
-      height: 40px;
-      background-color: var(--accent-color);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.2rem;
-      box-shadow: 0 4px 10px rgba(201, 162, 75, 0.3);
-      transition: transform 0.2s;
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to bottom, rgba(10, 33, 16, 0.6), rgba(10, 33, 16, 0.82));
     }
-
-    .mobile-call-icon:active {
-      transform: scale(0.95);
+    .hero-content { position: relative; z-index: 2; max-width: 900px; }
+    .hero-kicker {
+      display: inline-flex; align-items: center; gap: 14px;
+      color: var(--gold-light); font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px;
     }
-
-    .mobile-button {
-      display: block;
-      cursor: pointer;
-      width: 30px;
-      height: 20px;
-      position: relative;
-      z-index: 1001;
-      margin: 0;
+    .hero-kicker::before, .hero-kicker::after { content: ''; width: 40px; height: 2px; background: var(--gold); }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5.5vw, 4rem);
+      font-weight: 800; line-height: 1.12; margin-bottom: 20px;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
     }
+    .hero h1 em { font-style: normal; color: var(--gold); }
+    .hero-sub { font-size: 1.12rem; color: rgba(250, 246, 234, 0.88); font-weight: 300; max-width: 640px; margin: 0 auto 40px; }
 
-    .mobile-button span {
-      display: block;
-      width: 100%;
-      height: 3px;
-      background-color: var(--primary-color);
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: all 0.3s ease;
-      margin: 0;
+    .path-cards { display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; }
+    .path-card {
+      display: flex; flex-direction: column; align-items: flex-start; text-align: left;
+      width: 320px; padding: 26px 28px;
+      background: rgba(250, 246, 234, 0.08);
+      border: 1px solid rgba(201, 162, 75, 0.4);
+      border-radius: 18px; backdrop-filter: blur(10px);
+      transition: transform 0.4s ease, background 0.4s ease, border-color 0.4s ease;
     }
-
-    .mobile-button::before,
-    .mobile-button::after {
-      content: '';
-      width: 100%;
-      height: 3px;
-      background-color: var(--primary-color);
-      position: absolute;
-      transition: all 0.3s ease;
-      transform: none;
+    .path-card:hover { transform: translateY(-6px); background: rgba(250, 246, 234, 0.14); border-color: var(--gold); }
+    .path-card i.path-icon { font-size: 1.7rem; color: var(--gold); margin-bottom: 12px; }
+    .path-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 6px; }
+    .path-card p { font-size: 0.85rem; color: rgba(250, 246, 234, 0.78); font-weight: 300; margin-bottom: 16px; }
+    .path-card .path-go {
+      margin-top: auto; font-size: 0.82rem; font-weight: 700; color: var(--gold);
+      letter-spacing: 1.5px; text-transform: uppercase;
     }
+    .path-card .path-go i { transition: transform 0.3s; display: inline-block; margin-left: 6px; }
+    .path-card:hover .path-go i { transform: translateX(6px); }
 
-    .mobile-button::before {
-      top: 0;
+    .google-stamp-wrapper { margin-top: 42px; position: relative; z-index: 2; }
+    .google-stamped-badge {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: rgba(250, 246, 234, 0.1); border: 1px solid rgba(250, 246, 234, 0.25);
+      backdrop-filter: blur(8px);
+      padding: 12px 24px; border-radius: 60px; transition: 0.3s;
     }
+    .google-stamped-badge:hover { background: rgba(250, 246, 234, 0.18); transform: translateY(-3px); }
+    .stamped-google-logo { font-size: 1.6rem; color: var(--ivory); }
+    .stamp-content-stars { color: var(--gold); font-size: 0.8rem; letter-spacing: 2px; }
+    .stamp-content-text { font-size: 0.85rem; font-weight: 600; color: var(--ivory); }
 
-    .mobile-button::after {
-      bottom: 0;
-      top: auto;
+    /* ============ TRUST STRIP ============ */
+    .trust-strip { background: var(--cream); padding: 34px 6%; }
+    .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
+    .trust-item { display: flex; align-items: center; justify-content: center; gap: 14px; }
+    .trust-item i { font-size: 1.7rem; color: var(--gold-dark); }
+    .trust-item h4 { font-size: 0.95rem; font-weight: 700; color: var(--forest); line-height: 1.25; }
+    .trust-item span { font-size: 0.8rem; color: var(--text-light); }
+
+    /* ============ SECTION BASICS ============ */
+    .kicker { color: var(--gold-dark); font-size: 0.8rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; }
+    .section-head { max-width: 1280px; margin: 0 auto 55px; text-align: center; }
+    .section-head h2 { font-size: clamp(1.9rem, 3.8vw, 2.8rem); font-weight: 800; color: var(--forest); line-height: 1.18; margin-top: 8px; }
+    .section-head p { color: var(--text-light); max-width: 640px; margin: 14px auto 0; font-size: 0.98rem; }
+
+    /* ============ TWO SERVICES SPLIT ============ */
+    .split-section { padding: 100px 6%; }
+    .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1280px; margin: 0 auto; }
+    .split-card {
+      background: #fffdf6; border: 1px solid #e6dec9; border-radius: 24px; overflow: hidden;
+      display: flex; flex-direction: column;
+      box-shadow: 0 20px 45px rgba(15, 46, 20, 0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
-
-    .mobile-button.active span {
-      opacity: 0;
+    .split-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(15, 46, 20, 0.16); }
+    .split-img { position: relative; height: 260px; overflow: hidden; }
+    .split-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+    .split-card:hover .split-img img { transform: scale(1.06); }
+    .split-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(10, 33, 16, 0.55), transparent 55%); }
+    .split-tag {
+      position: absolute; bottom: 18px; left: 22px; z-index: 2;
+      background: linear-gradient(135deg, #d8b466, var(--gold) 55%, var(--gold-dark));
+      color: var(--forest-deep); font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 7px 16px; border-radius: 50px;
     }
-
-    .mobile-button.active::before {
-      top: 50%;
-      transform: rotate(45deg);
+    .split-body { padding: 32px 34px 36px; display: flex; flex-direction: column; flex: 1; }
+    .split-body h3 { font-size: 1.5rem; font-weight: 800; color: var(--forest); margin-bottom: 10px; }
+    .split-body > p { font-size: 0.93rem; color: var(--text-light); margin-bottom: 20px; }
+    .split-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; margin-bottom: 28px; }
+    .split-list li { display: flex; align-items: flex-start; gap: 9px; font-size: 0.88rem; color: var(--text-dark); }
+    .split-list li i { color: var(--gold-dark); margin-top: 4px; font-size: 0.8rem; }
+    .split-actions { margin-top: auto; display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-gold {
+      display: inline-block;
+      background: linear-gradient(135deg, #d8b466, var(--gold) 55%, var(--gold-dark));
+      color: var(--forest-deep); font-weight: 700; font-size: 0.92rem;
+      padding: 14px 32px; border-radius: 50px;
+      box-shadow: 0 10px 25px rgba(176, 138, 62, 0.35);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
     }
-
-    .mobile-button.active::after {
-      top: 50%;
-      transform: rotate(-45deg);
-      bottom: auto;
+    .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 16px 35px rgba(176, 138, 62, 0.5); }
+    .btn-outline {
+      display: inline-block; padding: 13px 30px; border-radius: 50px;
+      border: 2px solid var(--forest); color: var(--forest); font-weight: 600; font-size: 0.9rem;
     }
+    .btn-outline:hover { background: var(--forest); color: var(--ivory); transform: translateY(-3px); }
 
-    /* --- 3. PAGE HERO --- */
-    .page-hero {
-      background-color: var(--primary-color);
-      color: #faf6ea;
-      padding: 80px 5%;
-      text-align: center;
+    /* ============ STATS BAND ============ */
+    .stats-band {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+      background: var(--forest-deep); padding: 60px 6%; text-align: center;
     }
+    .stat-item i { color: var(--gold); font-size: 1.6rem; margin-bottom: 10px; }
+    .stat-number { display: block; font-size: 2.4rem; font-weight: 800; color: var(--gold); line-height: 1.15; }
+    .stat-label { font-size: 0.78rem; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(250, 246, 234, 0.75); }
 
-    .page-hero h1 {
-      font-size: 3.5rem;
-      margin-bottom: 15px;
-      font-weight: 700;
+    /* ============ ABOUT / STORY ============ */
+    .story-section { padding: 100px 6%; }
+    .story-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px; align-items: center; max-width: 1280px; margin: 0 auto; }
+    .story-image { position: relative; }
+    .story-image img {
+      border-radius: 20px; width: 100%; object-fit: cover;
+      box-shadow: 25px 25px 0 -12px var(--cream), 0 25px 50px rgba(15, 46, 20, 0.2);
     }
-
-    .page-hero p {
-      font-size: 1.2rem;
-      opacity: 0.9;
-      max-width: 700px;
-      margin: 0 auto;
+    .story-badge {
+      position: absolute; bottom: -20px; right: -14px;
+      background: var(--forest); color: var(--ivory);
+      border: 1px solid rgba(201, 162, 75, 0.5);
+      border-radius: 16px; padding: 16px 22px; text-align: center;
+      box-shadow: 0 15px 35px rgba(15, 46, 20, 0.35);
     }
+    .story-badge strong { display: block; color: var(--gold); font-size: 1.4rem; font-weight: 800; line-height: 1.1; }
+    .story-badge span { font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase; }
+    .story-text h2 { font-size: clamp(1.9rem, 3.6vw, 2.6rem); font-weight: 800; color: var(--forest); line-height: 1.2; margin: 8px 0 14px; padding-bottom: 16px; position: relative; }
+    .story-text h2::after { content: ''; position: absolute; left: 0; bottom: 0; width: 60px; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-dark)); border-radius: 2px; }
+    .story-text p { color: var(--text-light); font-size: 0.96rem; margin-bottom: 16px; }
+    .story-text p.founder-note { font-style: italic; color: var(--text-dark); }
+    .story-points { margin: 22px 0 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; }
+    .story-points li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; }
+    .story-points li i { color: var(--gold-dark); margin-top: 4px; font-size: 0.85rem; }
+    .service-area { background: var(--cream); border-radius: 14px; padding: 18px 22px; font-size: 0.88rem; color: var(--text-dark); }
+    .service-area i { color: var(--gold-dark); margin-right: 8px; }
+    .service-area strong { color: var(--forest); }
 
-    /* --- AI REVIEWS SUMMARY (NEW) --- */
-    .reviews-section {
-      position: relative;
-      z-index: 10;
+    /* ============ REVIEWS BAND ============ */
+    .reviews-band { background: var(--forest-deep); padding: 90px 0; overflow: hidden; }
+    .reviews-band .section-head h2 { color: var(--ivory); }
+    .reviews-band .section-head p { color: rgba(250, 246, 234, 0.75); }
+    .rating-summary {
+      display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap;
+      margin: 0 auto 50px; max-width: 640px;
+      background: rgba(250, 246, 234, 0.06);
+      border: 1px solid rgba(201, 162, 75, 0.3);
+      border-radius: 18px; padding: 22px 30px;
     }
+    .rating-score { font-size: 2.6rem; font-weight: 800; color: var(--gold); line-height: 1; }
+    .rating-info { text-align: left; }
+    .rating-stars { color: var(--gold); letter-spacing: 3px; font-size: 0.9rem; }
+    .rating-info p { color: rgba(250, 246, 234, 0.8); font-size: 0.85rem; font-weight: 300; }
+    .rating-summary .fab.fa-google { font-size: 2rem; color: var(--ivory); }
 
-    .ai-summary-container {
-      position: relative;
-      margin-top: -100px; /* Pulls it up to float over the hero edge */
-      z-index: 20;
-      padding: 0 5%;
-      display: flex;
-      justify-content: center;
-      margin-bottom: 40px; /* Space before the sliding reviews */
+    .marquee-wrapper { overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+    .marquee-wrapper::-webkit-scrollbar { display: none; }
+    .marquee-track { display: flex; gap: 22px; padding: 10px 40px; width: max-content; }
+    .google-card {
+      width: 270px; flex-shrink: 0;
+      background: rgba(250, 246, 234, 0.05);
+      border: 1px solid rgba(201, 162, 75, 0.25);
+      border-radius: 14px; padding: 18px;
+      transition: transform 0.4s ease, background 0.4s ease;
     }
-
-    .ai-summary {
-      max-width: 650px;
-      width: 100%;
-      background: linear-gradient(180deg, #faf6ea 0%, #fff0f5 100%);
-      padding: 25px 30px;
-      border-radius: 15px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-      border: 1px solid #e6dec9;
-      text-align: left;
+    .google-card:hover { transform: translateY(-6px); background: rgba(250, 246, 234, 0.09); }
+    .g-header { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+    .g-avatar img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+    .g-info h4 { color: var(--ivory); font-size: 0.85rem; font-weight: 600; }
+    .g-info span { color: rgba(250, 246, 234, 0.5); font-size: 0.72rem; }
+    .g-stars { color: var(--gold); font-size: 0.7rem; letter-spacing: 2.5px; margin-bottom: 9px; }
+    .g-text { color: rgba(250, 246, 234, 0.82); font-size: 0.82rem; font-weight: 300; line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
+    .reviews-cta { text-align: center; margin-top: 45px; }
+    .btn-ghost-light {
+      display: inline-block; padding: 13px 34px; border-radius: 50px;
+      border: 2px solid rgba(250, 246, 234, 0.5); color: var(--ivory); font-weight: 600; font-size: 0.9rem;
     }
+    .btn-ghost-light:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); }
 
-    .ai-top-row {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 12px;
+    /* ============ WORK GALLERY ============ */
+    .work-section { padding: 100px 0 100px; }
+    .gallery-scroll { overflow: hidden; position: relative; }
+    .gallery-track { display: flex; gap: 16px; width: max-content; animation: slideTrack 45s linear infinite; }
+    .gallery-track:hover { animation-play-state: paused; }
+    @keyframes slideTrack { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .gallery-track .g-item { width: 340px; height: 250px; border-radius: 16px; overflow: hidden; flex-shrink: 0; }
+    .gallery-track .g-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .gallery-track .g-item:hover img { transform: scale(1.06); }
+    .work-cta { text-align: center; margin-top: 45px; }
+
+    /* ============ WHY US ============ */
+    .why-section { padding: 100px 6%; background: var(--cream); }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1280px; margin: 0 auto; }
+    .why-card {
+      background: #fffdf6; border: 1px solid #e6dec9; border-radius: 18px;
+      padding: 36px 30px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
-
-    .ai-icon-box {
-      margin-right: 12px;
-      margin-top: 2px;
+    .why-card:hover { transform: translateY(-8px); box-shadow: 0 22px 45px rgba(15, 46, 20, 0.13); }
+    .why-icon {
+      width: 62px; height: 62px; margin-bottom: 20px;
+      background: var(--forest); color: var(--gold);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; box-shadow: 0 10px 25px rgba(15, 46, 20, 0.25);
     }
+    .why-card h3 { font-size: 1.12rem; font-weight: 700; color: var(--forest); margin-bottom: 10px; }
+    .why-card p { font-size: 0.88rem; color: var(--text-light); }
 
-    .ai-sparkle {
-  font-size: 1.2rem;
-  background: linear-gradient(135deg, #4285f4, #9b72cb, #d96570, #f49c0e);
-  -webkit-background-clip: text; /* For Safari/Chrome compatibility */
-  background-clip: text;         /* ADD THIS LINE: The standard property */
-  -webkit-text-fill-color: transparent;
-}
-
-    .ai-titles h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #202124;
-      margin: 0;
-      line-height: 1.2;
+    /* ============ INSTAGRAM + CTA ============ */
+    .insta-strip { padding: 70px 6%; text-align: center; }
+    .insta-strip h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: var(--forest); margin-bottom: 8px; }
+    .insta-strip p { color: var(--text-light); margin-bottom: 26px; font-size: 0.95rem; }
+    .btn-instagram {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 34px; border-radius: 50px; font-weight: 600; font-size: 0.95rem;
+      background: linear-gradient(45deg, #f09433, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888);
+      color: #fff;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
     }
+    .btn-instagram:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(188, 24, 136, 0.35); }
 
-    .ai-titles span {
-      font-size: 0.85rem;
-      color: #70757a;
-      display: block;
+    .cta-banner {
+      position: relative; margin: 30px 6% 100px; padding: 75px 8%;
+      background: linear-gradient(120deg, var(--forest-deep), var(--forest-2));
+      border-radius: 26px; overflow: hidden;
+      display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;
+      color: var(--ivory);
     }
-
-    .ai-google-logo {
-      margin-left: auto;
-      width: 22px;
-      height: 22px;
-      opacity: 0.8;
+    .cta-banner::before {
+      content: ''; position: absolute; right: -80px; top: -80px;
+      width: 320px; height: 320px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 162, 75, 0.35), transparent 65%);
     }
+    .cta-banner h2 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); font-weight: 800; line-height: 1.2; max-width: 520px; }
+    .cta-banner h2 em { font-style: normal; color: var(--gold); }
+    .cta-banner p { color: rgba(250, 246, 234, 0.8); margin-top: 10px; font-weight: 300; }
+    .cta-actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; position: relative; z-index: 1; }
+    .cta-phone { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 1.05rem; }
+    .cta-phone i { color: var(--gold); font-size: 1.3rem; }
 
-    .ai-content {
-      font-size: 0.95rem;
-      color: #3c4043;
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    .ai-tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 15px;
-    }
-
-    .ai-tag {
-      background: #faf6ea;
-      border: 1px solid #e0e0e0;
-      color: var(--primary-color);
-      padding: 5px 14px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-
-    /* --- 4. STORY SECTION --- */
-    .story-section {
-      padding: 100px 5%;
-      background-color: #faf6ea;
-    }
-
-    .story-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 60px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .story-text {
-      flex: 1;
-    }
-
-    .story-text h2 {
-      font-size: 2.5rem;
-      color: var(--primary-color);
-      margin-bottom: 25px;
-      line-height: 1.2;
-    }
-
-    .story-text p {
-      font-size: 1.05rem;
-      color: var(--text-light);
-      margin-bottom: 20px;
-    }
-
-    .story-text strong {
-      color: var(--accent-color);
-      display: block;
-      margin-bottom: 10px;
-      font-size: 1.1rem;
-    }
-
-    .story-gallery {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-    }
-
-    .story-gallery img {
-      border-radius: 15px;
-      height: 220px;
-      width: 100%;
-      object-fit: cover;
-      box-shadow: var(--card-shadow);
-      transition: transform 0.3s ease;
-    }
-
-    .story-gallery img:hover {
-      transform: scale(1.05);
-    }
-
-    /* --- 5. TRUST TABS SECTION --- */
-    .trust-section {
-      padding: 80px 5%;
-      background-color: var(--bg-light);
-    }
-
-    .trust-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      background: #faf6ea;
-      border-radius: 15px;
-      box-shadow: var(--card-shadow);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .tab-buttons {
-      display: flex;
-      background: #f1f1f1;
-      border-bottom: 2px solid #d8cfb6;
-    }
-
-    .tab-btn {
-      flex: 1;
-      background: none;
-      border: none;
-      padding: 20px;
-      font-size: 1.1rem;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      color: var(--text-light);
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .tab-btn:hover {
-      background: #e9e9e9;
-      color: var(--primary-color);
-    }
-
-    .tab-btn.active {
-      background: #faf6ea;
-      color: var(--primary-color);
-      border-bottom: 3px solid var(--accent-color);
-    }
-
-    .tab-content {
-      padding: 40px;
-      display: none;
-      animation: fadeIn 0.5s ease;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    .tab-content h3 {
-      font-size: 1.8rem;
-      color: var(--primary-color);
-      margin-top: 0;
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .tab-content h3 i {
-      color: var(--accent-color);
-    }
-
-    .tab-content p {
-      font-size: 1.05rem;
-      color: var(--text-light);
-      line-height: 1.7;
-      margin-bottom: 15px;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* --- 6. STATS BAR --- */
-    .stats-bar {
-      background-color: #faf6ea;
-      color: var(--text-dark);
-      padding: 60px 5%;
-      display: flex;
-      justify-content: space-around;
-      text-align: center;
-      flex-wrap: wrap;
-      border-top: 1px solid #e6dec9;
-      border-bottom: 1px solid #e6dec9;
-    }
-
-    .stat-item h3 {
-      font-size: 2.8rem;
-      margin-bottom: 5px;
-      color: var(--primary-color);
-      font-weight: 700;
-    }
-
-    .stat-item p {
-      font-size: 1.1rem;
-      color: var(--text-light);
-      font-weight: 500;
-    }
-
-    /* --- 7. FOOTER --- */
-    footer {
-      background: #f2ecdb;
-      padding: 60px 5% 20px;
-      border-top: 1px solid #e6dec9;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-
-    .footer-col h4 {
-      color: var(--primary-color);
-      margin-bottom: 20px;
-    }
-
-    .footer-col ul li {
-      margin-bottom: 10px;
-      color: var(--text-light);
-    }
-
-    .footer-col ul li i {
-      color: var(--accent-color);
-      margin-right: 10px;
-    }
-
-    .social-icons a {
-      font-size: 1.5rem;
-      color: var(--primary-color);
-      margin-right: 15px;
-      transition: color 0.3s;
-    }
-
-    .social-icons a:hover {
-      color: var(--accent-color);
-    }
-
+    /* ============ FOOTER ============ */
+    footer { background: var(--forest-deep); color: rgba(250, 246, 234, 0.8); padding: 70px 6% 0; }
+    .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1280px; margin: 0 auto; }
+    .footer-col h4 { color: var(--ivory); font-size: 1.05rem; margin-bottom: 18px; padding-bottom: 10px; position: relative; }
+    .footer-col h4::after { content: ''; position: absolute; left: 0; bottom: 0; width: 38px; height: 2px; background: var(--gold); }
+    .footer-col p, .footer-col li { font-size: 0.9rem; font-weight: 300; margin-bottom: 10px; }
+    .footer-col li i { color: var(--gold); margin-right: 10px; }
+    .footer-col a:hover { color: var(--gold); }
+    .social-icons a { font-size: 1.5rem; margin-right: 15px; }
+    .social-icons a:hover { color: var(--gold); }
     .copyright {
-      text-align: center;
-      border-top: 1px solid #d8cfb6;
-      padding-top: 20px;
-      font-size: 0.9rem;
-      color: var(--text-light);
+      text-align: center; margin-top: 50px; padding: 22px 0;
+      border-top: 1px solid rgba(201, 162, 75, 0.2);
+      font-size: 0.85rem; color: rgba(250, 246, 234, 0.5);
     }
 
-    /* --- MOBILE RESPONSIVENESS --- */
+    /* ============ SCROLL REVEAL ============ */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.85s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.85s cubic-bezier(0.22, 0.61, 0.36, 1); }
+    .reveal.in-view { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .gallery-track { animation: none; }
+    }
+
+    /* ============ RESPONSIVE ============ */
     @media (max-width: 992px) {
-      .story-wrapper {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .story-gallery {
-        width: 100%;
-      }
+      .split-grid { grid-template-columns: 1fr; }
+      .story-grid { grid-template-columns: 1fr; gap: 50px; }
+      .trust-grid { grid-template-columns: 1fr 1fr; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .stats-band { grid-template-columns: repeat(2, 1fr); row-gap: 35px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
     }
-
     @media (max-width: 768px) {
-      body {
-        padding-top: 55px; /* Smaller offset for mobile header height */
+      .mobile-controls { display: flex; gap: 10px; align-items: center; }
+      .mobile-login-btn {
+        padding: 7px 12px; font-size: 0.78rem; border: 1px solid var(--gold);
+        border-radius: 50px; font-weight: 600; color: var(--forest);
       }
-      
-      header {
-        padding: 10px 5%;
+      .mobile-call-icon {
+        width: 34px; height: 34px; border-radius: 50%;
+        background: var(--forest); color: var(--ivory);
+        display: flex; align-items: center; justify-content: center; font-size: 0.95rem;
       }
-
-      .mobile-controls {
-        display: flex;
-      }
-
-      .btn-header.desktop-only {
-        display: none;
-      }
-
-      /* AI Box mobile spacing */
-      .ai-summary-container {
-        margin-top: -60px; /* Less overlap on smaller screens */
-      }
-
-      /* Stack hero buttons vertically */
-      .hero-buttons {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        width: 100%;
-        padding: 0 20px;
-      }
-
-      .hero-btn,
-      .hero-buttons a {
-        width: 100%;
-        max-width: 300px;
-        margin: 0 !important;
-        text-align: center;
-        display: block;
-        box-sizing: border-box;
-      }
-
-      /* SCROLLABLE MOBILE MENU */
+      .btn-header.desktop-only { display: none; }
       .nav-links {
-        display: none;
-        position: fixed;
-        top: 55px; /* Changed from 65px to align perfectly under mobile header */
-        left: 0;
-        width: 100%;
-        height: calc(100vh - 55px);
-        background-color: #faf6ea;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px 0 100px 0;
+        display: none; position: fixed; top: 72px; left: 0; width: 100%;
+        height: calc(100vh - 72px); background: var(--ivory);
+        flex-direction: column; align-items: center;
+        padding: 25px 0 120px; overflow-y: auto; z-index: 999;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        border-top: 1px solid #e6dec9;
-        overflow-y: auto;
-        z-index: 999;
       }
+      .nav-links.active { display: flex; }
+      .nav-links li { margin: 10px 0; width: 100%; text-align: center; }
+      .desktop-login-link { display: none; }
 
-      .nav-links.active {
-        display: flex;
-      }
-
-      .nav-links li {
-        margin: 10px 0;
-        width: 100%;
-        text-align: center;
-      }
-
-      /* COLLAPSIBLE MOBILE DROPDOWN */
-      .dropdown-parent>a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .dropdown-parent .fa-chevron-down {
-        display: inline-block;
-        transition: transform 0.3s;
-      }
-
-      .dropdown {
-        position: static;
-        display: none;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        box-shadow: none;
-        border: none;
-        background: #f2ecdb;
-        margin-top: 10px;
-        border-radius: 0;
-        width: 100%;
-        padding: 10px 0;
-      }
-
-      .dropdown.open {
-        display: block;
-      }
-
-      .dropdown li a {
-        padding: 12px 0;
-        color: var(--text-light);
-        border-bottom: 1px solid #e6dec9;
-      }
-
-      .dropdown li:last-child a {
-        border-bottom: none;
-      }
-
-      .mobile-only-link {
-        display: block !important;
-        font-weight: 600;
-        color: var(--primary-color) !important;
-      }
-
-      .desktop-login-link {
-        display: none;
-      }
-
-      .page-hero h1 {
-        font-size: 2.5rem;
-      }
-
-      .story-gallery img {
-        height: 160px;
-      }
-
-      .stats-bar {
-        flex-direction: column;
-        gap: 40px;
-      }
-
-      /* Mobile Tabs */
-      .tab-buttons {
-        flex-direction: column;
-      }
-
-      .tab-btn {
-        border-bottom: 1px solid #d8cfb6;
-        padding: 15px;
-      }
-
-      .tab-btn.active {
-        border-bottom: 3px solid var(--accent-color);
-        border-left: 3px solid var(--accent-color);
-      }
-
-      .tab-content {
-        padding: 25px 20px;
-      }
+      .hero { min-height: auto; padding: 70px 6% 80px; }
+      .path-card { width: 100%; }
+      .split-section, .story-section, .why-section, .work-section { padding: 65px 5%; }
+      .split-list { grid-template-columns: 1fr; }
+      .split-body { padding: 26px 24px 30px; }
+      .why-grid { grid-template-columns: 1fr; }
+      .stats-band { padding: 45px 5%; }
+      .stat-number { font-size: 1.7rem; }
+      .stat-label { font-size: 0.62rem; letter-spacing: 1.5px; }
+      .story-points { grid-template-columns: 1fr; }
+      .story-badge { right: 8px; }
+      .gallery-track .g-item { width: 260px; height: 190px; }
+      .cta-banner { margin: 20px 5% 70px; padding: 50px 8%; text-align: center; justify-content: center; }
+      .cta-actions { justify-content: center; width: 100%; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
+      .trust-item { justify-content: flex-start; }
     }
   </style>
-
-    <link rel="stylesheet" href="assets/css/luxe.css">
+  <link rel="stylesheet" href="assets/css/luxe.css">
 </head>
+<body>
 
-<body class="header-sticky">
   <header>
     <div class="logo">
       <a href="/">
-        <img src="assets/img/logo-light.png" alt="Greenworks Logo"
-          style="height: 45px; width: auto; filter: none; display: block;">
+        <img src="assets/img/logo-light.png" alt="Greenworks Logo" style="height: 45px; width: auto; display: block;">
       </a>
     </div>
 
@@ -835,581 +440,515 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="landmain">Landscaping</a></li>
       <li><a href="lawnmain">Lawn Maintenance</a></li>
-      <li><a href="about" style="color: var(--accent-color); font-weight: 600;">About Us</a></li>
+      <li><a href="about" style="color: var(--gold-dark); font-weight: 600;">About Us</a></li>
       <li><a href="contact">Contact</a></li>
-      <li class="desktop-login-link"><a href="https://www.trackmylawn.com" target="_blank" class="login-btn"><i
-            class="fas fa-user-circle"></i> Client Login</a></li>
+      <li class="desktop-login-link"><a href="https://www.trackmylawn.com" target="_blank"><i class="fas fa-user-circle"></i> Client Login</a></li>
     </ul>
 
     <a href="tel:+17055009000" class="btn-header desktop-only" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Desktop Header Call' });">Call (705)500-9000</a>
   </header>
 
-
-  <section class="hero-section">
+  <!-- ================= HERO ================= -->
+  <section class="hero">
     <video autoplay loop muted playsinline class="hero-video" preload="metadata">
       <source src="assets/videos/hero-mobile-optimized.mp4" type="video/mp4" media="(max-width: 768px)">
       <source src="assets/videos/hero-desktop-optimized.mp4" type="video/mp4">
-      Your browser does not support the video tag.
     </video>
     <script>
-      // Immediately set the correct poster based on screen width to prevent flashing wrong image
       var video = document.currentScript.previousElementSibling;
-      if (window.innerWidth <= 768) {
-        video.poster = "assets/videos/hero-poster-mobile.webp";
-      } else {
-        video.poster = "assets/videos/hero-poster.webp";
-      }
+      video.poster = window.innerWidth <= 768 ? "assets/videos/hero-poster-mobile.webp" : "assets/videos/hero-poster.webp";
     </script>
     <div class="hero-overlay"></div>
+
     <div class="hero-content">
-      <h1 class="hero-title">
-        Transform Your Property with Georgetown's Top Landscaping
-        Team
-      </h1>
-      <p class="hero-subtitle">what can we help you with?</p>
-      <div class="hero-buttons">
-        <a href="landmain" class="hero-btn">landscaping</a>
-        <a href="lawnmain" class="hero-btn">lawn maintenance</a>
+      <span class="hero-kicker">Georgetown &bull; Halton Hills &bull; GTA West</span>
+      <h1>One Team for Your <em>Entire Property</em></h1>
+      <p class="hero-sub">Greenworks is a locally owned landscaping company handling everything outdoors from custom patios and driveways to weekly lawn care. What can we help you with?</p>
+
+      <div class="path-cards">
+        <a href="landmain" class="path-card">
+          <i class="fas fa-trowel-bricks path-icon"></i>
+          <h3>Landscaping &amp; Construction</h3>
+          <p>Interlock patios, driveways, retaining walls, porches, and full outdoor transformations.</p>
+          <span class="path-go">Explore Landscaping <i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="lawnmain" class="path-card">
+          <i class="fas fa-seedling path-icon"></i>
+          <h3>Lawn Maintenance</h3>
+          <p>Weekly mowing plans, fertilizing, aeration, and seasonal cleanups that keep your lawn pristine.</p>
+          <span class="path-go">Explore Lawn Care <i class="fas fa-arrow-right"></i></span>
+        </a>
+      </div>
+
+      <div class="google-stamp-wrapper">
+        <a href="https://maps.app.goo.gl/Lfutqf7TdYimxbwj7" target="_blank" class="google-stamped-badge"
+           onclick="gtag('event', 'generate_lead', { 'event_category': 'Engagement', 'event_label': 'Hero Google Review Link' });">
+          <i class="fab fa-google stamped-google-logo"></i>
+          <div class="stamp-content">
+            <div class="stamp-content-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <div class="stamp-content-text">4.9 Rated on Google — 40+ Reviews</div>
+          </div>
+        </a>
       </div>
     </div>
   </section>
 
-  <section class="reviews-section">
-    
-    <div class="ai-summary-container">
-      <div class="ai-summary">
-        <div class="ai-top-row">
-          <div class="ai-icon-box"><i class="fas fa-magic ai-sparkle"></i></div>
-          <div class="ai-titles">
-            <h3>Reviews summary</h3>
-            <span>Based on 40 reviews</span>
-          </div>
-          <img src="google-svgrepo-com.svg" alt="Google" class="ai-google-logo">
-        </div>
-        <p class="ai-content">Greenworks Landscaping is highly recommended for their professionalism, punctuality, and detailed craftsmanship. Clients frequently mention excellent communication, fair pricing, and stunning transformations of driveways, patios, and backyards.</p>
-        <div class="ai-tags">
-          <span class="ai-tag"><i class="fas fa-check"></i> Highly Recommended</span>
-          <span class="ai-tag"><i class="fas fa-check"></i> Professional Crew</span>
-          <span class="ai-tag"><i class="fas fa-check"></i> Quality Finish</span>
-        </div>
+  <!-- ================= TRUST STRIP ================= -->
+  <section class="trust-strip">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <i class="fas fa-home"></i>
+        <div><h4>Locally Owned</h4><span>Based in Georgetown, ON</span></div>
       </div>
-    </div>
-
-    <div class="container">
-      <div class="reviews-carousel">
-        <button class="review-arrow review-arrow-left" aria-label="Previous reviews">‹</button>
-        <div class="reviews-track-wrapper">
-          <div class="reviews-track">
-            <div class="review-card">
-              <div class="review-avatar">
-                <img src="review/Kendra.png" alt="Kendra Chow" class="avatar-img" />
-                <img src="google-svgrepo-com.svg" alt="Google" class="card-google-logo" />
-              </div>
-              <h4 class="review-name">Kendra Chow</h4>
-              <div class="review-stars">★★★★★ <span class="verified">✔</span></div>
-              <p class="review-text">We had our backyard redone by Greenworks Landscaping and Manee was incredible. He
-                was professional, not at all pushy, and took the time to explain exactly what was going to be done.
-                Throughout the process I could see him and his team working with great care, diligence, and focus. They
-                layered every step with precision, starting with a 10-inch excavation, installing landscape fabric,
-                adding layers of HPB and compacting each one, then carefully placing the pavers and concrete to make
-                sure the edges stayed secure. He also took extra steps to ensure proper drainage.
-
-                Manee was so accommodating, really great with communication, and always replied shortly after receiving
-                a message. He was happy to answer my questions without making me feel like I was bothering him. He and
-                his team transformed an almost unusable backyard that had an old deck, was full of flagstone, tree and
-                bush stumps, two large trees, and tons of thistle into a huge, beautiful patio where my kids can ride
-                their bikes and play. We wanted our backyard to be a huge patio while keeping the trees in the back for
-                shade. The back left of our backyard also had a catch basin to receive run off from the surrounding
-                houses. Since the makeover, they have wanted to be outside every single day.
-
-                The team also cleaned up so well, and all of this was done for a great price. We can’t thank Greenworks
-                Landscaping enough for the incredible job they did. I would highly recommend them to anyone looking for
-                landscaping work. We will definitely be hiring Greenworks landscaping for any future landscaping work
-                that needs to be done!!!!
-              </p>
-              <a href="#" class="read-more">Read more</a>
-            </div>
-            <div class="review-card">
-              <div class="review-avatar">
-                <img src="review/lori.png" alt="Lori" class="avatar-img" />
-                <img src="google-svgrepo-com.svg" alt="Google" class="card-google-logo" />
-              </div>
-              <h4 class="review-name">Lori</h4>
-              <div class="review-stars">★★★★★ <span class="verified">✔</span></div>
-              <p class="review-text">I really cannot say enough amazing things about Manee and his crew!!
-
-                So, firstly, let me say that communication is a big factor for me and my husband; Manee had his
-                responses so quick and friendly. He was really great to communicate with and his prices were very
-                reasonable.
-
-                It's just impossible to find people that are willing to work and that are thorough. They made our place
-                look so fabulous, and it took only 2 days.
-
-                They re-mulched all of our flower beds and did it with such a level of tidiness and accuracy. They also
-                cleaned up each day, and when they left for the night they put road cones down be safe so no one would
-                run over the product.
-
-                Manee is a very personable guy and it's a real pleasure chatting with him. He has a great vision of how
-                things will come together and is also very reassuring.
-
-                The men on his crew worked incredibly hard, and we just went through a very hot spell. We kept offering
-                them water and asked if they needed anything.
-
-                I really enjoyed working with Greenworks Landscaping and I will definitely refer my neighbours to them.
-
-                So because we live on a corner house and our place is the first house coming into the neighborhood, it's
-                important for us to have great curb appeal into our neighborhood....so thank you Manee for nailing this!
-
-                A perfect 10/10!!!
-
-                His score on Google should be 5⭐...not 4.9
-
-                Thanks again!!!!</p>
-              <a href="#" class="read-more">Read more</a>
-            </div>
-            <div class="review-card">
-              <div class="review-avatar">
-                <img src="review/tina.png" alt="Tina vitale" class="avatar-img" />
-                <img src="google-svgrepo-com.svg" alt="Google" class="card-google-logo" />
-              </div>
-              <h4 class="review-name">Tina vitale</h4>
-              <div class="review-stars">★★★★★ <span class="verified">✔</span></div>
-              <p class="review-text">We have been dealing with Greenworks for the last two years doing the maintenance
-                of our grass. Very respectful team. Very Neat and precise. If you want a worry free experience this is
-                the team to call. Highly recommend. Thank you for being honest and hardworking.</p>
-              <a href="#" class="read-more">Read more</a>
-            </div>
-            <div class="review-card">
-              <div class="review-avatar">
-                <img src="review/stephny.png" alt="Stephy Gutti" class="avatar-img" />
-                <img src="google-svgrepo-com.svg" alt="Google" class="card-google-logo" />
-              </div>
-              <h4 class="review-name">Stephy Gutti</h4>
-              <div class="review-stars">★★★★★ <span class="verified">✔</span></div>
-              <p class="review-text">We had just moved into our house and were feeling so overwhelmed by the backyard
-                project, but Manny and his team made the process easy from start to finish. They completely transformed
-                our yard in just a week and a half, even working through a holiday weekend to get it done. Manny was
-                professional, patient with all of my questions, and offered fantastic suggestions throughout the
-                planning process. His crew worked efficiently, paid close attention to detail, and the finished product
-                exceeded our expectations. We couldn’t be happier and would highly recommend them to anyone looking for
-                quality landscaping work!</p>
-              <a href="#" class="read-more">Read more</a>
-            </div>
-            <div class="review-card">
-              <div class="review-avatar">
-                <img src="review/carla.png" alt="Carla Campbell" class="avatar-img" />
-                <img src="google-svgrepo-com.svg" alt="Google" class="card-google-logo" />
-              </div>
-              <h4 class="review-name">Carla Campbell</h4>
-              <div class="review-stars">★★★★★ <span class="verified">✔</span></div>
-              <p class="review-text">Manee and his team did an excellent job refinishing our front steps and entrance
-                area. They worked hard and carefully to remove the old material and install the new flagstone, paying
-                close attention to the overall design and placement of each piece of stone. Manee made several
-                recommendations along the way and we are very happy with the final result. We highly recommend GNW for
-                your hardscaping needs. Thank you Manee and team!</p>
-              <a href="#" class="read-more">Read more</a>
-            </div>
-            <div class="review-card">
-              <div class="review-avatar">
-                <img src="review/javier.png" alt="Javier Maldonado" class="avatar-img" />
-                <img src="google-svgrepo-com.svg" alt="Google" class="card-google-logo" />
-              </div>
-              <h4 class="review-name">Javier Maldonado</h4>
-              <div class="review-stars">★★★★★ <span class="verified">✔</span></div>
-              <p class="review-text">I had the pleasure of working with GNW for an interlocking project in my backyard,
-                and I couldn't be more thrilled with the results! From start to finish, they displayed professionalism,
-                creativity, and an exceptional level of craftsmanship; they also offered insightful suggestions to
-                enhance my ideas. Their expertise was evident, ensuring that the design exceed what I was expecting.
-                Happy with the whole job. 100% recommended.</p>
-              <a href="#" class="read-more">Read more</a>
-            </div>
-            <div class="review-card">
-              <div class="review-avatar">
-                <img src="review/paul.png" alt="Paul Onisoru" class="avatar-img" />
-                <img src="google-svgrepo-com.svg" alt="Google" class="card-google-logo" />
-              </div>
-              <h4 class="review-name">Paul Onisoru</h4>
-              <div class="review-stars">★★★★★ <span class="verified">✔</span></div>
-              <p class="review-text">Manee and his team did a great job for landscaping at our place including pouring
-                concrete pads, new irrigation system installation and resoding entire yard. The project was done
-                professionally, seamless and on time. All our ideas and concerns have been addressed with courtesy and
-                good work. Thank you so much again.</p>
-              <a href="#" class="read-more">Read more</a>
-            </div>
-            <div class="review-card">
-              <div class="review-avatar">
-                <img src="review/barry.png" alt="Barry Olson" class="avatar-img" />
-                <img src="google-svgrepo-com.svg" alt="Google" class="card-google-logo" />
-              </div>
-              <h4 class="review-name">Barry Olson</h4>
-              <div class="review-stars">★★★★★ <span class="verified">✔</span></div>
-              <p class="review-text">Just completed my third job with Greenworks this year. Two patio installations and
-                a large sod job. All three projects look fantastic months later. The team works hard and cleans up the
-                site perfectly. Fair prices and quality work!!</p>
-              <a href="#" class="read-more">Read more</a>
-            </div>
-            <div class="review-card">
-              <div class="review-avatar">
-                <img src="review/simon.png" alt="Simon Hoac" class="avatar-img" />
-                <img src="google-svgrepo-com.svg" alt="Google" class="card-google-logo" />
-              </div>
-              <h4 class="review-name">Simon Hoac</h4>
-              <div class="review-stars">★★★★★ <span class="verified">✔</span></div>
-              <p class="review-text">Manee and his team do great work for a great price. They care and support any
-                issues even after the job is done, very focused on customer satisfaction. I highly recommend and will be
-                hiring Greenworks in the future.</p>
-              <a href="#" class="read-more">Read more</a>
-            </div>
-            <div class="review-card">
-              <div class="review-avatar">
-                <img src="review/deborah.png" alt="Deborah Brander" class="avatar-img" />
-                <img src="google-svgrepo-com.svg" alt="Google" class="card-google-logo" />
-              </div>
-              <h4 class="review-name">Deborah Brander</h4>
-              <div class="review-stars">★★★★★ <span class="verified">✔</span></div>
-              <p class="review-text">The Greenworks exceeded our expectations on the install of our retaining wall! Very
-                professional and excellent quality work. Would highly recommend them!</p>
-              <a href="#" class="read-more">Read more</a>
-            </div>
-          </div>
-        </div>
-        <button class="review-arrow review-arrow-right" aria-label="Next reviews">›</button>
+      <div class="trust-item">
+        <i class="fas fa-certificate"></i>
+        <div><h4>Fully Insured</h4><span>WSIB Compliant</span></div>
+      </div>
+      <div class="trust-item">
+        <i class="fas fa-check-double"></i>
+        <div><h4>2-Year Warranty</h4><span>On All Hardscaping</span></div>
+      </div>
+      <div class="trust-item">
+        <i class="fas fa-star"></i>
+        <div><h4>5-Star Rated</h4><span>40+ Google Reviews</span></div>
       </div>
     </div>
   </section>
 
-  <section class="gallery-section">
-    <div class="container">
-      <h2 class="section-title">Turning Ideas into Outdoor Living Spaces</h2>
+  <!-- ================= TWO SERVICES ================= -->
+  <section class="split-section">
+    <div class="section-head">
+      <span class="kicker">What We Do</span>
+      <h2>Two Crews. One Standard of Quality.</h2>
+      <p>Whether you're planning a full backyard build or just want your lawn looked after every week, you get the same team, the same communication, and the same attention to detail.</p>
     </div>
-    <div class="gallery-scroll-container">
-      <div class="gallery-scroll-track">
-        <div class="gallery-item">
-          <img src="assets/img/land-gallery/1.webp" alt="Landscaping Project" />
+
+    <div class="split-grid">
+      <div class="split-card">
+        <div class="split-img">
+          <img src="assets/img/land-gallery/8.webp" alt="Interlock patio and landscaping construction by Greenworks">
+          <span class="split-tag">Design &amp; Build</span>
         </div>
-        <div class="gallery-item">
-          <img src="assets/img/land-gallery/2.webp" alt="Landscaping Project" />
-        </div>
-        <div class="gallery-item">
-          <img src="assets/img/land-gallery/3.webp" alt="Landscaping Project" />
-        </div>
-        <div class="gallery-item">
-          <img src="assets/img/land-gallery/4.webp" alt="Landscaping Project" />
-        </div>
-        <div class="gallery-item">
-          <img src="assets/img/land-gallery/5.webp" alt="Landscaping Project" />
-        </div>
-        <div class="gallery-item">
-          <img src="assets/img/land-gallery/6.webp" alt="Landscaping Project" />
-        </div>
-        <div class="gallery-item">
-          <img src="assets/img/land-gallery/7.webp" alt="Landscaping Project" />
-        </div>
-        <div class="gallery-item">
-          <img src="assets/img/land-gallery/8.webp" alt="Landscaping Project" />
-        </div>
-        <div class="gallery-item">
-          <img src="assets/img/land-gallery/1.webp" alt="Landscaping Project" />
-        </div>
-        <div class="gallery-item">
-          <img src="assets/img/land-gallery/2.webp" alt="Landscaping Project" />
-        </div>
-        <div class="gallery-item">
-          <img src="assets/img/land-gallery/3.webp" alt="Landscaping Project" />
-        </div>
-        <div class="gallery-item">
-          <img src="assets/img/land-gallery/4.webp" alt="Landscaping Project" />
-        </div>
-        <div class="gallery-item">
-          <img src="assets/img/land-gallery/5.webp" alt="Landscaping Project" />
-        </div>
-        <div class="gallery-item">
-          <img src="assets/img/land-gallery/6.webp" alt="Landscaping Project" />
-        </div>
-        <div class="gallery-item">
-          <img src="assets/img/land-gallery/7.webp" alt="Landscaping Project" />
-        </div>
-        <div class="gallery-item">
-          <img src="assets/img/land-gallery/8.webp" alt="Landscaping Project" />
+        <div class="split-body">
+          <h3>Landscaping &amp; Construction</h3>
+          <p>Complete outdoor transformations, engineered for Canadian freeze-thaw cycles and built to last decades.</p>
+          <ul class="split-list">
+            <li><i class="fas fa-check"></i> Interlock Patios</li>
+            <li><i class="fas fa-check"></i> Driveways &amp; Walkways</li>
+            <li><i class="fas fa-check"></i> Retaining Walls</li>
+            <li><i class="fas fa-check"></i> Custom Porches</li>
+            <li><i class="fas fa-check"></i> Outdoor Features</li>
+            <li><i class="fas fa-check"></i> 3D Landscape Design</li>
+          </ul>
+          <div class="split-actions">
+            <a href="landmain" class="btn-gold">Explore Landscaping</a>
+            <a href="landscape-gallery" class="btn-outline">See Projects</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="container" style="text-align: center">
-      <a href="landscape-gallery" class="explore-btn">Explore more</a>
-    </div>
-  </section>
 
-  <section class="info-section why-choose-us">
-    <div class="container">
-      <h2 style="text-align: center;">WHY CHOOSE US?</h2>
-      <div class="green-underline" style="margin: 20px auto 40px;"></div>
-
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <div class="gnw-toggle">
-            <h3 class="toggle-title">⁠Locally Owned & Operated</h3>
-            <div class="toggle-content">
-              We are a proud, locally-owned business rooted right here in the community.
-              Living and working in the area means we understand the specific needs of local properties, 
-              from soil conditions to the challenges of the Canadian freeze-thaw cycle. 
-              When you call us, you aren’t speaking to a call center; you are speaking to
-              a neighbor who cares about the reputation we build on every street.
-              We take pride in beautifying our own hometown, one project at a time.
-            </div>
-          </div>
-
-          <div class="gnw-toggle">
-            <h3 class="toggle-title">Consistent & Reliable</h3>
-            <div class="toggle-content">
-              At Greenworks, "reliable" isn't just a buzzword, it's our baseline.
-              We show up when we say we will, we provide clear timelines, 
-              and we keep you informed at every stage of the project.
-              From the initial quote to the final sweep-up, you can count on us to be responsive, 
-              transparent, and dedicated to finishing your project on schedule.
-            </div>
-          </div>
-
-          <div class="gnw-toggle">
-            <h3 class="toggle-title">Fair Prices, Great Value</h3>
-            <div class="toggle-content">
-              We believe in honest, competitive pricing without hidden fees. 
-              While we may not always be the "cheapest" bid you receive,
-              but we promise to deliver the best value. In hardscaping and landscaping,
-              a low price often comes at the cost of poor quality or materials that fails after a few years. 
-              We price our jobs to ensure they are done right the first time, 
-              using high-quality materials and proven installation techniques that stand the test of time.
-            </div>
-          </div>
-
-          <div class="gnw-toggle">
-            <h3 class="toggle-title">Your Neighbors Trust Us</h3>
-            <div class="toggle-content">
-              Our business has grown primarily through the strongest form of marketing there is: word of mouth. 
-              We have built a reputation for integrity and quality craftsmanship across the region.
-              We don't just want to build a patio or mow a lawn; we want to build a relationship
-              so that you feel confident recommending us to your friends and family.
-              Your satisfaction is our resume, and we work hard to earn that trust on every single job site.
-            </div>
-          </div>
-
-          <div class="gnw-toggle">
-            <h3 class="toggle-title">Professional Crew & Gear</h3>
-            <div class="toggle-content">
-              We believe that professional results require professional inputs.
-              Our crew is uniformed, trained, and respectful of your property and privacy. 
-              We invest heavily in modern, commercial-grade equipments to ensure efficient work and superior results. 
-              We maintain a clean, safe job site and treat your home with the same care we would treat our own.
-              No cut corners, just quality craftsmanship backed by the right tools.
-            </div>
+      <div class="split-card">
+        <div class="split-img">
+          <img src="assets/img/lawn_gallery/1.webp" alt="Freshly mowed lawn maintained by Greenworks">
+          <span class="split-tag">Weekly Care</span>
+        </div>
+        <div class="split-body">
+          <h3>Lawn Maintenance</h3>
+          <p>Reliable, scheduled care that keeps your property looking pristine all season without you lifting a finger.</p>
+          <ul class="split-list">
+            <li><i class="fas fa-check"></i> Weekly Mowing Plans</li>
+            <li><i class="fas fa-check"></i> Fertilizing &amp; Weed Control</li>
+            <li><i class="fas fa-check"></i> Aeration &amp; Overseeding</li>
+            <li><i class="fas fa-check"></i> Spring &amp; Fall Cleanups</li>
+            <li><i class="fas fa-check"></i> Mulch &amp; Garden Beds</li>
+            <li><i class="fas fa-check"></i> Tree &amp; Shrub Care</li>
+          </ul>
+          <div class="split-actions">
+            <a href="lawnmain" class="btn-gold">Explore Lawn Care</a>
+            <a href="lawnmain#custom-quote" class="btn-outline">Instant Quote</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="info-section about-us-section" style="background-color: #f2ecdb; padding-top: 60px;">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="about-image">
-            <img src="assets/img/aboutus/about us.jpg" alt="About GNW Landscaping" />
-          </div>
+  <!-- ================= STATS ================= -->
+  <section class="stats-band">
+    <div class="stat-item">
+      <i class="fas fa-check-circle"></i>
+      <span class="stat-number" data-target="1000">0</span>
+      <span class="stat-label">Projects Completed</span>
+    </div>
+    <div class="stat-item">
+      <i class="fas fa-smile"></i>
+      <span class="stat-number" data-target="500">0</span>
+      <span class="stat-label">Happy Clients</span>
+    </div>
+    <div class="stat-item">
+      <i class="fas fa-users"></i>
+      <span class="stat-number" data-target="30">0</span>
+      <span class="stat-label">Expert Crew Members</span>
+    </div>
+    <div class="stat-item">
+      <i class="fas fa-star"></i>
+      <span class="stat-number">4.9</span>
+      <span class="stat-label">Google Rating</span>
+    </div>
+  </section>
+
+  <!-- ================= OUR STORY ================= -->
+  <section class="story-section">
+    <div class="story-grid">
+      <div class="story-image">
+        <img src="assets/img/aboutus/about us.jpg" alt="The Greenworks Landscaping team at work">
+        <div class="story-badge">
+          <strong>100%</strong>
+          <span>Locally Owned</span>
         </div>
-        <div class="col-md-6">
-          <h2 id="about-us-text">ABOUT US</h2>
-          <div class="green-underline"></div>
-
-          <div class="about-content">
-            I started Greenworks Landscaping with a single customer and a simple promise: to do the job right.
-            Since then, thanks to the trust of our clients and strategic expansion, we have grown into a full-service
-            landscaping company
-            capable of handling projects of any size.
-
-            Today, our mission remains the same. Whether we are installing a custom patio,
-            a water feature, or managing a complete property transformation, we don't just meet expectations, we aim to
-            exceed them.
-            We believe your outdoor space should be more than just a yard; it should be an extension of your home and a
-            peaceful oasis for your family.
-            With a dedicated team of experienced professionals and a commitment to quality craftsmanship,
-            Greenworks is the partner you can trust to bring your vision to life.
-          </div>
+      </div>
+      <div class="story-text">
+        <span class="kicker">Our Story</span>
+        <h2>Built on One Simple Promise</h2>
+        <p class="founder-note">"I started Greenworks Landscaping with a single customer and a simple promise: to do the job right."</p>
+        <p>Since then, thanks to the trust of our clients and word-of-mouth referrals, we've grown into a full-service landscaping company capable of handling projects of any size while staying rooted right here in the community we call home.</p>
+        <p>When you call us, you aren't speaking to a call center. You're speaking to a neighbour who cares about the reputation we build on every street.</p>
+        <ul class="story-points">
+          <li><i class="fas fa-check-circle"></i> Clear timelines &amp; honest quotes</li>
+          <li><i class="fas fa-check-circle"></i> No hidden fees, ever</li>
+          <li><i class="fas fa-check-circle"></i> Uniformed, respectful crew</li>
+          <li><i class="fas fa-check-circle"></i> Clean job site, every day</li>
+        </ul>
+        <div class="service-area">
+          <i class="fas fa-map-marker-alt"></i><strong>Serving:</strong> Georgetown, Halton Hills, Acton, Milton, Brampton, Mississauga &amp; surrounding GTA
         </div>
       </div>
     </div>
   </section>
 
-  <section class="instagram-section">
-    <div class="container">
-      <h2 class="section-title">Follow us on Instagram</h2>
-      <p class="instagram-subtitle">Stay updated with our latest projects and landscaping tips</p>
+  <!-- ================= REVIEWS ================= -->
+  <section class="reviews-band">
+    <div class="section-head">
+      <span class="kicker" style="color: var(--gold);">Real Reviews</span>
+      <h2>What Your Neighbours Say</h2>
+    </div>
 
-      <div class="instagram-content">
-        <div class="instagram-profile">
-          <a href="https://www.instagram.com/gnwlandscaping/" target="_blank" class="instagram-profile-link">
-            <i class="fa fa-instagram"></i>
-            <span>@gnwlandscaping</span>
-          </a>
-          <a href="https://www.instagram.com/gnwlandscaping/" target="_blank" class="instagram-follow-btn">
-            Follow Us
-          </a>
+    <div class="rating-summary">
+      <i class="fab fa-google"></i>
+      <span class="rating-score">4.9</span>
+      <div class="rating-info">
+        <div class="rating-stars">★★★★★</div>
+        <p>Clients frequently mention excellent communication, fair pricing, and stunning transformations of driveways, patios, and backyards.</p>
+      </div>
+    </div>
+
+    <div class="marquee-wrapper">
+      <div class="marquee-track">
+
+        <div class="google-card">
+          <div class="g-header">
+            <div class="g-avatar"><img src="review/Kendra.png" alt="K"></div>
+            <div class="g-info"><h4>Kendra Chow</h4><span>Backyard patio</span></div>
+          </div>
+          <div class="g-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="g-text">"We had our backyard redone by Greenworks and Manee was incredible. Professional, not at all pushy, and took the time to explain exactly what was going to be done. They transformed an almost unusable backyard into a huge, beautiful patio."</p>
         </div>
 
+        <div class="google-card">
+          <div class="g-header">
+            <div class="g-avatar"><img src="review/lori.png" alt="L"></div>
+            <div class="g-info"><h4>Lori M</h4><span>Garden beds &amp; mulch</span></div>
+          </div>
+          <div class="g-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="g-text">"I really cannot say enough amazing things about Manee and his crew! Communication was quick and friendly, prices very reasonable, and they made our place look fabulous in just two days. A perfect 10/10!"</p>
+        </div>
 
+        <div class="google-card">
+          <div class="g-header">
+            <div class="g-avatar"><img src="review/tanya.png" alt="T"></div>
+            <div class="g-info"><h4>Tanya Prospero</h4><span>Backyard re-sod</span></div>
+          </div>
+          <div class="g-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="g-text">"We hired Manee and his team to re-sod our backyard, and we could not be happier with the results! From start to finish, the team was professional, punctual, and incredibly detail-oriented."</p>
+        </div>
+
+        <div class="google-card">
+          <div class="g-header">
+            <div class="g-avatar"><img src="review/barry.png" alt="B"></div>
+            <div class="g-info"><h4>Barry Olson</h4><span>Repeat client</span></div>
+          </div>
+          <div class="g-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="g-text">"Just completed my third job with Greenworks this year. The team works hard and cleans up the site perfectly."</p>
+        </div>
+
+        <div class="google-card">
+          <div class="g-header">
+            <div class="g-avatar"><img src="review/sunil.png" alt="S"></div>
+            <div class="g-info"><h4>Sunil Kumar</h4><span>Landscaping</span></div>
+          </div>
+          <div class="g-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="g-text">"Had a really great experience working with Greenworks. I honestly appreciate how professional the team was."</p>
+        </div>
+
+        <div class="google-card">
+          <div class="g-header">
+            <div class="g-avatar"><img src="review/carla.png" alt="C"></div>
+            <div class="g-info"><h4>Carla Campbell</h4><span>Entrance refinish</span></div>
+          </div>
+          <div class="g-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="g-text">"Manee and his team did an excellent job refinishing our entrance area. Highly recommended!"</p>
+        </div>
+
+        <div class="google-card">
+          <div class="g-header">
+            <div class="g-avatar"><img src="review/kimberly.png" alt="K"></div>
+            <div class="g-info"><h4>Kimberly Rehal</h4><span>Outdoor project</span></div>
+          </div>
+          <div class="g-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="g-text">"We're most impressed by their workmanship. We plan to hire his team again for future outdoor projects."</p>
+        </div>
+
+        <div class="google-card">
+          <div class="g-header">
+            <div class="g-avatar"><img src="review/stephy.png" alt="S"></div>
+            <div class="g-info"><h4>Stephy Gutti</h4><span>Landscaping</span></div>
+          </div>
+          <div class="g-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="g-text">"We couldn't be happier and would highly recommend them to anyone looking for quality landscaping work!"</p>
+        </div>
+
+        <div class="google-card">
+          <div class="g-header">
+            <div class="g-avatar"><img src="review/priya.png" alt="P"></div>
+            <div class="g-info"><h4>Priya Sharma</h4><span>Full backyard</span></div>
+          </div>
+          <div class="g-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="g-text">"They handled our entire backyard landscaping. Sod, interlock, and planting. Looks amazing!"</p>
+        </div>
+
+        <div class="google-card">
+          <div class="g-header">
+            <div class="g-avatar"><img src="review/simon.png" alt="S"></div>
+            <div class="g-info"><h4>Simon Hoac</h4><span>Lawn care</span></div>
+          </div>
+          <div class="g-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="g-text">"Reliable, consistent, and the lawn has never looked better. Great communication every step of the way."</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="reviews-cta">
+      <a href="https://maps.app.goo.gl/Lfutqf7TdYimxbwj7" target="_blank" class="btn-ghost-light"
+         onclick="gtag('event', 'generate_lead', { 'event_category': 'Engagement', 'event_label': 'Reviews Band Google Link' });">
+        <i class="fab fa-google"></i>&nbsp; Read All Reviews on Google
+      </a>
+    </div>
+  </section>
+
+  <!-- ================= RECENT WORK ================= -->
+  <section class="work-section">
+    <div class="section-head">
+      <span class="kicker">Recent Work</span>
+      <h2>Turning Ideas into Outdoor Living Spaces</h2>
+    </div>
+
+    <div class="gallery-scroll">
+      <div class="gallery-track">
+        <div class="g-item"><img src="assets/img/land-gallery/1.webp" alt="Landscaping project" loading="lazy"></div>
+        <div class="g-item"><img src="assets/img/land-gallery/2.webp" alt="Landscaping project" loading="lazy"></div>
+        <div class="g-item"><img src="assets/img/land-gallery/3.webp" alt="Landscaping project" loading="lazy"></div>
+        <div class="g-item"><img src="assets/img/land-gallery/4.webp" alt="Landscaping project" loading="lazy"></div>
+        <div class="g-item"><img src="assets/img/land-gallery/5.webp" alt="Landscaping project" loading="lazy"></div>
+        <div class="g-item"><img src="assets/img/land-gallery/6.webp" alt="Landscaping project" loading="lazy"></div>
+        <div class="g-item"><img src="assets/img/land-gallery/7.webp" alt="Landscaping project" loading="lazy"></div>
+        <div class="g-item"><img src="assets/img/land-gallery/8.webp" alt="Landscaping project" loading="lazy"></div>
+        <div class="g-item"><img src="assets/img/land-gallery/1.webp" alt="Landscaping project" loading="lazy"></div>
+        <div class="g-item"><img src="assets/img/land-gallery/2.webp" alt="Landscaping project" loading="lazy"></div>
+        <div class="g-item"><img src="assets/img/land-gallery/3.webp" alt="Landscaping project" loading="lazy"></div>
+        <div class="g-item"><img src="assets/img/land-gallery/4.webp" alt="Landscaping project" loading="lazy"></div>
+        <div class="g-item"><img src="assets/img/land-gallery/5.webp" alt="Landscaping project" loading="lazy"></div>
+        <div class="g-item"><img src="assets/img/land-gallery/6.webp" alt="Landscaping project" loading="lazy"></div>
+        <div class="g-item"><img src="assets/img/land-gallery/7.webp" alt="Landscaping project" loading="lazy"></div>
+        <div class="g-item"><img src="assets/img/land-gallery/8.webp" alt="Landscaping project" loading="lazy"></div>
+      </div>
+    </div>
+
+    <div class="work-cta">
+      <a href="landscape-gallery" class="btn-gold">View Full Portfolio</a>
+    </div>
+  </section>
+
+  <!-- ================= WHY US ================= -->
+  <section class="why-section">
+    <div class="section-head">
+      <span class="kicker">Why Choose Us</span>
+      <h2>The Greenworks Difference</h2>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-home"></i></div>
+        <h3>Locally Owned &amp; Operated</h3>
+        <p>We live and work here. We understand local soil conditions and the Canadian freeze-thaw cycle, and we take pride in beautifying our own hometown, one project at a time.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-clock"></i></div>
+        <h3>Consistent &amp; Reliable</h3>
+        <p>We show up when we say we will, provide clear timelines, and keep you informed at every stage from the initial quote to the final sweep-up.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-hand-holding-usd"></i></div>
+        <h3>Fair Prices, Great Value</h3>
+        <p>Honest, competitive pricing with no hidden fees. We price our jobs to be done right the first time, with quality materials that stand the test of time.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-comments"></i></div>
+        <h3>Your Neighbours Trust Us</h3>
+        <p>Our business has grown primarily through word of mouth. Your satisfaction is our resume, and we work hard to earn that trust on every single job site.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-hard-hat"></i></div>
+        <h3>Professional Crew &amp; Gear</h3>
+        <p>Uniformed, trained, and respectful of your property. We invest in commercial-grade equipment for efficient work and superior results without cutting corners.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-certificate"></i></div>
+        <h3>Insured &amp; Warranty Backed</h3>
+        <p>Fully insured and WSIB compliant, with a comprehensive warranty on hardscaping installations for your complete peace of mind.</p>
       </div>
     </div>
   </section>
 
-  <footer id="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <h3>ABOUT US</h3>
-          <div class="green-underline" style="margin-left: 0"></div>
-          <div class="footer-logo">
-            <img src="assets/img/logo-light@2x.png" alt="GNW" width="180" />
-          </div>
-          <p class="footer-text">
-            Building isn't just a job. At GNW, it is our passion. With every
-            project we undertake, we set the bar high and provide the best
-            people in the industry, with a true love of what we do to make our
-            Customers' vision a reality.
-          </p>
-        </div>
+  <!-- ================= INSTAGRAM ================= -->
+  <section class="insta-strip">
+    <h2>Follow Us on Instagram</h2>
+    <p>Stay updated with our latest projects and landscaping tips  @gnwlandscaping</p>
+    <a href="https://www.instagram.com/gnwlandscaping/" target="_blank" class="btn-instagram">
+      <i class="fab fa-instagram"></i> Follow @gnwlandscaping
+    </a>
+  </section>
 
-        <div class="col-md-6">
-          <h3>CONTACT INFO</h3>
-          <div class="green-underline" style="margin-left: 0"></div>
-          <div class="footer-contact-item">
-            <label>Address:</label>
-            <span>Georgetown, ON, CA</span>
-          </div>
-          <div class="footer-contact-item">
-            <label>Phone:</label>
-            <span><a href="tel:+17055009000" style="color: #97907a; text-decoration: none" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Footer Call' });">(705)500-9000</a></span>
-          </div>
-          <div class="footer-contact-item">
-            <label>E-mail:</label>
-            <span><a href="mailto:info@gnwlandscaping.ca"
-                style="color: #97907a; text-decoration: none">info@gnwlandscaping.ca</a></span>
-          </div>
+  <!-- ================= CTA ================= -->
+  <section class="cta-banner">
+    <div>
+      <h2>Ready to <em>love</em> your outdoor space?</h2>
+      <p>Get a free, no-obligation quote , we usually reply the same day.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="tel:+17055009000" class="cta-phone" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'CTA Banner Call' });">
+        <i class="fas fa-phone"></i> (705)500-9000
+      </a>
+      <a href="contact" class="btn-gold">Get a Free Quote</a>
+    </div>
+  </section>
 
-          <div class="footer-social">
-            <a href="https://www.instagram.com/gnwlandscaping/" target="_blank">
-              <i class="fa fa-instagram"></i>
-            </a>
-          </div>
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>About Us</h4>
+        <p>Greenworks Landscaping is committed to providing top-quality construction and landscaping services. Locally owned and operated, we make your property our passion.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Info</h4>
+        <ul>
+          <li><i class="fas fa-map-marker-alt"></i> Georgetown, ON, CA</li>
+          <li><i class="fas fa-phone"></i> <a href="tel:+17055009000" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Footer Call' });">+1 (705)500-9000</a></li>
+          <li><i class="fas fa-envelope"></i> <a href="mailto:info@gnwlandscaping.ca">info@gnwlandscaping.ca</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="landmain">Landscaping &amp; Construction</a></li>
+          <li><a href="lawnmain">Lawn Maintenance</a></li>
+          <li><a href="landscape-gallery">Portfolio</a></li>
+          <li><a href="contact">Get a Quote</a></li>
+        </ul>
+        <div class="social-icons" style="margin-top: 12px;">
+          <a href="https://www.instagram.com/gnwlandscaping/" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
     </div>
-
-    <div class="copyright-bar">
-      <p>
-        Copyright © 2026 | Greenworks Construction and Companies Inc. | All
-        Rights Reserved.
-      </p>
-      <ul class="footer-links">
-        <li><a href="#">HISTORY</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">EVENTS</a></li>
-      </ul>
+    <div class="copyright">
+      <p>Copyright &copy; <span id="year"></span> | Greenworks Construction and Companies Inc. | All Rights Reserved.</p>
     </div>
   </footer>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="assets/js/main.js"></script>
   <script>
-    // ===== Custom Mobile Menu Handler =====
-    function toggleMenu() {
-      const navLinks = document.getElementById("navLinks");
-      const mobileBtn = document.querySelector(".mobile-button");
-      navLinks.classList.toggle("active");
-      mobileBtn.classList.toggle("active");
+    document.getElementById("year").innerHTML = new Date().getFullYear();
 
-      // Toggle the no-scroll class on the body to lock background scrolling
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+      document.querySelector(".mobile-button").classList.toggle("active");
       document.body.classList.toggle("no-scroll");
     }
 
-    // ===== Hero Slideshow =====
-    (function () {
-      var slides = document.querySelectorAll('.hero-slide');
-      if (slides.length <= 1) return;
-      var current = 0;
-      setInterval(function () {
-        slides[current].classList.remove('active');
-        current = (current + 1) % slides.length;
-        slides[current].classList.add('active');
-      }, 5000);
-    })();
-
-    // ===== Hero Video Poster Handler =====
-    (function () {
-      var video = document.querySelector('.hero-video');
-      if (!video) return;
-
-      function updatePoster() {
-        if (window.innerWidth <= 768) {
-          video.poster = "assets/videos/hero-poster-mobile.webp";
+    // --- REVIEWS AUTO SCROLL ---
+    const scrollContainer = document.querySelector('.marquee-wrapper');
+    let isPaused = false;
+    function autoScroll() {
+      if (!isPaused && scrollContainer) {
+        if (scrollContainer.scrollLeft >= (scrollContainer.scrollWidth - scrollContainer.clientWidth)) {
+          scrollContainer.scrollLeft = 0;
         } else {
-          video.poster = "assets/videos/hero-poster.webp";
+          scrollContainer.scrollLeft += 0.5;
         }
       }
+      requestAnimationFrame(autoScroll);
+    }
+    if (scrollContainer) {
+      autoScroll();
+      scrollContainer.addEventListener('mouseenter', () => isPaused = true);
+      scrollContainer.addEventListener('mouseleave', () => isPaused = false);
+      scrollContainer.addEventListener('touchstart', () => isPaused = true);
+      scrollContainer.addEventListener('touchend', () => setTimeout(() => isPaused = false, 2000));
+    }
 
-      updatePoster();
-      window.addEventListener('resize', updatePoster);
-    })();
-
-    // Accordion functionality for Why Choose Us section
-    document.querySelectorAll(".toggle-title").forEach(function (title) {
-      title.addEventListener("click", function () {
-        const currentToggle = this.parentElement;
-        const isActive = currentToggle.classList.contains("active");
-
-        // Close all toggles
-        document.querySelectorAll(".gnw-toggle").forEach(function (toggle) {
-          toggle.classList.remove("active");
+    // --- STATS COUNTER ---
+    const counters = document.querySelectorAll('.stat-number[data-target]');
+    let statsStarted = false;
+    function startCount(el) {
+      const target = +el.getAttribute('data-target');
+      const suffix = el.getAttribute('data-suffix') || '+';
+      const count = +el.innerText.replace(/[^0-9.]/g, '');
+      const inc = target / 100;
+      if (count < target) {
+        el.innerText = Math.ceil(count + inc);
+        setTimeout(() => startCount(el), 20);
+      } else {
+        el.innerText = target + suffix;
+      }
+    }
+    const statsBand = document.querySelector('.stats-band');
+    if (statsBand && 'IntersectionObserver' in window) {
+      new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => {
+          if (e.isIntersecting && !statsStarted) {
+            counters.forEach(c => startCount(c));
+            statsStarted = true;
+            obs.disconnect();
+          }
         });
+      }, { threshold: 0.3 }).observe(statsBand);
+    }
 
-        // Open clicked toggle if it wasn't active
-        if (!isActive) {
-          currentToggle.classList.add("active");
-        }
+    // --- SCROLL REVEAL ---
+    (function () {
+      if (!('IntersectionObserver' in window)) return;
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+      document.querySelectorAll('.section-head, .split-card, .trust-item, .story-image, .story-text, .why-card, .rating-summary, .cta-banner, .insta-strip').forEach((el, i) => {
+        el.classList.add('reveal');
+        el.style.transitionDelay = (i % 4) * 0.1 + 's';
+        io.observe(el);
       });
-    });
-
-    // Animate headings on scroll (exclude footer)
-    const animateOnScroll = function () {
-      const elements = document.querySelectorAll('.section-title, .info-section h2, .info-section h3, .gallery-section h2, .testimonials-section h2');
-
-      elements.forEach(function (element) {
-        const elementTop = element.getBoundingClientRect().top;
-        const elementBottom = element.getBoundingClientRect().bottom;
-
-        if (elementTop < window.innerHeight && elementBottom > 0) {
-          element.style.opacity = '1';
-          element.style.transform = 'translateY(0)';
-        }
-      });
-    };
-
-    // Initialize heading animations (exclude footer)
-    document.querySelectorAll('.section-title, .info-section h2, .info-section h3, .gallery-section h2, .testimonials-section h2').forEach(function (element) {
-      element.style.opacity = '0';
-      element.style.transform = 'translateY(30px)';
-      element.style.transition = 'all 0.8s ease-out';
-    });
-
-
-    // Run animations on scroll
-    window.addEventListener('scroll', function () {
-      animateOnScroll();
-    });
-
-    // Run animations on load
-    window.addEventListener('load', function () {
-      animateOnScroll();
-    });
+    })();
   </script>
-  <script src="assets/js/reviews.js"></script>
 </body>
-
 </html>

@@ -363,6 +363,122 @@
             .hero-content h1 { font-size: 2.5rem; }
             .flex-row { flex-direction: column; text-align: left; } 
         }
+    
+        /* ============ DEEP FOREST LUXE — LAWN PAGES REDESIGN ============ */
+
+        /* Hero */
+        .page-hero { min-height: 62vh !important; }
+        .page-hero::before, .page-hero .hero-overlay {
+            background: linear-gradient(to bottom, rgba(10, 33, 16, 0.55), rgba(10, 33, 16, 0.85)) !important;
+        }
+        .hero-kicker {
+            display: inline-flex; align-items: center; gap: 14px;
+            color: #dfc98f; font-size: 0.82rem; font-weight: 600;
+            letter-spacing: 4px; text-transform: uppercase; margin-bottom: 18px;
+        }
+        .hero-kicker::before, .hero-kicker::after { content: ''; width: 40px; height: 2px; background: #c9a24b; }
+        .hero-content h1 { font-size: clamp(2.3rem, 5vw, 3.6rem) !important; font-weight: 800 !important; text-shadow: 0 4px 30px rgba(0,0,0,0.4); }
+
+        /* Section titles + checklists */
+        .section-title { font-weight: 800 !important; color: #0f2e14 !important; }
+        .flex-col .section-title, .story-text h2 { position: relative; padding-bottom: 16px; }
+        .flex-col .section-title::after, .story-text h2::after {
+            content: ''; position: absolute; left: 0; bottom: 0; width: 60px; height: 3px;
+            background: linear-gradient(90deg, #c9a24b, #b08a3e); border-radius: 2px;
+        }
+        .text-center .section-title::after { left: 50%; transform: translateX(-50%); }
+        .check-list li i { color: #b08a3e !important; }
+        .flex-col img, .story-gallery img {
+            border-radius: 18px !important;
+            box-shadow: 0 20px 45px rgba(15, 46, 20, 0.18) !important;
+        }
+
+        /* Included / feature cards */
+        .included-card {
+            background: #fffdf6 !important; border: 1px solid #e6dec9 !important;
+            border-left: 4px solid #c9a24b !important; border-radius: 16px !important;
+            box-shadow: 0 15px 35px rgba(15, 46, 20, 0.08) !important;
+            transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+        }
+        .included-card:hover { transform: translateY(-8px) !important; box-shadow: 0 22px 45px rgba(15, 46, 20, 0.14) !important; }
+        .included-card i { color: #b08a3e !important; }
+
+        /* Tabs (about2) */
+        .tab-btn {
+            border-radius: 50px !important; font-weight: 600 !important;
+            border: 1px solid #d8cfb6 !important; background: #fffdf6 !important; color: #0f2e14 !important;
+        }
+        .tab-btn.active {
+            background: linear-gradient(135deg, #d8b466, #c9a24b 55%, #b08a3e) !important;
+            color: #0a2110 !important; border-color: #b08a3e !important;
+        }
+        .tab-content { background: #fffdf6 !important; border: 1px solid #e6dec9 !important; border-radius: 18px !important; }
+        .tab-content h3 i { color: #b08a3e !important; }
+
+        /* Stats bar */
+        .stats-bar { background: #0a2110 !important; }
+        .stat-item .stat-number, .stats-bar .stat-number { color: #c9a24b !important; }
+        .stat-item .stat-label, .stats-bar .stat-label { color: rgba(250, 246, 234, 0.75) !important; }
+        .stat-item i { color: #c9a24b !important; }
+
+        /* Contact (contact2) */
+        .icon-box { background: #0f2e14 !important; color: #c9a24b !important; box-shadow: 0 8px 20px rgba(15, 46, 20, 0.25); }
+        .info-card { background: #fffdf6 !important; border: 1px solid #e6dec9 !important; border-radius: 16px !important; }
+        .contact-form-wrapper { background: #fffdf6 !important; border: 1px solid #e6dec9 !important; border-radius: 22px !important; box-shadow: 0 25px 55px rgba(15, 46, 20, 0.1) !important; }
+        .form-control { border: 1px solid #d8cfb6 !important; border-radius: 10px !important; background: #fffdf6 !important; }
+        .form-control:focus { border-color: #c9a24b !important; box-shadow: 0 0 0 4px rgba(201, 162, 75, 0.15) !important; outline: none !important; }
+        .price-tag { color: #b08a3e !important; font-weight: 600; }
+        .checkbox-item { border-radius: 10px !important; }
+
+        /* Portfolio (lawn-portfolio) */
+        .grid-item { border-radius: 16px !important; overflow: hidden !important; box-shadow: 0 12px 28px rgba(15, 46, 20, 0.12) !important; }
+        .grid-item img, .grid-item video { transition: transform 0.7s ease !important; }
+        .grid-item:hover img, .grid-item:hover video { transform: scale(1.05) !important; }
+        .zoom-overlay, .play-overlay {
+            background: linear-gradient(135deg, #d8b466, #c9a24b 55%, #b08a3e) !important;
+            color: #0a2110 !important;
+        }
+        .lightbox { background: rgba(10, 33, 16, 0.96) !important; }
+        .close-lightbox:hover { color: #c9a24b !important; }
+
+        /* CTA banner — rounded gradient */
+        .cta-banner {
+            position: relative; margin: 40px 5% 90px !important; padding: 70px 8% !important;
+            background: linear-gradient(120deg, #0a2110, #16421f) !important;
+            border-radius: 26px !important; overflow: hidden !important;
+        }
+        .cta-banner::before {
+            content: ''; position: absolute; right: -80px; top: -80px;
+            width: 320px; height: 320px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(201, 162, 75, 0.35), transparent 65%);
+        }
+        .cta-banner h2, .cta-banner p, .cta-banner a { position: relative; }
+        .cta-banner p { color: rgba(250, 246, 234, 0.8) !important; }
+        .btn-white {
+            background: linear-gradient(135deg, #d8b466, #c9a24b 55%, #b08a3e) !important;
+            color: #0a2110 !important; font-weight: 700 !important;
+            box-shadow: 0 12px 30px rgba(176, 138, 62, 0.4) !important;
+            transition: transform 0.35s ease, box-shadow 0.35s ease !important;
+        }
+        .btn-white:hover { transform: translateY(-4px) !important; box-shadow: 0 18px 40px rgba(176, 138, 62, 0.55) !important; }
+
+        /* Footer — dark forest */
+        footer { background: #0a2110 !important; color: rgba(250, 246, 234, 0.8) !important; border-top: none !important; }
+        footer .footer-col h4 { color: #faf6ea !important; position: relative; padding-bottom: 10px; }
+        footer .footer-col h4::after { content: ''; position: absolute; left: 0; bottom: 0; width: 38px; height: 2px; background: #c9a24b; }
+        footer .footer-col p, footer .footer-col li, footer .footer-col a { color: rgba(250, 246, 234, 0.8) !important; font-weight: 300; }
+        footer .footer-col li i, footer .footer-col ul li i { color: #c9a24b !important; }
+        footer .footer-col a:hover { color: #c9a24b !important; }
+        footer .social-icons a { color: rgba(250, 246, 234, 0.85) !important; }
+        footer .social-icons a:hover { color: #c9a24b !important; }
+        footer .copyright { border-top: 1px solid rgba(201, 162, 75, 0.2) !important; color: rgba(250, 246, 234, 0.5) !important; }
+
+        /* Scroll reveal */
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.85s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.85s cubic-bezier(0.22, 0.61, 0.36, 1); }
+        .reveal.in-view { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+        .page-hero { background-image: linear-gradient(to bottom, rgba(10,33,16,0.55), rgba(10,33,16,0.85)), url('assets/img/lawn_gallery/21.webp') !important; background-size: cover !important; background-position: center !important; }
     </style>
     <link rel="stylesheet" href="assets/css/luxe.css">
 </head>
@@ -415,6 +531,7 @@
 
     <section class="page-hero">
         <div class="hero-content">
+            <span class="hero-kicker">Healthy Lawns</span>
             <h1>Weed Control Services</h1>
             <p>Eradicate stubborn weeds and stop them from coming back with our safe and effective treatments.</p>
             <a href="contact2.html?service=weed-control" class="hero-btn">Get a Free Quote</a>
@@ -565,6 +682,22 @@
                 }
             }
         }
+    </script>
+
+    <script>
+        (function () {
+            if (!('IntersectionObserver' in window)) return;
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((e) => {
+                    if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+            document.querySelectorAll('.flex-col, .included-card, .info-card, .story-text, .story-gallery, .tab-buttons, .contact-form-wrapper, .cta-banner').forEach((el, i) => {
+                el.classList.add('reveal');
+                el.style.transitionDelay = (i % 4) * 0.1 + 's';
+                io.observe(el);
+            });
+        })();
     </script>
 </body>
 </html>

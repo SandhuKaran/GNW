@@ -1176,173 +1176,6 @@
             .mobile-sticky-cta a { color: #faf6ea; font-weight: 700; font-size: 1rem; text-decoration: none; display: flex; align-items: center; gap: 10px; }
             .mobile-sticky-cta i { background: var(--accent-color); padding: 8px; border-radius: 50%; animation: pulse-green 2s infinite; }
         }
-
-        /* ============ DEEP FOREST LUXE — REDESIGN OVERRIDES ============ */
-
-        /* Hero */
-        .hero {
-            background-image: linear-gradient(to bottom, rgba(10, 33, 16, 0.55), rgba(10, 33, 16, 0.82)), url('assets/img/lawnmain.webp');
-            min-height: 86vh;
-        }
-        .hero-kicker {
-            display: inline-flex; align-items: center; gap: 14px;
-            color: #dfc98f; font-size: 0.82rem; font-weight: 600;
-            letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px;
-            opacity: 0; animation: fadeSlideUp 0.8s ease-out forwards;
-        }
-        .hero-kicker::before, .hero-kicker::after { content: ''; width: 40px; height: 2px; background: var(--accent-color); }
-        .hero h1 { font-size: clamp(2.6rem, 5.5vw, 4.2rem); }
-        .hero h1 em { font-style: normal; color: var(--accent-color); }
-        .hero-trust {
-            display: flex; gap: 26px; justify-content: center; flex-wrap: wrap;
-            margin-top: 38px; opacity: 0; animation: fadeSlideUp 0.8s ease-out 0.6s forwards;
-        }
-        .hero-trust span {
-            display: inline-flex; align-items: center; gap: 9px;
-            font-size: 0.88rem; font-weight: 600; color: rgba(250, 246, 234, 0.92);
-            background: rgba(250, 246, 234, 0.1); border: 1px solid rgba(201, 162, 75, 0.4);
-            backdrop-filter: blur(8px);
-            padding: 9px 20px; border-radius: 50px;
-        }
-        .hero-trust i { color: var(--accent-color); }
-
-        /* Section kickers */
-        .kicker {
-            display: block; color: #b08a3e; font-size: 0.8rem; font-weight: 600;
-            letter-spacing: 4px; text-transform: uppercase; margin-bottom: 8px;
-        }
-
-        /* Funnel container */
-        .funnel-container {
-            border-top: none;
-            border: 1px solid #e6dec9;
-            box-shadow: 0 25px 60px rgba(15, 46, 20, 0.1);
-            position: relative;
-        }
-        .funnel-container::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
-            background: linear-gradient(90deg, #d8b466, var(--accent-color) 55%, #b08a3e);
-        }
-
-        /* Pricing cards */
-        .pricing-card {
-            background: #fffdf6;
-            border: 1px solid #e6dec9;
-            box-shadow: 0 15px 40px rgba(15, 46, 20, 0.08);
-        }
-        .pricing-card:hover { border-color: var(--accent-color); }
-        .pricing-card.popular {
-            background: linear-gradient(150deg, #0a2110, #16421f);
-            border: 1px solid rgba(201, 162, 75, 0.5);
-            box-shadow: 0 30px 60px rgba(10, 33, 16, 0.35);
-        }
-        .pricing-card.popular::before {
-            background: linear-gradient(135deg, #d8b466, var(--accent-color) 55%, #b08a3e) !important;
-            color: #0a2110 !important;
-        }
-        .pricing-card.popular .plan-price { color: var(--accent-color); }
-        .trust-badge i { color: #b08a3e; }
-
-        /* Portal */
-        .portal-wrapper { border: 1px solid rgba(201, 162, 75, 0.35); }
-        .portal-feature-card i { color: var(--accent-color); }
-
-        /* Service cards */
-        .services-section .service-card i {
-            width: 64px; height: 64px; border-radius: 50%;
-            background: var(--primary-color); color: var(--accent-color);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem; margin-bottom: 18px;
-            box-shadow: 0 10px 25px rgba(15, 46, 20, 0.25);
-        }
-        .services-section .service-card { border: 1px solid #e6dec9; border-bottom: 4px solid transparent; }
-        .services-section .service-card:hover { border-bottom-color: var(--accent-color); }
-
-        /* CTA banner */
-        .cta-banner {
-            position: relative; margin: 40px 5% 90px; padding: 75px 8%;
-            background: linear-gradient(120deg, #0a2110, #16421f);
-            border-radius: 26px; overflow: hidden;
-        }
-        .cta-banner::before {
-            content: ''; position: absolute; right: -80px; top: -80px;
-            width: 320px; height: 320px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(201, 162, 75, 0.35), transparent 65%);
-        }
-        .cta-banner h2, .cta-banner p, .cta-banner a { position: relative; }
-        .cta-banner p { color: rgba(250, 246, 234, 0.8); }
-        .btn-white {
-            display: inline-block; margin-top: 22px;
-            background: linear-gradient(135deg, #d8b466, var(--accent-color) 55%, #b08a3e);
-            color: #0a2110; font-weight: 700;
-            padding: 16px 42px; border-radius: 50px;
-            box-shadow: 0 12px 30px rgba(176, 138, 62, 0.4);
-            transition: transform 0.35s ease, box-shadow 0.35s ease;
-        }
-        .btn-white:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(176, 138, 62, 0.55); }
-
-        /* Footer — dark forest */
-        footer { background: #0a2110 !important; color: rgba(250, 246, 234, 0.8) !important; border-top: none !important; }
-        footer .footer-col h4 { color: #faf6ea !important; position: relative; padding-bottom: 10px; }
-        footer .footer-col h4::after { content: ''; position: absolute; left: 0; bottom: 0; width: 38px; height: 2px; background: var(--accent-color); }
-        footer .footer-col p, footer .footer-col li, footer .footer-col a { color: rgba(250, 246, 234, 0.8) !important; font-weight: 300; }
-        footer .footer-col li i { color: var(--accent-color) !important; }
-        footer .footer-col a:hover { color: var(--accent-color) !important; }
-        footer .social-icons a { color: rgba(250, 246, 234, 0.85) !important; }
-        footer .social-icons a:hover { color: var(--accent-color) !important; }
-        footer .copyright { border-top: 1px solid rgba(201, 162, 75, 0.2) !important; color: rgba(250, 246, 234, 0.5) !important; }
-
-        /* Scroll reveal */
-        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.85s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.85s cubic-bezier(0.22, 0.61, 0.36, 1); }
-        .reveal.in-view { opacity: 1; transform: none; }
-        @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
-
-        @media (max-width: 768px) {
-            .hero-trust { gap: 10px; }
-            .hero-trust span { font-size: 0.75rem; padding: 7px 14px; }
-            .cta-banner { margin: 20px 5% 70px; padding: 50px 8%; }
-        }
-
-        /* --- COMPACT CLIENT PORTAL STRIP --- */
-        .client-portal-section { padding: 30px 5% !important; margin-bottom: 0 !important; }
-        .portal-wrapper { padding: 28px 30px !important; border-radius: 16px !important; }
-        .portal-header { margin-bottom: 18px !important; }
-        .portal-header h2 { font-size: 1.35rem !important; animation: none !important; -webkit-text-fill-color: #faf6ea !important; }
-        .portal-header p { font-size: 0.88rem !important; max-width: 640px !important; }
-        .portal-features-grid { gap: 12px !important; margin-bottom: 18px !important; grid-template-columns: repeat(3, 1fr) !important; }
-        .portal-feature-card { padding: 14px 16px !important; border-radius: 12px !important; display: flex !important; align-items: center !important; gap: 10px !important; text-align: left !important; transform: none !important; }
-        .portal-feature-card:hover { transform: none !important; }
-        .portal-feature-card i { font-size: 1.1rem !important; margin: 0 !important; }
-        .portal-feature-card h4 { font-size: 0.88rem !important; margin: 0 !important; }
-        .portal-feature-card p { display: none !important; }
-        .btn-portal { padding: 10px 26px !important; font-size: 0.85rem !important; }
-        @media (max-width: 768px) {
-            .portal-features-grid { display: grid !important; grid-template-columns: 1fr !important; }
-            .portal-wrapper { padding: 22px 18px !important; }
-        }
-
-        /* --- SERVICE CARD THUMBNAILS --- */
-        .services-section .service-card .service-thumb {
-            position: relative; width: 92px; height: 92px; margin-bottom: 18px;
-            border-radius: 50%; display: block; flex-shrink: 0;
-        }
-        .services-section .service-card .service-thumb img {
-            width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
-            border: 3px solid var(--accent-color);
-            box-shadow: 0 10px 25px rgba(15, 46, 20, 0.25);
-            transition: transform 0.4s ease;
-        }
-        .services-section .service-card:hover .service-thumb img { transform: scale(1.06); }
-        .services-section .service-card .service-thumb i {
-            position: absolute; bottom: -4px; right: -4px;
-            width: 34px !important; height: 34px !important;
-            border-radius: 50% !important;
-            background: var(--primary-color) !important; color: var(--accent-color) !important;
-            display: flex !important; align-items: center !important; justify-content: center !important;
-            font-size: 0.85rem !important; margin: 0 !important;
-            border: 2px solid #faf6ea;
-            box-shadow: 0 4px 12px rgba(15, 46, 20, 0.3) !important;
-        }
     </style>
     <link rel="stylesheet" href="assets/css/luxe.css">
 </head>
@@ -1389,23 +1222,16 @@
 
     <section class="hero">
         <div class="hero-text">
-            <span class="hero-kicker">Lawn Maintenance &bull; Georgetown &amp; Halton Hills</span>
-            <h1>Your Weekend is for Living, <em>Not Mowing</em></h1>
+            <h1>Your Weekend is for Living, Not Mowing</h1>
             <p>Professional and reliable lawn maintenance, serving homeowners in Halton Hills and the entire Greater Toronto Area.</p>
             <div class="hero-buttons">
                 <a href="#custom-quote" class="btn-primary">Build My Custom Quote</a>
                 <a href="pricing" class="btn-secondary">View Pricing Plans</a>
             </div>
-            <div class="hero-trust">
-                <span><i class="fas fa-star"></i> 4.9 on Google</span>
-                <span><i class="fas fa-file-signature"></i> No Contracts</span>
-                <span><i class="fas fa-user-shield"></i> Fully Insured</span>
-            </div>
         </div>
     </section>
 
     <section class="quote-funnel-section" id="custom-quote">
-        <span class="kicker">Instant Pricing</span>
         <h2>Build Your Custom Plan...</h2>
         <p class="quote-subtitle">Use our interactive calculator to get a price based on your exact needs.</p>
 
@@ -1678,7 +1504,6 @@
     </section>
 
     <section class="pricing-section" id="pricing">
-        <span class="kicker">Simple Plans</span>
         <h2>...Or Choose a Pre-Made Package</h2>
         <p class="pricing-subtitle">Prefer a standard bundle? Select one of our popular monthly maintenance plans below.</p>
 
@@ -1777,53 +1602,52 @@
     </section>
 
     <section class="services-section">
-        <span class="kicker">&Agrave; La Carte</span>
         <h2>Services You Can Include</h2>
         <div class="services-grid">
             <a href="lawn-mowing" class="service-card">
-                <span class="service-thumb"><img src="assets/img/lawn_gallery/5.webp" alt="Lawn Mowing" loading="lazy"><i class="fa-solid fa-cut"></i></span>
+                <i class="fa-solid fa-cut"></i>
                 <h3>Lawn Mowing</h3>
                 <p>Weekly cuts to keep your grass healthy and evenly trimmed.</p>
                 <span class="service-action-text">Click to Learn More &rarr;</span>
             </a>
             <a href="gardening" class="service-card">
-                <span class="service-thumb"><img src="assets/img/lawn_gallery/20.webp" alt="Gardening Services" loading="lazy"><i class="fa-solid fa-seedling"></i></span>
+                <i class="fa-solid fa-seedling"></i>
                 <h3>Gardening Services</h3>
                 <p>Planting, pruning, and garden bed maintenance.</p>
                 <span class="service-action-text">Click to Learn More &rarr;</span>
             </a>
             <a href="weed-control" class="service-card">
-                <span class="service-thumb"><img src="assets/img/lawn_gallery/21.webp" alt="Weed Control" loading="lazy"><i class="fa-solid fa-spray-can"></i></span>
+                <i class="fa-solid fa-spray-can"></i>
                 <h3>Weed Control</h3>
                 <p>Effective solutions to prevent invasive plants.</p>
                 <span class="service-action-text">Click to Learn More &rarr;</span>
             </a>
             <a href="fertilizing" class="service-card">
-                <span class="service-thumb"><img src="assets/img/lawn_gallery/22.webp" alt="Fertilizing" loading="lazy"><i class="fa-solid fa-leaf"></i></span>
+                <i class="fa-solid fa-leaf"></i>
                 <h3>Fertilizing</h3>
                 <p>Enriching soil with essential nutrients for vibrant growth.</p>
                 <span class="service-action-text">Click to Learn More &rarr;</span>
             </a>
             <a href="aeration" class="service-card">
-                <span class="service-thumb"><img src="assets/img/lawn_gallery/23.webp" alt="Seeding and Aeration" loading="lazy"><i class="fa-solid fa-wind"></i></span>
+                <i class="fa-solid fa-wind"></i>
                 <h3>Seeding & Aeration</h3>
                 <p>Repair thinning lawns and improve soil health.</p>
                 <span class="service-action-text">Click to Learn More &rarr;</span>
             </a>
             <a href="seasonal-cleanup" class="service-card">
-                <span class="service-thumb"><img src="assets/img/lawn_gallery/24.webp" alt="Seasonal Cleanup" loading="lazy"><i class="fa-solid fa-broom"></i></span>
+                <i class="fa-solid fa-broom"></i>
                 <h3>Seasonal Cleanup</h3>
                 <p>Removing debris and leaves in Spring and Fall.</p>
                 <span class="service-action-text">Click to Learn More &rarr;</span>
             </a>
             <a href="tree-care" class="service-card">
-                <span class="service-thumb"><img src="assets/img/lawn_gallery/25.webp" alt="Tree and Shrub Care" loading="lazy"><i class="fa-solid fa-tree"></i></span>
+                <i class="fa-solid fa-tree"></i>
                 <h3>Tree & Shrub Care</h3>
                 <p>Expert pruning and disease treatment.</p>
                 <span class="service-action-text">Click to Learn More &rarr;</span>
             </a>
             <a href="mulch" class="service-card">
-                <span class="service-thumb"><img src="assets/img/lawn_gallery/26.webp" alt="Mulch Installation" loading="lazy"><i class="fa-solid fa-layer-group"></i></span>
+                <i class="fa-solid fa-layer-group"></i>
                 <h3>Mulch Installation</h3>
                 <p>Conserve moisture and suppress weeds with fresh mulch.</p>
                 <span class="service-action-text">Click to Learn More &rarr;</span>
@@ -2420,21 +2244,6 @@
                 }
             });
         }
-
-        // --- SCROLL REVEAL ---
-        (function () {
-            if (!('IntersectionObserver' in window)) return;
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach((e) => {
-                    if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
-                });
-            }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
-            document.querySelectorAll('.funnel-container, .pricing-card, .portal-feature-card, .services-section .service-card, .cta-banner, .trust-badge').forEach((el, i) => {
-                el.classList.add('reveal');
-                el.style.transitionDelay = (i % 4) * 0.1 + 's';
-                io.observe(el);
-            });
-        })();
     </script>
 </body>
 </html>
