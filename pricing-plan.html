@@ -1422,6 +1422,7 @@
         }
     </style>
     <link rel="stylesheet" href="assets/css/luxe.css">
+    <script src="assets/js/pricing-config.js"></script>
 </head>
 <body>
 
@@ -2141,6 +2142,9 @@
         }
 
         function calculateQuote(isRecalculating = false) {
+            // Pricing pulled from assets/js/pricing-config.js (single source of truth)
+            const M = window.GNW_PRICING.mowing;
+            const R = window.GNW_PRICING.rules;
             const lotSelect = document.getElementById('qLotSize');
             const lotVal = lotSelect.value;
             
@@ -2187,13 +2191,15 @@
             const totalCoreServices = mowingCount + coreActiveCount;
             
             // --- NEW: MARGIN PROTECTION (4 services required for small lots) ---
-            let requiredForBundle = (sizeMultiplier === 0.75) ? 4 : 3;
-            let isBundled = (totalCoreServices >= requiredForBundle);
+            let requiredForBundle = (sizeMultiplier === 0.75) ? R.bundleThreshold.smallLot : R.bundleThreshold.standard;
+            // GUARDRAIL: bundled pricing requires an active mowing plan (prevents discounted
+            // one-off cleanups with zero recurring revenue).
+            let isBundled = (totalCoreServices >= requiredForBundle) && (!R.bundleRequiresMowing || mowFreq !== 'none');
             
             const enforceMinimums = (price, boxId) => {
                 if (mowFreq !== 'none') return price; 
-                if (boxId === 'chk-land' && price < 28) return 28;
-                if (boxId === 'chk-weed' && price < 25) return 25;
+                const min = R.serviceMinimums[boxId]; if (min && price < min) return min;
+                
                 return price;
             };
 
@@ -2204,12 +2210,12 @@
                 let mowLabel = "";
                 
                 if (mowFreq === 'weekly') {
-                    baseMowPrice = isBundled ? 116 : 159;
-                    standaloneMowPrice = 159;
+                    baseMowPrice = isBundled ? M.weekly.bundled : M.weekly.standalone;
+                    standaloneMowPrice = M.weekly.standalone;
                     mowLabel = "Weekly Lawn Mowing";
                 } else if (mowFreq === 'biweekly') {
-                    baseMowPrice = isBundled ? 80 : 129;
-                    standaloneMowPrice = 129;
+                    baseMowPrice = isBundled ? M.biweekly.bundled : M.biweekly.standalone;
+                    standaloneMowPrice = M.biweekly.standalone;
                     mowLabel = "Bi-Weekly Lawn Mowing";
                 }
                 
@@ -2218,7 +2224,7 @@
 
                 // --- NEW: MARGIN PROTECTION FOR SMALL LOTS (15% Mowing) ---
                 if (isBundled && sizeMultiplier === 0.75) {
-                    finalMowPrice = originalMowPrice * 0.85; 
+                    finalMowPrice = originalMowPrice * R.smallLotMowingRate; 
                 } else {
                     finalMowPrice = baseMowPrice * sizeMultiplier;
                 }
@@ -2236,7 +2242,7 @@
                     </div>`;
             }
 
-            let addonMultiplier = (addonCount === 3) ? 0.75 : 1.0;
+            let addonMultiplier = (addonCount === 3) ? R.allAddonsRate : 1.0;
             let upsellHTML = "";
             let missedCount = 0;
 
@@ -2275,7 +2281,7 @@
 
                         // --- NEW: MARGIN PROTECTION FOR SMALL LOTS (25% Seasonal) ---
                         if (isBundled && sizeMultiplier === 0.75) {
-                            finalPrice = originalPrice * 0.75; 
+                            finalPrice = originalPrice * R.smallLotServiceRate; 
                         } else {
                             finalPrice = (isBundled ? basePrice : standalonePrice) * sizeMultiplier;
                         }
@@ -2301,7 +2307,7 @@
 
                         // --- NEW: MARGIN PROTECTION FOR SMALL LOTS (25% Monthly) ---
                         if (isBundled && sizeMultiplier === 0.75) {
-                            finalPrice = originalPrice * 0.75; 
+                            finalPrice = originalPrice * R.smallLotServiceRate; 
                         } else {
                             finalPrice = (isBundled ? basePrice : standalonePrice) * sizeMultiplier;
                         }
@@ -2366,6 +2372,18 @@
                 }
             });
 
+            // GUARDRAIL: minimum $25/mo on any recurring plan
+            const MONTHLY_MINIMUM = R.monthlyMinimum;
+            if (rawMonthlyTotal > 0 && rawMonthlyTotal < MONTHLY_MINIMUM) {
+                const topUp = MONTHLY_MINIMUM - rawMonthlyTotal;
+                rawMonthlyTotal = MONTHLY_MINIMUM;
+                monthlyHTML += `
+                    <div class="receipt-item" style="color:var(--text-light); font-size:0.9rem;">
+                        <span>Minimum Service Charge</span>
+                        <span>+$${topUp.toFixed(2)}</span>
+                    </div>`;
+            }
+
             // Amortization (7-Month Split) Logic
             const amortizeContainer = document.getElementById('amortizeContainer');
             const amortizeChecked = document.getElementById('amortizeCheckbox').checked;
@@ -2373,7 +2391,7 @@
             if (totalOnetime > 0) {
                 amortizeContainer.style.display = 'flex';
                 if (amortizeChecked) {
-                    let amortizedAmount = totalOnetime / 7;
+                    let amortizedAmount = totalOnetime / R.amortizeMonths;
                     rawMonthlyTotal += amortizedAmount;
                     monthlyHTML += `
                         <div class="receipt-item" style="color:var(--primary-color); font-weight:600; margin-top:5px; padding-top:10px; border-top:1px dashed #ded5be;">

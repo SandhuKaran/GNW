@@ -1345,6 +1345,7 @@
         }
     </style>
     <link rel="stylesheet" href="assets/css/luxe.css">
+    <script src="assets/js/pricing-config.js"></script>
 </head>
 <body>
     <header>
@@ -1975,6 +1976,9 @@
         }
 
         function calculateQuote(isRecalculating = false) {
+            // Pricing pulled from assets/js/pricing-config.js (single source of truth)
+            const M = window.GNW_PRICING.mowing;
+            const R = window.GNW_PRICING.rules;
             const lotSelect = document.getElementById('qLotSize');
             const lotVal = lotSelect.value;
             const sizeMultiplier = parseFloat(lotVal);
@@ -2014,24 +2018,26 @@
             });
 
             const totalCoreServices = mowingCount + coreActiveCount;
-            let requiredForBundle = (sizeMultiplier === 0.75) ? 4 : 3;
-            let isBundled = (totalCoreServices >= requiredForBundle);
+            let requiredForBundle = (sizeMultiplier === 0.75) ? R.bundleThreshold.smallLot : R.bundleThreshold.standard;
+            // GUARDRAIL: bundled pricing requires an active mowing plan (prevents discounted
+            // one-off cleanups with zero recurring revenue).
+            let isBundled = (totalCoreServices >= requiredForBundle) && (!R.bundleRequiresMowing || mowFreq !== 'none');
 
             // --- DYNAMICALLY UPDATE VISUAL LABELS ON THE SELECTION MENU ---
             const mowWeeklyLabel = document.getElementById('mow-weekly').parentElement;
             if(mowWeeklyLabel) {
                 const stSpan = mowWeeklyLabel.querySelector('.price-standalone');
                 const bnSpan = mowWeeklyLabel.querySelector('.price-bundled');
-                if(stSpan) stSpan.innerHTML = `Standalone: <br>$${(159 * sizeMultiplier).toFixed(2)}/mo`;
-                if(bnSpan) bnSpan.innerHTML = `Bundled: <br>$${(sizeMultiplier === 0.75 ? 159 * 0.75 * 0.85 : 116 * sizeMultiplier).toFixed(2)}/mo`;
+                if(stSpan) stSpan.innerHTML = `Standalone: <br>$${(M.weekly.standalone * sizeMultiplier).toFixed(2)}/mo`;
+                if(bnSpan) bnSpan.innerHTML = `Bundled: <br>$${(sizeMultiplier === 0.75 ? M.weekly.standalone * 0.75 * R.smallLotMowingRate : M.weekly.bundled * sizeMultiplier).toFixed(2)}/mo`;
             }
 
             const mowBiweeklyLabel = document.getElementById('mow-biweekly').parentElement;
             if(mowBiweeklyLabel) {
                 const stSpan = mowBiweeklyLabel.querySelector('.price-standalone');
                 const bnSpan = mowBiweeklyLabel.querySelector('.price-bundled');
-                if(stSpan) stSpan.innerHTML = `Standalone: <br>$${(129 * sizeMultiplier).toFixed(2)}/mo`;
-                if(bnSpan) bnSpan.innerHTML = `Bundled: <br>$${(sizeMultiplier === 0.75 ? 129 * 0.75 * 0.85 : 80 * sizeMultiplier).toFixed(2)}/mo`;
+                if(stSpan) stSpan.innerHTML = `Standalone: <br>$${(M.biweekly.standalone * sizeMultiplier).toFixed(2)}/mo`;
+                if(bnSpan) bnSpan.innerHTML = `Bundled: <br>$${(sizeMultiplier === 0.75 ? M.biweekly.standalone * 0.75 * R.smallLotMowingRate : M.biweekly.bundled * sizeMultiplier).toFixed(2)}/mo`;
             }
 
             let monthlyHTML = "";
@@ -2046,12 +2052,12 @@
                 let mowLabel = "";
                 
                 if (mowFreq === 'weekly') {
-                    baseMowPrice = isBundled ? 116 : 159;
-                    standaloneMowPrice = 159;
+                    baseMowPrice = isBundled ? M.weekly.bundled : M.weekly.standalone;
+                    standaloneMowPrice = M.weekly.standalone;
                     mowLabel = "Weekly Lawn Mowing";
                 } else if (mowFreq === 'biweekly') {
-                    baseMowPrice = isBundled ? 80 : 129;
-                    standaloneMowPrice = 129;
+                    baseMowPrice = isBundled ? M.biweekly.bundled : M.biweekly.standalone;
+                    standaloneMowPrice = M.biweekly.standalone;
                     mowLabel = "Bi-Weekly Lawn Mowing";
                 }
                 
@@ -2059,7 +2065,7 @@
                 let finalMowPrice;
 
                 if (isBundled && sizeMultiplier === 0.75) {
-                    finalMowPrice = originalMowPrice * 0.85; 
+                    finalMowPrice = originalMowPrice * R.smallLotMowingRate; 
                 } else {
                     finalMowPrice = baseMowPrice * sizeMultiplier;
                 }
@@ -2077,14 +2083,14 @@
                     </div>`;
             }
 
-            let addonMultiplier = (addonCount === 3) ? 0.75 : 1.0;
+            let addonMultiplier = (addonCount === 3) ? R.allAddonsRate : 1.0;
             let upsellHTML = "";
             let missedCount = 0;
 
             const enforceMinimums = (price, boxId) => {
                 if (mowFreq !== 'none') return price; 
-                if (boxId === 'chk-land' && price < 28) return 28;
-                if (boxId === 'chk-weed' && price < 25) return 25;
+                const min = R.serviceMinimums[boxId]; if (min && price < min) return min;
+                
                 return price;
             };
 
@@ -2111,7 +2117,7 @@
                     }
                 }
                 if (priceBundledSpan) {
-                    let hypoBundled = (sizeMultiplier === 0.75) ? (standalonePrice * sizeMultiplier * 0.75) : (basePrice * sizeMultiplier);
+                    let hypoBundled = (sizeMultiplier === 0.75) ? (standalonePrice * sizeMultiplier * R.smallLotServiceRate) : (basePrice * sizeMultiplier);
                     priceBundledSpan.innerHTML = `Bundled: <br>$${hypoBundled.toFixed(2)}${unit}`;
                 }
                 
@@ -2139,7 +2145,7 @@
                         let finalPrice;
 
                         if (isBundled && sizeMultiplier === 0.75) {
-                            finalPrice = originalPrice * 0.75; 
+                            finalPrice = originalPrice * R.smallLotServiceRate; 
                         } else {
                             finalPrice = (isBundled ? basePrice : standalonePrice) * sizeMultiplier;
                         }
@@ -2163,7 +2169,7 @@
                         let finalPrice;
 
                         if (isBundled && sizeMultiplier === 0.75) {
-                            finalPrice = originalPrice * 0.75; 
+                            finalPrice = originalPrice * R.smallLotServiceRate; 
                         } else {
                             finalPrice = (isBundled ? basePrice : standalonePrice) * sizeMultiplier;
                         }
@@ -2227,6 +2233,18 @@
                 }
             });
 
+            // GUARDRAIL: minimum $25/mo on any recurring plan
+            const MONTHLY_MINIMUM = R.monthlyMinimum;
+            if (rawMonthlyTotal > 0 && rawMonthlyTotal < MONTHLY_MINIMUM) {
+                const topUp = MONTHLY_MINIMUM - rawMonthlyTotal;
+                rawMonthlyTotal = MONTHLY_MINIMUM;
+                monthlyHTML += `
+                    <div class="receipt-item" style="color:var(--text-light); font-size:0.9rem;">
+                        <span>Minimum Service Charge</span>
+                        <span>+$${topUp.toFixed(2)}</span>
+                    </div>`;
+            }
+
             // Amortization (7-Month Split) Logic
             const amortizeContainer = document.getElementById('amortizeContainer');
             const amortizeChecked = document.getElementById('amortizeCheckbox').checked;
@@ -2234,7 +2252,7 @@
             if (totalOnetime > 0) {
                 amortizeContainer.style.display = 'flex';
                 if (amortizeChecked) {
-                    let amortizedAmount = totalOnetime / 7;
+                    let amortizedAmount = totalOnetime / R.amortizeMonths;
                     rawMonthlyTotal += amortizedAmount;
                     monthlyHTML += `
                         <div class="receipt-item" style="color:var(--primary-color); font-weight:600; margin-top:5px; padding-top:10px; border-top:1px dashed #ded5be;">
