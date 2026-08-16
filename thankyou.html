@@ -5,6 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You | Greenworks Landscaping</title>
 
+    <!-- Google tag (gtag.js) + Google Ads conversion -->
+    <!-- Added to record the "Contact Form lawncare" conversion in Google Ads. -->
+    <!-- Every site form (contact, contact2, lawnmain, pricing, pricing-plan) redirects here on a successful submit, -->
+    <!-- so firing the conversion on this page captures all form leads exactly once. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-T9K6VD2L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      // Unified Google Tag
+      gtag('config', 'GT-T9K6VD2L');
+      // Google Analytics 4
+      gtag('config', 'G-N8165ZJRD2');
+      // Google Ads Tracking
+      gtag('config', 'AW-10820369667');
+
+      // Google Ads conversion: Contact Form lawncare (Submit lead form)
+      gtag('event', 'conversion', {
+        'send_to': 'AW-10820369667/haRQCN-msaIZEIP6xqco',
+        'value': 1.0,
+        'currency': 'CAD'
+      });
+    </script>
+
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
