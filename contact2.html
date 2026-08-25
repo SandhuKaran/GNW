@@ -308,6 +308,18 @@
             font-size: 1.2rem;
         }
 
+        .services-group { border: 1px solid #d8cfb6; border-radius: 10px; margin-bottom: 12px; background: #fffdf6; overflow: hidden; }
+        .services-group summary { cursor: pointer; padding: 14px 18px; font-weight: 600; color: var(--primary-color); list-style: none; display: flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+        .services-group summary::-webkit-details-marker { display: none; }
+        .services-group summary i { color: #b08a3e; }
+        .services-group summary::after { content: '\f078'; font-family: "Font Awesome 6 Free"; font-weight: 900; margin-left: auto; font-size: 0.75rem; color: #b08a3e; transition: transform 0.3s; }
+        .services-group[open] summary::after { transform: rotate(180deg); }
+        .services-group .services-grid { padding: 0 12px 12px; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+        .services-group .checkbox-item label { padding: 10px 6px; font-size: 0.8rem; }
+        .services-group .checkbox-item label span.price-tag { font-size: 0.68rem; margin-top: 3px; }
+        .services-note { font-size: 0.75rem; color: var(--text-light); margin: 0; padding: 0 18px 12px; }
+        .other-item { margin-top: 2px; }
+
         .btn-submit {
             background-color: var(--accent-color); color: #faf6ea;
             padding: 15px 40px; border: none; border-radius: 50px;
@@ -643,58 +655,90 @@
                     <div class="form-group">
                         <label>Specific Services Interested In (Select all that apply)</label>
                         
-                        <div class="services-grid">
-                            
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="srv-lawn-mowing" name="services" value="Single Lawn Mowing">
-                                <label for="srv-lawn-mowing">Single Lawn Mowing <span class="price-tag">Starts at $35</span></label>
-                            </div>
-                            
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="srv-cleanup" name="services" value="Spring/Fall Cleanup">
-                                <label for="srv-cleanup">Cleanup (Spring/Fall) <span class="price-tag">Starts at $199</span></label>
-                            </div>
-                            
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="srv-beds" name="services" value="Beds Maintenance">
-                                <label for="srv-beds">Beds Maintenance <span class="price-tag">Starts at $119</span></label>
-                            </div>
-                            
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="srv-yard-cleanup" name="services" value="Full Yard Cleanup">
-                                <label for="srv-yard-cleanup">Full Yard Cleanup <span class="price-tag">Starts at $249</span></label>
-                            </div>
+                        <div class="services-groups">
 
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="srv-mulch" name="services" value="Mulching Services">
-                                <label for="srv-mulch">Mulching Services <span class="price-tag">Starts at $139/yd</span></label>
-                            </div>
+                            <details class="services-group">
+                                <summary><i class="fas fa-cut"></i> Maintenance Services</summary>
+                                <div class="services-grid">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="srv-lawn-mowing" name="services" value="Single Lawn Mowing">
+                                    <label for="srv-lawn-mowing">Single Lawn Mowing <span class="price-tag">Starts at $35</span></label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="srv-cleanup" name="services" value="Spring/Fall Cleanup">
+                                    <label for="srv-cleanup">Cleanup (Spring/Fall) <span class="price-tag">Starts at $199</span></label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="srv-beds" name="services" value="Beds Maintenance">
+                                    <label for="srv-beds">Beds Maintenance <span class="price-tag">Starts at $119</span></label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="srv-yard-cleanup" name="services" value="Full Yard Cleanup">
+                                    <label for="srv-yard-cleanup">Full Yard Cleanup <span class="price-tag">Starts at $249</span></label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="srv-mulch" name="services" value="Mulching Services">
+                                    <label for="srv-mulch">Mulching Services <span class="price-tag">Starts at $139/yd</span></label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="srv-edging" name="services" value="Edging Services">
+                                    <label for="srv-edging">Edging Services <span class="price-tag">Starts at $80</span></label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="srv-weed-control" name="services" value="Weed Control">
+                                    <label for="srv-weed-control">Weed Control <span class="price-tag">Starts at $49</span></label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="srv-fertilization" name="services" value="Fertilization">
+                                    <label for="srv-fertilization">Fertilization <span class="price-tag">Starts at $39</span></label>
+                                </div>
+                                </div>
+                            </details>
 
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="srv-edging" name="services" value="Edging Services">
-                                <label for="srv-edging">Edging Services <span class="price-tag">Starts at $80</span></label>
-                            </div>
+                            <details class="services-group" id="group-nourishment">
+                                <summary><i class="fas fa-seedling"></i> Lawn Renovation &amp; Nourishment</summary>
+                                <div class="services-grid">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="srv-dethatching" name="services" value="Dethatching / Power Raking">
+                                    <label for="srv-dethatching">Dethatching / Power Raking <span class="price-tag">From $80</span></label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="srv-aeration" name="services" value="Core Aeration">
+                                    <label for="srv-aeration">Core Aeration <span class="price-tag">From $80</span></label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="srv-liquid-aeration" name="services" value="Liquid Aeration">
+                                    <label for="srv-liquid-aeration">Liquid Aeration <span class="price-tag">From $60</span></label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="srv-overseeding" name="services" value="Overseeding">
+                                    <label for="srv-overseeding">Overseeding <span class="price-tag">From $40</span></label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="srv-topdressing" name="services" value="Top Dressing + Seeding">
+                                    <label for="srv-topdressing">Top Dressing + Seeding <span class="price-tag">From $150</span></label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="srv-aeration-overseeding" name="services" value="Aeration + Overseeding">
+                                    <label for="srv-aeration-overseeding">Aeration + Overseeding <span class="price-tag">From $120</span></label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="srv-full-renovation" name="services" value="Full Fall Renovation">
+                                    <label for="srv-full-renovation">Full Fall Renovation <span class="price-tag">From $200</span></label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="srv-topdressing-overseeding" name="services" value="Top Dressing + Overseeding">
+                                    <label for="srv-topdressing-overseeding">Top Dressing + Overseeding <span class="price-tag">From $170</span></label>
+                                </div>
+                                </div>
+                                <p class="services-note">Prices are starting rates and depend on lot size. Free exact quote.</p>
+                            </details>
 
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="srv-weed-control" name="services" value="Weed Control">
-                                <label for="srv-weed-control">Weed Control <span class="price-tag">Starts at $49</span></label>
-                            </div>
-
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="srv-fertilization" name="services" value="Fertilization">
-                                <label for="srv-fertilization">Fertilization <span class="price-tag">Starts at $39</span></label>
-                            </div>
-
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="srv-aeration" name="services" value="Aeration/Overseeding">
-                                <label for="srv-aeration">Aeration/Overseeding <span class="price-tag">Starts at $149</span></label>
-                            </div>
-                            
-                            <div class="checkbox-item">
+                            <div class="checkbox-item other-item">
                                 <input type="checkbox" id="srv-other" name="services" value="General Inquiry">
                                 <label for="srv-other">Other / General Inquiry</label>
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -764,12 +808,24 @@
         
         // Auto-select checkbox for specific services
         if (service) {
-            const checkBtn = document.getElementById('srv-' + service.toLowerCase());
-            if (checkBtn) {
-                checkBtn.checked = true;
-                setTimeout(() => {
-                    document.querySelector('.services-grid').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 500);
+            if (service.toLowerCase() === 'renovation') {
+                const grp = document.getElementById('group-nourishment');
+                if (grp) {
+                    grp.open = true;
+                    setTimeout(() => {
+                        grp.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 500);
+                }
+            } else {
+                const checkBtn = document.getElementById('srv-' + service.toLowerCase());
+                if (checkBtn) {
+                    checkBtn.checked = true;
+                    const grp = checkBtn.closest('details');
+                    if (grp) grp.open = true;
+                    setTimeout(() => {
+                        checkBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 500);
+                }
             }
         }
 
