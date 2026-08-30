@@ -479,6 +479,45 @@
         @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 
         .page-hero { background-image: linear-gradient(to bottom, rgba(10,33,16,0.55), rgba(10,33,16,0.85)), url('assets/img/lawn_gallery/24.webp') !important; background-size: cover !important; background-position: center !important; }
+
+        /* Cleanup pricing cards */
+        .price-line {
+            margin-top: 18px; padding-top: 15px; border-top: 1px dashed #d8cfb6;
+            display: flex; align-items: baseline; gap: 8px; justify-content: center;
+        }
+        .price-line .from { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); font-weight: 600; }
+        .price-line .price { font-size: 1.9rem; font-weight: 800; color: #b08a3e; }
+        .price-note {
+            max-width: 760px; margin: 30px auto 0; background: #fffdf6;
+            border: 1px solid #e6dec9; border-left: 4px solid var(--accent-color);
+            border-radius: 14px; padding: 18px 26px; color: var(--text-light);
+            font-size: 0.95rem; line-height: 1.7; text-align: left;
+            display: flex; gap: 14px; align-items: flex-start;
+        }
+        .price-note i { color: #b08a3e; font-size: 1.3rem; margin-top: 3px; flex-shrink: 0; }
+        .pricing-cta-btn {
+            display: inline-block; margin-top: 30px; padding: 14px 38px;
+            background: var(--primary-color); color: #faf6ea; font-weight: 700;
+            border-radius: 50px; font-size: 1rem; transition: transform 0.3s, background 0.3s;
+        }
+        .pricing-cta-btn:hover { transform: translateY(-3px); background: var(--accent-color); }
+
+        /* Expandable card details */
+        .included-card details { margin-top: 14px; }
+        .included-card summary {
+            cursor: pointer; list-style: none; color: #b08a3e; font-weight: 700;
+            font-size: 0.82rem; display: flex; align-items: center; gap: 7px;
+            justify-content: center; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .included-card summary::-webkit-details-marker { display: none; }
+        .included-card summary::after {
+            content: '\f078'; font-family: "Font Awesome 6 Free"; font-weight: 900;
+            font-size: 0.7rem; transition: transform 0.3s;
+        }
+        .included-card details[open] summary::after { transform: rotate(180deg); }
+        .card-includes { margin: 10px 0 0; padding: 0; list-style: none; }
+        .card-includes li { display: flex; gap: 8px; align-items: flex-start; font-size: 0.88rem; color: var(--text-light); padding: 4px 0; text-align: left; line-height: 1.5; }
+        .card-includes li i { color: #b08a3e; margin-top: 4px; font-size: 0.75rem; flex-shrink: 0; }
     </style>
     <link rel="stylesheet" href="assets/css/luxe.css">
 </head>
@@ -538,6 +577,72 @@
             <a href="contact2.html?service=cleanup" class="hero-btn">Get a Free Quote</a>
         </div>
     </section>
+
+    <section class="section-padding bg-light text-center">
+        <h2 class="section-title" style="text-align: center;">Cleanup Pricing</h2>
+        <p class="section-desc" style="text-align: center; max-width: 700px; margin: 0 auto; margin-bottom: 25px;">Transparent starting prices. Tap a package to see everything included, then request a free, no-obligation quote for your property.</p>
+
+        <div class="included-grid">
+            <div class="included-card" style="text-align: center;">
+                <i class="fas fa-broom"></i>
+                <h3>Fall / Spring Cleanup</h3>
+                <p>Leaves raked and hauled away, beds tidied, and lawn debris cleared so your property is ready for the season.</p>
+                <div class="price-line"><span class="from">From</span><span class="price">$199</span></div>
+                <details>
+                    <summary>What's included</summary>
+                    <ul class="card-includes">
+                        <li><i class="fas fa-check"></i> Leaf raking, blowing and complete removal, hauled away</li>
+                        <li><i class="fas fa-check"></i> Garden beds cleared of leaves and debris</li>
+                        <li><i class="fas fa-check"></i> Sticks, branches and lawn litter picked up</li>
+                        <li><i class="fas fa-check"></i> Walkways and driveway blown clear</li>
+                        <li><i class="fas fa-check"></i> Ideal in spring (March to May) and fall (September to November)</li>
+                    </ul>
+                </details>
+            </div>
+
+            <div class="included-card" style="text-align: center;">
+                <i class="fas fa-trash-alt"></i>
+                <h3>Full Yard Cleanup</h3>
+                <p>The complete reset: lawn, garden beds, patios and walkways cleared, with all debris and branches removed.</p>
+                <div class="price-line"><span class="from">From</span><span class="price">$249</span></div>
+                <details>
+                    <summary>What's included</summary>
+                    <ul class="card-includes">
+                        <li><i class="fas fa-check"></i> Everything in the Fall / Spring Cleanup</li>
+                        <li><i class="fas fa-check"></i> Patios, pool decks and driveways power blown and swept</li>
+                        <li><i class="fas fa-check"></i> Perennials and ornamental grasses cut back</li>
+                        <li><i class="fas fa-check"></i> Winter debris and branch clearing with full haul-away</li>
+                        <li><i class="fas fa-check"></i> Complete once-over of the property, front and back</li>
+                    </ul>
+                </details>
+            </div>
+
+            <div class="included-card" style="text-align: center;">
+                <i class="fas fa-seedling"></i>
+                <h3>Beds Maintenance / Cleanup</h3>
+                <p>Garden beds weeded, edged and cleaned up, with perennials cut back for healthy spring growth.</p>
+                <div class="price-line"><span class="from">From</span><span class="price">$119</span></div>
+                <details>
+                    <summary>What's included</summary>
+                    <ul class="card-includes">
+                        <li><i class="fas fa-check"></i> All garden beds hand weeded</li>
+                        <li><i class="fas fa-check"></i> Bed edges freshly re-defined</li>
+                        <li><i class="fas fa-check"></i> Perennials cut back, dead foliage removed</li>
+                        <li><i class="fas fa-check"></i> Bed debris collected and hauled away</li>
+                        <li><i class="fas fa-check"></i> Optional mulch top-up quoted separately</li>
+                    </ul>
+                </details>
+            </div>
+        </div>
+
+        <div class="price-note">
+            <i class="fas fa-info-circle"></i>
+            <div><strong>A note on pricing:</strong> Your exact price depends on lot size, garden bed sizes, the amount of leaves and debris, and overall property condition. Request a free quote and we will confirm an exact price, no obligation and no surprises.</div>
+        </div>
+
+        <a href="contact2.html?service=cleanup" class="pricing-cta-btn">Get Your Free Cleanup Quote</a>
+    </section>
+
 
     <section class="section-padding">
         <div class="flex-row">
