@@ -332,9 +332,9 @@
 
         <div class="success-card" id="successCard">
             <div class="big-check"><i class="fas fa-circle-check"></i></div>
-            <h2>Terms Accepted. Thank You!</h2>
+            <h2 id="successTitle">Terms Accepted. Thank You!</h2>
             <p id="successText">Thank you. Your acceptance has been recorded.</p>
-            <p>We will update you on scheduling shortly. A record of this acceptance has been sent to our office.</p>
+            <p id="successSub">We will update you on scheduling shortly. A record of this acceptance has been sent to our office.</p>
             <p style="font-weight:600; color: var(--primary-color); margin-top:16px;">Save your copies:</p>
             <button type="button" class="print-btn" id="dlQuoteBtn" style="display:none;"><i class="fas fa-file-invoice-dollar"></i>&nbsp; Download your quote (PDF)</button>
             <button type="button" class="print-btn" id="dlTermsBtn"><i class="fas fa-file-signature"></i>&nbsp; Download the signed terms (PDF)</button>
@@ -470,9 +470,43 @@
         }
         if (qSeason) { document.getElementById('qbSeason').textContent = qSeason; }
 
+        // ---- Signed record view (opened from the office email's record link) ----
+        function b64uEnc(str) {
+            return btoa(unescape(encodeURIComponent(str))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+        }
+        var ACC = null;
+        (function() {
+            var raw = params.get('acc');
+            if (!raw) return;
+            try {
+                var b64 = raw.replace(/-/g, '+').replace(/_/g, '/');
+                while (b64.length % 4) b64 += '=';
+                ACC = JSON.parse(decodeURIComponent(escape(atob(b64))));
+            } catch (e) { ACC = null; }
+        })();
+
         // ---- Acceptance submission (Web3Forms) ----
         var acceptedInfo = null;
         var termsForm = document.getElementById('termsForm');
+
+        if (ACC && ACC.n && ACC.t) {
+            var recPrice = qPrice ? (/^[0-9.,]+$/.test(qPrice) ? ('$' + qPrice + ' + HST') : qPrice) : 'Not specified';
+            acceptedInfo = { name: ACC.n, addr: qAddress, price: recPrice, stamp: ACC.t };
+            document.getElementById('acceptCard').style.display = 'none';
+            document.getElementById('successTitle').textContent = 'Signed Acceptance Record';
+            document.getElementById('successText').textContent = 'These terms' + (qPrice ? ' and the quote (' + recPrice + ')' : '') + ' for ' + (qAddress || 'the property') + ' were accepted electronically by ' + ACC.n + ' on ' + ACC.t + '.';
+            document.getElementById('successSub').textContent = 'Download the record copies below.';
+            document.getElementById('arName').textContent = ACC.n;
+            document.getElementById('arAddr').textContent = qAddress;
+            if (qPrice) {
+                document.getElementById('arPriceRow').style.display = 'block';
+                document.getElementById('arPrice').textContent = recPrice;
+            }
+            document.getElementById('arStamp').textContent = ACC.t;
+            document.getElementById('acceptRecord').style.display = 'block';
+            if (QD) { document.getElementById('dlQuoteBtn').style.display = 'inline-block'; }
+            document.getElementById('successCard').classList.add('show');
+        }
         termsForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -503,6 +537,11 @@
                 gtag('event', 'terms_accepted', { 'event_category': 'Contract', 'event_label': 'lawncare-terms' });
             }
 
+            // One-tap signed-record link for the office email
+            var qs = window.location.search.replace(/^\?/, '').replace(/(^|&)acc=[^&]*/g, '').replace(/^&/, '');
+            var recordLink = window.location.origin + window.location.pathname + '?' + (qs ? qs + '&' : '') +
+                'acc=' + b64uEnc(JSON.stringify({ n: name, t: stamp }));
+
             var payload = {
                 access_key: "6b0a383e-1fbf-4ede-9e86-2d0634c48564",
                 subject: "TERMS ACCEPTED (Lawn Care): " + name + " | " + addr,
@@ -518,6 +557,7 @@
                 Quote_Details: QD ? QD.ln.map(function(l) { return l[0] + ': ' + money(l[1]) + (l[2] === 'm' ? '/month' : '') + (l[3] ? ' (' + l[3] + ')' : ''); }).join(' | ') : "Not itemized",
                 Terms_Version: "Lawn Care Maintenance 2026 (v1)",
                 Accepted_At: stamp,
+                Signed_Record_Link: recordLink,
                 Page_Link: window.location.href,
                 botcheck: termsForm.botcheck ? termsForm.botcheck.checked : false
             };
@@ -586,7 +626,8 @@
         });
 
         document.getElementById('dlQuoteBtn').addEventListener('click', function() {
-            if (!QD || typeof html2pdf === 'undefined') return;
+            if (!QD) return;
+            if (typeof html2pdf === 'undefined') { alert('The PDF tool is still loading. Please try again in a few seconds.'); return; }
             var btn = this; btn.disabled = true;
             var now = new Date();
             var fmt = { year: 'numeric', month: 'long', day: 'numeric' };
