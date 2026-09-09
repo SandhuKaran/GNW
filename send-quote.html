@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Link Builder | Greenworks Landscaping</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #0f2e14;
+            --accent-color: #c9a24b;
+            --accent-deep: #b08a3e;
+            --text-dark: #201d16;
+            --text-light: #5d5747;
+            --bg-light: #f2ecdb;
+            --card-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0; padding: 0;
+            color: var(--text-dark);
+            background-color: #faf6ea;
+            line-height: 1.6;
+        }
+        a { text-decoration: none; color: inherit; }
+
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 14px 5%; background: var(--primary-color);
+            color: #fff;
+        }
+        header .brand { font-weight: 600; font-size: 1rem; }
+        header .brand span { color: var(--accent-color); }
+        header .tag { font-size: 0.72rem; color: #cfc9b4; text-transform: uppercase; letter-spacing: 2px; }
+
+        .wrap { max-width: 640px; margin: 0 auto; padding: 22px 5% 60px; }
+
+        .card {
+            background: #fff; border-radius: 14px;
+            box-shadow: var(--card-shadow);
+            padding: 22px 20px; margin-bottom: 18px;
+        }
+        .card h2 { margin: 0 0 4px; font-size: 1.05rem; color: var(--primary-color); }
+        .card .sub { font-size: 0.82rem; color: var(--text-light); margin: 0 0 14px; }
+
+        .svc-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+        .svc-btn {
+            flex: 1 1 30%;
+            border: 2px solid #d9d2bd; border-radius: 10px;
+            background: #fdfbf4; cursor: pointer;
+            font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.82rem;
+            color: var(--text-light);
+            padding: 12px 6px; text-align: center; transition: 0.2s;
+        }
+        .svc-btn i { display: block; font-size: 1.2rem; margin-bottom: 4px; }
+        .svc-btn.active {
+            border-color: var(--primary-color); background: var(--primary-color); color: #fff;
+        }
+        .svc-btn.active i { color: var(--accent-color); }
+
+        .field { margin-bottom: 12px; }
+        .field label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; color: var(--primary-color); }
+        .field input, .field select {
+            width: 100%; padding: 12px 14px; border: 1px solid #d9d2bd; border-radius: 8px;
+            font-family: 'Poppins', sans-serif; font-size: 1rem; background: #fdfbf4;
+        }
+        .field input:focus, .field select:focus { outline: none; border-color: var(--accent-color); }
+        .price-row { display: flex; gap: 8px; }
+        .price-row .p-amt { flex: 1; }
+        .price-row .p-suffix { flex: 1.4; }
+
+        .out-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-deep); margin: 4px 0 6px; }
+        .link-out {
+            width: 100%; font-family: monospace; font-size: 0.82rem;
+            background: var(--bg-light); border: 1px dashed var(--accent-deep);
+            border-radius: 8px; padding: 10px 12px; word-break: break-all;
+            color: var(--primary-color); margin-bottom: 10px;
+        }
+        textarea.msg-out {
+            width: 100%; min-height: 240px;
+            font-family: 'Poppins', sans-serif; font-size: 0.9rem; line-height: 1.5;
+            border: 1px solid #d9d2bd; border-radius: 8px; padding: 12px 14px;
+            background: #fdfbf4; resize: vertical;
+        }
+        .btn-row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+        .act-btn {
+            flex: 1 1 30%;
+            border: none; cursor: pointer;
+            font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.88rem;
+            padding: 13px 10px; border-radius: 50px; transition: 0.2s;
+            background: var(--primary-color); color: #fff;
+        }
+        .act-btn.alt { background: var(--accent-deep); }
+        .act-btn.ghost { background: #fff; color: var(--primary-color); border: 2px solid var(--primary-color); }
+        .act-btn:active { transform: scale(0.98); }
+        .copied { background: #2e7d32 !important; }
+
+        .hint { font-size: 0.76rem; color: var(--text-light); margin-top: 10px; }
+        footer { text-align: center; font-size: 0.75rem; color: var(--text-light); padding: 10px 5% 30px; }
+    </style>
+</head>
+<body>
+
+    <div id="lockScreen" style="position:fixed; inset:0; z-index:9999; background:#0f2e14; display:flex; align-items:center; justify-content:center; padding:5%;">
+        <div style="background:#fff; border-radius:16px; padding:34px 26px; max-width:360px; width:100%; text-align:center; box-shadow:0 10px 40px rgba(0,0,0,0.35);">
+            <div style="font-weight:700; color:#0f2e14; font-size:1.05rem; margin-bottom:2px;">GREENWORKS <span style="color:#c9a24b;">LANDSCAPING</span></div>
+            <div style="font-size:0.75rem; letter-spacing:2px; text-transform:uppercase; color:#5d5747; margin-bottom:20px;">Team access only</div>
+            <input type="password" id="pinInput" inputmode="numeric" autocomplete="off" placeholder="Enter PIN"
+                   style="width:100%; padding:14px; text-align:center; font-size:1.4rem; letter-spacing:8px; border:2px solid #d9d2bd; border-radius:10px; font-family:'Poppins',sans-serif;">
+            <button type="button" id="pinBtn"
+                    style="width:100%; margin-top:12px; padding:14px; border:none; border-radius:50px; background:#0f2e14; color:#fff; font-family:'Poppins',sans-serif; font-weight:600; font-size:1rem; cursor:pointer;">
+                Unlock
+            </button>
+            <div id="pinMsg" style="display:none; color:#a33; font-size:0.82rem; margin-top:10px;">Wrong PIN. Try again.</div>
+        </div>
+    </div>
+
+    <header>
+        <div>
+            <div class="brand">GREENWORKS <span>LANDSCAPING</span></div>
+            <div class="tag">Internal tool</div>
+        </div>
+        <div style="font-size:0.8rem; color:#cfc9b4;">Quote Link Builder</div>
+    </header>
+
+    <div class="wrap">
+
+        <div class="card">
+            <h2>1. Service</h2>
+            <p class="sub">Which terms should the customer accept?</p>
+            <div class="svc-row">
+                <button type="button" class="svc-btn active" data-svc="snow"><i class="fas fa-snowflake"></i>Snow Removal</button>
+                <button type="button" class="svc-btn" data-svc="lawncare"><i class="fas fa-leaf"></i>Lawn Care</button>
+                <button type="button" class="svc-btn" data-svc="nourishment"><i class="fas fa-seedling"></i>Nourishment</button>
+            </div>
+
+            <h2>2. Customer details</h2>
+            <p class="sub">Only address and price are needed. Name is optional.</p>
+            <div class="field">
+                <label for="inName">Customer first name (optional)</label>
+                <input type="text" id="inName" placeholder="e.g. John">
+            </div>
+            <div class="field">
+                <label for="inAddr">Service address</label>
+                <input type="text" id="inAddr" placeholder="e.g. 65 Burnhamthorpe Rd">
+            </div>
+            <div class="field">
+                <label>Price</label>
+                <div class="price-row">
+                    <input type="number" inputmode="decimal" id="inPrice" class="p-amt" placeholder="850">
+                    <select id="inSuffix" class="p-suffix">
+                        <option value="season">+ HST (seasonal)</option>
+                        <option value="flat">+ HST (one time)</option>
+                        <option value="month">/month + HST</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>3. Send it</h2>
+            <p class="sub">Link and message update as you type. Edit the message freely before sending.</p>
+            <div class="out-label">Terms link</div>
+            <div class="link-out" id="outLink">Fill in the address and price above.</div>
+            <div class="out-label">Full text message</div>
+            <textarea class="msg-out" id="outMsg"></textarea>
+            <div class="btn-row">
+                <button type="button" class="act-btn ghost" id="btnCopyLink"><i class="fas fa-link"></i> Copy link</button>
+                <button type="button" class="act-btn alt" id="btnCopyMsg"><i class="fas fa-copy"></i> Copy message</button>
+                <button type="button" class="act-btn" id="btnShare"><i class="fas fa-paper-plane"></i> Share / text</button>
+            </div>
+            <p class="hint">Tip: save this page to your phone's home screen. On iPhone: Share button, then "Add to Home Screen". You then have a one-tap quote sender anywhere.</p>
+        </div>
+
+    </div>
+
+    <footer>Greenworks Construction &amp; Companies Inc., operating as Greenworks Landscaping. Internal use only.</footer>
+
+    <script>
+        // ---- PIN lock ----
+        (function() {
+            var PIN_HASH = '983589f68a61012b2fda3650f4de287b194ba5bfa64a0028dc97a12bdadfee03';
+            var lock = document.getElementById('lockScreen');
+            var input = document.getElementById('pinInput');
+            var msg = document.getElementById('pinMsg');
+
+            function remembered() {
+                try { return localStorage.getItem('gnw_qb_key') === PIN_HASH; } catch (e) { return false; }
+            }
+            function remember() {
+                try { localStorage.setItem('gnw_qb_key', PIN_HASH); } catch (e) {}
+            }
+            function unlock() {
+                lock.style.display = 'none';
+            }
+            function sha256hex(str) {
+                if (window.crypto && crypto.subtle && crypto.subtle.digest) {
+                    return crypto.subtle.digest('SHA-256', new TextEncoder().encode(str)).then(function(buf) {
+                        return Array.prototype.map.call(new Uint8Array(buf), function(b) {
+                            return ('0' + b.toString(16)).slice(-2);
+                        }).join('');
+                    });
+                }
+                return Promise.resolve(null);
+            }
+            function tryPin() {
+                var v = input.value.trim();
+                if (!v) return;
+                sha256hex(v).then(function(hex) {
+                    if (hex === null) {
+                        msg.textContent = 'This browser is not supported. Please open the page in Chrome or Safari.';
+                        msg.style.display = 'block';
+                        return;
+                    }
+                    if (hex === PIN_HASH) { remember(); unlock(); }
+                    else {
+                        msg.style.display = 'block';
+                        input.value = '';
+                        input.focus();
+                    }
+                });
+            }
+            if (remembered()) { unlock(); }
+            else { setTimeout(function() { input.focus(); }, 200); }
+            document.getElementById('pinBtn').addEventListener('click', tryPin);
+            input.addEventListener('keydown', function(e) { if (e.key === 'Enter') tryPin(); });
+        })();
+
+        var SITE = 'https://gnwlandscaping.ca';
+
+        var SERVICES = {
+            snow: {
+                page: 'snow-terms',
+                label: 'snow removal',
+                season: '2026-27 season (Nov 15 to Apr 15)',
+                template: function(name, addr, priceText, link) {
+                    return 'Hi ' + (name || 'there') + ', it\'s Manee from Greenworks Landscaping. Here is your snow removal quote for ' + addr + ', 2026-27 season (Nov 15 to Apr 15): ' + priceText + '.\n\n' +
+                    'Includes: driveway plowing, shoveling of walkway/steps/entrance, salting with every visit, windrow clearing, and automatic service after every 5 cm (2 in) snowfall. No calls needed, we monitor every storm.\n\n' +
+                    'Review and accept your quote here:\n' + link + '\n\n' +
+                    'A 50% deposit books your spot on the route. Spots are limited for this winter, so the sooner you accept, the better. Questions? Call or text me at 705-500-9000.';
+                }
+            },
+            lawncare: {
+                page: 'lawncare-terms',
+                label: 'lawn care',
+                season: '2026 season',
+                template: function(name, addr, priceText, link) {
+                    return 'Hi ' + (name || 'there') + ', it\'s Manee from Greenworks Landscaping. Here is your lawn care quote for ' + addr + ': ' + priceText + ', covering the services we discussed.\n\n' +
+                    'Review and accept your quote here:\n' + link + '\n\n' +
+                    'Once you accept, we\'ll confirm your service day right away. Questions? Call or text me at 705-500-9000.';
+                }
+            },
+            nourishment: {
+                page: 'nourishment-terms',
+                label: 'lawn nourishment',
+                season: '2026 season',
+                template: function(name, addr, priceText, link) {
+                    return 'Hi ' + (name || 'there') + ', it\'s Manee from Greenworks Landscaping. Here is your lawn nourishment quote for ' + addr + ': ' + priceText + ', for the services on your quote.\n\n' +
+                    'Review and accept here:\n' + link + '\n\n' +
+                    'Fall booking fills up fast since the season window is short, so the sooner we lock it in, the better the timing for your lawn. Questions? Call or text me at 705-500-9000.';
+                }
+            }
+        };
+
+        var currentSvc = 'snow';
+        var msgEdited = false;
+
+        var elName = document.getElementById('inName');
+        var elAddr = document.getElementById('inAddr');
+        var elPrice = document.getElementById('inPrice');
+        var elSuffix = document.getElementById('inSuffix');
+        var elLink = document.getElementById('outLink');
+        var elMsg = document.getElementById('outMsg');
+
+        document.querySelectorAll('.svc-btn').forEach(function(b) {
+            b.addEventListener('click', function() {
+                document.querySelectorAll('.svc-btn').forEach(function(x) { x.classList.remove('active'); });
+                b.classList.add('active');
+                currentSvc = b.getAttribute('data-svc');
+                if (currentSvc === 'snow') { elSuffix.value = 'season'; }
+                msgEdited = false;
+                update();
+            });
+        });
+
+        function priceText() {
+            var p = elPrice.value.trim();
+            if (!p) return '';
+            if (elSuffix.value === 'month') return '$' + p + '/month + HST';
+            return '$' + p + ' + HST';
+        }
+
+        function buildLink() {
+            var addr = elAddr.value.trim();
+            var p = elPrice.value.trim();
+            if (!addr || !p) return '';
+            var svc = SERVICES[currentSvc];
+            var a = addr.replace(/\s+/g, '-');
+            var pParam = (elSuffix.value === 'month') ? encodeURIComponent('$' + p + '/month + HST') : p;
+            var link = SITE + '/' + svc.page + '?a=' + encodeURIComponent(a) + '&p=' + pParam;
+            var n = elName.value.trim();
+            if (n) link += '&n=' + encodeURIComponent(n.replace(/\s+/g, '-'));
+            return link;
+        }
+
+        function update() {
+            var link = buildLink();
+            if (!link) {
+                elLink.textContent = 'Fill in the address and price above.';
+                if (!msgEdited) elMsg.value = '';
+                return;
+            }
+            elLink.textContent = link;
+            if (!msgEdited) {
+                elMsg.value = SERVICES[currentSvc].template(elName.value.trim(), elAddr.value.trim(), priceText(), link);
+            }
+        }
+
+        [elName, elAddr, elPrice, elSuffix].forEach(function(el) {
+            el.addEventListener('input', function() { msgEdited = false; update(); });
+            el.addEventListener('change', function() { msgEdited = false; update(); });
+        });
+        elMsg.addEventListener('input', function() { msgEdited = true; });
+
+        function flash(btn, txt) {
+            var old = btn.innerHTML;
+            btn.classList.add('copied');
+            btn.innerHTML = '<i class="fas fa-check"></i> ' + txt;
+            setTimeout(function() { btn.classList.remove('copied'); btn.innerHTML = old; }, 1400);
+        }
+
+        function copyText(text, btn, label) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(function() { flash(btn, label); }).catch(function() { fallbackCopy(text, btn, label); });
+            } else { fallbackCopy(text, btn, label); }
+        }
+        function fallbackCopy(text, btn, label) {
+            var ta = document.createElement('textarea');
+            ta.value = text; document.body.appendChild(ta);
+            ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+            flash(btn, label);
+        }
+
+        document.getElementById('btnCopyLink').addEventListener('click', function() {
+            var link = buildLink();
+            if (link) copyText(link, this, 'Link copied');
+        });
+        document.getElementById('btnCopyMsg').addEventListener('click', function() {
+            if (elMsg.value) copyText(elMsg.value, this, 'Copied');
+        });
+        document.getElementById('btnShare').addEventListener('click', function() {
+            var text = elMsg.value;
+            if (!text) return;
+            if (navigator.share) {
+                navigator.share({ text: text }).catch(function() {});
+            } else {
+                window.location.href = 'sms:?&body=' + encodeURIComponent(text);
+            }
+        });
+
+        update();
+    </script>
+</body>
+</html>
