@@ -197,6 +197,25 @@
             .terms-card, .accept-card { padding: 22px 18px; }
             .wrap { padding: 22px 4% 50px; }
         }
+        /* PDF capture mode: system font measures correctly in html2canvas
+           (web fonts collapse word spacing) and fixed width gives letter-size layout */
+        .pdfmode, .pdfmode * {
+            font-family: Arial, Helvetica, sans-serif !important;
+            letter-spacing: normal !important;
+        }
+        .pdfmode {
+            width: 700px !important;
+            max-width: 700px !important;
+            padding: 34px 38px !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+        }
+        .pdfmode h2 { page-break-after: avoid; font-size: 1rem !important; }
+        .pdfmode p, .pdfmode li { font-size: 0.88rem !important; }
+        .pdfmode li { page-break-inside: avoid; }
+        .pdfmode .accept-record { page-break-inside: avoid; }
+        .pdfmode #termsPdfHead { page-break-after: avoid; }
+
         @media print {
             header, footer, .accept-card, .success-card { display: none !important; }
             #termsPdfHead { display: block !important; }
@@ -688,10 +707,13 @@
                 if (!QD || typeof html2pdf === 'undefined') { resolve(null); return; }
                 fillQuoteDocFromQD();
                 var wrap = document.getElementById('quoteDocWrap');
+                var qdoc = document.getElementById('quoteDoc');
+                qdoc.classList.add('pdfmode');
                 window.scrollTo(0, 0);
                 wrap.style.left = '0'; wrap.style.top = '0'; wrap.style.zIndex = '9997';
                 function done(v) {
                     wrap.style.left = '-9999px'; wrap.style.zIndex = '';
+                    qdoc.classList.remove('pdfmode');
                     resolve(v);
                 }
                 var w = html2pdf().set(pdfOpts('Greenworks_Quote_' + safeName(acceptedInfo && acceptedInfo.name) + '.pdf', 2)).from(document.getElementById('quoteDoc'));
@@ -705,8 +727,9 @@
                 var el = document.querySelector('.terms-card');
                 var pdfHead = document.getElementById('termsPdfHead');
                 pdfHead.style.display = 'block';
+                el.classList.add('pdfmode');
                 window.scrollTo(0, 0);
-                function done(v) { pdfHead.style.display = 'none'; resolve(v); }
+                function done(v) { pdfHead.style.display = 'none'; el.classList.remove('pdfmode'); resolve(v); }
                 var w = html2pdf().set(pdfOpts('Greenworks_Terms_Lawn_Care_' + safeName(acceptedInfo && acceptedInfo.name) + '.pdf', 2)).from(el);
                 if (mode === 'save') { w.save().then(function() { done(true); }).catch(function() { done(null); }); }
                 else { w.outputPdf('blob').then(done).catch(function() { done(null); }); }
