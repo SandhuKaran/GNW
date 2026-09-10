@@ -707,8 +707,7 @@
                 pdfHead.style.display = 'block';
                 window.scrollTo(0, 0);
                 function done(v) { pdfHead.style.display = 'none'; resolve(v); }
-                var scale = (mode === 'save') ? 2 : 1.5;
-                var w = html2pdf().set(pdfOpts('Greenworks_Terms_Lawn_Care_' + safeName(acceptedInfo && acceptedInfo.name) + '.pdf', scale)).from(el);
+                var w = html2pdf().set(pdfOpts('Greenworks_Terms_Lawn_Care_' + safeName(acceptedInfo && acceptedInfo.name) + '.pdf', 2)).from(el);
                 if (mode === 'save') { w.save().then(function() { done(true); }).catch(function() { done(null); }); }
                 else { w.outputPdf('blob').then(done).catch(function() { done(null); }); }
             });

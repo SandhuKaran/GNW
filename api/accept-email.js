@@ -38,22 +38,38 @@ module.exports = async (req, res) => {
       attachments.push({ filename: 'Greenworks_Quote_' + name.replace(/[^a-zA-Z0-9]+/g, '_') + '.pdf', content: b.quotePdf });
     }
 
-    const summaryHtml =
-      '<div style="font-family: Arial, Helvetica, sans-serif; color: #201d16; max-width: 560px;">' +
-      '<div style="border-bottom: 3px solid #c9a24b; padding-bottom: 10px; margin-bottom: 14px;">' +
-      '<div style="font-size: 18px; font-weight: bold; color: #0f2e14;">GREENWORKS <span style="color:#b08a3e;">LANDSCAPING</span></div>' +
-      '<div style="font-size: 11px; color: #5d5747;">Greenworks Construction &amp; Companies Inc., operating as Greenworks Landscaping</div>' +
-      '</div>' +
-      '<table style="font-size: 13px; border-collapse: collapse;">' +
-      '<tr><td style="padding: 3px 12px 3px 0; color: #5d5747;">Service</td><td style="padding: 3px 0;"><strong>' + esc(service) + '</strong></td></tr>' +
-      '<tr><td style="padding: 3px 12px 3px 0; color: #5d5747;">Accepted by</td><td style="padding: 3px 0;"><strong>' + esc(name) + '</strong></td></tr>' +
-      '<tr><td style="padding: 3px 12px 3px 0; color: #5d5747;">Address</td><td style="padding: 3px 0;">' + esc(addr) + '</td></tr>' +
-      (phone ? '<tr><td style="padding: 3px 12px 3px 0; color: #5d5747;">Phone</td><td style="padding: 3px 0;">' + esc(phone) + '</td></tr>' : '') +
-      (price ? '<tr><td style="padding: 3px 12px 3px 0; color: #5d5747;">Price</td><td style="padding: 3px 0;"><strong>' + esc(price) + '</strong></td></tr>' : '') +
-      '<tr><td style="padding: 3px 12px 3px 0; color: #5d5747;">Accepted on</td><td style="padding: 3px 0;">' + esc(stamp) + '</td></tr>' +
-      (version ? '<tr><td style="padding: 3px 12px 3px 0; color: #5d5747;">Terms version</td><td style="padding: 3px 0;">' + esc(version) + '</td></tr>' : '') +
+    const GREEN = '#0f2e14';
+    const GOLD = '#b08a3e';
+    const LOGO = 'https://www.gnwlandscaping.ca/assets/img/logo-light.png';
+
+    const headerHtml =
+      '<div style="border-bottom: 3px solid #c9a24b; padding-bottom: 14px; margin-bottom: 18px;">' +
+      '<img src="' + LOGO + '" alt="Greenworks Landscaping" height="48" style="display:block; height:48px; margin-bottom:8px;">' +
+      '<div style="font-size: 17px; font-weight: bold; color: ' + GREEN + ';">Greenworks Landscaping</div>' +
+      '<div style="font-size: 11px; color: #5d5747;">Georgetown, ON &nbsp;|&nbsp; (705) 500-9000 &nbsp;|&nbsp; info@gnwlandscaping.ca &nbsp;|&nbsp; gnwlandscaping.ca</div>' +
+      '</div>';
+
+    const detailsTable =
+      '<table style="font-size: 13px; border-collapse: collapse; width: 100%; max-width: 480px; margin: 4px 0 8px;">' +
+      row('Service', '<strong style="color:' + GREEN + ';">' + esc(service) + '</strong>') +
+      row('Accepted by', '<strong>' + esc(name) + '</strong>') +
+      row('Service address', esc(addr)) +
+      (phone ? row('Phone', esc(phone)) : '') +
+      (price ? row('Price', '<strong style="color:' + GREEN + ';">' + esc(price) + '</strong>') : '') +
+      row('Accepted on', esc(stamp)) +
+      (version ? row('Terms version', esc(version)) : '') +
       '</table>' +
-      (details ? '<div style="font-size: 12px; color: #5d5747; margin-top: 10px;"><strong>Services:</strong> ' + esc(details) + '</div>' : '');
+      (details ? '<div style="font-size: 12px; color: #5d5747; margin: 0 0 6px;"><strong style="color:' + GREEN + ';">Services included:</strong> ' + esc(details) + '</div>' : '');
+
+    const footerHtml =
+      '<div style="border-top: 1px solid #e5ddc8; margin-top: 20px; padding-top: 10px; font-size: 11px; color: #8a836f;">' +
+      '<span style="color:' + GREEN + '; font-weight: bold;">Greenworks Landscaping</span> is the operating name of Greenworks Construction &amp; Companies Inc., Georgetown, ON.' +
+      '</div>';
+
+    function wrap(inner) {
+      return '<div style="font-family: Arial, Helvetica, sans-serif; color: #201d16; max-width: 560px; line-height: 1.55;">' +
+        headerHtml + inner + footerHtml + '</div>';
+    }
 
     const sends = [];
 
@@ -63,9 +79,12 @@ module.exports = async (req, res) => {
       to: [OWNER_EMAIL],
       reply_to: customerEmail || undefined,
       subject: 'SIGNED: ' + service + ' terms accepted by ' + name + ' | ' + addr,
-      html: summaryHtml +
-        (recordLink ? '<p style="font-size:12px;"><a href="' + esc(recordLink) + '">Open the signed record online</a></p>' : '') +
-        '<p style="font-size: 12px; color: #5d5747;">The signed terms and quote PDFs are attached for your records.</p>',
+      html: wrap(
+        '<p style="font-size: 14px; margin: 0 0 12px;"><strong style="color:' + GREEN + ';">A new signed agreement has been received.</strong></p>' +
+        detailsTable +
+        '<p style="font-size: 13px;">The signed Terms and Conditions' + (b.quotePdf ? ' and the quote' : '') + ' are attached as PDF for your records.</p>' +
+        (recordLink ? '<p style="font-size: 12px;"><a href="' + esc(recordLink) + '" style="color:' + GOLD + ';">Open the signed record online</a></p>' : '')
+      ),
       attachments: attachments
     }));
 
@@ -77,13 +96,26 @@ module.exports = async (req, res) => {
         from: FROM,
         to: [customerEmail],
         reply_to: REPLY_TO,
-        subject: 'Your accepted ' + service.toLowerCase() + ' agreement - Greenworks Landscaping',
-        html: summaryHtml +
-          '<p style="font-size: 13px;">Thanks, ' + esc(name) + '! Your acceptance has been recorded. Your signed terms' + (attachments.length > 1 ? ' and quote are' : ' are') + ' attached for your records.</p>' +
-          '<p style="font-size: 13px;">We will update you on scheduling shortly. Questions? Reply to this email or call or text (705) 500-9000.</p>' +
-          '<p style="font-size: 12px; color: #5d5747;">Greenworks Landscaping · Georgetown, ON · gnwlandscaping.ca</p>',
+        subject: 'Your signed ' + service.toLowerCase() + ' agreement | Greenworks Landscaping',
+        html: wrap(
+          '<p style="font-size: 14px; margin: 0 0 10px;">Dear ' + esc(name) + ',</p>' +
+          '<p style="font-size: 13.5px;">Thank you for choosing <span style="color:' + GREEN + '; font-weight: bold;">Greenworks Landscaping</span>. This email confirms that you have accepted our ' + esc(service) + ' Terms and Conditions' + (price ? ' and your quote' : '') + ' for <strong>' + esc(addr) + '</strong>.</p>' +
+          detailsTable +
+          '<p style="font-size: 13.5px;">Your signed documents are attached to this email for your records.</p>' +
+          '<p style="font-size: 13.5px;"><strong style="color:' + GREEN + ';">Next steps:</strong> our team will contact you shortly to confirm your scheduling.</p>' +
+          '<p style="font-size: 13.5px;">If you have any questions, simply reply to this email or call or text us at (705) 500-9000.</p>' +
+          '<p style="font-size: 13.5px; margin-top: 16px;">Warm regards,<br>' +
+          '<strong style="color:' + GREEN + ';">The Greenworks Landscaping Team</strong><br>' +
+          '<span style="font-size: 12px; color: #5d5747;">Georgetown, ON &nbsp;|&nbsp; (705) 500-9000 &nbsp;|&nbsp; info@gnwlandscaping.ca</span></p>'
+        ),
         attachments: attachments
       }));
+    }
+
+    function row(label, value) {
+      return '<tr>' +
+        '<td style="padding: 5px 14px 5px 0; color: #5d5747; border-bottom: 1px solid #f2ecdb; white-space: nowrap; vertical-align: top;">' + label + '</td>' +
+        '<td style="padding: 5px 0; border-bottom: 1px solid #f2ecdb;">' + value + '</td></tr>';
     }
 
     const results = await Promise.all(sends);
