@@ -8,7 +8,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <style>
         :root {
@@ -862,89 +862,159 @@
             else { window.location.href = 'sms:?&body=' + encodeURIComponent(text); }
         });
 
-        // ---- PDF ----
-        function fillQuoteDoc() {
+        // ---- PDF (real-text via jsPDF) ----
+        var PW = 215.9, PH = 279.4, PML = 20, PMR = 20, PMB = 24;
+        var PCW = PW - PML - PMR;
+        function pdfReady() { return window.jspdf && window.jspdf.jsPDF; }
+        function logoData() { var img = document.querySelector('#quoteDoc img'); return img ? img.getAttribute('src') : null; }
+        function cleanTxt(str) { return String(str).replace(/[\r\n\t ]+/g, ' ').trim(); }
+
+        function buildQuotePdf() {
+            var d = new window.jspdf.jsPDF({ unit: 'mm', format: 'letter' });
             var now = new Date();
             var valid = new Date(now.getTime() + 14 * 86400000);
             var fmt = { year: 'numeric', month: 'long', day: 'numeric' };
             var num = 'GNW-' + now.getFullYear() + String(now.getMonth() + 1).padStart(2, '0') + String(now.getDate()).padStart(2, '0') + '-' + String(now.getHours()).padStart(2, '0') + String(now.getMinutes()).padStart(2, '0');
-            document.getElementById('qdNum').textContent = 'Quote #: ' + num;
-            document.getElementById('qdDate').textContent = 'Date: ' + now.toLocaleDateString('en-CA', fmt);
-            document.getElementById('qdValid').textContent = 'Valid until: ' + valid.toLocaleDateString('en-CA', fmt);
-            document.getElementById('qdName').textContent = elName.value.trim() || 'Client';
-            document.getElementById('qdAddr').textContent = elAddr.value.trim();
-            document.getElementById('qdLot').innerHTML = quote.lotText ? '<strong>Est. lot size:</strong> ' + esc(quote.lotText) : '';
 
-            var rows = '';
-            var monthlyLines = quote.lines.filter(function(l) { return l.per === 'm'; });
-            var onetimeLines = quote.lines.filter(function(l) { return l.per !== 'm'; });
-            if (monthlyLines.length) {
-                rows += '<tr><td class="qd-sec" colspan="2">Monthly services</td></tr>';
-                monthlyLines.forEach(function(l) {
-                    rows += '<tr><td>' + esc(l.label) + (l.note ? ' <span class="d-note">(' + esc(l.note) + ')</span>' : '') + '</td><td>' + money(l.price) + '/month</td></tr>';
-                });
-            }
-            if (onetimeLines.length) {
-                rows += '<tr><td class="qd-sec" colspan="2">One-time services</td></tr>';
-                onetimeLines.forEach(function(l) {
-                    rows += '<tr><td>' + esc(l.label) + (l.note ? ' <span class="d-note">(' + esc(l.note) + ')</span>' : '') + '</td><td>' + money(l.price) + '</td></tr>';
-                });
-            }
-            document.getElementById('qdRows').innerHTML = rows;
+            var y = 16;
+            var lg = logoData();
+            if (lg) { try { d.addImage(lg, 'JPEG', PML, y, 36, 13.1); } catch (e) {} }
+            d.setFont('helvetica', 'bold'); d.setFontSize(15); d.setTextColor(15, 46, 20);
+            d.text('QUOTE', PW - PMR, y + 6, { align: 'right' });
+            d.setFont('helvetica', 'normal'); d.setFontSize(8.5); d.setTextColor(93, 87, 71);
+            d.text('Quote #: ' + num, PW - PMR, y + 11, { align: 'right' });
+            d.text('Date: ' + now.toLocaleDateString('en-CA', fmt), PW - PMR, y + 15, { align: 'right' });
+            d.text('Valid until: ' + valid.toLocaleDateString('en-CA', fmt), PW - PMR, y + 19, { align: 'right' });
+            d.setFontSize(7.5);
+            d.text('Greenworks Construction & Companies Inc., operating as Greenworks Landscaping', PML, y + 17.5);
+            d.text('Georgetown, ON L7G 2N9  |  info@gnwlandscaping.ca  |  (705) 500-9000  |  gnwlandscaping.ca', PML, y + 21.5);
+            d.setDrawColor(201, 162, 75); d.setLineWidth(0.8);
+            d.line(PML, y + 24.5, PW - PMR, y + 24.5);
+            y += 31;
 
-            var t = '';
+            function need(h) { if (y + h > PH - PMB) { d.addPage(); y = 18; } }
+            d.setFontSize(9.5);
+            function kv(label, value) {
+                d.setFont('helvetica', 'bold'); d.setTextColor(15, 46, 20);
+                d.text(label + ':', PML, y);
+                d.setFont('helvetica', 'normal'); d.setTextColor(32, 29, 22);
+                d.text(cleanTxt(value), PML + 34, y);
+                y += 5.2;
+            }
+            var name = elName.value.trim() || 'Client';
+            kv('Prepared for', name);
+            kv('Service address', elAddr.value.trim());
+            if (quote.lotText) kv('Est. lot size', quote.lotText);
+            y += 2;
+
+            d.setFillColor(15, 46, 20);
+            d.rect(PML, y, PCW, 7.5, 'F');
+            d.setFont('helvetica', 'bold'); d.setFontSize(8); d.setTextColor(255, 255, 255);
+            d.text('SERVICE', PML + 3, y + 5);
+            d.text('PRICE', PW - PMR - 3, y + 5, { align: 'right' });
+            y += 12.5;
+
+            function sectionRow(label) {
+                need(8);
+                d.setFont('helvetica', 'bold'); d.setFontSize(7.8); d.setTextColor(176, 138, 62);
+                d.text(label.toUpperCase(), PML + 3, y);
+                y += 5.5;
+            }
+            function itemRow(l, per) {
+                var txt = cleanTxt(l.label) + (l.note ? '  (' + cleanTxt(l.note) + ')' : '');
+                d.setFont('helvetica', 'normal'); d.setFontSize(9.3); d.setTextColor(32, 29, 22);
+                var lines = d.splitTextToSize(txt, PCW - 42);
+                need(lines.length * 4.4 + 4);
+                lines.forEach(function(ln, i) { d.text(ln, PML + 3, y + i * 4.4); });
+                d.text(money(l.price) + per, PW - PMR - 3, y, { align: 'right' });
+                y += lines.length * 4.4 + 1.4;
+                d.setDrawColor(238, 229, 207); d.setLineWidth(0.2);
+                d.line(PML + 3, y - 1, PW - PMR - 3, y - 1);
+                y += 2.6;
+            }
+            var lm = quote.lines.filter(function(l) { return l.per === 'm'; });
+            var lo = quote.lines.filter(function(l) { return l.per !== 'm'; });
+            if (lm.length) { sectionRow('Monthly services'); lm.forEach(function(l) { itemRow(l, '/month'); }); }
+            if (lo.length) { sectionRow('One-time services'); lo.forEach(function(l) { itemRow(l, ''); }); }
+
+            y += 3;
+            var tx = PW - PMR - 80;
+            function tRow(label, value, opts) {
+                need(7);
+                opts = opts || {};
+                d.setFont('helvetica', opts.bold ? 'bold' : 'normal');
+                d.setFontSize(opts.bold ? 10.5 : 9.3);
+                if (opts.green) d.setTextColor(29, 92, 37);
+                else if (opts.bold) d.setTextColor(15, 46, 20);
+                else d.setTextColor(60, 55, 44);
+                d.text(label, tx, y);
+                d.text(value, PW - PMR - 3, y, { align: 'right' });
+                y += opts.bold ? 6.4 : 5.2;
+            }
             if (quote.monthly > 0) {
-                t += '<div class="t-row"><span>Monthly subtotal</span><span>' + money(quote.monthly) + '/month</span></div>';
-                t += '<div class="t-row"><span>HST (13%)</span><span>' + money(quote.monthly * HST) + '/month</span></div>';
-                t += '<div class="t-row grand"><span>Monthly total</span><span>' + money(quote.monthly * (1 + HST)) + '/month</span></div>';
-                if (quote.promoFirst > 0) {
-                    t += '<div class="t-row promo"><span>First month (20% new customer promo)</span><span>' + money(quote.promoFirst * (1 + HST)) + '</span></div>';
-                }
+                tRow('Monthly subtotal', money(quote.monthly) + '/month');
+                tRow('HST (13%)', money(quote.monthly * HST) + '/month');
+                d.setDrawColor(15, 46, 20); d.setLineWidth(0.4); d.line(tx, y - 3.6, PW - PMR - 3, y - 3.6);
+                tRow('Monthly total', money(quote.monthly * (1 + HST)) + '/month', { bold: true });
+                if (quote.promoFirst > 0) tRow('First month (20% new customer promo)', money(quote.promoFirst * (1 + HST)), { green: true });
+                y += 2;
             }
             if (quote.onetime > 0) {
-                t += '<div class="t-row" style="margin-top:8px;"><span>One-time subtotal</span><span>' + money(quote.onetime) + '</span></div>';
-                t += '<div class="t-row"><span>HST (13%)</span><span>' + money(quote.onetime * HST) + '</span></div>';
-                t += '<div class="t-row grand"><span>One-time total</span><span>' + money(quote.onetime * (1 + HST)) + '</span></div>';
+                tRow('One-time subtotal', money(quote.onetime));
+                tRow('HST (13%)', money(quote.onetime * HST));
+                d.setDrawColor(15, 46, 20); d.setLineWidth(0.4); d.line(tx, y - 3.6, PW - PMR - 3, y - 3.6);
+                tRow('One-time total', money(quote.onetime * (1 + HST)), { bold: true });
             }
-            document.getElementById('qdTotals').innerHTML = t;
 
+            // terms box
+            y += 5;
             var svc = SERVICES[currentSvc];
-            var link = buildLink();
-            document.getElementById('qdTerms').innerHTML =
-                '<strong>Terms &amp; acceptance:</strong> This quote is valid for 14 days and is subject to the ' + svc.termsLabel +
+            var termsTxt = 'This quote is valid for 14 days and is subject to the ' + svc.termsLabel +
                 ' (gnwlandscaping.ca/' + svc.page + '). Review the full terms and accept this quote through the link sent with it. ' +
-                'Accepting online, or confirming by text or email reply, forms a binding agreement under Ontario\'s Electronic Commerce Act, 2000. Prices are based on the estimated lot size and are verified on site before work begins.';
+                'Accepting online, or confirming by text or email reply, forms a binding agreement under Ontario\u0027s Electronic Commerce Act, 2000. ' +
+                'Prices are based on the estimated lot size and are verified on site before work begins.';
+            d.setFontSize(8);
+            var tLines = d.splitTextToSize(termsTxt, PCW - 10);
+            var boxH = tLines.length * 3.8 + 12;
+            if (y + boxH > PH - PMB) { d.addPage(); y = 18; }
+            d.setFillColor(250, 246, 234); d.setDrawColor(229, 221, 200); d.setLineWidth(0.3);
+            d.roundedRect(PML, y, PCW, boxH, 1.5, 1.5, 'FD');
+            d.setFont('helvetica', 'bold'); d.setFontSize(8.5); d.setTextColor(176, 138, 62);
+            d.text('TERMS & ACCEPTANCE', PML + 5, y + 6.5);
+            d.setFont('helvetica', 'normal'); d.setFontSize(8); d.setTextColor(60, 55, 44);
+            var ty = y + 11.5;
+            tLines.forEach(function(ln) { d.text(ln, PML + 5, ty); ty += 3.8; });
+            y += boxH + 6;
+
+            need(10);
+            d.setFont('helvetica', 'normal'); d.setFontSize(8); d.setTextColor(93, 87, 71);
+            d.text('Thank you for considering Greenworks Landscaping.', PW / 2, y + 2, { align: 'center' });
+
+            var n = d.getNumberOfPages();
+            for (var i = 1; i <= n; i++) {
+                d.setPage(i);
+                d.setFont('helvetica', 'normal'); d.setFontSize(7.5); d.setTextColor(138, 131, 111);
+                d.text('Greenworks Landscaping  |  Quote ' + num, PML, PH - 10);
+                d.text('Page ' + i + ' of ' + n, PW - PMR, PH - 10, { align: 'right' });
+            }
+            return d;
         }
 
         function makePdf(save, cb) {
-            if (typeof html2pdf === 'undefined') {
+            if (!pdfReady()) {
                 alert('The PDF tool could not load. Check your internet connection and reload the page.');
                 if (cb) cb(null, null);
                 return;
             }
-            fillQuoteDoc();
             var clientName = (elName.value.trim() || 'Client').replace(/[^a-zA-Z0-9]+/g, '_');
             var fileName = 'Greenworks_Quote_' + clientName + '.pdf';
-            var opt = {
-                margin: 0.35,
-                filename: fileName,
-                image: { type: 'jpeg', quality: 0.95 },
-                html2canvas: { scale: 2, useCORS: true, scrollX: 0, scrollY: 0 },
-                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-            };
-            var overlay = document.getElementById('pdfOverlay');
-            var wrap = document.getElementById('quoteDocWrap');
-            overlay.style.display = 'flex';
-            window.scrollTo(0, 0);
-            wrap.style.left = '0'; wrap.style.top = '0'; wrap.style.zIndex = '9997';
-            function done(blob, name) {
-                wrap.style.left = '-9999px'; wrap.style.top = '0'; wrap.style.zIndex = '';
-                overlay.style.display = 'none';
-                if (cb) cb(blob, name);
+            try {
+                var d = buildQuotePdf();
+                if (save) { d.save(fileName); if (cb) cb(null, fileName); }
+                else { if (cb) cb(d.output('blob'), fileName); }
+            } catch (e) {
+                if (cb) cb(null, null);
             }
-            var worker = html2pdf().set(opt).from(document.getElementById('quoteDoc'));
-            if (save) { worker.save().then(function() { done(null, fileName); }).catch(function() { done(null, null); }); }
-            else { worker.outputPdf('blob').then(function(blob) { done(blob, fileName); }).catch(function() { done(null, null); }); }
         }
 
         document.getElementById('btnPdf').addEventListener('click', function() {

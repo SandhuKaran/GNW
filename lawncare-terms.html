@@ -24,7 +24,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
 
     <style>
         :root {
@@ -606,7 +606,7 @@
                     document.getElementById('acceptCard').style.display = 'none';
                     document.getElementById('successText').textContent = 'Thanks, ' + name + '! Your acceptance of the Lawn Care terms' + (qPrice ? ' and quote (' + priceRecord + ')' : '') + ' for ' + addr + ' was recorded on ' + stamp + '.';
                     acceptedInfo = { name: name, addr: addr, price: priceRecord, stamp: stamp };
-                    if (QD && typeof html2pdf !== 'undefined') { document.getElementById('dlQuoteBtn').style.display = 'inline-block'; }
+                    if (QD) { document.getElementById('dlQuoteBtn').style.display = 'inline-block'; }
                     document.getElementById('arName').textContent = name;
                     document.getElementById('arAddr').textContent = addr;
                     if (qPrice) {
@@ -636,103 +636,211 @@
             });
         });
 
-        // ---- PDF builders (shared by downloads and acceptance emails) ----
-        function pdfOpts(fileName, scale) {
-            return {
-                margin: 0.35,
-                filename: fileName,
-                image: { type: 'jpeg', quality: 0.92 },
-                html2canvas: { scale: scale || 2, useCORS: true, scrollX: 0, scrollY: 0 },
-                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-                pagebreak: { mode: ['css', 'legacy'] }
-            };
-        }
+        // ---- PDF builders (real-text PDFs via jsPDF) ----
+        function overlayShow(on) { document.getElementById('pdfOverlay').style.display = on ? 'flex' : 'none'; }
         function safeName(s) { return (s || 'Client').replace(/[^a-zA-Z0-9]+/g, '_'); }
-        function overlayShow(on) {
-            document.getElementById('pdfOverlay').style.display = on ? 'flex' : 'none';
+        function pdfReady() { return window.jspdf && window.jspdf.jsPDF; }
+        function logoData() { var img = document.querySelector('#termsPdfHead img'); return img ? img.getAttribute('src') : null; }
+        function cleanTxt(s) { return String(s).replace(/[\r\n\t ]+/g, ' ').trim(); }
+
+        var PW = 215.9, PH = 279.4, ML = 20, MRt = 20, MB = 24;
+        var CWd = PW - ML - MRt;
+
+        function pdfHeader(d, docTitle, subTitle) {
+            var y = 16;
+            var lg = logoData();
+            if (lg) { try { d.addImage(lg, 'JPEG', ML, y, 36, 13.1); } catch (e) {} }
+            d.setFont('helvetica', 'bold'); d.setFontSize(15); d.setTextColor(15, 46, 20);
+            d.text(docTitle, PW - MRt, y + 6, { align: 'right' });
+            d.setFont('helvetica', 'normal'); d.setFontSize(8.5); d.setTextColor(93, 87, 71);
+            var sy = y + 11;
+            subTitle.forEach(function(s) { d.text(s, PW - MRt, sy, { align: 'right' }); sy += 4; });
+            d.setFontSize(7.5);
+            d.text('Greenworks Construction & Companies Inc., operating as Greenworks Landscaping', ML, y + 17.5);
+            d.text('Georgetown, ON L7G 2N9  |  info@gnwlandscaping.ca  |  (705) 500-9000  |  gnwlandscaping.ca', ML, y + 21.5);
+            d.setDrawColor(201, 162, 75); d.setLineWidth(0.8);
+            d.line(ML, y + 24.5, PW - MRt, y + 24.5);
+            return y + 31;
         }
 
-        function fillQuoteDocFromQD() {
+        function pdfFooters(d, label) {
+            var n = d.getNumberOfPages();
+            for (var i = 1; i <= n; i++) {
+                d.setPage(i);
+                d.setFont('helvetica', 'normal'); d.setFontSize(7.5); d.setTextColor(138, 131, 111);
+                d.text(label, ML, PH - 10);
+                d.text('Page ' + i + ' of ' + n, PW - MRt, PH - 10, { align: 'right' });
+            }
+        }
+
+        function acceptanceBox(d, y) {
+            if (!acceptedInfo) return y;
+            var rows = [
+                ['Accepted by', acceptedInfo.name],
+                ['Service address', acceptedInfo.addr],
+                ['Quoted price', acceptedInfo.price],
+                ['Accepted on', acceptedInfo.stamp],
+                ['Terms version', 'Lawn Care Maintenance 2026 (v1)']
+            ].filter(function(r) { return r[1] && r[1] !== 'Not specified' && r[1] !== 'Not specified in link'; });
+            var h = 13 + rows.length * 5.4;
+            if (y + h > PH - MB) { d.addPage(); y = 18; }
+            d.setFillColor(250, 246, 234); d.setDrawColor(229, 221, 200); d.setLineWidth(0.3);
+            d.roundedRect(ML, y, CWd, h, 1.5, 1.5, 'FD');
+            d.setFont('helvetica', 'bold'); d.setFontSize(8.5); d.setTextColor(176, 138, 62);
+            d.text('ACCEPTANCE RECORD', ML + 5, y + 7);
+            var ry = y + 13.5;
+            rows.forEach(function(r) {
+                d.setFont('helvetica', 'bold'); d.setFontSize(9); d.setTextColor(32, 29, 22);
+                d.text(r[0] + ':', ML + 5, ry);
+                d.setFont('helvetica', 'normal');
+                var lines = d.splitTextToSize(cleanTxt(r[1]), CWd - 50);
+                d.text(lines[0] || '', ML + 42, ry);
+                ry += 5.4;
+            });
+            return y + h + 5;
+        }
+
+        function buildTermsDoc() {
+            var d = new window.jspdf.jsPDF({ unit: 'mm', format: 'letter' });
+            var y = pdfHeader(d, 'TERMS & CONDITIONS', ['Lawn Care', 'Lawn Care Maintenance 2026 (v1)']);
+            function need(h) { if (y + h > PH - MB) { d.addPage(); y = 18; } }
+            var card = document.querySelector('.terms-card');
+            Array.prototype.forEach.call(card.children, function(el) {
+                if (el.id === 'termsPdfHead' || el.id === 'acceptRecord') return;
+                if (el.classList && el.classList.contains('effective')) return;
+                if (el.tagName === 'H2') {
+                    need(20);
+                    y += 4;
+                    d.setFont('helvetica', 'bold'); d.setFontSize(11); d.setTextColor(15, 46, 20);
+                    d.text(cleanTxt(el.textContent), ML, y);
+                    y += 5.5;
+                } else if (el.tagName === 'P') {
+                    d.setFont('helvetica', 'normal'); d.setFontSize(9.3); d.setTextColor(45, 41, 32);
+                    var lines = d.splitTextToSize(cleanTxt(el.textContent), CWd);
+                    lines.forEach(function(ln) { need(6); d.text(ln, ML, y); y += 4.3; });
+                    y += 1.6;
+                } else if (el.tagName === 'UL') {
+                    Array.prototype.forEach.call(el.querySelectorAll('li'), function(li) {
+                        d.setFont('helvetica', 'normal'); d.setFontSize(9.3); d.setTextColor(45, 41, 32);
+                        var lines = d.splitTextToSize(cleanTxt(li.textContent), CWd - 6);
+                        lines.forEach(function(ln, i) {
+                            need(6);
+                            if (i === 0) d.text('•', ML + 1.5, y);
+                            d.text(ln, ML + 6, y);
+                            y += 4.3;
+                        });
+                        y += 0.8;
+                    });
+                    y += 1.4;
+                }
+            });
+            y += 3;
+            y = acceptanceBox(d, y);
+            pdfFooters(d, 'Greenworks Landscaping  |  Lawn Care Terms and Conditions  |  Lawn Care Maintenance 2026 (v1)');
+            return d;
+        }
+
+        function buildQuoteDoc() {
+            var d = new window.jspdf.jsPDF({ unit: 'mm', format: 'letter' });
             var now = new Date();
             var fmt = { year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('qdDate').textContent = 'Date: ' + now.toLocaleDateString('en-CA', fmt);
-            document.getElementById('qdName').textContent = (acceptedInfo && acceptedInfo.name) || qName || 'Client';
-            document.getElementById('qdAddr').textContent = (acceptedInfo && acceptedInfo.addr) || qAddress;
-            document.getElementById('qdLot').innerHTML = QD.lt ? '<strong style="color:#0f2e14;">Est. lot size:</strong> ' + escH(QD.lt) : '';
-
-            var rows = '';
+            var y = pdfHeader(d, 'QUOTE', ['Date: ' + now.toLocaleDateString('en-CA', fmt), 'Status: ACCEPTED']);
+            function needQ(h) { if (y + h > PH - MB) { d.addPage(); y = 18; } }
+            d.setFontSize(9.5);
+            function kv(label, value) {
+                d.setFont('helvetica', 'bold'); d.setTextColor(15, 46, 20);
+                d.text(label + ':', ML, y);
+                d.setFont('helvetica', 'normal'); d.setTextColor(32, 29, 22);
+                d.text(cleanTxt(value), ML + 34, y);
+                y += 5.2;
+            }
+            kv('Prepared for', (acceptedInfo && acceptedInfo.name) || qName || 'Client');
+            kv('Service address', (acceptedInfo && acceptedInfo.addr) || qAddress);
+            if (QD.lt) kv('Est. lot size', QD.lt);
+            y += 2;
+            d.setFillColor(15, 46, 20);
+            d.rect(ML, y, CWd, 7.5, 'F');
+            d.setFont('helvetica', 'bold'); d.setFontSize(8); d.setTextColor(255, 255, 255);
+            d.text('SERVICE', ML + 3, y + 5);
+            d.text('PRICE', PW - MRt - 3, y + 5, { align: 'right' });
+            y += 12.5;
+            function sectionRow(label) {
+                needQ(8);
+                d.setFont('helvetica', 'bold'); d.setFontSize(7.8); d.setTextColor(176, 138, 62);
+                d.text(label.toUpperCase(), ML + 3, y);
+                y += 5.5;
+            }
+            function itemRow(l, per) {
+                var txt = cleanTxt(l[0]) + (l[3] ? '  (' + cleanTxt(l[3]) + ')' : '');
+                d.setFont('helvetica', 'normal'); d.setFontSize(9.3); d.setTextColor(32, 29, 22);
+                var lines = d.splitTextToSize(txt, CWd - 42);
+                needQ(lines.length * 4.4 + 4);
+                lines.forEach(function(ln, i) { d.text(ln, ML + 3, y + i * 4.4); });
+                d.text(money(l[1]) + per, PW - MRt - 3, y, { align: 'right' });
+                y += lines.length * 4.4 + 1.4;
+                d.setDrawColor(238, 229, 207); d.setLineWidth(0.2);
+                d.line(ML + 3, y - 1, PW - MRt - 3, y - 1);
+                y += 2.6;
+            }
             var lm = QD.ln.filter(function(l) { return l[2] === 'm'; });
             var lo = QD.ln.filter(function(l) { return l[2] !== 'm'; });
-            function rowHtml(l, per) {
-                return '<tr><td style="padding:8px 12px; border-bottom:1px solid #eee5cf;">' + escH(l[0]) +
-                    (l[3] ? ' <span style="font-size:0.72rem; color:#5d5747;">(' + escH(l[3]) + ')</span>' : '') +
-                    '</td><td style="padding:8px 12px; border-bottom:1px solid #eee5cf; text-align:right; white-space:nowrap;">' + money(l[1]) + per + '</td></tr>';
+            if (lm.length) { sectionRow('Monthly services'); lm.forEach(function(l) { itemRow(l, '/month'); }); }
+            if (lo.length) { sectionRow('One-time services'); lo.forEach(function(l) { itemRow(l, ''); }); }
+            y += 3;
+            var tx = PW - MRt - 80;
+            function tRow(label, value, opts) {
+                needQ(7);
+                opts = opts || {};
+                d.setFont('helvetica', opts.bold ? 'bold' : 'normal');
+                d.setFontSize(opts.bold ? 10.5 : 9.3);
+                if (opts.green) d.setTextColor(29, 92, 37);
+                else if (opts.bold) d.setTextColor(15, 46, 20);
+                else d.setTextColor(60, 55, 44);
+                d.text(label, tx, y);
+                d.text(value, PW - MRt - 3, y, { align: 'right' });
+                y += opts.bold ? 6.4 : 5.2;
             }
-            var secStyle = 'font-weight:700; color:#b08a3e; font-size:0.72rem; text-transform:uppercase; letter-spacing:1.5px; padding:14px 12px 2px;';
-            if (lm.length) {
-                rows += '<tr><td colspan="2" style="' + secStyle + '">Monthly services</td></tr>';
-                lm.forEach(function(l) { rows += rowHtml(l, '/month'); });
-            }
-            if (lo.length) {
-                rows += '<tr><td colspan="2" style="' + secStyle + '">One-time services</td></tr>';
-                lo.forEach(function(l) { rows += rowHtml(l, ''); });
-            }
-            document.getElementById('qdRows').innerHTML = rows;
-
-            var t = '';
-            function tRow(a, b, extra) { return '<div style="display:flex; justify-content:space-between; padding:3px 0;' + (extra || '') + '"><span>' + a + '</span><span>' + b + '</span></div>'; }
-            var grandStyle = 'border-top:2px solid #0f2e14; margin-top:4px; padding-top:7px; font-weight:700; font-size:1rem; color:#0f2e14;';
             if (QD.m > 0) {
-                t += tRow('Monthly subtotal', money(QD.m) + '/month');
-                t += tRow('HST (13%)', money(QD.m * HST_RATE) + '/month');
-                t += tRow('Monthly total', money(QD.m * (1 + HST_RATE)) + '/month', grandStyle);
-                if (QD.pf > 0) t += tRow('First month (20% new customer promo)', money(QD.pf * (1 + HST_RATE)), 'color:#1d5c25; font-weight:600;');
+                tRow('Monthly subtotal', money(QD.m) + '/month');
+                tRow('HST (13%)', money(QD.m * HST_RATE) + '/month');
+                d.setDrawColor(15, 46, 20); d.setLineWidth(0.4); d.line(tx, y - 3.6, PW - MRt - 3, y - 3.6);
+                tRow('Monthly total', money(QD.m * (1 + HST_RATE)) + '/month', { bold: true });
+                if (QD.pf > 0) tRow('First month (20% new customer promo)', money(QD.pf * (1 + HST_RATE)), { green: true });
+                y += 2;
             }
             if (QD.o > 0) {
-                t += tRow('One-time subtotal', money(QD.o), 'margin-top:8px;');
-                t += tRow('HST (13%)', money(QD.o * HST_RATE));
-                t += tRow('One-time total', money(QD.o * (1 + HST_RATE)), grandStyle);
+                tRow('One-time subtotal', money(QD.o));
+                tRow('HST (13%)', money(QD.o * HST_RATE));
+                d.setDrawColor(15, 46, 20); d.setLineWidth(0.4); d.line(tx, y - 3.6, PW - MRt - 3, y - 3.6);
+                tRow('One-time total', money(QD.o * (1 + HST_RATE)), { bold: true });
             }
-            document.getElementById('qdTotals').innerHTML = t;
-
-            document.getElementById('qdAccept').innerHTML =
-                '<strong style="color:#0f2e14;">Acceptance record:</strong> This quote and the Lawn Care Terms and Conditions (Lawn Care Maintenance 2026 (v1)) were accepted electronically by <strong>' +
-                escH((acceptedInfo && acceptedInfo.name) || '') + '</strong> for <strong>' + escH((acceptedInfo && acceptedInfo.addr) || '') + '</strong> on ' +
-                escH((acceptedInfo && acceptedInfo.stamp) || '') + ', under Ontario\'s Electronic Commerce Act, 2000.';
+            y += 5;
+            y = acceptanceBox(d, y);
+            needQ(12);
+            d.setFont('helvetica', 'normal'); d.setFontSize(8); d.setTextColor(93, 87, 71);
+            d.text('Thank you for choosing Greenworks Landscaping. We will update you on scheduling shortly.', PW / 2, y + 3, { align: 'center' });
+            pdfFooters(d, 'Greenworks Landscaping  |  Quote');
+            return d;
         }
 
-        // mode: 'save' downloads; 'blob' resolves a Blob
-        function makeQuotePdf(mode) {
-            return new Promise(function(resolve) {
-                if (!QD || typeof html2pdf === 'undefined') { resolve(null); return; }
-                fillQuoteDocFromQD();
-                var wrap = document.getElementById('quoteDocWrap');
-                var qdoc = document.getElementById('quoteDoc');
-                qdoc.classList.add('pdfmode');
-                window.scrollTo(0, 0);
-                wrap.style.left = '0'; wrap.style.top = '0'; wrap.style.zIndex = '9997';
-                function done(v) {
-                    wrap.style.left = '-9999px'; wrap.style.zIndex = '';
-                    qdoc.classList.remove('pdfmode');
-                    resolve(v);
-                }
-                var w = html2pdf().set(pdfOpts('Greenworks_Quote_' + safeName(acceptedInfo && acceptedInfo.name) + '.pdf', 2)).from(document.getElementById('quoteDoc'));
-                if (mode === 'save') { w.save().then(function() { done(true); }).catch(function() { done(null); }); }
-                else { w.outputPdf('blob').then(done).catch(function() { done(null); }); }
-            });
-        }
         function makeTermsPdf(mode) {
             return new Promise(function(resolve) {
-                if (typeof html2pdf === 'undefined') { resolve(null); return; }
-                var el = document.querySelector('.terms-card');
-                var pdfHead = document.getElementById('termsPdfHead');
-                pdfHead.style.display = 'block';
-                el.classList.add('pdfmode');
-                window.scrollTo(0, 0);
-                function done(v) { pdfHead.style.display = 'none'; el.classList.remove('pdfmode'); resolve(v); }
-                var w = html2pdf().set(pdfOpts('Greenworks_Terms_Lawn_Care_' + safeName(acceptedInfo && acceptedInfo.name) + '.pdf', 2)).from(el);
-                if (mode === 'save') { w.save().then(function() { done(true); }).catch(function() { done(null); }); }
-                else { w.outputPdf('blob').then(done).catch(function() { done(null); }); }
+                if (!pdfReady()) { resolve(null); return; }
+                try {
+                    var d = buildTermsDoc();
+                    if (mode === 'save') { d.save('Greenworks_Terms_Lawn_Care_' + safeName(acceptedInfo && acceptedInfo.name) + '.pdf'); resolve(true); }
+                    else { resolve(d.output('blob')); }
+                } catch (e) { resolve(null); }
+            });
+        }
+        function makeQuotePdf(mode) {
+            return new Promise(function(resolve) {
+                if (!QD || !pdfReady()) { resolve(null); return; }
+                try {
+                    var d = buildQuoteDoc();
+                    if (mode === 'save') { d.save('Greenworks_Quote_' + safeName(acceptedInfo && acceptedInfo.name) + '.pdf'); resolve(true); }
+                    else { resolve(d.output('blob')); }
+                } catch (e) { resolve(null); }
             });
         }
         function blobToB64(blob) {
@@ -791,14 +899,14 @@
 
         // ---- Download buttons ----
         document.getElementById('dlTermsBtn').addEventListener('click', function() {
-            if (typeof html2pdf === 'undefined') { window.print(); return; }
+            if (!pdfReady()) { window.print(); return; }
             var btn = this; btn.disabled = true;
             overlayShow(true);
             makeTermsPdf('save').then(function() { overlayShow(false); btn.disabled = false; });
         });
         document.getElementById('dlQuoteBtn').addEventListener('click', function() {
             if (!QD) return;
-            if (typeof html2pdf === 'undefined') { alert('The PDF tool is still loading. Please try again in a few seconds.'); return; }
+            if (!pdfReady()) { alert('The PDF tool is still loading. Please try again in a few seconds.'); return; }
             var btn = this; btn.disabled = true;
             overlayShow(true);
             makeQuotePdf('save').then(function() { overlayShow(false); btn.disabled = false; });
