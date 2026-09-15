@@ -30,7 +30,7 @@ window.GNW_PRICING = {
   addons: {
     'chk-aeration': 150,
     'chk-overseed':  70,
-    'chk-dethatch': 120
+    'chk-dethatch': 80
   },
 
   /* ======================================================================
@@ -71,8 +71,33 @@ window.GNW_PRICING = {
     monthlyMinimum:       25,
     serviceMinimums:      { 'chk-land': 28, 'chk-weed': 25 },
     amortizeMonths:       7
+  },
+
+  /* ---- AREA-PRICED ADD-ONS (match the internal quote builder) ----------
+     Core aeration: manual 2-man crew tiers; overseeding: $30 per 1,000 sq ft
+     with a $50 minimum. Lot tiers use a representative size. */
+  areaPricing: {
+    tierSqft: { '0.75': 1000, '1': 2500, '1.3': 4500 }
   }
 };
+
+window.GNW_PRICING.addonPrice = function (id, lotVal) {
+  var ap = window.GNW_PRICING.areaPricing;
+  var sqft = ap && ap.tierSqft ? ap.tierSqft[String(lotVal)] : null;
+  if (!sqft) return null;
+  if (id === 'chk-aeration') {
+    if (sqft <= 2000) return 80;
+    if (sqft <= 3000) return 110;
+    if (sqft <= 4000) return 160;
+    if (sqft <= 5000) return 200;
+    return 200 + Math.ceil((sqft - 5000) / 1000) * 40;
+  }
+  if (id === 'chk-overseed') {
+    return Math.max(50, Math.round(sqft / 1000 * 30));
+  }
+  return null;
+};
+
 
 /* ==========================================================================
    ENGINE — no need to edit below this line

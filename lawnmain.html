@@ -1539,7 +1539,7 @@
                             <small>(Fall)</small>
                         </div>
                         <div class="service-price-col">
-                            <span class="price-standalone">+$112.50</span>
+                            <span class="price-standalone">+$80.00</span>
                         </div>
                     </label>
                     
@@ -2114,7 +2114,8 @@
                     if (standalonePriceAttr) {
                         priceStandaloneSpan.innerHTML = `Standalone: <br>$${(standalonePrice * sizeMultiplier).toFixed(2)}${unit}`;
                     } else {
-                        priceStandaloneSpan.innerHTML = `+$${(basePrice * sizeMultiplier).toFixed(2)}`;
+                        const areaL = window.GNW_PRICING.addonPrice ? window.GNW_PRICING.addonPrice(box.id, lotVal) : null;
+                        priceStandaloneSpan.innerHTML = `+$${((areaL !== null) ? areaL : basePrice * sizeMultiplier).toFixed(2)}`;
                     }
                 }
                 if (priceBundledSpan) {
@@ -2128,17 +2129,18 @@
                     if(standalonePriceAttr && !isBundled) basePrice = standalonePrice;
                     
                     if (type === 'addon') {
-                        const originalPrice = basePrice * sizeMultiplier;
-                        const finalPrice = originalPrice * addonMultiplier;
+                        const areaP = window.GNW_PRICING.addonPrice ? window.GNW_PRICING.addonPrice(box.id, lotVal) : null;
+                        const originalPrice = (areaP !== null) ? areaP : basePrice * sizeMultiplier;
+                        const finalPrice = (areaP !== null) ? areaP : originalPrice * addonMultiplier;
                         totalOnetime += finalPrice;
                         
-                        let priceStr = (addonMultiplier < 1.0) 
+                        let priceStr = (finalPrice < originalPrice) 
                             ? `<s style="color:#8d8468; font-size:0.85rem; margin-right:6px;">$${originalPrice.toFixed(2)}</s>$${finalPrice.toFixed(2)}` 
                             : `$${finalPrice.toFixed(2)}`;
 
                         onetimeHTML += `
                             <div class="receipt-item">
-                                <span>${serviceName} ${addonMultiplier < 1.0 ? '<small style="color:var(--accent-color)">(25% Off)</small>' : ''}</span> 
+                                <span>${serviceName} ${finalPrice < originalPrice ? '<small style="color:var(--accent-color)">(25% Off)</small>' : ''}</span> 
                                 <span style="display:flex; align-items:center;">${priceStr} <i class="fa-solid fa-times-circle remove-icon" onclick="removeService('${box.id}')"></i></span>
                             </div>`;
                     } else if (type === 'onetime') {
@@ -2200,7 +2202,9 @@
                     let finalUpsellPrice = basePrice * sizeMultiplier; 
                     
                     if(type === 'addon') {
-                        finalUpsellPrice = originalUpsellPrice * ((addonCount + 1) === 3 ? 0.75 : 1.0);
+                        const areaUp = window.GNW_PRICING.addonPrice ? window.GNW_PRICING.addonPrice(box.id, lotVal) : null;
+                        if (areaUp !== null) { originalUpsellPrice = areaUp; finalUpsellPrice = areaUp; }
+                        else finalUpsellPrice = originalUpsellPrice * ((addonCount + 1) === 3 ? 0.75 : 1.0);
                     } else if (standalonePriceAttr) {
                          if (totalCoreServices + 1 >= requiredForBundle) {
                              if (sizeMultiplier === 0.75) {
