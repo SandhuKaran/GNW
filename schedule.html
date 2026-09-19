@@ -70,6 +70,19 @@
         .job.svc-nourish { border-left-color: #c9a24b; }
         .job.done { opacity: 0.72; }
 
+        .job-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; cursor: pointer; }
+        .job-head h3 { margin: 0; font-size: 1rem; color: var(--primary-color); }
+        .job-head .head-addr { font-size: 0.8rem; color: var(--text-light); margin-top: 1px; word-break: break-word; }
+        .job-head .chev { color: #b8b09a; transition: 0.2s; display: none; flex: 0 0 auto; }
+        .job.open .job-head .chev { transform: rotate(180deg); }
+        .job-body { margin-top: 8px; }
+        @media (max-width: 700px) {
+            .job { padding: 13px 14px 12px; }
+            .job-body { display: none; }
+            .job.open .job-body { display: block; }
+            .job-head .chev { display: block; }
+        }
+
         .job-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
         .chip {
             display: inline-block; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.6px;
@@ -224,6 +237,7 @@
 
         // ---- Jobs board ----
         var JOBS = [];
+        var OPEN = {};
 
         function setStatus(text, isErr) {
             var statusBar = document.getElementById('statusBar');
@@ -294,13 +308,23 @@
             return '';
         }
 
+        function cardHead(job) {
+            var html = '<div class="job-head"><div class="head-main">';
+            html += '<h3>' + esc(job.name) + '</h3>';
+            if (job.addr) html += '<div class="head-addr">' + esc(job.addr) + '</div>';
+            if (job.status === 'scheduled' && job.schedDate) html += '<div class="head-addr" style="color:#3e7d46; font-weight:600;">' + fmtDate(job.schedDate) + '</div>';
+            html += '</div><i class="fas fa-chevron-down chev"></i></div>';
+            return html;
+        }
+
         function jobCard(job) {
             var cls = svcClass(job.service);
             var isDone = job.status === 'done';
-            var html = '<div class="job ' + cls + (isDone ? ' done' : '') + '" data-id="' + esc(job.id) + '">';
+            var html = '<div class="job ' + cls + (isDone ? ' done' : '') + (OPEN[job.id] ? ' open' : '') + '" data-id="' + esc(job.id) + '">';
+            html += cardHead(job);
+            html += '<div class="job-body">';
             html += '<div class="job-top"><div>';
             html += '<span class="chip">' + svcLabel(job.service) + '</span>';
-            html += '<h3>' + esc(job.name) + '</h3>';
             html += '</div>';
             if (job.price) html += '<div class="price">' + esc(job.price) + '</div>';
             html += '</div>';
@@ -340,15 +364,16 @@
                 html += '<button type="button" class="btn btn-danger act-remove">Delete</button>';
                 html += '</div>';
             }
-            html += '</div></div>';
+            html += '</div></div></div>';
             return html;
         }
 
         function snowCard(job) {
-            var html = '<div class="job svc-snow" data-id="' + esc(job.id) + '">';
+            var html = '<div class="job svc-snow' + (OPEN[job.id] ? ' open' : '') + '" data-id="' + esc(job.id) + '">';
+            html += cardHead(job);
+            html += '<div class="job-body">';
             html += '<div class="job-top"><div>';
             html += '<span class="chip">Snow</span>';
-            html += '<h3>' + esc(job.name) + '</h3>';
             html += '</div>';
             if (job.price) html += '<div class="price">' + esc(job.price) + '</div>';
             html += '</div>';
@@ -374,7 +399,7 @@
             html += '<div class="btn-wrap">';
             html += '<button type="button" class="btn btn-danger act-remove">Delete</button>';
             html += '</div>';
-            html += '</div></div>';
+            html += '</div></div></div>';
             return html;
         }
 
@@ -406,6 +431,14 @@
         }
 
         document.addEventListener('click', function(e) {
+            var head = e.target.closest('.job-head');
+            if (head && !e.target.closest('a')) {
+                var hcard = head.closest('.job');
+                var hid = hcard.getAttribute('data-id');
+                if (OPEN[hid]) { delete OPEN[hid]; hcard.classList.remove('open'); }
+                else { OPEN[hid] = true; hcard.classList.add('open'); }
+                return;
+            }
             var btn = e.target.closest('button');
             if (!btn) return;
             var card = btn.closest('.job');
