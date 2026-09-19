@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Board | Greenworks Landscaping</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #0f2e14;
+            --accent-color: #c9a24b;
+            --accent-deep: #b08a3e;
+            --text-dark: #201d16;
+            --text-light: #5d5747;
+            --bg-light: #f2ecdb;
+            --card-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0; padding: 0;
+            color: var(--text-dark);
+            background-color: #faf6ea;
+            line-height: 1.55;
+        }
+        a { text-decoration: none; color: inherit; }
+
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 14px 5%; background: var(--primary-color); color: #fff;
+            position: sticky; top: 0; z-index: 20;
+        }
+        header .brand { font-weight: 600; font-size: 1rem; }
+        header .brand span { color: var(--accent-color); }
+        header .tag { font-size: 0.72rem; color: #cfc9b4; text-transform: uppercase; letter-spacing: 2px; }
+        #refreshBtn {
+            border: 1px solid rgba(255,255,255,0.35); background: transparent; color: #fff;
+            border-radius: 50px; padding: 7px 14px; font-family: 'Poppins', sans-serif;
+            font-size: 0.8rem; cursor: pointer;
+        }
+        #refreshBtn:active { background: rgba(255,255,255,0.15); }
+
+        .wrap { max-width: 680px; margin: 0 auto; padding: 18px 5% 70px; }
+
+        .statusbar { font-size: 0.8rem; color: var(--text-light); margin: 4px 2px 14px; min-height: 1.2em; }
+        .statusbar.err { color: #a33; }
+
+        .section-title {
+            display: flex; align-items: center; gap: 8px;
+            margin: 22px 2px 10px; font-size: 0.8rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 1.6px; color: var(--accent-deep);
+        }
+        .section-title .count {
+            background: var(--accent-deep); color: #fff; border-radius: 50px;
+            font-size: 0.72rem; padding: 1px 9px;
+        }
+        .empty-note { font-size: 0.82rem; color: #8a836f; margin: 2px; }
+
+        .job {
+            background: #fff; border-radius: 14px; box-shadow: var(--card-shadow);
+            padding: 16px 16px 14px; margin-bottom: 12px;
+            border-left: 5px solid #d9d2bd;
+        }
+        .job.svc-snow { border-left-color: #4a7fb5; }
+        .job.svc-lawn { border-left-color: #3e7d46; }
+        .job.svc-nourish { border-left-color: #c9a24b; }
+        .job.done { opacity: 0.72; }
+
+        .job-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; cursor: pointer; }
+        .job-head h3 { margin: 0; font-size: 1rem; color: var(--primary-color); }
+        .job-head .head-addr { font-size: 0.8rem; color: var(--text-light); margin-top: 1px; word-break: break-word; }
+        .job-head .chev { color: #b8b09a; transition: 0.2s; display: none; flex: 0 0 auto; }
+        .job.open .job-head .chev { transform: rotate(180deg); }
+        .job-body { margin-top: 8px; }
+        @media (max-width: 700px) {
+            .job { padding: 13px 14px 12px; }
+            .job-body { display: none; }
+            .job.open .job-body { display: block; }
+            .job-head .chev { display: block; }
+        }
+
+        .job-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+        .chip {
+            display: inline-block; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.6px;
+            text-transform: uppercase; border-radius: 50px; padding: 2px 10px; color: #fff;
+            background: #8a836f; margin-bottom: 6px;
+        }
+        .svc-snow .chip { background: #4a7fb5; }
+        .svc-lawn .chip { background: #3e7d46; }
+        .svc-nourish .chip { background: #b08a3e; }
+
+        .job h3 { margin: 0; font-size: 1rem; color: var(--primary-color); }
+        .job .price { font-weight: 700; color: var(--primary-color); font-size: 0.95rem; white-space: nowrap; }
+        .job .line { font-size: 0.84rem; color: var(--text-light); margin-top: 3px; word-break: break-word; }
+        .job .line i { width: 16px; color: var(--accent-deep); margin-right: 4px; text-align: center; }
+        .job .line a { color: var(--text-dark); }
+        .job .line a:active { color: var(--accent-deep); }
+
+        .sched-when {
+            margin-top: 8px; font-size: 0.86rem; font-weight: 600; color: var(--primary-color);
+        }
+        .sched-when i { color: var(--accent-deep); margin-right: 5px; }
+        .sched-when .note { font-weight: 400; color: var(--text-light); }
+
+        details.more { margin-top: 8px; }
+        details.more summary {
+            font-size: 0.78rem; color: var(--accent-deep); cursor: pointer; user-select: none;
+            list-style: none;
+        }
+        details.more summary::-webkit-details-marker { display: none; }
+        details.more .details-body { font-size: 0.8rem; color: var(--text-light); margin-top: 6px; white-space: pre-wrap; }
+
+        .controls { margin-top: 12px; border-top: 1px dashed #e5ddc8; padding-top: 12px; }
+        .ctl-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+        .ctl-row input[type="date"], .ctl-row input[type="text"] {
+            padding: 9px 10px; border: 1px solid #d9d2bd; border-radius: 8px;
+            font-family: 'Poppins', sans-serif; font-size: 0.85rem; background: #fdfbf4; min-width: 0;
+        }
+        .ctl-row input[type="date"] { flex: 0 0 auto; }
+        .ctl-row input[type="text"] { flex: 1 1 140px; }
+        .btn {
+            border: none; border-radius: 50px; padding: 9px 16px; cursor: pointer;
+            font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.8rem;
+        }
+        .btn-save { background: var(--primary-color); color: #fff; }
+        .btn-done { background: #3e7d46; color: #fff; }
+        .btn-ghost { background: #f2ecdb; color: var(--text-light); }
+        .btn-danger { background: #fbeaea; color: #a33; }
+        .btn:disabled { opacity: 0.5; cursor: default; }
+        .btn-wrap { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+
+        footer { text-align: center; font-size: 0.72rem; color: #8a836f; padding: 20px 5% 34px; }
+
+        #lockScreen {
+            position: fixed; inset: 0; background: #faf6ea; z-index: 100;
+            display: flex; align-items: center; justify-content: center; padding: 5%;
+        }
+        .lock-card {
+            background: #fff; border-radius: 16px; box-shadow: var(--card-shadow);
+            padding: 30px 26px; width: 100%; max-width: 360px; text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="lockScreen">
+        <div class="lock-card">
+            <div style="font-weight:700; color:#0f2e14; font-size:1.05rem; margin-bottom:2px;">GREENWORKS <span style="color:#c9a24b;">LANDSCAPING</span></div>
+            <div style="font-size:0.78rem; color:#5d5747; margin-bottom:18px;">Schedule board. Enter your PIN.</div>
+            <input type="password" id="pinInput" inputmode="numeric" autocomplete="off" placeholder="Enter PIN"
+                   style="width:100%; padding:14px; text-align:center; font-size:1.4rem; letter-spacing:8px; border:2px solid #d9d2bd; border-radius:10px; font-family:'Poppins',sans-serif;">
+            <button type="button" id="pinBtn"
+                    style="width:100%; margin-top:12px; padding:14px; border:none; border-radius:50px; background:#0f2e14; color:#fff; font-family:'Poppins',sans-serif; font-weight:600; font-size:1rem; cursor:pointer;">
+                Open
+            </button>
+            <div id="pinMsg" style="display:none; color:#a33; font-size:0.82rem; margin-top:10px;">Wrong PIN. Try again.</div>
+        </div>
+    </div>
+
+    <header>
+        <div>
+            <div class="brand">GREENWORKS <span>LANDSCAPING</span></div>
+            <div class="tag">Schedule board</div>
+        </div>
+        <button type="button" id="refreshBtn"><i class="fas fa-rotate"></i> Refresh</button>
+    </header>
+
+    <div class="wrap">
+        <div class="statusbar" id="statusBar">Loading signed jobs...</div>
+
+        <div class="section-title"><i class="fas fa-file-signature"></i> New signed <span class="count" id="cntNew">0</span></div>
+        <div id="listNew"></div>
+        <div class="empty-note" id="emptyNew" style="display:none;">Nothing waiting. New signed quotes will appear here automatically.</div>
+
+        <div class="section-title"><i class="fas fa-calendar-check"></i> Scheduled <span class="count" id="cntSched">0</span></div>
+        <div id="listSched"></div>
+        <div class="empty-note" id="emptySched" style="display:none;">No jobs scheduled yet.</div>
+
+        <div class="section-title"><i class="fas fa-circle-check"></i> Done <span class="count" id="cntDone">0</span></div>
+        <div id="listDone"></div>
+        <div class="empty-note" id="emptyDone" style="display:none;">No completed jobs yet.</div>
+
+        <div class="section-title"><i class="fas fa-snowflake"></i> Snow contracts <span class="count" id="cntSnow">0</span></div>
+        <div id="listSnow"></div>
+        <div class="empty-note" id="emptySnow" style="display:none;">No signed snow contracts yet. New snow signings will appear here for the season.</div>
+    </div>
+
+    <footer>Greenworks Construction &amp; Companies Inc., operating as Greenworks Landscaping. Internal use only.</footer>
+
+    <script>
+        // ---- PIN lock + API key ----
+        var PIN_HASH = '983589f68a61012b2fda3650f4de287b194ba5bfa64a0028dc97a12bdadfee03';
+        var SALT = '0942ceafebbc8a734af56b586d4f5807c419c232c406bbac';
+        var API_KEY = '';
+
+        function sha256hex(str) {
+            if (window.crypto && crypto.subtle && crypto.subtle.digest) {
+                return crypto.subtle.digest('SHA-256', new TextEncoder().encode(str)).then(function(buf) {
+                    return Array.prototype.map.call(new Uint8Array(buf), function(b) { return ('0' + b.toString(16)).slice(-2); }).join('');
+                });
+            }
+            return Promise.resolve(null);
+        }
+
+        (function() {
+            var lock = document.getElementById('lockScreen');
+            var input = document.getElementById('pinInput');
+            var msg = document.getElementById('pinMsg');
+            function savedKey() { try { return localStorage.getItem('gnw_sb_api2') || ''; } catch (e) { return ''; } }
+            function saveKey(k) { try { localStorage.setItem('gnw_sb_api2', k); } catch (e) {} }
+            function unlock() { lock.style.display = 'none'; setTimeout(function() { loadJobs(); }, 0); }
+            function tryPin() {
+                var v = input.value.trim();
+                if (!v) return;
+                sha256hex(v).then(function(hex) {
+                    if (hex === null) {
+                        msg.textContent = 'This browser is not supported. Please open the page in Chrome or Safari.';
+                        msg.style.display = 'block';
+                        return;
+                    }
+                    if (hex === PIN_HASH) {
+                        sha256hex('gnw-sched|' + SALT + '|' + v).then(function(k) {
+                            API_KEY = k; saveKey(k); unlock();
+                        });
+                    } else { msg.style.display = 'block'; input.value = ''; input.focus(); }
+                });
+            }
+            var k = savedKey();
+            if (k) { API_KEY = k; unlock(); }
+            else { setTimeout(function() { input.focus(); }, 200); }
+            document.getElementById('pinBtn').addEventListener('click', tryPin);
+            input.addEventListener('keydown', function(e) { if (e.key === 'Enter') tryPin(); });
+        })();
+
+        // ---- Jobs board ----
+        var JOBS = [];
+        var OPEN = {};
+
+        function setStatus(text, isErr) {
+            var statusBar = document.getElementById('statusBar');
+            if (!statusBar) return;
+            statusBar.textContent = text || '';
+            statusBar.className = 'statusbar' + (isErr ? ' err' : '');
+        }
+
+        function api(payload) {
+            payload.key = API_KEY;
+            return fetch('/api/jobs', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            }).then(function(r) { return r.json(); });
+        }
+
+        function loadJobs() {
+            setStatus('Loading signed jobs...');
+            api({ action: 'list' }).then(function(j) {
+                if (!j.ok) {
+                    if (String(j.error || '').indexOf('bad key') !== -1) {
+                        try { localStorage.removeItem('gnw_sb_api2'); } catch (e) {}
+                        setStatus('Session expired. Reload the page and enter your PIN again.', true);
+                        return;
+                    }
+                    setStatus(j.error || 'Could not load jobs.', true);
+                    return;
+                }
+                JOBS = j.jobs || [];
+                render();
+                var d = new Date();
+                setStatus('Updated ' + d.toLocaleDateString('en-CA', { month: 'short', day: 'numeric' }) + ' ' + d.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit' }));
+            }).catch(function() {
+                setStatus('Could not reach the server. Check your connection and refresh.', true);
+            });
+        }
+
+        document.getElementById('refreshBtn').addEventListener('click', loadJobs);
+
+        function svcClass(service) {
+            var s = String(service || '').toLowerCase();
+            if (s.indexOf('snow') !== -1) return 'svc-snow';
+            if (s.indexOf('nourish') !== -1 || s.indexOf('aerat') !== -1 || s.indexOf('overseed') !== -1 || s.indexOf('dethatch') !== -1 || s.indexOf('top dress') !== -1) return 'svc-nourish';
+            return 'svc-lawn';
+        }
+        function svcLabel(service) {
+            var c = svcClass(service);
+            if (c === 'svc-snow') return 'Snow';
+            if (c === 'svc-nourish') return 'Nourishment';
+            return 'Lawncare';
+        }
+        function esc(s) {
+            return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+            });
+        }
+        function fmtDate(iso) {
+            if (!iso) return '';
+            var p = String(iso).split('-');
+            if (p.length !== 3) return esc(iso);
+            var d = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+            return d.toLocaleDateString('en-CA', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+        }
+        function signedOn(job) {
+            if (job.stamp) return esc(String(job.stamp).split(',').slice(0, 2).join(','));
+            if (job.ts) return new Date(job.ts).toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' });
+            return '';
+        }
+
+        function cardHead(job) {
+            var html = '<div class="job-head"><div class="head-main">';
+            html += '<h3>' + esc(job.name) + '</h3>';
+            if (job.addr) html += '<div class="head-addr">' + esc(job.addr) + '</div>';
+            if (job.status === 'scheduled' && job.schedDate) html += '<div class="head-addr" style="color:#3e7d46; font-weight:600;">' + fmtDate(job.schedDate) + '</div>';
+            html += '</div><i class="fas fa-chevron-down chev"></i></div>';
+            return html;
+        }
+
+        function jobCard(job) {
+            var cls = svcClass(job.service);
+            var isDone = job.status === 'done';
+            var html = '<div class="job ' + cls + (isDone ? ' done' : '') + (OPEN[job.id] ? ' open' : '') + '" data-id="' + esc(job.id) + '">';
+            html += cardHead(job);
+            html += '<div class="job-body">';
+            html += '<div class="job-top"><div>';
+            html += '<span class="chip">' + svcLabel(job.service) + '</span>';
+            html += '</div>';
+            if (job.price) html += '<div class="price">' + esc(job.price) + '</div>';
+            html += '</div>';
+
+            if (job.addr) html += '<div class="line"><i class="fas fa-location-dot"></i><a href="https://maps.google.com/?q=' + encodeURIComponent(job.addr) + '" target="_blank" rel="noopener">' + esc(job.addr) + '</a></div>';
+            if (job.phone) html += '<div class="line"><i class="fas fa-phone"></i><a href="tel:' + esc(String(job.phone).replace(/[^0-9+]/g, '')) + '">' + esc(job.phone) + '</a></div>';
+            html += '<div class="line"><i class="fas fa-pen"></i>Signed ' + signedOn(job) + ' &middot; ' + esc(job.service) + '</div>';
+
+            if (job.status === 'scheduled' || (isDone && job.schedDate)) {
+                html += '<div class="sched-when"><i class="fas fa-calendar-day"></i>' + (isDone ? 'Was scheduled ' : 'Scheduled ') + fmtDate(job.schedDate);
+                if (job.schedNote) html += ' <span class="note">&middot; ' + esc(job.schedNote) + '</span>';
+                html += '</div>';
+            }
+
+            var extra = '';
+            if (job.details) extra += esc(job.details);
+            if (job.email) extra += (extra ? '\n' : '') + 'Email: ' + esc(job.email);
+            if (job.recordLink) extra += (extra ? '\n' : '') + '<a href="' + esc(job.recordLink) + '" target="_blank" rel="noopener" style="color:#b08a3e;">Open signed record</a>';
+            if (extra) {
+                html += '<details class="more"><summary><i class="fas fa-chevron-down"></i> Details</summary><div class="details-body">' + extra + '</div></details>';
+            }
+
+            html += '<div class="controls">';
+            if (!isDone) {
+                html += '<div class="ctl-row">';
+                html += '<input type="date" class="inp-date" value="' + esc(job.schedDate || '') + '">';
+                html += '<input type="text" class="inp-note" maxlength="120" placeholder="Note (time, crew...)" value="' + esc(job.schedNote || '') + '">';
+                html += '</div>';
+                html += '<div class="btn-wrap">';
+                html += '<button type="button" class="btn btn-save act-save">' + (job.status === 'scheduled' ? 'Update schedule' : 'Schedule') + '</button>';
+                html += '<button type="button" class="btn btn-done act-done">Mark done</button>';
+                html += '<button type="button" class="btn btn-danger act-remove">Delete</button>';
+                html += '</div>';
+            } else {
+                html += '<div class="btn-wrap">';
+                html += '<button type="button" class="btn btn-ghost act-reopen">Reopen</button>';
+                html += '<button type="button" class="btn btn-danger act-remove">Delete</button>';
+                html += '</div>';
+            }
+            html += '</div></div></div>';
+            return html;
+        }
+
+        function snowCard(job) {
+            var html = '<div class="job svc-snow' + (OPEN[job.id] ? ' open' : '') + '" data-id="' + esc(job.id) + '">';
+            html += cardHead(job);
+            html += '<div class="job-body">';
+            html += '<div class="job-top"><div>';
+            html += '<span class="chip">Snow</span>';
+            html += '</div>';
+            if (job.price) html += '<div class="price">' + esc(job.price) + '</div>';
+            html += '</div>';
+
+            if (job.addr) html += '<div class="line"><i class="fas fa-location-dot"></i><a href="https://maps.google.com/?q=' + encodeURIComponent(job.addr) + '" target="_blank" rel="noopener">' + esc(job.addr) + '</a></div>';
+            if (job.phone) html += '<div class="line"><i class="fas fa-phone"></i><a href="tel:' + esc(String(job.phone).replace(/[^0-9+]/g, '')) + '">' + esc(job.phone) + '</a></div>';
+            html += '<div class="line"><i class="fas fa-pen"></i>Signed ' + signedOn(job) + ' &middot; ' + esc(job.service) + '</div>';
+
+            var extra = '';
+            if (job.details) extra += esc(job.details);
+            if (job.email) extra += (extra ? '\n' : '') + 'Email: ' + esc(job.email);
+            if (job.recordLink) extra += (extra ? '\n' : '') + '<a href="' + esc(job.recordLink) + '" target="_blank" rel="noopener" style="color:#b08a3e;">Open signed record</a>';
+            if (extra) {
+                html += '<details class="more"><summary><i class="fas fa-chevron-down"></i> Details</summary><div class="details-body">' + extra + '</div></details>';
+            }
+
+            html += '<div class="controls">';
+            html += '<div class="ctl-row">';
+            html += '<input type="text" class="inp-note" maxlength="120" placeholder="Note (corner lot, salt walkway...)" value="' + esc(job.schedNote || '') + '">';
+            html += '<button type="button" class="btn btn-save act-savenote">Save note</button>';
+            html += '</div>';
+            if (job.schedNote) html += '<div class="sched-when" style="margin-top:8px;"><i class="fas fa-note-sticky"></i><span class="note">' + esc(job.schedNote) + '</span></div>';
+            html += '<div class="btn-wrap">';
+            html += '<button type="button" class="btn btn-danger act-remove">Delete</button>';
+            html += '</div>';
+            html += '</div></div></div>';
+            return html;
+        }
+
+        function render() {
+            var groups = { new: [], scheduled: [], done: [] };
+            var snow = [];
+            JOBS.forEach(function(j) {
+                if (svcClass(j.service) === 'svc-snow') { snow.push(j); return; }
+                var s = groups[j.status] ? j.status : 'new';
+                groups[s].push(j);
+            });
+            groups.new.sort(function(a, b) { return (b.ts || 0) - (a.ts || 0); });
+            groups.scheduled.sort(function(a, b) { return String(a.schedDate || '9999').localeCompare(String(b.schedDate || '9999')); });
+            groups.done.sort(function(a, b) { return (b.updated || b.ts || 0) - (a.updated || a.ts || 0); });
+            groups.done = groups.done.slice(0, 30);
+            snow.sort(function(a, b) { return (b.ts || 0) - (a.ts || 0); });
+
+            fill('listNew', 'emptyNew', 'cntNew', groups.new);
+            fill('listSched', 'emptySched', 'cntSched', groups.scheduled);
+            fill('listDone', 'emptyDone', 'cntDone', groups.done);
+            fill('listSnow', 'emptySnow', 'cntSnow', snow, snowCard);
+        }
+
+        function fill(listId, emptyId, cntId, arr, renderer) {
+            var el = document.getElementById(listId);
+            el.innerHTML = arr.map(renderer || jobCard).join('');
+            document.getElementById(emptyId).style.display = arr.length ? 'none' : 'block';
+            document.getElementById(cntId).textContent = arr.length;
+        }
+
+        document.addEventListener('click', function(e) {
+            var head = e.target.closest('.job-head');
+            if (head && !e.target.closest('a')) {
+                var hcard = head.closest('.job');
+                var hid = hcard.getAttribute('data-id');
+                if (OPEN[hid]) { delete OPEN[hid]; hcard.classList.remove('open'); }
+                else { OPEN[hid] = true; hcard.classList.add('open'); }
+                return;
+            }
+            var btn = e.target.closest('button');
+            if (!btn) return;
+            var card = btn.closest('.job');
+            if (!card) return;
+            var id = card.getAttribute('data-id');
+
+            if (btn.classList.contains('act-savenote')) {
+                var noteVal = card.querySelector('.inp-note').value;
+                doUpdate(btn, id, { schedNote: noteVal });
+            } else if (btn.classList.contains('act-save')) {
+                var date = card.querySelector('.inp-date').value;
+                var note = card.querySelector('.inp-note').value;
+                if (!date) { setStatus('Pick a date first.', true); return; }
+                doUpdate(btn, id, { status: 'scheduled', schedDate: date, schedNote: note });
+            } else if (btn.classList.contains('act-done')) {
+                var d2 = card.querySelector('.inp-date') ? card.querySelector('.inp-date').value : '';
+                var n2 = card.querySelector('.inp-note') ? card.querySelector('.inp-note').value : '';
+                doUpdate(btn, id, { status: 'done', schedDate: d2, schedNote: n2 });
+            } else if (btn.classList.contains('act-reopen')) {
+                doUpdate(btn, id, { status: 'scheduled' });
+            } else if (btn.classList.contains('act-remove')) {
+                if (!confirm('Delete this job from the board? This cannot be undone.')) return;
+                btn.disabled = true;
+                api({ action: 'remove', id: id }).then(function(j) {
+                    if (!j.ok) { setStatus(j.error || 'Could not delete.', true); btn.disabled = false; return; }
+                    JOBS = JOBS.filter(function(x) { return x.id !== id; });
+                    render();
+                    setStatus('Job deleted.');
+                }).catch(function() { setStatus('Could not reach the server.', true); btn.disabled = false; });
+            }
+        });
+
+        function doUpdate(btn, id, patch) {
+            btn.disabled = true;
+            api({ action: 'update', id: id, patch: patch }).then(function(j) {
+                if (!j.ok) { setStatus(j.error || 'Could not save.', true); btn.disabled = false; return; }
+                JOBS = JOBS.map(function(x) { return x.id === id ? j.job : x; });
+                render();
+                setStatus('Saved.');
+            }).catch(function() { setStatus('Could not reach the server.', true); btn.disabled = false; });
+        }
+    </script>
+</body>
+</html>

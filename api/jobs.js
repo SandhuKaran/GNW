@@ -2,7 +2,7 @@
 // Lists and updates signed jobs stored in Upstash Redis by api/accept-email.js.
 // Protected by a key derived from the office PIN; the PIN itself is never stored here.
 
-const KEY_HASH = 'f0cdcb4c68c050d6ee3994bb00cbee4d7b987b5c5bc4aa9d5c09240c842fde63';
+const KEY_HASH = 'daae3655e72f2bcde38c7f90dc4fc5745a64166440f4670c5bd7ece72f1b71c8';
 const MAX_JOBS = 300;
 
 module.exports = async (req, res) => {
