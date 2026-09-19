@@ -118,6 +118,26 @@ module.exports = async (req, res) => {
         '<td style="padding: 5px 0; border-bottom: 1px solid #f2ecdb;">' + value + '</td></tr>';
     }
 
+    // Save the signed job to the schedule board (non-blocking for emails)
+    const jobRecord = {
+      id: 'j' + Date.now() + Math.random().toString(36).slice(2, 6),
+      ts: Date.now(),
+      service: service,
+      name: name,
+      addr: addr,
+      phone: phone,
+      email: customerEmail,
+      price: price,
+      details: details,
+      version: version,
+      stamp: stamp,
+      recordLink: recordLink,
+      status: 'new',
+      schedDate: '',
+      schedNote: ''
+    };
+    sends.push(saveJob(jobRecord));
+
     const results = await Promise.all(sends);
     const failed = results.filter(r => !r.ok);
     res.status(200).json({ ok: failed.length === 0, customerSent: customerSent, errors: failed.map(f => f.error).slice(0, 2) });
@@ -128,6 +148,29 @@ module.exports = async (req, res) => {
 
 function esc(s) {
   return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+// Stores a signed job in Upstash Redis so it shows on the private schedule board.
+// If the database is not configured yet, this quietly does nothing so emails keep working.
+async function saveJob(job) {
+  try {
+    const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+    const token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+    if (!url || !token) return { ok: true, skipped: 'no database configured' };
+    const r = await fetch(url.replace(/\/$/, '') + '/pipeline', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+      body: JSON.stringify([
+        ['SET', 'gnw:job:' + job.id, JSON.stringify(job)],
+        ['LPUSH', 'gnw:jobids', job.id],
+        ['LTRIM', 'gnw:jobids', '0', '499']
+      ])
+    });
+    if (!r.ok) return { ok: false, error: 'job save HTTP ' + r.status };
+    return { ok: true };
+  } catch (e) {
+    return { ok: false, error: 'job save: ' + String(e && e.message || e).slice(0, 120) };
+  }
 }
 
 async function sendResend(payload) {
