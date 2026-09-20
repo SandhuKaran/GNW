@@ -474,6 +474,8 @@
         // Effective lawn area for sq-ft priced services (tier -> representative sq ft)
         function effSqft() {
             if (elLot.value === 'custom') return parseFloat(elSqft.value) || 0;
+            var direct = parseFloat(elLot.value);
+            if (direct >= 100) return direct;
             return { '0.75': 1000, '1': 2500, '1.3': 4500, '1.6': 8000, '2': 12000 }[elLot.value] || 2500;
         }
         // Manual core aeration: 2-man crew tiers, +$40 per extra 1,000 sq ft past 5,000
@@ -488,6 +490,16 @@
         function overseedPrice(sqft) {
             if (!sqft || sqft <= 0) sqft = 2500;
             return Math.max(50, Math.round(sqft / 1000 * 30));
+        }
+        // Dethatching / power raking: sq-ft tiers, +$40 per extra 1,000 sq ft past 6,000
+        function dethatchPrice(sqft) {
+            if (!sqft || sqft <= 1000) return 80;
+            if (sqft <= 2000) return 120;
+            if (sqft <= 3000) return 150;
+            if (sqft <= 4000) return 180;
+            if (sqft <= 5000) return 210;
+            if (sqft <= 6000) return 250;
+            return 250 + Math.ceil((sqft - 6000) / 1000) * 40;
         }
 
         var SERVICES = {
@@ -525,6 +537,26 @@
         var elLot = document.getElementById('inLot');
         var elSqft = document.getElementById('inSqft');
 
+        // Lot selector: acreage tiers for lawncare, direct sq ft for nourishment
+        var LOT_ACRE_HTML = elLot.innerHTML;
+        var LOT_SQFT_HTML =
+            '<option value="1000">1,000 sq ft</option>' +
+            '<option value="2000" selected>2,000 sq ft</option>' +
+            '<option value="3000">3,000 sq ft</option>' +
+            '<option value="4000">4,000 sq ft</option>' +
+            '<option value="5000">5,000 sq ft</option>' +
+            '<option value="custom">Custom: enter exact sq ft</option>';
+        var lotMemo = { acre: '1', sqft: '2000' };
+        function setLotMode(wantSqft) {
+            var isSqftNow = elLot.getAttribute('data-mode') === 'sqft';
+            if (wantSqft === isSqftNow) return;
+            if (isSqftNow) lotMemo.sqft = elLot.value; else lotMemo.acre = elLot.value;
+            elLot.innerHTML = wantSqft ? LOT_SQFT_HTML : LOT_ACRE_HTML;
+            elLot.setAttribute('data-mode', wantSqft ? 'sqft' : 'acre');
+            elLot.value = wantSqft ? lotMemo.sqft : lotMemo.acre;
+            document.getElementById('sqftField').style.display = (elLot.value === 'custom') ? 'block' : 'none';
+        }
+
         // ---- service tab switching ----
         document.querySelectorAll('.svc-btn').forEach(function(b) {
             b.addEventListener('click', function() {
@@ -537,6 +569,7 @@
                 document.getElementById('lawnBlock').style.display = currentSvc === 'lawncare' ? 'block' : 'none';
                 document.getElementById('nourBlock').style.display = currentSvc === 'nourishment' ? 'block' : 'none';
                 document.getElementById('pdfRow').style.display = isSnow ? 'none' : 'flex';
+                setLotMode(currentSvc === 'nourishment');
                 msgEdited = false;
                 update();
             });
@@ -605,6 +638,7 @@
         };
 
         function currentMultiplier() {
+            if (currentSvc === 'nourishment') return sqftToMultiplier(effSqft());
             if (elLot.value === 'custom') return sqftToMultiplier(parseFloat(elSqft.value) || 0);
             return parseFloat(elLot.value);
         }
@@ -671,7 +705,7 @@
 
             if (currentSvc === 'nourishment') {
                 var addonIds = ['b-aeration','b-liquid','b-overseed','b-dethatch','b-slit','b-topdress','b-grub'];
-                var sqftIds = { 'b-aeration': true, 'b-overseed': true };
+                var sqftIds = { 'b-aeration': true, 'b-overseed': true, 'b-dethatch': true };
                 var pkgIds = ['b-pkg-aer-over','b-pkg-td-over','b-pkg-full-reno'];
                 var addonCount = addonIds.filter(function(id) { return document.getElementById(id).checked; }).length;
                 var addonMult = (addonCount >= CFG.addonDiscountMin) ? (1 - CFG.addonDiscount) : 1;
@@ -679,17 +713,18 @@
                 var sqft = effSqft();
                 var aerP = aerationPrice(sqft);
                 var overP = overseedPrice(sqft);
+                var detP = dethatchPrice(sqft);
                 var sqftNote = sqft > 0 ? ('sized for ~' + sqft.toLocaleString() + ' sq ft') : '';
 
                 var an = document.getElementById('addonNote');
-                if (addonCount >= CFG.addonDiscountMin) { an.className = 'bundle-note active'; an.textContent = '25% multi-service discount ACTIVE (' + addonCount + ' selected). Aeration and overseeding are area-priced and not discounted.'; }
-                else { an.className = 'bundle-note'; an.textContent = 'Select 3 or more single services and 25% off applies (except area-priced aeration and overseeding).'; }
+                if (addonCount >= CFG.addonDiscountMin) { an.className = 'bundle-note active'; an.textContent = '25% multi-service discount ACTIVE (' + addonCount + ' selected). Aeration, overseeding and dethatching are area-priced and not discounted.'; }
+                else { an.className = 'bundle-note'; an.textContent = 'Select 3 or more single services and 25% off applies (except area-priced aeration, overseeding and dethatching).'; }
 
                 // Packages: sum of component prices minus 15%
                 var pkgAuto = {
                     'b-pkg-aer-over':  Math.round((aerP + overP) * 0.85),
                     'b-pkg-td-over':   Math.round((CFG.items['b-topdress'].flat * mult + overP) * 0.85),
-                    'b-pkg-full-reno': Math.round((CFG.items['b-dethatch'].flat * mult + aerP + overP) * 0.85)
+                    'b-pkg-full-reno': Math.round((detP + aerP + overP) * 0.85)
                 };
                 pkgIds.forEach(function(id) {
                     var c = CFG.items[id];
@@ -705,6 +740,7 @@
                     var p, autoNote;
                     if (id === 'b-aeration') { p = aerP; autoNote = sqftNote; }
                     else if (id === 'b-overseed') { p = overP; autoNote = sqftNote; }
+                    else if (id === 'b-dethatch') { p = detP; autoNote = sqftNote; }
                     else { p = c.flat * mult * addonMult; autoNote = (addonMult < 1 ? '25% multi-service discount' : ''); }
                     document.getElementById('p-' + id).textContent = money(p) + (!sqftIds[id] && addonMult < 1 ? ' (25% off)' : '');
                     if (!document.getElementById(id).checked) return;

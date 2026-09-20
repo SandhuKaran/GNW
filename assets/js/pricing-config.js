@@ -95,6 +95,15 @@ window.GNW_PRICING.addonPrice = function (id, lotVal) {
   if (id === 'chk-overseed') {
     return Math.max(50, Math.round(sqft / 1000 * 30));
   }
+  if (id === 'chk-dethatch') {
+    if (sqft <= 1000) return 80;
+    if (sqft <= 2000) return 120;
+    if (sqft <= 3000) return 150;
+    if (sqft <= 4000) return 180;
+    if (sqft <= 5000) return 210;
+    if (sqft <= 6000) return 250;
+    return 250 + Math.ceil((sqft - 6000) / 1000) * 40;
+  }
   return null;
 };
 
