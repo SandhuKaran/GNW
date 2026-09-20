@@ -168,6 +168,48 @@
         .done-wrap summary::-webkit-details-marker { display: none; }
         .done-wrap summary { list-style: none; }
 
+        .cal-card {
+            background: #fff; border-radius: 14px; box-shadow: var(--card-shadow);
+            padding: 14px 10px 10px; margin: 6px 0 16px;
+        }
+        .cal-head { display: flex; align-items: center; justify-content: space-between; padding: 0 6px 10px; }
+        .cal-title { font-weight: 700; font-size: 1rem; color: var(--primary-color); }
+        .cal-nav {
+            border: 1px solid #e5ddc8; background: #fdfbf4; color: var(--text-light);
+            width: 34px; height: 34px; border-radius: 50%; cursor: pointer;
+            font-size: 0.8rem;
+        }
+        .cal-nav:active { background: var(--bg-light); }
+        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+        .cal-dowcell {
+            text-align: center; font-size: 0.66rem; font-weight: 600; letter-spacing: 1px;
+            color: var(--text-light); padding: 2px 0 6px; text-transform: uppercase;
+        }
+        .cal-cell {
+            min-height: 62px; border-radius: 8px; padding: 3px 3px 4px;
+            background: #fdfbf4; border: 1.5px solid transparent;
+            cursor: pointer; overflow: hidden;
+        }
+        .cal-cell.other { opacity: 0.35; }
+        .cal-cell.selected { border-color: var(--accent-deep); background: #fff; }
+        .cal-cell .dnum {
+            font-size: 0.72rem; font-weight: 600; color: var(--text-dark);
+            width: 20px; height: 20px; line-height: 20px; text-align: center;
+            border-radius: 50%; margin-bottom: 1px;
+        }
+        .cal-cell.today .dnum { background: #3e7d46; color: #fff; }
+        .cal-pill {
+            display: block; font-size: 0.56rem; line-height: 1.45; font-weight: 600;
+            border-radius: 4px; padding: 0 3px; margin-top: 2px; color: #fff;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            background: #8a836f;
+        }
+        .cal-pill.p-nour { background: #c9a24b; }
+        .cal-pill.p-lawn { background: #3e7d46; }
+        .cal-pill.p-snow { background: #4a7fb5; }
+        .cal-pill.p-done { background: #dcd6c2; color: #8a836f; text-decoration: line-through; }
+        .cal-more { display: block; font-size: 0.56rem; color: var(--text-light); margin-top: 1px; padding-left: 3px; }
+
         .fab {
             position: fixed; right: 18px; bottom: 24px; z-index: 60;
             width: 58px; height: 58px; border-radius: 50%; border: none;
@@ -243,12 +285,23 @@
         <div class="statusbar" id="statusBar">Loading signed jobs...</div>
 
         <div id="viewSchedule">
+            <div id="overdueWrap"></div>
+
+            <div class="cal-card">
+                <div class="cal-head">
+                    <button type="button" class="cal-nav" id="calPrev"><i class="fas fa-chevron-left"></i></button>
+                    <div class="cal-title" id="calTitle"></div>
+                    <button type="button" class="cal-nav" id="calNext"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="cal-grid" id="calDow"></div>
+                <div class="cal-grid" id="calGrid"></div>
+            </div>
+
+            <div id="dayPanel"></div>
+
             <div class="section-title"><i class="fas fa-file-signature"></i> New signed, needs a date <span class="count" id="cntNew">0</span></div>
             <div id="listNew"></div>
             <div class="empty-note" id="emptyNew" style="display:none;">Nothing waiting. New signed quotes will appear here automatically.</div>
-
-            <div id="dateGroups"></div>
-            <div class="empty-note" id="emptyDates" style="display:none;">Nothing on the calendar yet. Schedule a job above and it will show under its day here.</div>
 
             <details class="done-wrap" id="doneWrap">
                 <summary class="section-title" style="cursor:pointer;"><i class="fas fa-circle-check"></i> Done <span class="count" id="cntDone">0</span></summary>
@@ -531,6 +584,62 @@
             return { cls: '', label: fmtDate(key), sub: '' };
         }
 
+        var CAL = null;
+        var SELDATE = isoDay(0);
+        var CALJOBS = {};
+
+        function isoOf(d) {
+            return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+        }
+
+        function pillClass(job) {
+            var c = svcClass(job.service);
+            var p = c === 'svc-nourish' ? 'p-nour' : (c === 'svc-snow' ? 'p-snow' : 'p-lawn');
+            return job.status === 'done' ? 'p-done' : p;
+        }
+
+        function renderCalendar() {
+            if (!CAL) { var n = new Date(); CAL = { y: n.getFullYear(), m: n.getMonth() }; }
+            document.getElementById('calTitle').textContent =
+                new Date(CAL.y, CAL.m, 1).toLocaleDateString('en-CA', { month: 'long', year: 'numeric' });
+            document.getElementById('calDow').innerHTML =
+                ['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(function(d) { return '<div class="cal-dowcell">' + d + '</div>'; }).join('');
+
+            var first = new Date(CAL.y, CAL.m, 1);
+            var start = new Date(CAL.y, CAL.m, 1 - first.getDay());
+            var todayKey = isoDay(0);
+            var html = '';
+            for (var i = 0; i < 42; i++) {
+                var d = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i);
+                var key = isoOf(d);
+                var jobs = CALJOBS[key] || [];
+                var cls = 'cal-cell';
+                if (d.getMonth() !== CAL.m) cls += ' other';
+                if (key === todayKey) cls += ' today';
+                if (key === SELDATE) cls += ' selected';
+                html += '<div class="' + cls + '" data-date="' + key + '">';
+                html += '<div class="dnum">' + d.getDate() + '</div>';
+                jobs.slice(0, 3).forEach(function(j) {
+                    html += '<span class="cal-pill ' + pillClass(j) + '">' + esc(j.name) + '</span>';
+                });
+                if (jobs.length > 3) html += '<span class="cal-more">+' + (jobs.length - 3) + ' more</span>';
+                html += '</div>';
+            }
+            document.getElementById('calGrid').innerHTML = html;
+        }
+
+        function renderDayPanel() {
+            var jobs = (CALJOBS[SELDATE] || []).slice();
+            jobs.sort(function(a, b) { return (a.status === 'done' ? 1 : 0) - (b.status === 'done' ? 1 : 0); });
+            var t = dateGroupTitle(SELDATE);
+            var label = (t.label === 'Overdue') ? fmtDate(SELDATE) : t.label;
+            var html = '<div class="date-title ' + (t.cls === 'overdue' ? '' : t.cls) + '"><i class="fas fa-calendar-day"></i> ' + label;
+            if (t.sub && t.label !== 'Overdue') html += ' <span class="date-sub">' + t.sub + '</span>';
+            html += ' <span class="count">' + jobs.length + '</span></div>';
+            html += jobs.length ? jobs.map(jobCard).join('') : '<div class="empty-note">Nothing scheduled for this day.</div>';
+            document.getElementById('dayPanel').innerHTML = html;
+        }
+
         function render() {
             var oneTime = [], snow = [], mow = [];
             JOBS.forEach(function(j) {
@@ -541,31 +650,33 @@
             snow.sort(function(a, b) { return (b.ts || 0) - (a.ts || 0); });
             mow.sort(function(a, b) { return (b.ts || 0) - (a.ts || 0); });
 
-            // Schedule whiteboard
+            // Calendar data: scheduled jobs plus done jobs that had a date
+            CALJOBS = {};
+            oneTime.forEach(function(j) {
+                if (j.schedDate && (j.status === 'scheduled' || j.status === 'done')) {
+                    (CALJOBS[j.schedDate] = CALJOBS[j.schedDate] || []).push(j);
+                }
+            });
+
+            // Overdue: scheduled in the past, not done
+            var todayKey = isoDay(0);
+            var overdue = oneTime.filter(function(j) { return j.status === 'scheduled' && j.schedDate && j.schedDate < todayKey; });
+            overdue.sort(function(a, b) { return String(a.schedDate).localeCompare(String(b.schedDate)); });
+            var oh = '';
+            if (overdue.length) {
+                oh += '<div class="date-title overdue"><i class="fas fa-triangle-exclamation"></i> Overdue <span class="count">' + overdue.length + '</span></div>';
+                oh += overdue.map(jobCard).join('');
+            }
+            document.getElementById('overdueWrap').innerHTML = oh;
+
+            renderCalendar();
+            renderDayPanel();
+
             var news = oneTime.filter(function(j) { return j.status !== 'scheduled' && j.status !== 'done'; });
             news.sort(function(a, b) { return (b.ts || 0) - (a.ts || 0); });
-            var listNew = document.getElementById('listNew');
-            listNew.innerHTML = news.map(jobCard).join('');
+            document.getElementById('listNew').innerHTML = news.map(jobCard).join('');
             document.getElementById('emptyNew').style.display = news.length ? 'none' : 'block';
             document.getElementById('cntNew').textContent = news.length;
-
-            var sched = oneTime.filter(function(j) { return j.status === 'scheduled'; });
-            var byDate = {};
-            sched.forEach(function(j) {
-                var k = j.schedDate || '9999-12-31';
-                (byDate[k] = byDate[k] || []).push(j);
-            });
-            var keys = Object.keys(byDate).sort();
-            var html = '';
-            keys.forEach(function(k) {
-                var t = dateGroupTitle(k);
-                html += '<div class="date-title ' + t.cls + '"><i class="fas fa-calendar-day"></i> ' + t.label;
-                if (t.sub) html += ' <span class="date-sub">' + t.sub + '</span>';
-                html += ' <span class="count">' + byDate[k].length + '</span></div>';
-                html += byDate[k].map(jobCard).join('');
-            });
-            document.getElementById('dateGroups').innerHTML = html;
-            document.getElementById('emptyDates').style.display = keys.length ? 'none' : 'block';
 
             var done = oneTime.filter(function(j) { return j.status === 'done'; });
             done.sort(function(a, b) { return (b.updated || b.ts || 0) - (a.updated || a.ts || 0); });
@@ -578,6 +689,26 @@
             buildServiceView('viewLawn', oneTime.filter(function(j) { return svcClass(j.service) === 'svc-lawn'; }), mow, 'Mowing contracts');
             buildServiceView('viewSnow', [], snow, 'Snow contracts');
         }
+
+        document.getElementById('calPrev').addEventListener('click', function() {
+            if (!CAL) return;
+            CAL.m--; if (CAL.m < 0) { CAL.m = 11; CAL.y--; }
+            renderCalendar();
+        });
+        document.getElementById('calNext').addEventListener('click', function() {
+            if (!CAL) return;
+            CAL.m++; if (CAL.m > 11) { CAL.m = 0; CAL.y++; }
+            renderCalendar();
+        });
+        document.getElementById('calGrid').addEventListener('click', function(e) {
+            var cell = e.target.closest('.cal-cell');
+            if (!cell) return;
+            SELDATE = cell.getAttribute('data-date');
+            var p = SELDATE.split('-');
+            CAL = { y: Number(p[0]), m: Number(p[1]) - 1 };
+            renderCalendar();
+            renderDayPanel();
+        });
 
         function buildServiceView(viewId, jobs, roster, rosterTitle) {
             var html = '';
