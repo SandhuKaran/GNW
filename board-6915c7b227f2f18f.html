@@ -133,6 +133,69 @@
         .btn:disabled { opacity: 0.5; cursor: default; }
         .btn-wrap { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
 
+        .tabbar {
+            position: sticky; top: 57px; z-index: 15;
+            display: flex; gap: 6px; padding: 10px 5%;
+            background: #faf6ea; border-bottom: 1px solid #eee5cf;
+            overflow-x: auto; -webkit-overflow-scrolling: touch;
+        }
+        .tab {
+            border: 1px solid #d9d2bd; background: #fff; color: var(--text-light);
+            border-radius: 50px; padding: 8px 15px; font-family: 'Poppins', sans-serif;
+            font-weight: 600; font-size: 0.8rem; cursor: pointer; white-space: nowrap; flex: 0 0 auto;
+        }
+        .tab.active { background: var(--primary-color); border-color: var(--primary-color); color: #fff; }
+        .tab.tab-nour.active { background: #b08a3e; border-color: #b08a3e; }
+        .tab.tab-lawn.active { background: #3e7d46; border-color: #3e7d46; }
+        .tab.tab-snow.active { background: #4a7fb5; border-color: #4a7fb5; }
+
+        .date-title {
+            display: flex; align-items: center; gap: 8px;
+            margin: 24px 2px 10px; padding-left: 10px;
+            border-left: 4px solid var(--accent-deep);
+            font-size: 0.95rem; font-weight: 700; color: var(--primary-color);
+        }
+        .date-title .count {
+            background: var(--accent-deep); color: #fff; border-radius: 50px;
+            font-size: 0.72rem; padding: 1px 9px; font-weight: 600;
+        }
+        .date-title.today { border-left-color: #3e7d46; }
+        .date-title.today .count { background: #3e7d46; }
+        .date-title.overdue { border-left-color: #b03a3a; color: #b03a3a; }
+        .date-title.overdue .count { background: #b03a3a; }
+        .date-sub { font-size: 0.74rem; font-weight: 500; color: var(--text-light); }
+
+        .done-wrap summary::-webkit-details-marker { display: none; }
+        .done-wrap summary { list-style: none; }
+
+        .fab {
+            position: fixed; right: 18px; bottom: 24px; z-index: 60;
+            width: 58px; height: 58px; border-radius: 50%; border: none;
+            background: var(--primary-color); color: #fff; font-size: 1.35rem;
+            box-shadow: 0 6px 18px rgba(15,46,20,0.35); cursor: pointer;
+        }
+        .fab:active { transform: scale(0.96); }
+
+        #addOverlay {
+            position: fixed; inset: 0; z-index: 90; display: none;
+            background: rgba(26, 24, 14, 0.5);
+            align-items: flex-start; justify-content: center;
+            padding: 24px 5% 40px; overflow-y: auto;
+        }
+        #addOverlay.show { display: flex; }
+        .add-card {
+            background: #fff; border-radius: 16px; box-shadow: var(--card-shadow);
+            padding: 22px 20px; width: 100%; max-width: 460px;
+        }
+        .add-card label {
+            display: block; font-size: 0.76rem; font-weight: 600;
+            color: var(--text-light); margin: 11px 0 4px;
+        }
+        .add-card input, .add-card select {
+            width: 100%; padding: 10px 11px; border: 1px solid #d9d2bd; border-radius: 8px;
+            font-family: 'Poppins', sans-serif; font-size: 0.88rem; background: #fdfbf4;
+        }
+
         footer { text-align: center; font-size: 0.72rem; color: #8a836f; padding: 20px 5% 34px; }
 
         #lockScreen {
@@ -169,24 +232,70 @@
         <button type="button" id="refreshBtn"><i class="fas fa-rotate"></i> Refresh</button>
     </header>
 
+    <div class="tabbar">
+        <button type="button" class="tab active" data-view="schedule"><i class="fas fa-calendar-days"></i> Schedule</button>
+        <button type="button" class="tab tab-nour" data-view="nour">Nourishment</button>
+        <button type="button" class="tab tab-lawn" data-view="lawn">Lawncare</button>
+        <button type="button" class="tab tab-snow" data-view="snow">Snow</button>
+    </div>
+
     <div class="wrap">
         <div class="statusbar" id="statusBar">Loading signed jobs...</div>
 
-        <div class="section-title"><i class="fas fa-file-signature"></i> New signed <span class="count" id="cntNew">0</span></div>
-        <div id="listNew"></div>
-        <div class="empty-note" id="emptyNew" style="display:none;">Nothing waiting. New signed quotes will appear here automatically.</div>
+        <div id="viewSchedule">
+            <div class="section-title"><i class="fas fa-file-signature"></i> New signed, needs a date <span class="count" id="cntNew">0</span></div>
+            <div id="listNew"></div>
+            <div class="empty-note" id="emptyNew" style="display:none;">Nothing waiting. New signed quotes will appear here automatically.</div>
 
-        <div class="section-title"><i class="fas fa-calendar-check"></i> Scheduled <span class="count" id="cntSched">0</span></div>
-        <div id="listSched"></div>
-        <div class="empty-note" id="emptySched" style="display:none;">No jobs scheduled yet.</div>
+            <div id="dateGroups"></div>
+            <div class="empty-note" id="emptyDates" style="display:none;">Nothing on the calendar yet. Schedule a job above and it will show under its day here.</div>
 
-        <div class="section-title"><i class="fas fa-circle-check"></i> Done <span class="count" id="cntDone">0</span></div>
-        <div id="listDone"></div>
-        <div class="empty-note" id="emptyDone" style="display:none;">No completed jobs yet.</div>
+            <details class="done-wrap" id="doneWrap">
+                <summary class="section-title" style="cursor:pointer;"><i class="fas fa-circle-check"></i> Done <span class="count" id="cntDone">0</span></summary>
+                <div id="listDone"></div>
+            </details>
+        </div>
 
-        <div class="section-title"><i class="fas fa-snowflake"></i> Snow contracts <span class="count" id="cntSnow">0</span></div>
-        <div id="listSnow"></div>
-        <div class="empty-note" id="emptySnow" style="display:none;">No signed snow contracts yet. New snow signings will appear here for the season.</div>
+        <div id="viewNour" style="display:none;"></div>
+        <div id="viewLawn" style="display:none;"></div>
+        <div id="viewSnow" style="display:none;"></div>
+    </div>
+
+    <button type="button" class="fab" id="addBtn" title="Add a property manually"><i class="fas fa-plus"></i></button>
+
+    <div id="addOverlay">
+        <div class="add-card">
+            <h2 style="margin:0 0 2px; font-size:1.05rem; color:var(--primary-color);">Add a property</h2>
+            <div style="font-size:0.78rem; color:var(--text-light); margin-bottom:8px;">For customers signed up outside the online quote system.</div>
+            <label for="adSvc">Service</label>
+            <select id="adSvc">
+                <option value="Lawn Nourishment">Lawn Nourishment</option>
+                <option value="Lawn Care">Lawncare (one time job)</option>
+                <option value="mowing">Lawncare weekly mowing (seasonal)</option>
+                <option value="Snow Removal">Snow Removal (seasonal)</option>
+            </select>
+            <label for="adName">Customer name *</label>
+            <input type="text" id="adName" placeholder="e.g. John Smith">
+            <label for="adAddr">Address</label>
+            <input type="text" id="adAddr" placeholder="Street address, city">
+            <label for="adPhone">Phone</label>
+            <input type="tel" id="adPhone" placeholder="(555) 555-5555">
+            <label for="adEmail">Email</label>
+            <input type="email" id="adEmail" placeholder="customer@email.com">
+            <label for="adPrice">Price</label>
+            <input type="text" id="adPrice" placeholder="e.g. $150 + HST">
+            <label for="adDetails">Details</label>
+            <input type="text" id="adDetails" maxlength="200" placeholder="What is included">
+            <div id="adDateWrap">
+                <label for="adDate">Scheduled date (optional)</label>
+                <input type="date" id="adDate">
+            </div>
+            <div class="btn-wrap" style="margin-top:16px;">
+                <button type="button" class="btn btn-save" id="adSave">Add to board</button>
+                <button type="button" class="btn btn-ghost" id="adCancel">Cancel</button>
+            </div>
+            <div class="statusbar" id="adMsg" style="margin-top:8px;"></div>
+        </div>
     </div>
 
     <footer>Greenworks Construction &amp; Companies Inc., operating as Greenworks Landscaping. Internal use only.</footer>
@@ -332,6 +441,7 @@
 
             if (job.addr) html += '<div class="line"><i class="fas fa-location-dot"></i><a href="https://maps.google.com/?q=' + encodeURIComponent(job.addr) + '" target="_blank" rel="noopener">' + esc(job.addr) + '</a></div>';
             if (job.phone) html += '<div class="line"><i class="fas fa-phone"></i><a href="tel:' + esc(String(job.phone).replace(/[^0-9+]/g, '')) + '">' + esc(job.phone) + '</a></div>';
+            if (job.email) html += '<div class="line"><i class="fas fa-envelope"></i><a href="mailto:' + esc(job.email) + '">' + esc(job.email) + '</a></div>';
             html += '<div class="line"><i class="fas fa-pen"></i>Signed ' + signedOn(job) + ' &middot; ' + esc(job.service) + '</div>';
 
             if (job.status === 'scheduled' || (isDone && job.schedDate)) {
@@ -342,8 +452,7 @@
 
             var extra = '';
             if (job.details) extra += esc(job.details);
-            if (job.email) extra += (extra ? '\n' : '') + 'Email: ' + esc(job.email);
-            if (job.recordLink) extra += (extra ? '\n' : '') + '<a href="' + esc(job.recordLink) + '" target="_blank" rel="noopener" style="color:#b08a3e;">Open signed record</a>';
+                        if (job.recordLink) extra += (extra ? '\n' : '') + '<a href="' + esc(job.recordLink) + '" target="_blank" rel="noopener" style="color:#b08a3e;">Open signed record</a>';
             if (extra) {
                 html += '<details class="more"><summary><i class="fas fa-chevron-down"></i> Details</summary><div class="details-body">' + extra + '</div></details>';
             }
@@ -369,24 +478,28 @@
             return html;
         }
 
-        function snowCard(job) {
-            var html = '<div class="job svc-snow' + (OPEN[job.id] ? ' open' : '') + '" data-id="' + esc(job.id) + '">';
+        function isMowingContract(job) {
+            return /\/month|per month/i.test(String(job.price || '')) || /weekly.*mowing/i.test(String(job.details || ''));
+        }
+
+        function rosterCard(job) {
+            var html = '<div class="job ' + svcClass(job.service) + (OPEN[job.id] ? ' open' : '') + '" data-id="' + esc(job.id) + '">';
             html += cardHead(job);
             html += '<div class="job-body">';
             html += '<div class="job-top"><div>';
-            html += '<span class="chip">Snow</span>';
+            html += '<span class="chip">' + svcLabel(job.service) + '</span>';
             html += '</div>';
             if (job.price) html += '<div class="price">' + esc(job.price) + '</div>';
             html += '</div>';
 
             if (job.addr) html += '<div class="line"><i class="fas fa-location-dot"></i><a href="https://maps.google.com/?q=' + encodeURIComponent(job.addr) + '" target="_blank" rel="noopener">' + esc(job.addr) + '</a></div>';
             if (job.phone) html += '<div class="line"><i class="fas fa-phone"></i><a href="tel:' + esc(String(job.phone).replace(/[^0-9+]/g, '')) + '">' + esc(job.phone) + '</a></div>';
+            if (job.email) html += '<div class="line"><i class="fas fa-envelope"></i><a href="mailto:' + esc(job.email) + '">' + esc(job.email) + '</a></div>';
             html += '<div class="line"><i class="fas fa-pen"></i>Signed ' + signedOn(job) + ' &middot; ' + esc(job.service) + '</div>';
 
             var extra = '';
             if (job.details) extra += esc(job.details);
-            if (job.email) extra += (extra ? '\n' : '') + 'Email: ' + esc(job.email);
-            if (job.recordLink) extra += (extra ? '\n' : '') + '<a href="' + esc(job.recordLink) + '" target="_blank" rel="noopener" style="color:#b08a3e;">Open signed record</a>';
+                        if (job.recordLink) extra += (extra ? '\n' : '') + '<a href="' + esc(job.recordLink) + '" target="_blank" rel="noopener" style="color:#b08a3e;">Open signed record</a>';
             if (extra) {
                 html += '<details class="more"><summary><i class="fas fa-chevron-down"></i> Details</summary><div class="details-body">' + extra + '</div></details>';
             }
@@ -404,32 +517,160 @@
             return html;
         }
 
+        function isoDay(offset) {
+            var d = new Date();
+            d.setDate(d.getDate() + (offset || 0));
+            return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+        }
+
+        function dateGroupTitle(key) {
+            var today = isoDay(0), tomorrow = isoDay(1);
+            if (key < today) return { cls: 'overdue', label: 'Overdue', sub: fmtDate(key) };
+            if (key === today) return { cls: 'today', label: 'Today', sub: fmtDate(key) };
+            if (key === tomorrow) return { cls: '', label: 'Tomorrow', sub: fmtDate(key) };
+            return { cls: '', label: fmtDate(key), sub: '' };
+        }
+
         function render() {
-            var groups = { new: [], scheduled: [], done: [] };
-            var snow = [];
+            var oneTime = [], snow = [], mow = [];
             JOBS.forEach(function(j) {
                 if (svcClass(j.service) === 'svc-snow') { snow.push(j); return; }
-                var s = groups[j.status] ? j.status : 'new';
-                groups[s].push(j);
+                if (isMowingContract(j)) { mow.push(j); return; }
+                oneTime.push(j);
             });
-            groups.new.sort(function(a, b) { return (b.ts || 0) - (a.ts || 0); });
-            groups.scheduled.sort(function(a, b) { return String(a.schedDate || '9999').localeCompare(String(b.schedDate || '9999')); });
-            groups.done.sort(function(a, b) { return (b.updated || b.ts || 0) - (a.updated || a.ts || 0); });
-            groups.done = groups.done.slice(0, 30);
             snow.sort(function(a, b) { return (b.ts || 0) - (a.ts || 0); });
+            mow.sort(function(a, b) { return (b.ts || 0) - (a.ts || 0); });
 
-            fill('listNew', 'emptyNew', 'cntNew', groups.new);
-            fill('listSched', 'emptySched', 'cntSched', groups.scheduled);
-            fill('listDone', 'emptyDone', 'cntDone', groups.done);
-            fill('listSnow', 'emptySnow', 'cntSnow', snow, snowCard);
+            // Schedule whiteboard
+            var news = oneTime.filter(function(j) { return j.status !== 'scheduled' && j.status !== 'done'; });
+            news.sort(function(a, b) { return (b.ts || 0) - (a.ts || 0); });
+            var listNew = document.getElementById('listNew');
+            listNew.innerHTML = news.map(jobCard).join('');
+            document.getElementById('emptyNew').style.display = news.length ? 'none' : 'block';
+            document.getElementById('cntNew').textContent = news.length;
+
+            var sched = oneTime.filter(function(j) { return j.status === 'scheduled'; });
+            var byDate = {};
+            sched.forEach(function(j) {
+                var k = j.schedDate || '9999-12-31';
+                (byDate[k] = byDate[k] || []).push(j);
+            });
+            var keys = Object.keys(byDate).sort();
+            var html = '';
+            keys.forEach(function(k) {
+                var t = dateGroupTitle(k);
+                html += '<div class="date-title ' + t.cls + '"><i class="fas fa-calendar-day"></i> ' + t.label;
+                if (t.sub) html += ' <span class="date-sub">' + t.sub + '</span>';
+                html += ' <span class="count">' + byDate[k].length + '</span></div>';
+                html += byDate[k].map(jobCard).join('');
+            });
+            document.getElementById('dateGroups').innerHTML = html;
+            document.getElementById('emptyDates').style.display = keys.length ? 'none' : 'block';
+
+            var done = oneTime.filter(function(j) { return j.status === 'done'; });
+            done.sort(function(a, b) { return (b.updated || b.ts || 0) - (a.updated || a.ts || 0); });
+            done = done.slice(0, 30);
+            document.getElementById('listDone').innerHTML = done.map(jobCard).join('');
+            document.getElementById('cntDone').textContent = done.length;
+
+            // Service tabs
+            buildServiceView('viewNour', oneTime.filter(function(j) { return svcClass(j.service) === 'svc-nourish'; }), null, '');
+            buildServiceView('viewLawn', oneTime.filter(function(j) { return svcClass(j.service) === 'svc-lawn'; }), mow, 'Mowing contracts');
+            buildServiceView('viewSnow', [], snow, 'Snow contracts');
         }
 
-        function fill(listId, emptyId, cntId, arr, renderer) {
-            var el = document.getElementById(listId);
-            el.innerHTML = arr.map(renderer || jobCard).join('');
-            document.getElementById(emptyId).style.display = arr.length ? 'none' : 'block';
-            document.getElementById(cntId).textContent = arr.length;
+        function buildServiceView(viewId, jobs, roster, rosterTitle) {
+            var html = '';
+            var news = jobs.filter(function(j) { return j.status !== 'scheduled' && j.status !== 'done'; });
+            var sched = jobs.filter(function(j) { return j.status === 'scheduled'; });
+            var done = jobs.filter(function(j) { return j.status === 'done'; }).slice(0, 20);
+            sched.sort(function(a, b) { return String(a.schedDate || '9999').localeCompare(String(b.schedDate || '9999')); });
+            news.sort(function(a, b) { return (b.ts || 0) - (a.ts || 0); });
+
+            if (roster) {
+                html += '<div class="section-title"><i class="fas ' + (rosterTitle.indexOf('Snow') !== -1 ? 'fa-snowflake' : 'fa-leaf') + '"></i> ' + rosterTitle + ' <span class="count">' + roster.length + '</span></div>';
+                html += roster.length ? roster.map(rosterCard).join('') : '<div class="empty-note">No signed contracts yet.</div>';
+            }
+            if (jobs.length || !roster) {
+                html += '<div class="section-title"><i class="fas fa-file-signature"></i> New signed <span class="count">' + news.length + '</span></div>';
+                html += news.length ? news.map(jobCard).join('') : '<div class="empty-note">Nothing waiting.</div>';
+                html += '<div class="section-title"><i class="fas fa-calendar-check"></i> Scheduled <span class="count">' + sched.length + '</span></div>';
+                html += sched.length ? sched.map(jobCard).join('') : '<div class="empty-note">Nothing scheduled.</div>';
+                if (done.length) {
+                    html += '<div class="section-title"><i class="fas fa-circle-check"></i> Done <span class="count">' + done.length + '</span></div>';
+                    html += done.map(jobCard).join('');
+                }
+            }
+            document.getElementById(viewId).innerHTML = html;
         }
+
+        // ---- Tabs ----
+        var VIEWS = { schedule: 'viewSchedule', nour: 'viewNour', lawn: 'viewLawn', snow: 'viewSnow' };
+        document.querySelectorAll('.tab').forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+                tab.classList.add('active');
+                var pick = tab.getAttribute('data-view');
+                Object.keys(VIEWS).forEach(function(k) {
+                    document.getElementById(VIEWS[k]).style.display = (k === pick) ? 'block' : 'none';
+                });
+            });
+        });
+
+        // ---- Manual add ----
+        var overlay = document.getElementById('addOverlay');
+        document.getElementById('addBtn').addEventListener('click', function() {
+            overlay.classList.add('show');
+            document.getElementById('adMsg').textContent = '';
+        });
+        document.getElementById('adCancel').addEventListener('click', function() { overlay.classList.remove('show'); });
+        overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.classList.remove('show'); });
+        document.getElementById('adSvc').addEventListener('change', function() {
+            var v = this.value;
+            document.getElementById('adDateWrap').style.display = (v === 'mowing' || v === 'Snow Removal') ? 'none' : 'block';
+        });
+        document.getElementById('adSave').addEventListener('click', function() {
+            var svcPick = document.getElementById('adSvc').value;
+            var name = document.getElementById('adName').value.trim();
+            var msg = document.getElementById('adMsg');
+            if (!name) { msg.textContent = 'Enter the customer name first.'; msg.className = 'statusbar err'; return; }
+            var details = document.getElementById('adDetails').value.trim();
+            var price = document.getElementById('adPrice').value.trim();
+            var service = svcPick;
+            if (svcPick === 'mowing') {
+                service = 'Lawn Care';
+                details = 'Weekly Lawn Mowing' + (details ? ' | ' + details : '');
+            }
+            var date = document.getElementById('adDate').value;
+            var job = {
+                service: service,
+                name: name,
+                addr: document.getElementById('adAddr').value.trim(),
+                phone: document.getElementById('adPhone').value.trim(),
+                email: document.getElementById('adEmail').value.trim(),
+                price: price,
+                details: details,
+                version: 'Added manually',
+                stamp: new Date().toLocaleDateString('en-CA', { month: 'long', day: 'numeric', year: 'numeric' }) + ' (added manually)',
+                ts: Date.now()
+            };
+            if (date && svcPick !== 'mowing' && svcPick !== 'Snow Removal') {
+                job.status = 'scheduled';
+                job.schedDate = date;
+            }
+            var btn = this;
+            btn.disabled = true;
+            msg.textContent = 'Saving...';
+            msg.className = 'statusbar';
+            api({ action: 'import', jobs: [job] }).then(function(j) {
+                btn.disabled = false;
+                if (!j.ok) { msg.textContent = j.error || 'Could not save.'; msg.className = 'statusbar err'; return; }
+                overlay.classList.remove('show');
+                ['adName', 'adAddr', 'adPhone', 'adEmail', 'adPrice', 'adDetails', 'adDate'].forEach(function(id) { document.getElementById(id).value = ''; });
+                setStatus('Property added.');
+                loadJobs();
+            }).catch(function() { btn.disabled = false; msg.textContent = 'Could not reach the server.'; msg.className = 'statusbar err'; });
+        });
 
         document.addEventListener('click', function(e) {
             var head = e.target.closest('.job-head');
