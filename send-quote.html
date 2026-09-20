@@ -90,6 +90,7 @@
             font-family: 'Poppins', sans-serif; font-size: 0.85rem; background: #fff; min-width: 0;
         }
         .settings-row .ov-price { flex: 1; }
+        .settings-row .ov-disc { flex: 0.65; }
         .settings-row .ov-note { flex: 1.6; }
         .settings-row input.is-override { border-color: var(--accent-deep); background: #fff8e8; }
 
@@ -115,7 +116,7 @@
             font-family: 'Poppins', sans-serif; font-size: 0.85rem; background: #fdfbf4; min-width: 0;
         }
         .custom-item .c-name { flex: 2; } .custom-item .c-type { flex: 1.2; }
-        .custom-item .c-price { flex: 1; } .custom-item .c-note { flex: 2; }
+        .custom-item .c-price { flex: 1; } .custom-item .c-note { flex: 2; } .custom-item .c-disc { flex: 0.8; }
         .add-custom {
             width: 100%; border: 2px dashed #d9d2bd; background: none; border-radius: 8px;
             font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.85rem;
@@ -271,6 +272,7 @@
                 <div class="chk-wrap" id="mowSettingsWrap" style="display:none; margin-top:6px;">
                     <div class="settings-row open">
                         <input type="number" inputmode="decimal" class="ov-price" id="ov-mow" placeholder="Auto price">
+                        <input type="text" inputmode="decimal" class="ov-disc" id="dc-mow" placeholder="Disc % or $">
                         <input type="text" class="ov-note" id="nt-mow" placeholder="Note (shows on quote)">
                     </div>
                 </div>
@@ -516,6 +518,7 @@
                 '<label class="chk-item"><input type="checkbox" id="' + id + '" data-cat="' + c.cat + '"><span class="ci-label">' + esc(c.label) + '</span><span class="ci-price" id="p-' + id + '"></span></label>' +
                 '<div class="settings-row" id="set-' + id + '">' +
                 '<input type="number" inputmode="decimal" class="ov-price" id="ov-' + id + '" placeholder="Auto price">' +
+                '<input type="text" inputmode="decimal" class="ov-disc" id="dc-' + id + '" placeholder="Disc % or $">' +
                 '<input type="text" class="ov-note" id="nt-' + id + '" placeholder="Note (shows on quote)">' +
                 '</div></div>';
         }
@@ -580,7 +583,7 @@
             r.addEventListener('change', function() {
                 document.querySelectorAll('#mowRow label').forEach(function(l) { l.classList.remove('on'); });
                 r.parentElement.classList.add('on');
-                document.getElementById('ov-mow').value = ''; // clear stale override
+                document.getElementById('ov-mow').value = ''; document.getElementById('dc-mow').value = ''; // clear stale override
                 document.getElementById('mowSettingsWrap').style.display = (r.value === 'none') ? 'none' : 'block';
                 msgEdited = false; update();
             });
@@ -596,7 +599,7 @@
             el.addEventListener('change', function() { msgEdited = false; update(); });
         }
         [elName, elAddr, elPrice, elSuffix, elSqft,
-         document.getElementById('ov-mow'), document.getElementById('nt-mow'),
+         document.getElementById('ov-mow'), document.getElementById('dc-mow'), document.getElementById('nt-mow'),
          document.getElementById('optAmortize'), document.getElementById('amortizeMonths'),
          document.getElementById('optPromo')].forEach(wire);
 
@@ -606,7 +609,7 @@
                 var set = document.getElementById('set-' + c.id);
                 if (set) {
                     set.classList.toggle('open', c.checked);
-                    if (!c.checked) { document.getElementById('ov-' + c.id).value = ''; document.getElementById('nt-' + c.id).value = ''; }
+                    if (!c.checked) { document.getElementById('ov-' + c.id).value = ''; document.getElementById('nt-' + c.id).value = ''; var dcx = document.getElementById('dc-' + c.id); if (dcx) dcx.value = ''; }
                 }
                 msgEdited = false; update();
             });
@@ -627,6 +630,7 @@
                 '<div class="row1"><input type="text" class="c-name" id="' + id + '-name" placeholder="Service name (e.g. Mulch install)">' +
                 '<select class="c-type" id="' + id + '-type"><option value="onetime">One-time</option><option value="monthly">Monthly</option></select></div>' +
                 '<div class="row2"><input type="number" inputmode="decimal" class="c-price" id="' + id + '-price" placeholder="Price ($)">' +
+                '<input type="text" inputmode="decimal" class="c-disc" id="dc-' + id + '" placeholder="Disc % or $">' +
                 '<input type="text" class="c-note" id="' + id + '-note" placeholder="Details or notes"></div>';
             document.getElementById('customList').appendChild(div);
             div.querySelectorAll('input, select').forEach(wire);
@@ -662,6 +666,21 @@
             var manual = nt && nt.value.trim();
             return manual ? nt.value.trim() : (autoNote || '');
         }
+        // Per-service discount: type "20" or "20%" for percent, "$30" for dollars off.
+        function applyDiscount(id, price, baseNote) {
+            var el = document.getElementById('dc-' + id);
+            if (el) el.classList.toggle('is-override', el.value.trim() !== '');
+            if (!el || !el.value.trim()) return { price: price, note: baseNote };
+            var raw = el.value.trim();
+            var isDollar = raw.indexOf('$') !== -1 && raw.indexOf('%') === -1;
+            var num = parseFloat(raw.replace(/[^0-9.]/g, ''));
+            if (!num || num <= 0) return { price: price, note: baseNote };
+            var off = isDollar ? num : price * num / 100;
+            if (off > price) off = price;
+            var newPrice = Math.round((price - off) * 100) / 100;
+            var text = (isDollar ? money(num).replace('.00', '') + ' off' : num + '% off') + ', was ' + money(price);
+            return { price: newPrice, note: text + (baseNote ? ' | ' + baseNote : '') };
+        }
 
         // ---- quote computation (mirrors desktop generator) ----
         function computeQuote() {
@@ -687,8 +706,9 @@
                     var m = CFG.mowing[mowFreq];
                     var auto = (isBundled ? m.bundled : m.standalone) * mult;
                     var r = overridden('mow', auto);
-                    monthly += r.price;
-                    lines.push({ label: m.label, price: r.price, per: 'm', note: noteFor('mow', r.manual ? '' : (isBundled ? 'bundle price' : '')) });
+                    var dm = applyDiscount('mow', r.price, noteFor('mow', r.manual ? '' : (isBundled ? 'bundle price' : '')));
+                    monthly += dm.price;
+                    lines.push({ label: m.label, price: dm.price, per: 'm', note: dm.note });
                 }
                 ['b-fert','b-weed','b-land','b-spring','b-fall'].forEach(function(id) {
                     var c = CFG.items[id];
@@ -697,8 +717,9 @@
                     document.getElementById('p-' + id).textContent = money(p) + (c.cat === 'monthly' ? '/mo' : '');
                     if (!document.getElementById(id).checked) return;
                     var r = overridden(id, p);
-                    var ln = { label: c.label, price: r.price, per: (c.cat === 'monthly' ? 'm' : ''), note: noteFor(id, r.manual ? '' : (isBundled ? 'bundle price' : '')) };
-                    if (c.cat === 'monthly') monthly += r.price; else onetime += r.price;
+                    var dsc = applyDiscount(id, r.price, noteFor(id, r.manual ? '' : (isBundled ? 'bundle price' : '')));
+                    var ln = { label: c.label, price: dsc.price, per: (c.cat === 'monthly' ? 'm' : ''), note: dsc.note };
+                    if (c.cat === 'monthly') monthly += dsc.price; else onetime += dsc.price;
                     lines.push(ln);
                 });
             }
@@ -732,8 +753,9 @@
                     document.getElementById('p-' + id).textContent = money(p);
                     if (!document.getElementById(id).checked) return;
                     var r = overridden(id, p);
-                    onetime += r.price;
-                    lines.push({ label: c.label, price: r.price, per: '', note: noteFor(id, r.manual ? '' : ('package: 15% off combined, ' + sqftNote)) });
+                    var dsc = applyDiscount(id, r.price, noteFor(id, r.manual ? '' : ('package: 15% off combined, ' + sqftNote)));
+                    onetime += dsc.price;
+                    lines.push({ label: c.label, price: dsc.price, per: '', note: dsc.note });
                 });
                 addonIds.forEach(function(id) {
                     var c = CFG.items[id];
@@ -745,8 +767,9 @@
                     document.getElementById('p-' + id).textContent = money(p) + (!sqftIds[id] && addonMult < 1 ? ' (25% off)' : '');
                     if (!document.getElementById(id).checked) return;
                     var r = overridden(id, p);
-                    onetime += r.price;
-                    lines.push({ label: c.label, price: r.price, per: '', note: noteFor(id, r.manual ? '' : autoNote) });
+                    var dsc = applyDiscount(id, r.price, noteFor(id, r.manual ? '' : autoNote));
+                    onetime += dsc.price;
+                    lines.push({ label: c.label, price: dsc.price, per: '', note: dsc.note });
                 });
             }
 
@@ -758,8 +781,9 @@
                 var type = document.getElementById(id + '-type').value;
                 var noteTxt = document.getElementById(id + '-note').value.trim();
                 if (price <= 0) return;
-                if (type === 'monthly') monthly += price; else onetime += price;
-                lines.push({ label: name, price: price, per: (type === 'monthly' ? 'm' : ''), note: noteTxt });
+                var dsc = applyDiscount(id, price, noteTxt);
+                if (type === 'monthly') monthly += dsc.price; else onetime += dsc.price;
+                lines.push({ label: name, price: dsc.price, per: (type === 'monthly' ? 'm' : ''), note: dsc.note });
             });
 
             // amortization (lawncare options)
