@@ -336,6 +336,13 @@
                     </select>
                 </div>
             </div>
+            <div class="field" style="margin-top:10px;">
+                <label for="inSalt">Salting / ice melt</label>
+                <select id="inSalt">
+                    <option value="yes" selected>Included with every visit</option>
+                    <option value="no">Not included (customer declined)</option>
+                </select>
+            </div>
         </div>
 
         <div class="card">
@@ -598,7 +605,7 @@
             el.addEventListener('input', function() { msgEdited = false; update(); });
             el.addEventListener('change', function() { msgEdited = false; update(); });
         }
-        [elName, elAddr, elPrice, elSuffix, elSqft,
+        [elName, elAddr, elPrice, elSuffix, elSqft, document.getElementById('inSalt'),
          document.getElementById('ov-mow'), document.getElementById('dc-mow'), document.getElementById('nt-mow'),
          document.getElementById('optAmortize'), document.getElementById('amortizeMonths'),
          document.getElementById('optPromo')].forEach(wire);
@@ -881,6 +888,7 @@
                 var link = SITE + '/' + svc.page + '?a=' + encodeURIComponent(addr.replace(/\s+/g, '-')) + '&p=' + pParam;
                 var n = elName.value.trim();
                 if (n) link += '&n=' + encodeURIComponent(n.replace(/\s+/g, '-'));
+                if (document.getElementById('inSalt').value === 'no') link += '&salt=no';
                 return link;
             }
             if (!quote.lines.length) return '';
@@ -894,7 +902,9 @@
             var addr = elAddr.value.trim();
             if (currentSvc === 'snow') {
                 return 'Hi ' + name + ', it\'s Manee from Greenworks Landscaping. Here is your snow removal quote for ' + addr + ', 2026-27 season (Nov 15 to Apr 15): ' + snowPriceText() + '.\n\n' +
-                'Includes: driveway plowing, shoveling of walkway/steps/entrance, salting with every visit, windrow clearing, and automatic service after every 5 cm (2 in) snowfall. No calls needed, we monitor every storm.\n\n' +
+                (document.getElementById('inSalt').value === 'no'
+                    ? 'Includes: driveway plowing, shoveling of walkway/steps/entrance, windrow clearing, and automatic service after every 5 cm (2 in) snowfall. No calls needed, we monitor every storm. Salting is not included in this quote.\n\n'
+                    : 'Includes: driveway plowing, shoveling of walkway/steps/entrance, salting with every visit, windrow clearing, and automatic service after every 5 cm (2 in) snowfall. No calls needed, we monitor every storm.\n\n') +
                 'Review and accept your quote here:\n' + link + '\n\n' +
                 'A 50% deposit books your spot on the route. Spots are limited for this winter, so the sooner you accept, the better. Questions? Call or text me at 705-500-9000.';
             }
