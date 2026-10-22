@@ -1,3 +1,15 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/accounting",
+      "destination": "https://accounting.gnwlandscaping.ca/",
+      "permanent": false
+    },
+    {
+      "source": "/accounting/:path*",
+      "destination": "https://accounting.gnwlandscaping.ca/:path*",
+      "permanent": false
+    }
+  ]
 }
