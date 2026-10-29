@@ -858,9 +858,14 @@
         function b64url(str) {
             return btoa(unescape(encodeURIComponent(str))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
         }
+        function issueDateStr() {
+            var n = new Date();
+            return n.getFullYear() + '-' + ('0' + (n.getMonth() + 1)).slice(-2) + '-' + ('0' + n.getDate()).slice(-2);
+        }
         function quotePayload() {
             return {
                 v: 1,
+                d: issueDateStr(),
                 s: currentSvc,
                 n: elName.value.trim(),
                 a: elAddr.value.trim(),
@@ -889,6 +894,7 @@
                 var n = elName.value.trim();
                 if (n) link += '&n=' + encodeURIComponent(n.replace(/\s+/g, '-'));
                 if (document.getElementById('inSalt').value === 'no') link += '&salt=no';
+                link += '&sd=' + issueDateStr().replace(/-/g, '');
                 return link;
             }
             if (!quote.lines.length) return '';
@@ -906,19 +912,19 @@
                     ? 'Includes: driveway plowing, shoveling of walkway/steps/entrance, windrow clearing, and automatic service after every 5 cm (2 in) snowfall. No calls needed, we monitor every storm. Salting is not included in this quote.\n\n'
                     : 'Includes: driveway plowing, shoveling of walkway/steps/entrance, salting with every visit, windrow clearing, and automatic service after every 5 cm (2 in) snowfall. No calls needed, we monitor every storm.\n\n') +
                 'Review and accept your quote here:\n' + link + '\n\n' +
-                'A 50% deposit books your spot on the route. Spots are limited for this winter, so the sooner you accept, the better. Questions? Call or text me at 705-500-9000.';
+                'This quote is valid for 15 days. A 50% deposit books your spot on the route. Spots are limited for this winter, so the sooner you accept, the better. Questions? Call or text me at 705-500-9000.';
             }
             var promoLine = quote.promoFirst > 0 ? ' Your first month is 20% off: ' + money(quote.promoFirst) + ' + HST.' : '';
             if (currentSvc === 'lawncare') {
                 return 'Hi ' + name + ', it\'s Manee from Greenworks Landscaping. Here is your lawn care quote for ' + addr + ': ' + quote.priceText + '.' + promoLine + '\n\n' +
                 'Covers: ' + serviceListText() + '.\n\n' +
                 'Open your full quote and accept here:\n' + link + '\n\n' +
-                'You can download your quote and the terms as PDFs right on that page. Once you accept, we\'ll confirm your service day right away. Questions? Call or text me at 705-500-9000.';
+                'You can download your quote and the terms as PDFs right on that page. This quote is valid for 15 days. Once you accept, we\'ll confirm your service day right away. Questions? Call or text me at 705-500-9000.';
             }
             return 'Hi ' + name + ', it\'s Manee from Greenworks Landscaping. Here is your lawn nourishment quote for ' + addr + ': ' + quote.priceText + '.\n\n' +
             'Covers: ' + serviceListText() + '.\n\n' +
             'Open your full quote and accept here:\n' + link + '\n\n' +
-            'You can download your quote and the terms as PDFs right on that page. Fall booking fills up fast since the season window is short, so the sooner we lock it in, the better the timing for your lawn. Questions? Call or text me at 705-500-9000.';
+            'You can download your quote and the terms as PDFs right on that page. This quote is valid for 15 days. Fall booking fills up fast since the season window is short, so the sooner we lock it in, the better the timing for your lawn. Questions? Call or text me at 705-500-9000.';
         }
 
         function update() {
@@ -976,7 +982,7 @@
         function buildQuotePdf() {
             var d = new window.jspdf.jsPDF({ unit: 'mm', format: 'letter' });
             var now = new Date();
-            var valid = new Date(now.getTime() + 14 * 86400000);
+            var valid = new Date(now.getTime() + 15 * 86400000);
             var fmt = { year: 'numeric', month: 'long', day: 'numeric' };
             var num = 'GNW-' + now.getFullYear() + String(now.getMonth() + 1).padStart(2, '0') + String(now.getDate()).padStart(2, '0') + '-' + String(now.getHours()).padStart(2, '0') + String(now.getMinutes()).padStart(2, '0');
 

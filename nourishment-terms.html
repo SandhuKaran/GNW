@@ -563,6 +563,35 @@
             document.getElementById('heroSub').textContent = 'Please read our terms below. Questions? Call (705) 500-9000.';
         }
 
+        // ---- Quote link expiry: 15 days from the day the link was sent ----
+        (function() {
+            if (params.get('acc')) return; // signed record view never expires
+            var issue = (QD && QD.d) ? String(QD.d) : (params.get('sd') || '').trim();
+            var m = issue.match(/^(\d{4})-?(\d{2})-?(\d{2})$/);
+            if (!m) return; // older links without a date keep working
+            var exp = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+            exp.setDate(exp.getDate() + 15);
+            exp.setHours(23, 59, 59, 999);
+            var expText = exp.toLocaleDateString('en-CA', { month: 'long', day: 'numeric', year: 'numeric' });
+            if (new Date() <= exp) {
+                var qb = document.getElementById('quoteBox');
+                if (qb && qb.classList.contains('show')) {
+                    var note = document.createElement('div');
+                    note.style.cssText = 'font-size:0.78rem; color:#5d5747; margin-top:10px; text-align:center;';
+                    note.textContent = 'This quote is valid until ' + expText + '.';
+                    qb.appendChild(note);
+                }
+                return;
+            }
+            document.title = 'Quote Expired | Greenworks Landscaping';
+            document.getElementById('heroTitle').textContent = 'This quote has expired';
+            document.getElementById('heroSub').textContent = 'Quotes are valid for 15 days and this one ended on ' + expText + '. Prices may have changed since then. Call or text us at (705) 500-9000 and we will send you a fresh quote.';
+            var qb2 = document.getElementById('quoteBox');
+            if (qb2) qb2.classList.remove('show');
+            var ac = document.getElementById('acceptCard');
+            if (ac) ac.style.display = 'none';
+        })();
+
         // "Terms and Conditions" link in the checkbox opens the terms card
         (function() {
             var link = document.getElementById('openTerms');
