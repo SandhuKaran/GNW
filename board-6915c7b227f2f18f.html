@@ -148,6 +148,23 @@
         .tab.tab-nour.active { background: #b08a3e; border-color: #b08a3e; }
         .tab.tab-lawn.active { background: #3e7d46; border-color: #3e7d46; }
         .tab.tab-snow.active { background: #4a7fb5; border-color: #4a7fb5; }
+        .tab.tab-fb.active { background: #7d5ba6; border-color: #7d5ba6; }
+
+        .fb-sum {
+            background: #fff; border-radius: 14px; box-shadow: var(--card-shadow);
+            padding: 16px 18px; margin: 6px 0 16px;
+        }
+        .fb-sum .fb-avg { font-size: 1.6rem; font-weight: 700; color: var(--primary-color); }
+        .fb-sum .fb-avg small { font-size: 0.78rem; font-weight: 500; color: var(--text-light); }
+        .fb-sum .fb-cats { margin-top: 8px; font-size: 0.8rem; color: var(--text-light); }
+        .fb-sum .fb-cats div { display: flex; justify-content: space-between; padding: 2px 0; border-bottom: 1px dashed #efe8d4; }
+        .fb-stars { color: var(--accent-deep); letter-spacing: 2px; }
+        .fb-stars .off { color: #ddd6c2; }
+        .fb-card-item .fb-comment {
+            background: #faf6ea; border-left: 3px solid var(--accent-color);
+            padding: 8px 10px; margin-top: 8px; font-size: 0.82rem; white-space: pre-wrap;
+        }
+        .fb-when { font-size: 0.74rem; color: var(--text-light); margin-top: 6px; }
 
         .date-title {
             display: flex; align-items: center; gap: 8px;
@@ -279,6 +296,7 @@
         <button type="button" class="tab tab-nour" data-view="nour">Nourishment</button>
         <button type="button" class="tab tab-lawn" data-view="lawn">Lawncare</button>
         <button type="button" class="tab tab-snow" data-view="snow">Snow</button>
+        <button type="button" class="tab tab-fb" data-view="fb"><i class="fas fa-star"></i> Feedback</button>
     </div>
 
     <div class="wrap">
@@ -312,6 +330,7 @@
         <div id="viewNour" style="display:none;"></div>
         <div id="viewLawn" style="display:none;"></div>
         <div id="viewSnow" style="display:none;"></div>
+        <div id="viewFb" style="display:none;"></div>
     </div>
 
     <button type="button" class="fab" id="addBtn" title="Add a property manually"><i class="fas fa-plus"></i></button>
@@ -736,7 +755,7 @@
         }
 
         // ---- Tabs ----
-        var VIEWS = { schedule: 'viewSchedule', nour: 'viewNour', lawn: 'viewLawn', snow: 'viewSnow' };
+        var VIEWS = { schedule: 'viewSchedule', nour: 'viewNour', lawn: 'viewLawn', snow: 'viewSnow', fb: 'viewFb' };
         document.querySelectorAll('.tab').forEach(function(tab) {
             tab.addEventListener('click', function() {
                 document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
@@ -745,8 +764,84 @@
                 Object.keys(VIEWS).forEach(function(k) {
                     document.getElementById(VIEWS[k]).style.display = (k === pick) ? 'block' : 'none';
                 });
+                if (pick === 'fb' && !FB_LOADED) loadFeedback();
             });
         });
+
+        // ---- Customer feedback tab ----
+        var FB_LOADED = false;
+        var FB_CATS = [
+            ['timely', 'Timely visits'],
+            ['quality', 'Quality of work'],
+            ['cleanup', 'Cleanup'],
+            ['communication', 'Communication'],
+            ['value', 'Value for money']
+        ];
+
+        function fbStars(n) {
+            var h = '<span class="fb-stars">';
+            for (var i = 1; i <= 5; i++) h += '<span' + (i > n ? ' class="off"' : '') + '>&#9733;</span>';
+            return h + '</span>';
+        }
+
+        function loadFeedback() {
+            var view = document.getElementById('viewFb');
+            view.innerHTML = '<div class="empty-note">Loading feedback...</div>';
+            fetch('/api/feedback', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'list', key: API_KEY })
+            }).then(function(r) { return r.json(); }).then(function(j) {
+                if (!j.ok) { view.innerHTML = '<div class="empty-note">' + esc(j.error || 'Could not load feedback.') + '</div>'; return; }
+                FB_LOADED = true;
+                renderFeedback(j.feedback || []);
+            }).catch(function() {
+                view.innerHTML = '<div class="empty-note">Could not reach the server. Switch tabs and try again.</div>';
+            });
+        }
+
+        function renderFeedback(items) {
+            var view = document.getElementById('viewFb');
+            if (!items.length) {
+                view.innerHTML = '<div class="empty-note">No feedback yet. Send customers your link: gnwlandscaping.ca/feedback</div>';
+                return;
+            }
+            // Averages
+            var sums = {}, counts = {}, ovSum = 0, ovCnt = 0;
+            items.forEach(function(f) {
+                var r = f.ratings || {};
+                FB_CATS.forEach(function(c) {
+                    if (r[c[0]]) { sums[c[0]] = (sums[c[0]] || 0) + r[c[0]]; counts[c[0]] = (counts[c[0]] || 0) + 1; }
+                });
+                if (r.overall) { ovSum += r.overall; ovCnt++; }
+            });
+            var html = '<div class="fb-sum">';
+            html += '<div class="fb-avg">' + (ovCnt ? (ovSum / ovCnt).toFixed(1) + ' &#9733; <small>overall from ' + ovCnt + ' rating' + (ovCnt > 1 ? 's' : '') + '</small>' : items.length + ' submissions') + '</div>';
+            html += '<div class="fb-cats">';
+            FB_CATS.forEach(function(c) {
+                if (counts[c[0]]) html += '<div><span>' + c[1] + '</span><span>' + (sums[c[0]] / counts[c[0]]).toFixed(1) + ' &#9733; (' + counts[c[0]] + ')</span></div>';
+            });
+            html += '</div></div>';
+
+            html += '<div class="section-title"><i class="fas fa-star"></i> Submissions <span class="count">' + items.length + '</span></div>';
+            items.forEach(function(f) {
+                var r = f.ratings || {};
+                html += '<div class="job fb-card-item"><div class="job-body" style="display:block;">';
+                html += '<div style="font-weight:600;">' + esc(f.name || 'Anonymous') + (f.addr ? ' <span style="font-weight:400; color:var(--text-light);">| ' + esc(f.addr) + '</span>' : '') + '</div>';
+                if (f.service) html += '<div style="font-size:0.78rem; color:var(--text-light);">' + esc(f.service) + '</div>';
+                if (r.overall) html += '<div style="margin-top:4px; font-size:1.05rem;">' + fbStars(r.overall) + ' <span style="font-size:0.78rem; color:var(--text-light);">overall</span></div>';
+                var rows = '';
+                FB_CATS.forEach(function(c) {
+                    if (r[c[0]]) rows += '<div style="display:flex; justify-content:space-between; font-size:0.8rem; padding:1px 0;"><span style="color:var(--text-light);">' + c[1] + '</span>' + fbStars(r[c[0]]) + '</div>';
+                });
+                if (rows) html += '<div style="margin-top:6px; max-width:340px;">' + rows + '</div>';
+                if (f.comment) html += '<div class="fb-comment">' + esc(f.comment) + '</div>';
+                if (f.email) html += '<div class="line" style="margin-top:6px;"><i class="fas fa-envelope"></i> <a href="mailto:' + esc(f.email) + '">' + esc(f.email) + '</a></div>';
+                html += '<div class="fb-when">' + esc(f.stamp || '') + '</div>';
+                html += '</div></div>';
+            });
+            view.innerHTML = html;
+        }
 
         // ---- Manual add ----
         var overlay = document.getElementById('addOverlay');

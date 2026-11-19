@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Did We Do? | Greenworks Landscaping</title>
+    <meta name="robots" content="noindex">
+    <meta property="og:title" content="How Did We Do? | Greenworks Landscaping">
+    <meta property="og:description" content="Rate your service in under a minute. Your feedback helps us improve.">
+    <meta property="og:image" content="https://www.gnwlandscaping.ca/assets/img/logo-light.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Greenworks Landscaping">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-T9K6VD2L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GT-T9K6VD2L');
+      gtag('config', 'G-N8165ZJRD2');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #0f2e14;
+            --accent-color: #c9a24b;
+            --accent-deep: #b08a3e;
+            --text-dark: #201d16;
+            --text-light: #5d5747;
+            --bg-light: #f2ecdb;
+            --card-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0; padding: 0;
+            color: var(--text-dark);
+            background-color: #faf6ea;
+            line-height: 1.6;
+        }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: #faf6ea;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .logo { border-radius: 10px; overflow: hidden; }
+        .btn-header {
+            background: var(--primary-color); color: #fff;
+            padding: 10px 22px; border-radius: 50px;
+            font-weight: 600; font-size: 0.9rem;
+        }
+        .btn-header:hover { background: var(--accent-deep); }
+
+        .fb-hero {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 42px 5% 38px;
+            text-align: center;
+        }
+        .fb-hero .kicker {
+            color: var(--accent-color); text-transform: uppercase;
+            letter-spacing: 3px; font-size: 0.8rem; font-weight: 600;
+        }
+        .fb-hero h1 { margin: 8px 0 6px; font-size: 1.9rem; line-height: 1.25; }
+        .fb-hero p { margin: 0 auto; max-width: 560px; color: #e8e2d0; font-size: 0.95rem; }
+
+        .wrap { max-width: 640px; margin: 0 auto; padding: 26px 5% 60px; }
+
+        .fb-card {
+            background: #fff; border-radius: 14px;
+            box-shadow: var(--card-shadow);
+            padding: 26px 24px 24px;
+        }
+        .cat-row { padding: 12px 0; border-bottom: 1px dashed #e5ddc8; }
+        .cat-row:last-of-type { border-bottom: none; }
+        .cat-row .cat-label { font-weight: 600; font-size: 0.95rem; }
+        .cat-row .cat-sub { font-size: 0.78rem; color: var(--text-light); }
+        .stars { display: flex; gap: 6px; margin-top: 6px; }
+        .stars i {
+            font-size: 1.9rem; color: #ddd6c2; cursor: pointer;
+            display: inline-flex; align-items: center; justify-content: center;
+            min-width: 1em; min-height: 1em;
+            transition: color 0.15s, transform 0.1s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .stars i.on { color: var(--accent-deep); }
+        .stars i:active { transform: scale(1.2); }
+
+        .overall-box {
+            background: #faf6ea; border: 2px solid var(--accent-color);
+            border-radius: 12px; padding: 14px 16px; margin-top: 18px;
+        }
+        .overall-box .cat-label { color: var(--primary-color); font-size: 1.02rem; }
+        .overall-box .stars i { font-size: 2.2rem; }
+
+        label.fld {
+            display: block; font-size: 0.8rem; font-weight: 600;
+            color: var(--text-light); margin: 16px 0 4px;
+        }
+        input[type="text"], input[type="email"], select, textarea {
+            width: 100%; padding: 12px 13px;
+            border: 1px solid #d9d2bd; border-radius: 10px;
+            font-family: 'Poppins', sans-serif; font-size: 0.92rem;
+            background: #fdfbf4; color: var(--text-dark);
+        }
+        textarea { min-height: 96px; resize: vertical; }
+        input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent-color); border-color: var(--accent-color); }
+        .hp { position: absolute; left: -9999px; top: -9999px; }
+
+        .btn-submit {
+            display: block; width: 100%;
+            background: var(--primary-color); color: #fff;
+            border: none; border-radius: 50px;
+            padding: 15px 20px; margin-top: 22px;
+            font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1rem;
+            cursor: pointer;
+        }
+        .btn-submit:hover { background: var(--accent-deep); }
+        .btn-submit:disabled { opacity: 0.6; cursor: default; }
+        .form-msg { display: none; margin-top: 12px; font-size: 0.85rem; text-align: center; color: #a33; }
+        .form-msg.show { display: block; }
+
+        /* Thank-you screen */
+        .thanks-card {
+            display: none;
+            background: #fff; border-radius: 14px;
+            box-shadow: var(--card-shadow);
+            padding: 38px 26px; text-align: center;
+        }
+        .thanks-card.show { display: block; }
+        .thanks-card .big-check {
+            width: 72px; height: 72px; border-radius: 50%;
+            background: #e8f3e9; color: #3e7d46; font-size: 2rem;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 16px;
+        }
+        .thanks-card h2 { margin: 0 0 8px; color: var(--primary-color); font-size: 1.4rem; }
+        .thanks-card p { font-size: 0.92rem; color: var(--text-light); margin: 0 0 6px; }
+        .g-review {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: #fff; border: 2px solid var(--primary-color);
+            color: var(--primary-color); border-radius: 50px;
+            padding: 13px 26px; margin-top: 18px;
+            font-weight: 600; font-size: 0.95rem;
+        }
+        .g-review:hover { background: var(--primary-color); color: #fff; }
+        .g-review i { font-size: 1.1rem; }
+
+        footer {
+            text-align: center; font-size: 0.72rem; color: #8a836f;
+            padding: 22px 5% 34px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="/">
+                <img src="assets/img/logo-light.png" alt="Greenworks Logo"
+                     style="height: 45px; width: auto; display: block;">
+            </a>
+        </div>
+        <a href="tel:+17055009000" class="btn-header"><i class="fas fa-phone"></i>&nbsp; (705) 500-9000</a>
+    </header>
+
+    <section class="fb-hero">
+        <div class="kicker">Customer Feedback</div>
+        <h1 id="heroTitle">How did we do?</h1>
+        <p id="heroSub">It takes under a minute. Tap the stars to rate each part of your service, and tell us anything we could do better.</p>
+    </section>
+
+    <div class="wrap">
+
+        <div class="fb-card" id="fbCard">
+
+            <div class="cat-row" data-cat="timely">
+                <div class="cat-label">Timely visits</div>
+                <div class="cat-sub">Did we show up when we said we would?</div>
+                <div class="stars"></div>
+            </div>
+            <div class="cat-row" data-cat="quality">
+                <div class="cat-label">Quality of work</div>
+                <div class="cat-sub">How did the finished job look?</div>
+                <div class="stars"></div>
+            </div>
+            <div class="cat-row" data-cat="cleanup">
+                <div class="cat-label">Cleanup after the job</div>
+                <div class="cat-sub">Did we leave your property neat and tidy?</div>
+                <div class="stars"></div>
+            </div>
+            <div class="cat-row" data-cat="communication">
+                <div class="cat-label">Communication</div>
+                <div class="cat-sub">Quotes, questions, and updates along the way.</div>
+                <div class="stars"></div>
+            </div>
+            <div class="cat-row" data-cat="value">
+                <div class="cat-label">Value for money</div>
+                <div class="cat-sub">Was the service worth the price?</div>
+                <div class="stars"></div>
+            </div>
+
+            <div class="overall-box cat-row" data-cat="overall">
+                <div class="cat-label">Overall, how was Greenworks?</div>
+                <div class="stars"></div>
+            </div>
+
+            <label class="fld" for="fbService">Which service did we do for you?</label>
+            <select id="fbService">
+                <option value="">Select a service (optional)</option>
+                <option value="Lawn Nourishment">Lawn nourishment (aeration, overseeding, fertilizing)</option>
+                <option value="Lawn Care">Lawn care / mowing</option>
+                <option value="Snow Removal">Snow removal</option>
+                <option value="Landscaping">Landscaping / construction</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label class="fld" for="fbComment">Anything we could do better? Anything you loved?</label>
+            <textarea id="fbComment" maxlength="2000" placeholder="Your comments help us improve (optional)"></textarea>
+
+            <label class="fld" for="fbName">Your name</label>
+            <input type="text" id="fbName" maxlength="120" placeholder="Optional">
+
+            <label class="fld" for="fbAddr">Service address</label>
+            <input type="text" id="fbAddr" maxlength="200" placeholder="Optional, helps us know which property">
+
+            <label class="fld" for="fbEmail">Email</label>
+            <input type="email" id="fbEmail" maxlength="200" placeholder="Optional, only if you would like a reply">
+
+            <input type="text" class="hp" id="fbWebsite" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <button type="button" class="btn-submit" id="fbSubmit">Send my feedback</button>
+            <div class="form-msg" id="fbMsg"></div>
+        </div>
+
+        <div class="thanks-card" id="thanksCard">
+            <div class="big-check"><i class="fas fa-check"></i></div>
+            <h2>Thank you!</h2>
+            <p id="thanksText">Your feedback has been sent to our team. We read every single one, and it genuinely helps us improve.</p>
+            <p style="margin-top:14px;">If you have a moment, a quick Google review helps other homeowners find us.</p>
+            <a class="g-review" id="gReviewBtn" href="https://maps.app.goo.gl/Lfutqf7TdYimxbwj7" target="_blank" rel="noopener"
+               onclick="gtag('event', 'generate_lead', { 'event_category': 'Engagement', 'event_label': 'Feedback Google Review Link' });">
+                <i class="fab fa-google"></i> Review us on Google
+            </a>
+        </div>
+
+    </div>
+
+    <footer>Greenworks Construction &amp; Companies Inc., operating as Greenworks Landscaping. Georgetown, ON.</footer>
+
+    <script>
+        var API_TOKEN = 'gnw-accept-2026';
+        var RATINGS = {};
+
+        // Build the tap-to-rate stars
+        document.querySelectorAll('.cat-row').forEach(function(row) {
+            var cat = row.getAttribute('data-cat');
+            var box = row.querySelector('.stars');
+            for (var i = 1; i <= 5; i++) {
+                var s = document.createElement('i');
+                s.className = 'fas fa-star';
+                s.setAttribute('data-v', i);
+                box.appendChild(s);
+            }
+            box.addEventListener('click', function(e) {
+                var star = e.target.closest('i');
+                if (!star) return;
+                var v = Number(star.getAttribute('data-v'));
+                RATINGS[cat] = v;
+                box.querySelectorAll('i').forEach(function(el, idx) {
+                    el.classList.toggle('on', idx < v);
+                });
+            });
+        });
+
+        // Prefill name/address when the link carries them (?n=...&a=...)
+        (function() {
+            try {
+                var p = new URLSearchParams(location.search);
+                if (p.get('n')) document.getElementById('fbName').value = p.get('n').slice(0, 120);
+                if (p.get('a')) document.getElementById('fbAddr').value = p.get('a').slice(0, 200);
+            } catch (e) {}
+        })();
+
+        document.getElementById('fbSubmit').addEventListener('click', function() {
+            var btn = this;
+            var msg = document.getElementById('fbMsg');
+            msg.classList.remove('show');
+
+            if (!Object.keys(RATINGS).length) {
+                msg.textContent = 'Please tap the stars for at least one category first.';
+                msg.classList.add('show');
+                return;
+            }
+
+            var payload = {
+                token: API_TOKEN,
+                comment: document.getElementById('fbComment').value.trim(),
+                name: document.getElementById('fbName').value.trim(),
+                addr: document.getElementById('fbAddr').value.trim(),
+                email: document.getElementById('fbEmail').value.trim(),
+                service: document.getElementById('fbService').value,
+                website: document.getElementById('fbWebsite').value
+            };
+            Object.keys(RATINGS).forEach(function(k) { payload[k] = RATINGS[k]; });
+
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+
+            fetch('/api/feedback', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            }).then(function(r) { return r.json(); }).then(function(j) {
+                if (j && j.ok) {
+                    document.getElementById('fbCard').style.display = 'none';
+                    document.getElementById('thanksCard').classList.add('show');
+                    document.getElementById('heroTitle').textContent = 'Feedback received';
+                    document.getElementById('heroSub').textContent = 'Thank you for taking the time. It means a lot to our small team.';
+                    try { gtag('event', 'feedback_submitted', { 'event_category': 'Engagement' }); } catch (e) {}
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    msg.textContent = (j && j.error) || 'Something went wrong. Please try again, or text us at (705) 500-9000.';
+                    msg.classList.add('show');
+                    btn.disabled = false;
+                    btn.textContent = 'Send my feedback';
+                }
+            }).catch(function() {
+                msg.textContent = 'Could not reach the server. Please check your connection and try again.';
+                msg.classList.add('show');
+                btn.disabled = false;
+                btn.textContent = 'Send my feedback';
+            });
+        });
+    </script>
+</body>
+</html>
