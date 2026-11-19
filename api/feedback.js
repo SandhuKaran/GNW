@@ -7,12 +7,17 @@ const FROM = 'Greenworks Landscaping <quotes@send.gnwlandscaping.ca>';
 const PAGE_TOKEN = 'gnw-accept-2026';
 const KEY_HASH = 'daae3655e72f2bcde38c7f90dc4fc5745a64166440f4670c5bd7ece72f1b71c8';
 
-const CATS = ['timely', 'quality', 'cleanup', 'communication', 'value', 'overall'];
+const CATS = ['timely', 'quality', 'detail', 'cleanup', 'property', 'crew', 'communication', 'booking', 'billing', 'value', 'overall'];
 const CAT_LABELS = {
   timely: 'Timely visits',
   quality: 'Quality of work',
+  detail: 'Attention to detail',
   cleanup: 'Cleanup after the job',
+  property: 'Care for your property',
+  crew: 'Crew professionalism',
   communication: 'Communication',
+  booking: 'Ease of booking',
+  billing: 'Billing and pricing clarity',
   value: 'Value for money',
   overall: 'Overall'
 };
