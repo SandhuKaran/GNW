@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="GNW Landscaping" />
+  <meta name="description" content="Snow removal in Halton Hills and the GTA. Seasonal plowing, shovelling and salting for homes, commercial properties and industrial sites. Automatic service after every snowfall, fully insured." />
+  <title>Snow Removal in Halton Hills &amp; the GTA | Greenworks Landscaping</title>
+  <meta property="og:title" content="Snow Removal | Greenworks Landscaping">
+  <meta property="og:description" content="Seasonal plowing, shovelling and salting for residential, commercial and industrial properties.">
+  <meta property="og:image" content="https://www.gnwlandscaping.ca/assets/img/logo-light.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Greenworks Landscaping">
+
+  <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GT-T9K6VD2L"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GT-T9K6VD2L');
+    gtag('config', 'G-N8165ZJRD2');
+    gtag('config', 'AW-10820369667');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Snow Removal",
+    "name": "Snow Removal and Salting",
+    "description": "Seasonal snow plowing, shovelling and salting for residential, commercial and industrial properties.",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Greenworks Landscaping",
+      "telephone": "+1-705-500-9000",
+      "email": "info@gnwlandscaping.ca",
+      "url": "https://www.gnwlandscaping.ca",
+      "address": { "@type": "PostalAddress", "addressLocality": "Georgetown", "addressRegion": "ON", "addressCountry": "CA" }
+    },
+    "areaServed": ["Halton Hills, ON", "Greater Toronto Area, ON"]
+  }
+  </script>
+
+  <style>
+    /* ============ DEEP FOREST LUXE, SNOW REMOVAL ============ */
+    :root {
+      --forest: #0f2e14;
+      --forest-2: #16421f;
+      --forest-deep: #0a2110;
+      --gold: #c9a24b;
+      --gold-light: #dfc98f;
+      --gold-dark: #b08a3e;
+      --ivory: #faf6ea;
+      --cream: #f2ecdb;
+      --text-dark: #201d16;
+      --text-light: #5d5747;
+      --ice: #dce9f2;
+      --ice-deep: #4a7fb5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-dark);
+      background: var(--ivory);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    body.no-scroll { overflow: hidden; }
+    a { text-decoration: none; color: inherit; transition: 0.3s; }
+    ul { list-style: none; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* ============ HEADER ============ */
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 5%;
+      background: rgba(250, 246, 234, 0.92);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(15, 46, 20, 0.08);
+      position: sticky; top: 0; z-index: 1000;
+    }
+    .logo { border-radius: 10px; overflow: hidden; transition: transform 0.3s; }
+    .logo:hover { transform: scale(1.02); }
+    .nav-links { display: flex; gap: 30px; align-items: center; }
+    .nav-links a { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); }
+    .nav-links a:hover { color: var(--gold); }
+    .btn-header {
+      display: inline-block;
+      background: var(--forest); color: var(--ivory);
+      padding: 11px 26px; border-radius: 50px; font-weight: 600; font-size: 0.9rem;
+      border: 1px solid var(--forest);
+    }
+    .btn-header:hover { background: var(--gold); border-color: var(--gold); color: var(--forest-deep); }
+    .mobile-controls { display: none; }
+    .mobile-button { width: 30px; height: 22px; position: relative; cursor: pointer; }
+    .mobile-button span, .mobile-button span::before, .mobile-button span::after {
+      content: ''; position: absolute; width: 100%; height: 3px;
+      background: var(--forest); border-radius: 3px; transition: 0.3s;
+    }
+    .mobile-button span { top: 50%; transform: translateY(-50%); }
+    .mobile-button span::before { top: -9px; }
+    .mobile-button span::after { top: 9px; }
+    .mobile-button.active span { background: transparent; }
+    .mobile-button.active span::before { top: 0; transform: rotate(45deg); }
+    .mobile-button.active span::after { top: 0; transform: rotate(-45deg); }
+
+    /* ============ HERO ============ */
+    .hero {
+      position: relative; min-height: 78vh;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 80px 6% 90px;
+      color: var(--ivory); overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% 120%, rgba(220, 233, 242, 0.22), transparent 60%),
+        radial-gradient(circle at 85% 10%, rgba(201, 162, 75, 0.18), transparent 40%),
+        linear-gradient(160deg, var(--forest-deep) 0%, #10301a 55%, #163a28 100%);
+    }
+    .snowfall { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .snowfall span {
+      position: absolute; top: -12px; border-radius: 50%;
+      background: rgba(255, 255, 255, 0.85);
+      animation: snowDrop linear infinite;
+    }
+    @keyframes snowDrop {
+      0% { transform: translate3d(0, -20px, 0); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translate3d(30px, 105vh, 0); opacity: 0.2; }
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 880px; }
+    .hero-kicker {
+      display: inline-flex; align-items: center; gap: 14px;
+      color: var(--gold-light); font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px;
+    }
+    .hero-kicker::before, .hero-kicker::after { content: ''; width: 40px; height: 2px; background: var(--gold); }
+    .hero h1 {
+      font-size: clamp(2.3rem, 5.2vw, 3.7rem);
+      font-weight: 800; line-height: 1.12; margin-bottom: 20px;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+    }
+    .hero h1 em { font-style: normal; color: var(--gold); }
+    .hero-sub { font-size: 1.08rem; color: rgba(250, 246, 234, 0.88); font-weight: 300; max-width: 650px; margin: 0 auto 34px; }
+    .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .hero-tags { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
+    .hero-tags span {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 1px;
+      padding: 7px 16px; border-radius: 50px;
+      background: rgba(250, 246, 234, 0.08); border: 1px solid rgba(201, 162, 75, 0.4);
+    }
+    .hero-tags i { color: var(--gold); margin-right: 6px; }
+
+    /* ============ BUTTONS ============ */
+    .btn-gold {
+      display: inline-block; border: none; cursor: pointer; font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #d8b466, var(--gold) 55%, var(--gold-dark));
+      color: var(--forest-deep); font-weight: 700; font-size: 0.92rem;
+      padding: 14px 32px; border-radius: 50px;
+      box-shadow: 0 10px 25px rgba(176, 138, 62, 0.35);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 16px 35px rgba(176, 138, 62, 0.5); }
+    .btn-ghost-light {
+      display: inline-block; padding: 13px 30px; border-radius: 50px;
+      border: 2px solid rgba(250, 246, 234, 0.5); color: var(--ivory); font-weight: 600; font-size: 0.9rem;
+    }
+    .btn-ghost-light:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); }
+    .btn-outline {
+      display: inline-block; padding: 12px 26px; border-radius: 50px;
+      border: 2px solid var(--forest); color: var(--forest); font-weight: 600; font-size: 0.88rem;
+    }
+    .btn-outline:hover { background: var(--forest); color: var(--ivory); transform: translateY(-3px); }
+
+    /* ============ TRUST STRIP ============ */
+    .trust-strip { background: var(--cream); padding: 34px 6%; }
+    .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
+    .trust-item { display: flex; align-items: center; justify-content: center; gap: 14px; }
+    .trust-item i { font-size: 1.7rem; color: var(--gold-dark); }
+    .trust-item h4 { font-size: 0.95rem; font-weight: 700; color: var(--forest); line-height: 1.25; }
+    .trust-item span { font-size: 0.8rem; color: var(--text-light); }
+
+    /* ============ SECTION BASICS ============ */
+    section.block { padding: 95px 6%; }
+    .kicker { color: var(--gold-dark); font-size: 0.8rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; }
+    .section-head { max-width: 1280px; margin: 0 auto 50px; text-align: center; }
+    .section-head h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); font-weight: 800; color: var(--forest); line-height: 1.18; margin-top: 8px; }
+    .section-head p { color: var(--text-light); max-width: 660px; margin: 14px auto 0; font-size: 0.98rem; }
+
+    /* ============ PROPERTY TYPES ============ */
+    .type-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; max-width: 1280px; margin: 0 auto; }
+    .type-card {
+      background: #fffdf6; border: 1px solid #e6dec9; border-radius: 20px;
+      padding: 34px 30px 30px; display: flex; flex-direction: column;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .type-card:hover { transform: translateY(-8px); box-shadow: 0 24px 48px rgba(15, 46, 20, 0.13); }
+    .type-card.featured { border: 2px solid var(--gold); }
+    .type-icon {
+      width: 62px; height: 62px; margin-bottom: 18px;
+      background: var(--forest); color: var(--gold);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; box-shadow: 0 10px 25px rgba(15, 46, 20, 0.25);
+    }
+    .type-card h3 { font-size: 1.3rem; font-weight: 800; color: var(--forest); margin-bottom: 4px; }
+    .type-card .type-for { font-size: 0.8rem; color: var(--gold-dark); font-weight: 600; margin-bottom: 14px; }
+    .type-card > p { font-size: 0.9rem; color: var(--text-light); margin-bottom: 16px; }
+    .type-list { margin-bottom: 24px; }
+    .type-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.88rem; padding: 5px 0; }
+    .type-list li i { color: var(--gold-dark); margin-top: 5px; font-size: 0.78rem; }
+    .type-card .btn-outline { margin-top: auto; align-self: flex-start; }
+
+    /* ============ SERVICES GRID ============ */
+    .svc-section { background: var(--cream); }
+    .svc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1280px; margin: 0 auto; }
+    .svc-item {
+      background: #fffdf6; border-radius: 16px; padding: 26px 22px;
+      border: 1px solid #e6dec9;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .svc-item:hover { transform: translateY(-5px); box-shadow: 0 16px 34px rgba(15, 46, 20, 0.1); }
+    .svc-item i { font-size: 1.5rem; color: var(--ice-deep); margin-bottom: 12px; }
+    .svc-item h4 { font-size: 1rem; font-weight: 700; color: var(--forest); margin-bottom: 6px; }
+    .svc-item p { font-size: 0.84rem; color: var(--text-light); }
+    .svc-item .svc-note { display: inline-block; margin-top: 8px; font-size: 0.72rem; font-weight: 600; color: var(--gold-dark); letter-spacing: 0.5px; }
+
+    /* ============ HOW IT WORKS ============ */
+    .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 22px; max-width: 1280px; margin: 0 auto; counter-reset: step; }
+    .step { position: relative; text-align: center; padding: 10px 10px 0; }
+    .step-num {
+      width: 54px; height: 54px; margin: 0 auto 16px; border-radius: 50%;
+      background: linear-gradient(135deg, #d8b466, var(--gold) 55%, var(--gold-dark));
+      color: var(--forest-deep); font-weight: 800; font-size: 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 10px 22px rgba(176, 138, 62, 0.35);
+    }
+    .step h4 { font-size: 1rem; font-weight: 700; color: var(--forest); margin-bottom: 6px; }
+    .step p { font-size: 0.86rem; color: var(--text-light); }
+    .season-note {
+      max-width: 820px; margin: 40px auto 0; text-align: center;
+      background: var(--cream); border-radius: 14px; padding: 16px 22px;
+      font-size: 0.88rem; color: var(--text-dark);
+    }
+    .season-note i { color: var(--gold-dark); margin-right: 8px; }
+
+    /* ============ QUOTE FORM ============ */
+    .quote-section { background: var(--forest-deep); color: var(--ivory); }
+    .quote-section .section-head h2 { color: var(--ivory); }
+    .quote-section .section-head p { color: rgba(250, 246, 234, 0.78); }
+    .quote-wrap { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 34px; max-width: 1150px; margin: 0 auto; align-items: start; }
+    .quote-form {
+      background: var(--ivory); color: var(--text-dark);
+      border-radius: 20px; padding: 32px 30px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label, .fg-label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-light); margin-bottom: 5px; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 12px 13px; border: 1px solid #d9d2bd; border-radius: 10px;
+      font-family: 'Poppins', sans-serif; font-size: 0.92rem; background: #fffdf6; color: var(--text-dark);
+    }
+    .form-group textarea { min-height: 90px; resize: vertical; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: 2px solid var(--gold); border-color: var(--gold); }
+    .type-pick { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+    .type-pick label {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      border: 2px solid #e1d9c3; border-radius: 12px; padding: 12px 6px;
+      font-size: 0.8rem; font-weight: 600; cursor: pointer; text-align: center; background: #fffdf6;
+      transition: 0.2s;
+    }
+    .type-pick label i { font-size: 1.15rem; color: var(--gold-dark); }
+    .type-pick input { position: absolute; opacity: 0; pointer-events: none; }
+    .type-pick input:checked + label { border-color: var(--forest); background: var(--forest); color: var(--ivory); }
+    .type-pick input:checked + label i { color: var(--gold); }
+    .type-pick input:focus-visible + label { outline: 2px solid var(--gold); }
+    .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 14px; margin-bottom: 16px; }
+    .check-grid label { display: flex; align-items: center; gap: 8px; font-size: 0.86rem; cursor: pointer; }
+    .check-grid input { width: 17px; height: 17px; accent-color: var(--forest); }
+    .form-msg { display: none; margin-top: 12px; font-size: 0.85rem; text-align: center; color: #a33; }
+    .form-msg.show { display: block; }
+    .quote-form .btn-gold { width: 100%; font-size: 1rem; padding: 15px; }
+    .quote-side { display: flex; flex-direction: column; gap: 18px; }
+    .side-card {
+      background: rgba(250, 246, 234, 0.06); border: 1px solid rgba(201, 162, 75, 0.3);
+      border-radius: 18px; padding: 24px 24px;
+    }
+    .side-card h4 { color: var(--gold); font-size: 1rem; margin-bottom: 8px; }
+    .side-card p { font-size: 0.88rem; color: rgba(250, 246, 234, 0.8); font-weight: 300; }
+    .side-card .big-phone { display: inline-flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 1.25rem; font-weight: 700; color: var(--ivory); }
+    .side-card .big-phone i { color: var(--gold); }
+    .side-card ul li { font-size: 0.86rem; color: rgba(250, 246, 234, 0.85); padding: 4px 0; display: flex; gap: 10px; }
+    .side-card ul li i { color: var(--gold); margin-top: 5px; font-size: 0.75rem; }
+
+    /* ============ FAQ ============ */
+    .faq-list { max-width: 860px; margin: 0 auto; }
+    .faq-list details {
+      background: #fffdf6; border: 1px solid #e6dec9; border-radius: 14px;
+      margin-bottom: 12px; padding: 0 22px;
+    }
+    .faq-list summary {
+      list-style: none; cursor: pointer; padding: 18px 0;
+      font-weight: 600; color: var(--forest); font-size: 0.96rem;
+      display: flex; justify-content: space-between; gap: 16px; align-items: center;
+    }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after { content: '+'; font-size: 1.4rem; color: var(--gold-dark); font-weight: 400; flex-shrink: 0; }
+    .faq-list details[open] summary::after { content: '\2212'; }
+    .faq-list details p { padding: 0 0 18px; font-size: 0.9rem; color: var(--text-light); }
+
+    /* ============ CROSS LINK + CTA ============ */
+    .cross-link {
+      max-width: 1000px; margin: 0 auto 30px; padding: 0 6%;
+      text-align: center; font-size: 0.92rem; color: var(--text-light);
+    }
+    .cross-link a { color: var(--forest); font-weight: 600; border-bottom: 2px solid var(--gold); }
+    .cta-banner {
+      position: relative; margin: 30px 6% 100px; padding: 70px 8%;
+      background: linear-gradient(120deg, var(--forest-deep), var(--forest-2));
+      border-radius: 26px; overflow: hidden;
+      display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;
+      color: var(--ivory);
+    }
+    .cta-banner::before {
+      content: ''; position: absolute; right: -80px; top: -80px;
+      width: 320px; height: 320px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 162, 75, 0.35), transparent 65%);
+    }
+    .cta-banner h2 { font-size: clamp(1.6rem, 3.2vw, 2.3rem); font-weight: 800; line-height: 1.2; max-width: 540px; }
+    .cta-banner h2 em { font-style: normal; color: var(--gold); }
+    .cta-banner p { color: rgba(250, 246, 234, 0.8); margin-top: 10px; font-weight: 300; }
+    .cta-actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; position: relative; z-index: 1; }
+    .cta-phone { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 1.05rem; }
+    .cta-phone i { color: var(--gold); font-size: 1.3rem; }
+
+    /* ============ FOOTER ============ */
+    footer { background: var(--forest-deep); color: rgba(250, 246, 234, 0.8); padding: 70px 6% 0; }
+    .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1280px; margin: 0 auto; }
+    .footer-col h4 { color: var(--ivory); font-size: 1.05rem; margin-bottom: 18px; padding-bottom: 10px; position: relative; }
+    .footer-col h4::after { content: ''; position: absolute; left: 0; bottom: 0; width: 38px; height: 2px; background: var(--gold); }
+    .footer-col p, .footer-col li { font-size: 0.9rem; font-weight: 300; margin-bottom: 10px; }
+    .footer-col li i { color: var(--gold); margin-right: 10px; }
+    .footer-col a:hover { color: var(--gold); }
+    .social-icons a { font-size: 1.5rem; margin-right: 15px; }
+    .social-icons a:hover { color: var(--gold); }
+    .copyright {
+      text-align: center; margin-top: 50px; padding: 22px 0;
+      border-top: 1px solid rgba(201, 162, 75, 0.2);
+      font-size: 0.85rem; color: rgba(250, 246, 234, 0.5);
+    }
+
+    /* ============ SCROLL REVEAL ============ */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.85s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.85s cubic-bezier(0.22, 0.61, 0.36, 1); }
+    .reveal.in-view { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .snowfall { display: none; }
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 1100px) {
+      .svc-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 992px) {
+      .type-grid { grid-template-columns: 1fr; max-width: 640px; }
+      .trust-grid { grid-template-columns: 1fr 1fr; }
+      .steps { grid-template-columns: repeat(3, 1fr); row-gap: 34px; }
+      .quote-wrap { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .mobile-controls { display: flex; gap: 10px; align-items: center; }
+      .mobile-login-btn {
+        padding: 7px 12px; font-size: 0.78rem; border: 1px solid var(--gold);
+        border-radius: 50px; font-weight: 600; color: var(--forest);
+      }
+      .mobile-call-icon {
+        width: 34px; height: 34px; border-radius: 50%;
+        background: var(--forest); color: var(--ivory);
+        display: flex; align-items: center; justify-content: center; font-size: 0.95rem;
+      }
+      .btn-header.desktop-only { display: none; }
+      .nav-links {
+        display: none; position: fixed; top: 72px; left: 0; width: 100%;
+        height: calc(100vh - 72px); background: var(--ivory);
+        flex-direction: column; align-items: center;
+        padding: 25px 0 120px; overflow-y: auto; z-index: 999;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+      .nav-links.active { display: flex; }
+      .nav-links li { margin: 10px 0; width: 100%; text-align: center; }
+      .desktop-login-link { display: none; }
+
+      .hero { min-height: auto; padding: 70px 6% 75px; }
+      .hero-kicker { letter-spacing: 2.5px; font-size: 0.72rem; }
+      .hero-kicker::before, .hero-kicker::after { width: 22px; }
+      section.block { padding: 65px 5%; }
+      .svc-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .check-grid { grid-template-columns: 1fr; }
+      .quote-form { padding: 26px 20px; }
+      .cta-banner { margin: 20px 5% 70px; padding: 50px 8%; text-align: center; justify-content: center; }
+      .cta-actions { justify-content: center; width: 100%; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
+      .trust-item { justify-content: flex-start; }
+    }
+  </style>
+  <link rel="stylesheet" href="assets/css/luxe.css">
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <a href="/">
+        <img src="assets/img/logo-light.png" alt="Greenworks Logo" style="height: 45px; width: auto; display: block;">
+      </a>
+    </div>
+
+    <div class="mobile-controls">
+      <a href="https://trackmylawn.com/go" target="_blank" class="mobile-login-btn">
+        <i class="fas fa-user-circle"></i> Login
+      </a>
+      <a href="tel:+17055009000" class="mobile-call-icon" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Snow Mobile Header Call' });"><i class="fas fa-phone"></i></a>
+      <div class="mobile-button" onclick="toggleMenu()"><span></span></div>
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="landmain">Landscaping</a></li>
+      <li><a href="lawnmain">Lawn Maintenance</a></li>
+      <li><a href="snow-removal" style="color: var(--gold-dark); font-weight: 600;">Snow Removal</a></li>
+      <li><a href="about">About Us</a></li>
+      <li><a href="contact">Contact</a></li>
+      <li class="desktop-login-link"><a href="https://trackmylawn.com/go" target="_blank"><i class="fas fa-user-circle"></i> Client Login</a></li>
+    </ul>
+
+    <a href="tel:+17055009000" class="btn-header desktop-only" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Snow Desktop Header Call' });">Call (705)500-9000</a>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="snowfall" id="snowfall" aria-hidden="true"></div>
+    <div class="hero-content">
+      <span class="hero-kicker">Snow Removal &bull; Halton Hills &bull; GTA</span>
+      <h1>Snow Removal You <em>Don't Have to Think About</em></h1>
+      <p class="hero-sub">Seasonal plowing, shovelling, and salting for homes, businesses, and industrial sites. We watch the forecast and show up after every qualifying snowfall. No call needed.</p>
+      <div class="hero-actions">
+        <a href="#snow-quote" class="btn-gold">Get a Snow Removal Quote</a>
+        <a href="tel:+17055009000" class="btn-ghost-light" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Snow Hero Call' });"><i class="fas fa-phone"></i>&nbsp; (705) 500-9000</a>
+      </div>
+      <div class="hero-tags">
+        <span><i class="fas fa-house"></i>Residential</span>
+        <span><i class="fas fa-store"></i>Commercial</span>
+        <span><i class="fas fa-industry"></i>Industrial</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TRUST STRIP ================= -->
+  <section class="trust-strip">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <i class="fas fa-satellite-dish"></i>
+        <div><h4>Automatic Service</h4><span>We track every storm</span></div>
+      </div>
+      <div class="trust-item">
+        <i class="fas fa-icicles"></i>
+        <div><h4>Salting Included</h4><span>On cleared surfaces</span></div>
+      </div>
+      <div class="trust-item">
+        <i class="fas fa-file-invoice-dollar"></i>
+        <div><h4>Fixed Seasonal Price</h4><span>No surprise bills</span></div>
+      </div>
+      <div class="trust-item">
+        <i class="fas fa-certificate"></i>
+        <div><h4>Fully Insured</h4><span>WSIB Compliant</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROPERTY TYPES ================= -->
+  <section class="block">
+    <div class="section-head">
+      <span class="kicker">Who We Serve</span>
+      <h2>Snow Plans for Every Type of Property</h2>
+      <p>From a single driveway to a full parking lot, every property gets a plan built around its size, its traffic, and the areas that matter most.</p>
+    </div>
+
+    <div class="type-grid">
+      <div class="type-card featured">
+        <div class="type-icon"><i class="fas fa-house-chimney"></i></div>
+        <h3>Residential</h3>
+        <div class="type-for">Homes, townhomes &amp; semis</div>
+        <p>Wake up to a clear driveway. Seasonal contracts with automatic visits all winter long.</p>
+        <ul class="type-list">
+          <li><i class="fas fa-check"></i> Driveway plowing and clearing</li>
+          <li><i class="fas fa-check"></i> Front walkway, steps, and entrance shovelled</li>
+          <li><i class="fas fa-check"></i> Salt or ice melt on cleared surfaces</li>
+          <li><i class="fas fa-check"></i> End-of-driveway windrow cleared after the city plow</li>
+          <li><i class="fas fa-check"></i> One fixed price for the whole season</li>
+        </ul>
+        <a href="#snow-quote" class="btn-outline" data-type="Residential">Get a Residential Quote</a>
+      </div>
+
+      <div class="type-card">
+        <div class="type-icon"><i class="fas fa-store"></i></div>
+        <h3>Commercial</h3>
+        <div class="type-for">Retail, offices, plazas &amp; property managers</div>
+        <p>Keep customers and staff moving safely. Service plans built around your site and your hours.</p>
+        <ul class="type-list">
+          <li><i class="fas fa-check"></i> Parking lot plowing</li>
+          <li><i class="fas fa-check"></i> Sidewalks, entrances, and storefronts cleared</li>
+          <li><i class="fas fa-check"></i> Salting of lots and walkways</li>
+          <li><i class="fas fa-check"></i> Clearing scheduled around your opening hours</li>
+          <li><i class="fas fa-check"></i> Multi-site contracts for property managers</li>
+        </ul>
+        <a href="#snow-quote" class="btn-outline" data-type="Commercial">Get a Commercial Quote</a>
+      </div>
+
+      <div class="type-card">
+        <div class="type-icon"><i class="fas fa-industry"></i></div>
+        <h3>Industrial</h3>
+        <div class="type-for">Warehouses, yards &amp; distribution sites</div>
+        <p>Keep trucks, deliveries, and crews running through the worst of winter.</p>
+        <ul class="type-list">
+          <li><i class="fas fa-check"></i> Large lot and yard plowing</li>
+          <li><i class="fas fa-check"></i> Loading docks, truck lanes, and fire routes</li>
+          <li><i class="fas fa-check"></i> Bulk salting for high-traffic areas</li>
+          <li><i class="fas fa-check"></i> Snow piled on site, hauling available</li>
+          <li><i class="fas fa-check"></i> Custom service levels and site plans</li>
+        </ul>
+        <a href="#snow-quote" class="btn-outline" data-type="Industrial">Get an Industrial Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SERVICES ================= -->
+  <section class="block svc-section">
+    <div class="section-head">
+      <span class="kicker">Our Snow Services</span>
+      <h2>Everything Winter Throws at You</h2>
+      <p>Choose the services your property needs. Every quote lists exactly what is included, so there are no surprises.</p>
+    </div>
+
+    <div class="svc-grid">
+      <div class="svc-item">
+        <i class="fas fa-snowplow"></i>
+        <h4>Snow Plowing</h4>
+        <p>Driveways, parking lots, and yards cleared with the right equipment for the size of the job.</p>
+      </div>
+      <div class="svc-item">
+        <i class="fas fa-person-digging"></i>
+        <h4>Walkway &amp; Step Shovelling</h4>
+        <p>Front walks, steps, landings, and entrances cleared by hand for safe access.</p>
+      </div>
+      <div class="svc-item">
+        <i class="fas fa-icicles"></i>
+        <h4>Salting &amp; Ice Melt</h4>
+        <p>Salt or ice melt applied to cleared surfaces to help prevent ice buildup.</p>
+      </div>
+      <div class="svc-item">
+        <i class="fas fa-road"></i>
+        <h4>Windrow Clearing</h4>
+        <p>We clear the heavy ridge the city plow leaves across your driveway on our next pass.</p>
+      </div>
+      <div class="svc-item">
+        <i class="fas fa-cloud-rain"></i>
+        <h4>Ice Event Salting</h4>
+        <p>Freezing rain or refreeze with no snow? Stand-alone salting visits are available.</p>
+        <span class="svc-note">On request</span>
+      </div>
+      <div class="svc-item">
+        <i class="fas fa-truck"></i>
+        <h4>Snow Hauling</h4>
+        <p>When there is no room left to pile, we can haul snow off site.</p>
+        <span class="svc-note">Additional charge</span>
+      </div>
+      <div class="svc-item">
+        <i class="fas fa-warehouse"></i>
+        <h4>Loading Docks &amp; Fire Routes</h4>
+        <p>Priority clearing for the areas your business cannot operate without.</p>
+        <span class="svc-note">Commercial &amp; industrial</span>
+      </div>
+      <div class="svc-item">
+        <i class="fas fa-calendar-plus"></i>
+        <h4>Extra &amp; Off-Season Visits</h4>
+        <p>Early or late snowfalls outside your contract dates can be booked per visit.</p>
+        <span class="svc-note">On request</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HOW IT WORKS ================= -->
+  <section class="block">
+    <div class="section-head">
+      <span class="kicker">How It Works</span>
+      <h2>Set It Up Once. Relax All Winter.</h2>
+      <p>For our residential seasonal contracts, here is what a typical snowfall looks like.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Get Your Quote</h4>
+        <p>Send your address below. We text or email a quote you can review and accept online in a minute.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>We Watch the Weather</h4>
+        <p>Once you are on our route, we monitor every storm for you. No need to call us, no waiting.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>We Clear at 5 cm</h4>
+        <p>When snow reaches 5 cm (2 inches), we clear within 12 hours after the snowfall ends, usually much sooner.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Salted &amp; Safe</h4>
+        <p>Salt or ice melt goes down on cleared surfaces, and we keep coming back all season.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <h4>You Get Notified</h4>
+        <p>A notification on our <a href="https://trackmylawn.com/go" target="_blank" rel="noopener" style="color: var(--forest); font-weight: 600; border-bottom: 1px solid var(--gold);">client app</a> lets you know your property has been cleared, so you always know it is done.</p>
+      </div>
+    </div>
+    <div class="season-note"><i class="fas fa-snowflake"></i>Residential season runs <strong>November 15 to April 15</strong>. Commercial and industrial service levels are set per site.</div>
+  </section>
+
+  <!-- ================= QUOTE FORM ================= -->
+  <section class="block quote-section" id="snow-quote">
+    <div class="section-head">
+      <span class="kicker">Free Quote</span>
+      <h2>Request a Snow Removal Quote</h2>
+      <p>Tell us about your property. We usually reply the same day.</p>
+    </div>
+
+    <div class="quote-wrap">
+      <form class="quote-form" id="snowForm" novalidate>
+        <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" autocomplete="off">
+
+        <span class="fg-label">Property type</span>
+        <div class="type-pick">
+          <input type="radio" name="ptype" id="pt-res" value="Residential" checked>
+          <label for="pt-res"><i class="fas fa-house"></i>Residential</label>
+          <input type="radio" name="ptype" id="pt-com" value="Commercial">
+          <label for="pt-com"><i class="fas fa-store"></i>Commercial</label>
+          <input type="radio" name="ptype" id="pt-ind" value="Industrial">
+          <label for="pt-ind"><i class="fas fa-industry"></i>Industrial</label>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="sfName">Full name *</label>
+            <input type="text" id="sfName" name="name" placeholder="John Smith" maxlength="120">
+          </div>
+          <div class="form-group">
+            <label for="sfPhone">Phone *</label>
+            <input type="tel" id="sfPhone" name="phone" placeholder="(123) 456-7890" maxlength="40">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="sfEmail">Email *</label>
+            <input type="email" id="sfEmail" name="email" placeholder="john@example.com" maxlength="200">
+          </div>
+          <div class="form-group" id="sfCompanyWrap" style="display:none;">
+            <label for="sfCompany">Company / site name</label>
+            <input type="text" id="sfCompany" name="company" placeholder="Business or property name" maxlength="150">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="sfAddr">Property address *</label>
+          <input type="text" id="sfAddr" name="address" placeholder="Street, City" maxlength="200">
+        </div>
+
+        <span class="fg-label">What do you need cleared?</span>
+        <div class="check-grid">
+          <label><input type="checkbox" name="svc" value="Driveway / parking lot plowing" checked> Driveway / lot plowing</label>
+          <label><input type="checkbox" name="svc" value="Walkways, steps and entrances" checked> Walkways, steps &amp; entrances</label>
+          <label><input type="checkbox" name="svc" value="Salting / ice melt" checked> Salting / ice melt</label>
+          <label><input type="checkbox" name="svc" value="Snow hauling"> Snow hauling</label>
+          <label><input type="checkbox" name="svc" value="Loading docks / fire routes"> Loading docks / fire routes</label>
+          <label><input type="checkbox" name="svc" value="One-time or per-visit clearing"> One-time / per-visit only</label>
+        </div>
+
+        <div class="form-group">
+          <label for="sfNotes">Anything we should know?</label>
+          <textarea id="sfNotes" name="notes" maxlength="2000" placeholder="Driveway size, number of parking spaces, stamped or heated surfaces, hours of operation, etc."></textarea>
+        </div>
+
+        <button type="submit" class="btn-gold" id="sfSubmit">Request My Snow Quote</button>
+        <div class="form-msg" id="sfMsg"></div>
+      </form>
+
+      <div class="quote-side">
+        <div class="side-card">
+          <h4>Prefer to talk?</h4>
+          <p>Call or text and we will put together a quote over the phone.</p>
+          <a href="tel:+17055009000" class="big-phone" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Snow Quote Side Call' });"><i class="fas fa-phone"></i> (705) 500-9000</a>
+        </div>
+        <div class="side-card">
+          <h4>Why Greenworks for snow</h4>
+          <ul>
+            <li><i class="fas fa-check"></i> The same local crew that cares for your lawn</li>
+            <li><i class="fas fa-check"></i> Clear written terms you can read before signing</li>
+            <li><i class="fas fa-check"></i> Accept your quote online in one minute</li>
+            <li><i class="fas fa-check"></i> App notification after every visit</li>
+            <li><i class="fas fa-check"></i> Fully insured and WSIB compliant</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="block">
+    <div class="section-head">
+      <span class="kicker">Questions</span>
+      <h2>Snow Removal FAQ</h2>
+    </div>
+    <div class="faq-list">
+      <details>
+        <summary>Do I need to call you when it snows?</summary>
+        <p>No. Once you are on our seasonal route, we monitor the weather and come automatically after every qualifying snowfall of 5 cm (2 inches) or more.</p>
+      </details>
+      <details>
+        <summary>What areas do you serve?</summary>
+        <p>We provide snow removal in Halton Hills, including Georgetown and Acton, and the GTA. Not sure if you are in our area? Send a quote request or give us a call.</p>
+      </details>
+      <details>
+        <summary>How will I know my property has been cleared?</summary>
+        <p>You get a notification on our client app after each visit, so you know your driveway and walkways are done without having to look outside.</p>
+      </details>
+      <details>
+        <summary>How fast will my property be cleared?</summary>
+        <p>Residential properties are cleared within 12 hours after the snowfall ends, and usually much sooner. During heavy storms we may make an interim pass to keep your driveway usable, then return for a final cleanup. Commercial and industrial timing is agreed per site.</p>
+      </details>
+      <details>
+        <summary>Is salting included?</summary>
+        <p>Yes. Salt or ice melt is applied to cleared surfaces on each visit. If you would rather not have salt on your property, let us know and your quote will say it is not included.</p>
+      </details>
+      <details>
+        <summary>What if we get a mild winter?</summary>
+        <p>Residential contracts are a fixed seasonal price, so your cost stays the same whether we get five storms or fifty. You always know exactly what you will pay.</p>
+      </details>
+      <details>
+        <summary>Can I sign up after the season has started?</summary>
+        <p>Often, yes, depending on space on our route. Send a quote request or give us a call and we will let you know right away.</p>
+      </details>
+      <details>
+        <summary>How is commercial and industrial snow removal priced?</summary>
+        <p>Every site is different, so we quote each one individually based on lot size, walkways, docks, hours of operation, and how quickly areas need to be open. Tell us about your site and we will arrange a visit if needed.</p>
+      </details>
+      <details>
+        <summary>Where does the snow go?</summary>
+        <p>Cleared snow is piled on site, usually along driveway and lot edges. If space runs out, snow hauling is available at an additional charge.</p>
+      </details>
+    </div>
+  </section>
+
+  <p class="cross-link"><i class="fas fa-seedling" style="color: var(--gold-dark);"></i>&nbsp; Already thinking about spring? <a href="lawnmain">See our lawn maintenance plans</a></p>
+
+  <!-- ================= CTA ================= -->
+  <section class="cta-banner">
+    <div>
+      <h2>Stop shovelling. <em>Let us handle winter.</em></h2>
+      <p>Get a free snow removal quote. We usually reply the same day.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="tel:+17055009000" class="cta-phone" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Snow CTA Banner Call' });">
+        <i class="fas fa-phone"></i> (705)500-9000
+      </a>
+      <a href="#snow-quote" class="btn-gold">Get a Free Quote</a>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>About Us</h4>
+        <p>Greenworks Landscaping is committed to providing top-quality construction and landscaping services. Locally owned and operated, we make your property our passion.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Info</h4>
+        <ul>
+          <li><i class="fas fa-map-marker-alt"></i> Georgetown, ON, CA</li>
+          <li><i class="fas fa-phone"></i> <a href="tel:+17055009000" onclick="gtag('event', 'phone_call', { 'event_category': 'Lead', 'event_label': 'Snow Footer Call' });">+1 (705)500-9000</a></li>
+          <li><i class="fas fa-envelope"></i> <a href="mailto:info@gnwlandscaping.ca">info@gnwlandscaping.ca</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="landmain">Landscaping &amp; Construction</a></li>
+          <li><a href="lawnmain">Lawn Maintenance</a></li>
+          <li><a href="snow-removal">Snow Removal</a></li>
+          <li><a href="landscape-gallery">Portfolio</a></li>
+          <li><a href="contact">Get a Quote</a></li>
+        </ul>
+        <div class="social-icons" style="margin-top: 12px;">
+          <a href="https://www.instagram.com/gnwlandscaping/" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>Copyright &copy; <span id="year"></span> | Greenworks Construction and Companies Inc. | All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").innerHTML = new Date().getFullYear();
+
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+      document.querySelector(".mobile-button").classList.toggle("active");
+      document.body.classList.toggle("no-scroll");
+    }
+
+    // --- GENTLE SNOWFALL IN THE HERO ---
+    (function () {
+      var box = document.getElementById('snowfall');
+      if (!box) return;
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var count = window.innerWidth < 768 ? 28 : 55;
+      for (var i = 0; i < count; i++) {
+        var s = document.createElement('span');
+        var size = 2 + Math.random() * 4;
+        s.style.width = size + 'px';
+        s.style.height = size + 'px';
+        s.style.left = (Math.random() * 100) + '%';
+        s.style.opacity = (0.35 + Math.random() * 0.6).toFixed(2);
+        s.style.animationDuration = (9 + Math.random() * 12).toFixed(1) + 's';
+        s.style.animationDelay = (-Math.random() * 20).toFixed(1) + 's';
+        box.appendChild(s);
+      }
+    })();
+
+    // --- QUOTE FORM ---
+    (function () {
+      var form = document.getElementById('snowForm');
+      var msg = document.getElementById('sfMsg');
+      var btn = document.getElementById('sfSubmit');
+      var companyWrap = document.getElementById('sfCompanyWrap');
+
+      function currentType() {
+        var r = form.querySelector('input[name="ptype"]:checked');
+        return r ? r.value : 'Residential';
+      }
+      function syncType() {
+        companyWrap.style.display = currentType() === 'Residential' ? 'none' : 'block';
+      }
+      form.querySelectorAll('input[name="ptype"]').forEach(function (r) { r.addEventListener('change', syncType); });
+
+      // "Get a ___ Quote" buttons preselect the property type
+      document.querySelectorAll('.type-card .btn-outline[data-type]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var t = b.getAttribute('data-type');
+          var r = form.querySelector('input[name="ptype"][value="' + t + '"]');
+          if (r) { r.checked = true; syncType(); }
+        });
+      });
+
+      function fail(text) {
+        msg.textContent = text;
+        msg.classList.add('show');
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        msg.classList.remove('show');
+        var name = document.getElementById('sfName').value.trim();
+        var phone = document.getElementById('sfPhone').value.trim();
+        var email = document.getElementById('sfEmail').value.trim();
+        var addr = document.getElementById('sfAddr').value.trim();
+        if (!name || !phone || !email || !addr) { fail('Please fill in your name, phone, email, and property address.'); return; }
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { fail('Please check your email address.'); return; }
+
+        var services = [];
+        form.querySelectorAll('input[name="svc"]:checked').forEach(function (c) { services.push(c.value); });
+        var ptype = currentType();
+
+        var payload = {
+          access_key: "6b0a383e-1fbf-4ede-9e86-2d0634c48564",
+          subject: "Snow Removal Quote Request (" + ptype + "): " + name,
+          from_name: "Greenworks Snow Removal Page",
+          email: email,
+          Name: name,
+          Phone: phone,
+          Address: addr,
+          Property_Type: ptype,
+          Company: document.getElementById('sfCompany').value.trim() || "Not provided",
+          Services_Wanted: services.length ? services.join(', ') : "Not specified",
+          Notes: document.getElementById('sfNotes').value.trim() || "No notes",
+          botcheck: form.querySelector('input[name="botcheck"]').checked
+        };
+
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+        btn.style.opacity = '0.7';
+
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        }).then(function (r) {
+          return r.json().then(function (j) { return { status: r.status, json: j }; });
+        }).then(function (res) {
+          if (res.status === 200 && res.json && res.json.success) {
+            try { gtag('event', 'generate_lead', { 'event_category': 'Lead', 'event_label': 'Snow Quote Form (' + ptype + ')' }); } catch (err) {}
+            window.location.href = 'thankyou.html';
+          } else {
+            fail((res.json && res.json.message) || 'Something went wrong. Please call or text us at (705) 500-9000.');
+            btn.disabled = false; btn.textContent = 'Request My Snow Quote'; btn.style.opacity = '1';
+          }
+        }).catch(function () {
+          fail('Network error. Please try again, or call or text us at (705) 500-9000.');
+          btn.disabled = false; btn.textContent = 'Request My Snow Quote'; btn.style.opacity = '1';
+        });
+      });
+    })();
+
+    // --- SCROLL REVEAL ---
+    (function () {
+      if (!('IntersectionObserver' in window)) return;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+      document.querySelectorAll('.section-head, .type-card, .svc-item, .step, .trust-item, .cta-banner').forEach(function (el, i) {
+        el.classList.add('reveal');
+        el.style.transitionDelay = (i % 4) * 0.1 + 's';
+        io.observe(el);
+      });
+    })();
+  </script>
+  <!-- Google Ads: report phone clicks as conversions (Click to call) -->
+  <script>
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    var a = (t && t.closest) ? t.closest('a[href^="tel:"]') : null;
+    if (a && typeof gtag === 'function') {
+      gtag('event', 'conversion', {
+        'send_to': 'AW-10820369667/F_soCPX42eYcEIP6xqco',
+        'value': 1.0,
+        'currency': 'CAD'
+      });
+    }
+  });
+  </script>
+</body>
+</html>

@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="GNW Landscaping" />
-  <meta name="description" content="Greenworks Landscaping. Georgetown's trusted landscaping construction and lawn maintenance company. Interlock patios, driveways, retaining walls, weekly mowing, fertilizing and more. 5-star rated, locally owned, fully insured." />
+  <meta name="description" content="Greenworks Landscaping. Georgetown's trusted landscaping construction and lawn maintenance company. Interlock patios, driveways, retaining walls, weekly mowing, fertilizing, snow removal and more. 5-star rated, locally owned, fully insured." />
   <title>Greenworks Landscaping | Landscaping & Lawn Care in Georgetown, ON</title>
 
   <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
@@ -134,6 +134,21 @@
     }
     .path-card .path-go i { transition: transform 0.3s; display: inline-block; margin-left: 6px; }
     .path-card:hover .path-go i { transform: translateX(6px); }
+    .path-card-split p { margin-bottom: 14px; }
+    .path-tabs { margin-top: auto; display: flex; flex-direction: column; gap: 8px; width: 100%; }
+    .path-tab {
+      display: flex; align-items: center; gap: 9px; width: 100%;
+      padding: 9px 14px; border-radius: 12px;
+      font-size: 0.82rem; font-weight: 600; color: var(--ivory);
+      border: 1px solid rgba(201, 162, 75, 0.45); background: rgba(250, 246, 234, 0.05);
+    }
+    .path-tab i:first-child { color: var(--gold); width: 16px; text-align: center; }
+    .path-tab i.fa-arrow-right { margin-left: auto; font-size: 0.72rem; color: var(--gold); transition: transform 0.3s; }
+    .path-tab:hover { background: rgba(250, 246, 234, 0.14); border-color: var(--gold); }
+    .path-tab:hover i.fa-arrow-right { transform: translateX(4px); }
+    .path-tab-main { background: linear-gradient(135deg, #d8b466, var(--gold) 55%, var(--gold-dark)); color: var(--forest-deep); border-color: var(--gold-dark); }
+    .path-tab-main i:first-child, .path-tab-main i.fa-arrow-right { color: var(--forest-deep); }
+    .path-tab-main:hover { background: linear-gradient(135deg, #e2c078, #d4ad55 55%, #bb9345); }
 
     .google-stamp-wrapper { margin-top: 42px; position: relative; z-index: 2; }
     .google-stamped-badge {
@@ -189,6 +204,17 @@
     .split-list li { display: flex; align-items: flex-start; gap: 9px; font-size: 0.88rem; color: var(--text-dark); }
     .split-list li i { color: var(--gold-dark); margin-top: 4px; font-size: 0.8rem; }
     .split-actions { margin-top: auto; display: flex; gap: 14px; flex-wrap: wrap; }
+    .winter-link {
+      display: flex; align-items: center; gap: 12px;
+      margin: -8px 0 26px; padding: 12px 16px; border-radius: 12px;
+      background: #eef3f7; border: 1px solid #d3e0ea;
+      font-size: 0.85rem; color: var(--text-dark);
+    }
+    .winter-link i.fa-snowflake { color: #4a7fb5; font-size: 1.1rem; }
+    .winter-link strong { color: var(--forest); }
+    .winter-link i.fa-arrow-right { margin-left: auto; color: var(--gold-dark); font-size: 0.8rem; transition: transform 0.3s; }
+    .winter-link:hover { border-color: #4a7fb5; }
+    .winter-link:hover i.fa-arrow-right { transform: translateX(4px); }
     .btn-gold {
       display: inline-block;
       background: linear-gradient(135deg, #d8b466, var(--gold) 55%, var(--gold-dark));
@@ -472,12 +498,15 @@
           <p>Interlock patios, driveways, retaining walls, porches, and full outdoor transformations.</p>
           <span class="path-go">Explore Landscaping <i class="fas fa-arrow-right"></i></span>
         </a>
-        <a href="lawnmain" class="path-card">
+        <div class="path-card path-card-split">
           <i class="fas fa-seedling path-icon"></i>
-          <h3>Lawn Maintenance</h3>
-          <p>Weekly mowing plans, fertilizing, aeration, and seasonal cleanups that keep your lawn pristine.</p>
-          <span class="path-go">Explore Lawn Care <i class="fas fa-arrow-right"></i></span>
-        </a>
+          <h3>Property Maintenance</h3>
+          <p>Weekly lawn care, seasonal cleanups, and winter snow removal for homes and businesses.</p>
+          <div class="path-tabs">
+            <a href="lawnmain" class="path-tab path-tab-main"><i class="fas fa-leaf"></i> Lawn Maintenance <i class="fas fa-arrow-right"></i></a>
+            <a href="snow-removal" class="path-tab" onclick="gtag('event', 'select_content', { 'content_type': 'service', 'item_id': 'Hero Snow Removal' });"><i class="fas fa-snowflake"></i> Snow Removal <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
       </div>
 
       <div class="google-stamp-wrapper">
@@ -552,10 +581,10 @@
       <div class="split-card">
         <div class="split-img">
           <img src="assets/img/lawn_gallery/1.webp" alt="Freshly mowed lawn maintained by Greenworks">
-          <span class="split-tag">Weekly Care</span>
+          <span class="split-tag">Year-Round Care</span>
         </div>
         <div class="split-body">
-          <h3>Lawn Maintenance</h3>
+          <h3>Property Maintenance</h3>
           <p>Reliable, scheduled care that keeps your property looking pristine all season without you lifting a finger.</p>
           <ul class="split-list">
             <li><i class="fas fa-check"></i> Weekly Mowing Plans</li>
@@ -565,6 +594,7 @@
             <li><i class="fas fa-check"></i> Mulch &amp; Garden Beds</li>
             <li><i class="fas fa-check"></i> Tree &amp; Shrub Care</li>
           </ul>
+          <a href="snow-removal" class="winter-link"><i class="fas fa-snowflake"></i> <span>In winter we also offer <strong>Snow Removal &amp; Salting</strong></span> <i class="fas fa-arrow-right"></i></a>
           <div class="split-actions">
             <a href="lawnmain" class="btn-gold">Explore Lawn Care</a>
             <a href="lawnmain#custom-quote" class="btn-outline">Instant Quote</a>
@@ -864,6 +894,7 @@
         <ul>
           <li><a href="landmain">Landscaping &amp; Construction</a></li>
           <li><a href="lawnmain">Lawn Maintenance</a></li>
+          <li><a href="snow-removal">Snow Removal</a></li>
           <li><a href="landscape-gallery">Portfolio</a></li>
           <li><a href="contact">Get a Quote</a></li>
         </ul>
