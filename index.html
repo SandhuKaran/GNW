@@ -445,6 +445,21 @@
     }
   </style>
   <link rel="stylesheet" href="assets/css/luxe.css">
+  <style>
+    /* Seasonal homepage: snow removal shows Nov 1 to Mar 31, lawn-only the rest of the year */
+    html:not(.snow-season) .winter-only { display: none !important; }
+    html.snow-season .summer-only { display: none !important; }
+  </style>
+  <script>
+    // Snow season = November 1 to March 31 (visitor's local date).
+    // Preview any time with ?season=winter or ?season=summer
+    (function () {
+      var force = (location.search.match(/[?&]season=(winter|summer)/) || [])[1];
+      var m = new Date().getMonth(); // 0 = Jan ... 10 = Nov, 11 = Dec
+      var winter = force ? force === 'winter' : (m >= 10 || m <= 2);
+      if (winter) document.documentElement.classList.add('snow-season');
+    })();
+  </script>
 </head>
 <body>
 
@@ -498,7 +513,13 @@
           <p>Interlock patios, driveways, retaining walls, porches, and full outdoor transformations.</p>
           <span class="path-go">Explore Landscaping <i class="fas fa-arrow-right"></i></span>
         </a>
-        <div class="path-card path-card-split">
+        <a href="lawnmain" class="path-card summer-only">
+          <i class="fas fa-seedling path-icon"></i>
+          <h3>Lawn Maintenance</h3>
+          <p>Weekly mowing plans, fertilizing, aeration, and seasonal cleanups that keep your lawn pristine.</p>
+          <span class="path-go">Explore Lawn Care <i class="fas fa-arrow-right"></i></span>
+        </a>
+        <div class="path-card path-card-split winter-only">
           <i class="fas fa-seedling path-icon"></i>
           <h3>Property Maintenance</h3>
           <p>Weekly lawn care, seasonal cleanups, and winter snow removal for homes and businesses.</p>
@@ -581,10 +602,10 @@
       <div class="split-card">
         <div class="split-img">
           <img src="assets/img/lawn_gallery/1.webp" alt="Freshly mowed lawn maintained by Greenworks">
-          <span class="split-tag">Year-Round Care</span>
+          <span class="split-tag"><span class="summer-only">Weekly Care</span><span class="winter-only">Year-Round Care</span></span>
         </div>
         <div class="split-body">
-          <h3>Property Maintenance</h3>
+          <h3><span class="summer-only">Lawn Maintenance</span><span class="winter-only">Property Maintenance</span></h3>
           <p>Reliable, scheduled care that keeps your property looking pristine all season without you lifting a finger.</p>
           <ul class="split-list">
             <li><i class="fas fa-check"></i> Weekly Mowing Plans</li>
@@ -594,7 +615,7 @@
             <li><i class="fas fa-check"></i> Mulch &amp; Garden Beds</li>
             <li><i class="fas fa-check"></i> Tree &amp; Shrub Care</li>
           </ul>
-          <a href="snow-removal" class="winter-link"><i class="fas fa-snowflake"></i> <span>In winter we also offer <strong>Snow Removal &amp; Salting</strong></span> <i class="fas fa-arrow-right"></i></a>
+          <a href="snow-removal" class="winter-link winter-only"><i class="fas fa-snowflake"></i> <span>In winter we also offer <strong>Snow Removal &amp; Salting</strong></span> <i class="fas fa-arrow-right"></i></a>
           <div class="split-actions">
             <a href="lawnmain" class="btn-gold">Explore Lawn Care</a>
             <a href="lawnmain#custom-quote" class="btn-outline">Instant Quote</a>
